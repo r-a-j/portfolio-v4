@@ -28,7 +28,7 @@ pnpm-debug.log*
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -41,7 +41,7 @@ pnpm-debug.log*
 coverage/
 
 # Vercel specific
-.vercel/*
+.vercel/
 output/
 
 # Temporary files and directories

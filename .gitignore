@@ -5,11 +5,18 @@
 /tmp
 /out-tsc
 /bazel-out
+.angular/**/cache
 
-# Node
+# Build artifacts
+/build
+*.log
+
+# Node.js modules
 /node_modules
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # IDEs and editors
 .idea/
@@ -26,18 +33,35 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# History plugin for VS Code
 .history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Vercel specific
+.vercel
+output/
+
+# Temporary files and directories
+/sass-cache/
 /connect.lock
-/coverage
 /libpeerconnection.log
 testem.log
-/typings
+typings/
 
 # System files
 .DS_Store
 Thumbs.db
-.vercel/
+
+# Environment variable files
+.env
+.env.*
+
+# Angular CLI specific
+.angular/cache
+
+# Other
+*.temp
+*.tmp

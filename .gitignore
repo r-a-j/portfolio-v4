@@ -41,7 +41,7 @@ pnpm-debug.log*
 coverage/
 
 # Vercel specific
-.vercel
+.vercel/*
 output/
 
 # Temporary files and directories

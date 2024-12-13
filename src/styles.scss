@@ -1,4 +1,28 @@
+@use "@fontsource/inter" as *;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "@fontsource/inter"; // Defaults to weight 400
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+
+  /* Hide scrollbar but keep scrolling functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}

@@ -1,0 +1,19 @@
+footer {
+    @apply bg-primary text-secondary py-6;
+
+    .container {
+        @apply mx-auto flex flex-col md:flex-row justify-between items-center;
+    }
+
+    a {
+        @apply hover:text-gray-300 transition-colors duration-300;
+    }
+
+    .text-sm {
+        @apply text-gray-400;
+    }
+
+    p {
+        @apply mt-4 text-gray-400 text-center;
+    }
+}

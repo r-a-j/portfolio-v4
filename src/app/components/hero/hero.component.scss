@@ -1,3 +1,9 @@
+section {
+    @apply h-screen flex flex-col justify-center items-center bg-secondary text-primary;
+}
+
 button {
-    @apply hover:bg-gray-800 transition-colors duration-300;
+    &:hover {
+        @apply shadow-lg;
+    }
 }

@@ -1,9 +1,30 @@
 <nav class="flex justify-between items-center p-4 bg-primary text-secondary">
-    <div class="text-xl font-bold"><a routerLink="/home">Portfolio</a></div>
-    <ul class="flex space-x-8">
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/projects">Projects</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
+    <!-- Logo Section -->
+    <div class="text-xl font-bold">
+        <a routerLink="/home">Raj Pawar</a>
+    </div>
+
+    <!-- Hamburger Button (Visible on Mobile, Hidden on Desktop) -->
+    <button class="md:hidden text-secondary hover:text-white focus:outline-none" (click)="isMenuOpen = !isMenuOpen"
+        aria-label="Toggle navigation">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex space-x-8">
+        <li><a routerLink="/home" routerLinkActive="font-bold">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="font-bold">About</a></li>
+        <li><a routerLink="/projects" routerLinkActive="font-bold">Projects</a></li>
+        <li><a routerLink="/contact" routerLinkActive="font-bold">Contact</a></li>
     </ul>
 </nav>
+
+<!-- Mobile Menu (only shown when isMenuOpen is true) -->
+<ul *ngIf="isMenuOpen" class="md:hidden flex flex-col bg-primary text-secondary p-4 space-y-4 shadow-md">
+    <li><a routerLink="/home" (click)="closeMenu()" routerLinkActive="font-bold">Home</a></li>
+    <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="font-bold">About</a></li>
+    <li><a routerLink="/projects" (click)="closeMenu()" routerLinkActive="font-bold">Projects</a></li>
+    <li><a routerLink="/contact" (click)="closeMenu()" routerLinkActive="font-bold">Contact</a></li>
+</ul>

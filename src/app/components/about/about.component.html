@@ -1,7 +1,63 @@
 <section id="about" class="p-8 bg-gray-100 text-primary">
-    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-lg">
-        I am a Data Scientist with expertise in machine learning, statistical analysis, and data visualization. I create
-        impactful solutions by utilizing the power of data.
-    </p>
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-extrabold mb-6 text-gray-800">About Me</h2>
+
+        <!-- Highlighted introductory text -->
+        <p class="text-lg text-gray-600 leading-relaxed mb-4">
+            I am a highly motivated <span class="font-semibold">Software Engineer</span> and
+            <span class="font-semibold">Data Scientist</span> passionate about developing innovative solutions and
+            exceeding expectations.
+        </p>
+
+        <!-- Content blocks with structured layout -->
+        <div class="text-left space-y-6">
+            <p class="text-gray-700 leading-relaxed">
+                With a strong background in <span class="font-semibold">web development</span>,
+                <span class="font-semibold">back-end architecture</span>, and
+                <span class="font-semibold">full-stack engineering</span>, I specialize in delivering high-quality
+                software products on time.
+                I have hands-on experience with technologies like
+                <span class="font-semibold">Python</span>, <span class="font-semibold">Java</span>,
+                <span class="font-semibold">.NET Core</span>, <span class="font-semibold">Angular</span>, and <span
+                    class="font-semibold">RESTful APIs</span>.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed">
+                I am currently pursuing a <span class="font-semibold">Master's in Data Science</span> at the
+                <span class="font-semibold">Technical University of Dortmund</span>, focusing on machine learning,
+                regression analysis, statistical modeling, and data visualization. This academic foundation enhances my
+                professional expertise, enabling me to tackle complex data-driven challenges.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed">
+                Driven by <span class="font-semibold">continuous learning</span> and a commitment to professional
+                growth, I aim to leverage
+                my skills to create <span class="font-semibold">world-class software</span> and data solutions. Whether
+                working
+                independently or as part of a collaborative team, I strive to deliver scalable, optimized, and impactful
+                products.
+            </p>
+        </div>
+
+        <!-- CV Button -->
+        <div class="mt-8">
+            <button (click)="openCV()"
+                class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 transition duration-300">
+                View CV
+            </button>
+        </div>
+
+        <!-- PDF Modal -->
+        <div *ngIf="showCVModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 w-[90%] h-[80%] md:w-[70%] md:h-[70%] relative">
+                <button (click)="closeCV()"
+                    class="absolute top-2 right-2 bg-primary text-white text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-700 transition">
+                    &times;
+                </button>
+                <iframe [src]="cvPath" class="w-full h-full rounded" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
 </section>
+
+<app-experience></app-experience>

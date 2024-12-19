@@ -1,9 +1,84 @@
 section {
-    @apply h-screen flex flex-col justify-center items-center bg-secondary text-primary;
+    @apply h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-800 via-gray-900 to-gray-700 text-primary;
+}
+
+img {
+    @apply w-24 h-24 rounded-full border-4 border-primary shadow-lg;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    /* Adds emphasis and depth */
+}
+
+h1 {
+    @apply text-3xl md:text-5xl font-bold animate-fadeIn mt-4;
+    color: #f3f4f6;
+    /* Brighter text for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    /* Improves readability */
+}
+
+p {
+    @apply text-lg md:text-xl max-w-xl mt-4;
+    color: #d1d5db;
+    /* Softer text color for the description */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    /* Subtle text-shadow for readability */
 }
 
 button {
+    @apply mt-8 px-8 py-3 bg-primary text-secondary rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 animate-bounce;
+    background: linear-gradient(90deg, #163780, #1a202c);
+    /* Gradient for a modern look */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+    /* Adds depth */
     &:hover {
-        @apply shadow-lg;
+        @apply shadow-lg transform scale-105;
+        background: linear-gradient(90deg, #1d4ed8, #1a202c);
+        /* Reversed hover effect */
     }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+svg {
+    @apply text-secondary;
+    color: #d1d5db;
+    /* Matches text color */
 }

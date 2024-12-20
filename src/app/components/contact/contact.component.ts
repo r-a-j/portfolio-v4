@@ -29,7 +29,7 @@ export class ContactComponent {
       })
       .catch((error) => {
         console.error('Email send error:', error);
-        alert('Oops! Something went wrong. Please contact me directly.');
+        alert('Oops! Something went wrong. Please contact me on er.rajpawar@gmail.com.');
       });
   }
 }

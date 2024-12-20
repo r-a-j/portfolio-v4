@@ -18,30 +18,20 @@ export class ContactComponent {
       return;
     }
 
-    grecaptcha.ready(() => {
-      grecaptcha.execute(environment.recaptchaSiteKey, { action: 'submit' }).then((token: string) => {
-        const tokenInput = document.createElement('input');
-        tokenInput.type = 'hidden';
-        tokenInput.name = 'g-recaptcha-response';
-        tokenInput.value = token;
-        form.appendChild(tokenInput);
-
-        emailjs
-          .sendForm(
-            environment.emailServiceId,
-            environment.emailTemplateId,
-            form,
-            environment.emailPublicKey
-          )
-          .then(() => {
-            alert('Your message has been sent!');
-            form.reset();
-          })
-          .catch((error) => {
-            console.error('Email send error:', error);
-            alert('Oops! Something went wrong. Please contact me directly.');
-          });
+    emailjs
+      .sendForm(
+        environment.emailServiceId,
+        environment.emailTemplateId,
+        form,
+        environment.emailPublicKey
+      )
+      .then(() => {
+        alert('Your message has been sent!');
+        form.reset();
+      })
+      .catch((error) => {
+        console.error('Email send error:', error);
+        alert('Oops! Something went wrong. Please contact me directly.');
       });
-    });
   }
 }

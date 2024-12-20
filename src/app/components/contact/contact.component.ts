@@ -11,20 +11,18 @@ import { environment } from '../../../environments/environment.prod';
 export class ContactComponent {
   sendEmail(event: Event): void {
     event.preventDefault();
-    const form = event.target as HTMLFormElement;
+    const form: HTMLFormElement = event.target as HTMLFormElement;
 
     if (!form.checkValidity()) {
       alert('Please fill out all required fields!');
       return;
     }
 
-    emailjs
-      .sendForm(
-        environment.emailServiceId,
-        environment.emailTemplateId,
-        form,
-        environment.emailPublicKey
-      )
+    emailjs.sendForm(
+      environment.emailServiceId,
+      environment.emailTemplateId,
+      form,
+      environment.emailPublicKey)
       .then(() => {
         alert('Your message has been sent!');
         form.reset();

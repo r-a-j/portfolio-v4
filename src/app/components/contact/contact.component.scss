@@ -1,3 +1,12 @@
 form {
-    @apply bg-white p-4 rounded-lg shadow-lg;
+    @apply bg-white p-6 rounded-lg shadow-lg;
+
+    input,
+    textarea {
+        @apply border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    }
+
+    button {
+        @apply bg-primary text-white font-semibold rounded shadow-md hover:shadow-lg hover:bg-gray-800 transition-transform duration-300 transform hover:scale-105;
+    }
 }

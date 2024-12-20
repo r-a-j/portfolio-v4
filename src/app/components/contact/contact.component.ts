@@ -9,18 +9,39 @@ import { environment } from '../../../environments/environment.prod';
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  public sendEmail(event: Event): void {
+  sendEmail(event: Event): void {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-    
-    emailjs.sendForm(environment.emailServiceId, environment.emailTemplateId, form, environment.emailPublicKey)
-      .then((result) => {
-        console.log('Email successfully sent!', result.text);
-        alert('Your message has been sent successfully!');
-        form.reset();
-      }, (error) => {
-        console.error('Error sending email:', error.text);
-        alert('Oops! Something went wrong. You can contact me at er.rajpawar@gmail.com');
+
+    if (!form.checkValidity()) {
+      alert('Please fill out all required fields!');
+      return;
+    }
+
+    grecaptcha.ready(() => {
+      grecaptcha.execute(environment.recaptchaSiteKey, { action: 'submit' }).then((token: string) => {
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'g-recaptcha-response';
+        tokenInput.value = token;
+        form.appendChild(tokenInput);
+
+        emailjs
+          .sendForm(
+            environment.emailServiceId,
+            environment.emailTemplateId,
+            form,
+            environment.emailPublicKey
+          )
+          .then(() => {
+            alert('Your message has been sent!');
+            form.reset();
+          })
+          .catch((error) => {
+            console.error('Email send error:', error);
+            alert('Oops! Something went wrong. Please contact me directly.');
+          });
       });
+    });
   }
 }

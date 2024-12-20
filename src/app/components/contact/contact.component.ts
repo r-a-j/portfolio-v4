@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import emailjs from 'emailjs-com';
 import { environment } from '../../../environments/environment.prod';
+// import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',

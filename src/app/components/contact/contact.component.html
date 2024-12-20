@@ -2,8 +2,8 @@
     <div class="max-w-lg mx-auto">
         <h2 class="text-3xl font-bold mb-4 text-center">Contact Me</h2>
         <form (submit)="sendEmail($event)" class="flex flex-col space-y-4" novalidate>
-            <input type="text" name="user_name" ngModel placeholder="Your Name" class="p-2 border rounded" required />
-            <input type="email" name="user_email" ngModel placeholder="Your Email" class="p-2 border rounded"
+            <input type="text" name="from_name" ngModel placeholder="Your Name" class="p-2 border rounded" required />
+            <input type="email" name="from_email" ngModel placeholder="Your Email" class="p-2 border rounded"
                 required />
             <textarea name="message" ngModel placeholder="Your Message" class="p-2 border rounded h-32 resize-none"
                 required></textarea>

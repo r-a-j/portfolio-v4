@@ -1,0 +1,14 @@
+<!-- Technologies Section -->
+<section id="technologies" class="p-8 bg-white text-primary">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-extrabold mb-6 text-gray-800">Technologies</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+            <div class="tech-card" *ngFor="let tech of technologies">
+                <a [href]="tech.link" target="_blank" rel="noreferrer">
+                    <img [src]="tech.image" [alt]="tech.name" class="h-16 mx-auto">
+                </a>
+                <span class="block mt-2 font-semibold text-gray-700">{{ tech.name }}</span>
+            </div>
+        </div>
+    </div>
+</section>

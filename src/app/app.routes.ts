@@ -23,10 +23,22 @@ export const routes: Routes = [
             import('./components/about/about.component').then((c) => c.AboutComponent)
     },
     {
+        path: 'experience',
+        title: "Experience",
+        loadComponent: () =>
+            import('./components/experience/experience.component').then((c) => c.ExperienceComponent)
+    },
+    {
         path: 'projects',
         title: "Projects",
         loadComponent: () =>
             import('./components/projects/projects.component').then((c) => c.ProjectsComponent)
+    },
+    {
+        path: 'skills',
+        title: "Skills",
+        loadComponent: () =>
+            import('./components/skills/skills.component').then((c) => c.SkillsComponent)
     },
     {
         path: 'contact',

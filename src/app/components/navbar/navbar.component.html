@@ -16,7 +16,9 @@
     <ul class="hidden md:flex space-x-8">
         <li><a routerLink="/home" routerLinkActive="font-bold">Home</a></li>
         <li><a routerLink="/about" routerLinkActive="font-bold">About</a></li>
+        <li><a routerLink="/experience" routerLinkActive="font-bold">Experience</a></li>
         <li><a routerLink="/projects" routerLinkActive="font-bold">Projects</a></li>
+        <li><a routerLink="/skills" routerLinkActive="font-bold">Skills</a></li>
         <li><a routerLink="/contact" routerLinkActive="font-bold">Contact</a></li>
     </ul>
 </nav>
@@ -25,6 +27,8 @@
 <ul *ngIf="isMenuOpen" class="md:hidden flex flex-col bg-primary text-secondary p-4 space-y-4 shadow-md">
     <li><a routerLink="/home" (click)="closeMenu()" routerLinkActive="font-bold">Home</a></li>
     <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="font-bold">About</a></li>
+    <li><a routerLink="/experience" (click)="closeMenu()" routerLinkActive="font-bold">Experience</a></li>
     <li><a routerLink="/projects" (click)="closeMenu()" routerLinkActive="font-bold">Projects</a></li>
+    <li><a routerLink="/skills" (click)="closeMenu()" routerLinkActive="font-bold">Skills</a></li>
     <li><a routerLink="/contact" (click)="closeMenu()" routerLinkActive="font-bold">Contact</a></li>
 </ul>

@@ -13,19 +13,19 @@ jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Replace Environment Variables
-        run: |
-          sed -i "s|REPLACE_EMAILJS_SERVICE_ID|${{ secrets.EMAILJS_SERVICE_ID }}|g" src/environments/environment.prod.ts
-          sed -i "s|REPLACE_EMAILJS_TEMPLATE_ID|${{ secrets.EMAILJS_TEMPLATE_ID }}|g" src/environments/environment.prod.ts
-          sed -i "s|REPLACE_EMAILJS_PUBLIC_KEY|${{ secrets.EMAILJS_PUBLIC_KEY }}|g" src/environments/environment.prod.ts
+      - uses: actions/checkout@v3      
         
       - name: Install Vercel CLI
         run: npm install --global vercel
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Replace Environment Variables
+        run: |
+          sed -i "s|EMAILJS_SERVICE_ID|${{ secrets.EMAILJS_SERVICE_ID }}|g" src/environments/environment.prod.ts
+          sed -i "s|EMAILJS_TEMPLATE_ID|${{ secrets.EMAILJS_TEMPLATE_ID }}|g" src/environments/environment.prod.ts
+          sed -i "s|EMAILJS_PUBLIC_KEY|${{ secrets.EMAILJS_PUBLIC_KEY }}|g" src/environments/environment.prod.ts
 
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}

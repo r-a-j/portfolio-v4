@@ -20,6 +20,7 @@ jobs:
           sed -i "s|REPLACE_EMAILJS_SERVICE_ID|${{ secrets.EMAILJS_SERVICE_ID }}|g" src/environments/environment.prod.ts
           sed -i "s|REPLACE_EMAILJS_TEMPLATE_ID|${{ secrets.EMAILJS_TEMPLATE_ID }}|g" src/environments/environment.prod.ts
           sed -i "s|REPLACE_EMAILJS_PUBLIC_KEY|${{ secrets.EMAILJS_PUBLIC_KEY }}|g" src/environments/environment.prod.ts
+          sed -i "s|RECAPTCHA_SITE_KEY|${{ secrets.RECAPTCHA_SITE_KEY }}|g" src/environments/environment.prod.ts
           sed -i "s|RECAPTCHA_SITE_KEY|${{ secrets.RECAPTCHA_SITE_KEY }}|g" src/index.html
         
       - name: Install Vercel CLI

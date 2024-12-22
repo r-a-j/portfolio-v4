@@ -1,13 +1,18 @@
-<section id="projects" class="p-8 bg-white text-primary">
-    <h2 class="text-3xl font-bold mb-4">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-gray-100 p-4 rounded-lg">
-            <h3 class="font-bold">Project 1</h3>
-            <p>A short description of your project.</p>
-        </div>
-        <div class="bg-gray-100 p-4 rounded-lg">
-            <h3 class="font-bold">Project 2</h3>
-            <p>A short description of your project.</p>
+<div class="projects-container">
+    <h1 class="heading">My Projects</h1>
+    <div class="grid-container">
+        <div *ngFor="let project of projects" class="project-card">
+            <img [src]="project.thumbnail" alt="{{ project.title }}" class="thumbnail" />
+            <div class="info">
+                <h2 class="title">{{ project.title }}</h2>
+                <p class="description">{{ project.description }}</p>
+            </div>
+            <div class="button-container">
+                <a [href]="project.githubLink" target="_blank" class="github-button">
+                    <img src="technologies/github.svg" alt="GitHub" class="github-logo" />
+                    View on GitHub
+                </a>
+            </div>
         </div>
     </div>
-</section>
+</div>

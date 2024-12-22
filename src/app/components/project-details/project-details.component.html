@@ -1,0 +1,8 @@
+<div class="project-detail-container" *ngIf="projectDetails">
+    <h1 class="title">{{ projectDetails.title }}</h1>
+    <p class="description">{{ projectDetails.description }}</p>
+
+    <div class="content">
+        <iframe *ngIf="safeUrl" [src]="safeUrl" width="100%" height="600px" frameborder="0"></iframe>
+    </div>
+</div>

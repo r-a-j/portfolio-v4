@@ -1,43 +1,46 @@
+// Section Styles
 section {
-    @apply h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-800 via-gray-900 to-gray-700 text-primary;
+    @apply h-screen flex flex-col justify-center items-center text-primary text-center px-4;
+    background-color: var(--color-primary);
 }
 
+// Profile Picture
 img {
-    @apply w-24 h-24 rounded-full border-4 border-primary shadow-lg;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    /* Adds emphasis and depth */
+    @apply rounded-full border-4 shadow-lg;
+    border-color: var(--color-primary);
+    box-shadow: var(--box-shadow-hover);
 }
 
+div.relative div {
+    display: none;
+}
+
+// Greeting Text
 h1 {
-    @apply text-3xl md:text-5xl font-bold animate-fadeIn mt-4;
-    color: #f3f4f6;
-    /* Brighter text for better contrast */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    /* Improves readability */
+    @apply font-bold animate-fadeIn mt-6 text-secondary;
+    color: var(--color-secondary);
 }
 
 p {
-    @apply text-lg md:text-xl max-w-xl mt-4;
-    color: #d1d5db;
-    /* Softer text color for the description */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    /* Subtle text-shadow for readability */
+    @apply mt-4 text-lg md:text-xl max-w-xl;
+    color: var(--color-secondary);
+    /* Adjusted to a brighter secondary color for better readability */
 }
 
+// Call-to-Action Button
 button {
-    @apply mt-8 px-8 py-3 bg-primary text-secondary rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 animate-bounce;
-    background: linear-gradient(90deg, #163780, #1a202c);
-    /* Gradient for a modern look */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    @apply mt-8 px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2 animate-bounce shadow-lg;
+    background: var(--color-primary-dark);
+    color: var(--color-secondary);
+    transition: transform 0.3s ease;
 
-    /* Adds depth */
     &:hover {
-        @apply shadow-lg transform scale-105;
-        background: linear-gradient(90deg, #1d4ed8, #1a202c);
-        /* Reversed hover effect */
+        transform: scale(1.05);
+        background: var(--color-primary-dark);
     }
 }
 
+// Animations
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -48,6 +51,10 @@ button {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 @keyframes bounce {
@@ -69,16 +76,6 @@ button {
     }
 }
 
-.animate-fadeIn {
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
 .animate-bounce {
     animation: bounce 2s infinite;
-}
-
-svg {
-    @apply text-secondary;
-    color: #d1d5db;
-    /* Matches text color */
 }

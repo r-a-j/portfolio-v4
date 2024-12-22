@@ -1,12 +1,12 @@
-<nav class="flex justify-between items-center p-4 bg-primary text-secondary">
+<nav class="flex justify-between items-center p-4 bg-primary text-secondary shadow-md">
     <!-- Logo Section -->
     <div class="text-xl font-bold">
-        <a routerLink="/home">Raj Pawar</a>
+        <a routerLink="/home" aria-label="Navigate to Home">Raj Pawar</a>
     </div>
 
     <!-- Hamburger Button (Visible on Mobile, Hidden on Desktop) -->
-    <button class="md:hidden text-secondary hover:text-white focus:outline-none" (click)="isMenuOpen = !isMenuOpen"
-        aria-label="Toggle navigation">
+    <button class="md:hidden text-secondary hover:text-accent focus:outline-none transition duration-300"
+        (click)="isMenuOpen = !isMenuOpen" aria-label="Toggle navigation">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -14,21 +14,58 @@
 
     <!-- Desktop Navigation -->
     <ul class="hidden md:flex space-x-8">
-        <li><a routerLink="/home" routerLinkActive="font-bold">Home</a></li>
-        <li><a routerLink="/about" routerLinkActive="font-bold">About</a></li>
-        <li><a routerLink="/experience" routerLinkActive="font-bold">Experience</a></li>
-        <li><a routerLink="/projects" routerLinkActive="font-bold">Projects</a></li>
-        <li><a routerLink="/skills" routerLinkActive="font-bold">Skills</a></li>
-        <li><a routerLink="/contact" routerLinkActive="font-bold">Contact</a></li>
+        <li>
+            <a routerLink="/home" routerLinkActive="font-bold" aria-current="page"
+                class="hover:text-accent transition duration-300">Home</a>
+        </li>
+        <li>
+            <a routerLink="/about" routerLinkActive="font-bold"
+                class="hover:text-accent transition duration-300">About</a>
+        </li>
+        <li>
+            <a routerLink="/experience" routerLinkActive="font-bold"
+                class="hover:text-accent transition duration-300">Experience</a>
+        </li>
+        <li>
+            <a routerLink="/projects" routerLinkActive="font-bold"
+                class="hover:text-accent transition duration-300">Projects</a>
+        </li>
+        <li>
+            <a routerLink="/skills" routerLinkActive="font-bold"
+                class="hover:text-accent transition duration-300">Skills</a>
+        </li>
+        <li>
+            <a routerLink="/contact" routerLinkActive="font-bold"
+                class="hover:text-accent transition duration-300">Contact</a>
+        </li>
     </ul>
 </nav>
 
 <!-- Mobile Menu (only shown when isMenuOpen is true) -->
-<ul *ngIf="isMenuOpen" class="md:hidden flex flex-col bg-primary text-secondary p-4 space-y-4 shadow-md">
-    <li><a routerLink="/home" (click)="closeMenu()" routerLinkActive="font-bold">Home</a></li>
-    <li><a routerLink="/about" (click)="closeMenu()" routerLinkActive="font-bold">About</a></li>
-    <li><a routerLink="/experience" (click)="closeMenu()" routerLinkActive="font-bold">Experience</a></li>
-    <li><a routerLink="/projects" (click)="closeMenu()" routerLinkActive="font-bold">Projects</a></li>
-    <li><a routerLink="/skills" (click)="closeMenu()" routerLinkActive="font-bold">Skills</a></li>
-    <li><a routerLink="/contact" (click)="closeMenu()" routerLinkActive="font-bold">Contact</a></li>
+<ul *ngIf="isMenuOpen"
+    class="md:hidden flex flex-col bg-primary text-secondary p-4 space-y-4 shadow-md transition-transform duration-300">
+    <li>
+        <a routerLink="/home" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">Home</a>
+    </li>
+    <li>
+        <a routerLink="/about" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">About</a>
+    </li>
+    <li>
+        <a routerLink="/experience" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">Experience</a>
+    </li>
+    <li>
+        <a routerLink="/projects" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">Projects</a>
+    </li>
+    <li>
+        <a routerLink="/skills" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">Skills</a>
+    </li>
+    <li>
+        <a routerLink="/contact" (click)="closeMenu()" routerLinkActive="font-bold"
+            class="hover:text-accent transition duration-300">Contact</a>
+    </li>
 </ul>

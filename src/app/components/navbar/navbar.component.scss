@@ -1,3 +1,25 @@
 nav {
-    @apply bg-primary text-secondary shadow-md;
+    @apply shadow-md;
+    background-color: var(--color-primary);
+    /* Navy Blue */
+    color: var(--color-secondary);
+    /* Soft White */
+
+    a {
+        @apply text-sm font-semibold px-4 py-2 transition;
+        color: var(--color-secondary);
+        /* Soft White */
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-accent);
+            /* Vibrant Gold */
+        }
+    }
+
+    .active-link {
+        color: var(--color-accent);
+        /* Vibrant Gold */
+        @apply underline;
+    }
 }

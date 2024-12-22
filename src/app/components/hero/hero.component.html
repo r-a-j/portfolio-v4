@@ -1,14 +1,28 @@
-<section
-    class="h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900 text-primary text-center px-4">
-    <img src="profile.png" alt="Profile Picture"
-        class="w-24 h-24 rounded-full border-4 border-primary shadow-lg">
-    <h1 class="text-3xl md:text-5xl font-bold animate-fadeIn mt-4">{{ greeting }}, I'm Raj Pawar</h1>
-    <p class="mt-4 text-lg md:text-xl max-w-xl">
-        A passionate Data Scientist and a skilled Software Engineer.
+<section class="h-screen flex flex-col justify-center items-center bg-primary-dark text-primary text-center px-4">
+    <!-- Profile Picture -->
+    <div class="relative">
+        <img src="profile.png" alt="Profile Picture"
+            class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-accent shadow-lg">
+        <div class="absolute inset-0 w-full h-full rounded-full border-4 border-transparent bg-accent blur-md">
+        </div>
+    </div>
+
+    <!-- Greeting -->
+    <h1 class="text-4xl md:text-5xl font-bold animate-fadeIn mt-6 text-secondary">
+        {{ greeting }}, I'm <span class="text-accent">Raj Pawar</span>
+    </h1>
+
+    <!-- Description -->
+    <p class="mt-4 text-lg md:text-xl max-w-xl text-secondary">
+        I’m a passionate <span class="text-accent font-semibold">Data Scientist</span> and a skilled
+        <span class="text-accent font-semibold">Software Engineer</span>, driven by curiosity and innovation.
     </p>
+
+
+    <!-- Call-to-Action Button -->
     <button
-        class="mt-8 px-8 py-3 bg-primary text-secondary rounded-lg font-medium hover:bg-gray-800 transition-colors duration-300 flex items-center justify-center gap-2 animate-bounce">
-        <a routerLink="/projects">View My Work</a>
+        class="mt-8 px-8 py-3 bg-accent text-secondary rounded-lg font-medium flex items-center justify-center gap-2 animate-bounce shadow-lg hover:scale-105 transition-transform">
+        <a routerLink="/projects" class="font-medium">View My Work</a>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>

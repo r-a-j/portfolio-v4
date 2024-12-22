@@ -3,18 +3,79 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme Variables */
+:root {
+  --color-primary: #0d3b66;
+  /* Navy Blue */
+  --color-primary-hover: #082d4d;
+  /* Darker Navy */
+  --color-primary-dark: #0b2841;
+  /* Deep Navy */
+
+  --color-secondary: #fafafa;
+  /* Soft White */
+  --color-secondary-hover: #f4f4f4;
+  /* Light Gray */
+
+  --color-accent: #f4d35e;
+  /* Vibrant Gold */
+  --color-accent-hover: #e9b44c;
+  /* Muted Gold */
+
+  --color-text-primary: #2a2a2a;
+  /* Dark Neutral */
+  --color-text-secondary: #595959;
+  /* Soft Gray */
+  --color-text-muted: #737373;
+  /* Muted Neutral */
+
+  --color-border: #e5e5e5;
+  /* Light Border Gray */
+
+
+
+  /* Light Border */
+
+  --border-radius: 16px;
+  /* Standard Border Radius */
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Card Shadow */
+  --box-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.2);
+  /* Hover Shadow */
+
+  --font-title-size: 1.2rem;
+  /* Card Title Font Size */
+  --font-description-size: 0.9rem;
+  /* Card Description Font Size */
+  --font-heading-size: 2.5rem;
+  /* Section Heading Font Size */
+
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
 
   /* Hide scrollbar but keep scrolling functionality */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
 }
 
 .layout {

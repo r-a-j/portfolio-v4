@@ -3,15 +3,22 @@
     <div class="grid-container">
         <div *ngFor="let project of projects" class="project-card">
             <img [src]="project.thumbnail" alt="{{ project.title }}" class="thumbnail" />
-            <div class="info">
-                <h2 class="title">{{ project.title }}</h2>
-                <p class="description">{{ project.description }}</p>
-            </div>
-            <div class="button-container">
-                <a [href]="project.githubLink" target="_blank" class="github-button">
-                    <img src="technologies/github.svg" alt="GitHub" class="github-logo" />
-                    View on GitHub
-                </a>
+            <div class="info-container">
+                <div class="info">
+                    <h2 class="title">{{ project.title }}</h2>
+                    <p class="description">{{ project.description }}</p>
+                </div>
+                <div class="button-container">
+                    <!-- GitHub Button -->
+                    <a [href]="project.githubLink" target="_blank" class="github-button">
+                        <img src="technologies/github.svg" alt="GitHub" class="github-logo" />
+                        GitHub
+                    </a>
+                    <!-- View Project Button -->
+                    <button (click)="viewProject(project.id)" class="view-project-button">
+                        View Project
+                    </button>
+                </div>
             </div>
         </div>
     </div>

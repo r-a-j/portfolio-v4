@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -9,18 +9,30 @@ import { CommonModule } from '@angular/common';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  showCVModal: boolean = false; // State to show/hide modal
-  cvPath!: SafeResourceUrl; // PDF Path with safe URL  
+  public showCVModal: boolean = false;
+  public safePdfUrl!: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) {}
 
-  openCV(): void {
-    const cvUrl = 'https://rajpawar.in/assets/cv.pdf'; // Place your CV in assets folder
-    this.cvPath = this.sanitizer.bypassSecurityTrustResourceUrl(cvUrl);
-    this.showCVModal = true;
+  public openCV(): void {
+    const pdfUrl = 'docs/Raj_Pawar_CV.pdf'; // Path to your PDF file
+    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
+
+    if (this.isMobileView()) {
+      // Open PDF in a new tab on mobile devices
+      window.open(pdfUrl, '_blank');
+    } else {
+      // Open modal for larger screens
+      this.showCVModal = true;
+    }
   }
 
-  closeCV(): void {
+  public closeCV(): void {
     this.showCVModal = false;
+  }
+
+  // Detect if the view is mobile based on window width
+  private isMobileView(): boolean {
+    return window.innerWidth <= 768;
   }
 }

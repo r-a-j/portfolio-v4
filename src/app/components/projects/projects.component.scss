@@ -15,6 +15,13 @@
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: var(--spacing-large);
 
+        /* Limit to 4 rows */
+        grid-template-rows: repeat(4, auto);
+        max-height: calc(4 * 400px + 3 * var(--spacing-large));
+        /* Approx height: 4 project cards + gaps */
+        overflow-y: auto;
+        /* Allow scrolling if more projects exist */
+
         .project-card {
             background-color: #fff;
             border-radius: var(--border-radius);

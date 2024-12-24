@@ -1,0 +1,60 @@
+import { ProjectDetails } from '../shared/types/project-details';
+
+export const PROJECTS: ProjectDetails[] = [
+    {
+        id: 'social-scope',
+        title: 'Social Scope',
+        description: 'Generate images using diffusion models',
+        thumbnail: 'portfolio/social-scope/social-scope-2.webp',
+        githubLink: 'https://github.com/r-a-j/Social-Scope',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+    {
+        id: 'metal-nonmetal-classification',
+        title: 'Metal / Non-metal Image Classification',
+        description: 'Industry use case - PartikelART Solutions GmbH',
+        thumbnail: 'portfolio/met-nmet-classifier/met-nmet-classifier-2.webp',
+        githubLink: 'https://github.com/r-a-j/IDS-Image-Classification',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+    {
+        id: 'regression-analysis',
+        title: 'Regression Analysis',
+        description: 'Modeled height using human body measurements',
+        thumbnail: 'portfolio/regression-analysis/regression-analysis.webp',
+        githubLink: 'https://github.com/r-a-j/Regression-Analysis',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+    {
+        id: 'comparison-multiple-distributions',
+        title: 'Comparison of Multiple Distributions',
+        description: 'Analysed swimmer timings using ANOVA and adjusted pairwise tests',
+        thumbnail: 'portfolio/comparing multiple distributions/comparing-multiple-distributions.webp',
+        githubLink: 'https://github.com/r-a-j/Comparison-of-multiple-distributions',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+    {
+        id: 'descriptive-analysis',
+        title: 'Descriptive Analysis',
+        description: 'Analysed rising life expectancies and strong correlations between mortality and birth life expectancy',
+        thumbnail: 'portfolio/descriptive-analysis/descriptive-analysis.webp',
+        githubLink: 'https://github.com/r-a-j/Descriptive-Analysis',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+    {
+        id: 'eye-tracking-fixations',
+        title: 'Eye Tracking (Fixations)',
+        description: 'Ongoing...',
+        thumbnail: 'portfolio/eye-tracking/eye-tracking.webp',
+        githubLink: 'https://github.com/r-a-j/Eye-Tracking-Fixations',
+        filePath: 'project-files/placeholder_project_rmd.html',
+    },
+    {
+        id: 'applied-bayesian-data-analysis',
+        title: 'Applied Bayesian Data Analysis',
+        description: 'Ongoing...',
+        thumbnail: 'portfolio/applied-bayesian-data-analysis/applied-bayesian-data-analysis.jpg',
+        githubLink: 'https://github.com/r-a-j/Applied-Bayesian-Data-Analysis',
+        filePath: 'project-files/placeholder_project_ipynb.html',
+    },
+];

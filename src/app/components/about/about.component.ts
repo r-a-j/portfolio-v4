@@ -10,9 +10,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class AboutComponent {
   public showCVModal: boolean = false;
-  public safePdfUrl!: SafeResourceUrl;
+  public safePdfUrl: SafeResourceUrl = '';
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) { }
 
   public openCV(): void {
     const pdfUrl = 'docs/Raj_Pawar_CV.pdf'; // Path to your PDF file

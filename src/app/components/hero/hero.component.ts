@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-  greeting: string;
+  public greeting: string;
 
   constructor() {
     const hour = new Date().getHours();

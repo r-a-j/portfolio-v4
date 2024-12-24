@@ -8,11 +8,11 @@ import { PROJECTS } from '../data/projects-data';
 export class ProjectService {
     private readonly projects: ProjectDetails[] = PROJECTS;
 
-    getProjects(): ProjectDetails[] {
+    public getProjects(): ProjectDetails[] {
         return this.projects;
     }
 
-    getProjectById(id: string): ProjectDetails | null {
+    public getProjectById(id: string): ProjectDetails | null {
         return this.projects.find((project) => project.id === id) || null;
     }
 }

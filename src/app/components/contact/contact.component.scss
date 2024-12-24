@@ -1,12 +1,50 @@
-form {
-    @apply bg-white p-6 rounded-lg shadow-lg;
+#contact {
+    @apply p-12 bg-secondary text-primary relative;
 
-    input,
-    textarea {
-        @apply border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    h2 {
+        @apply text-4xl font-bold mb-4 text-center text-primary-dark;
     }
 
-    button {
-        @apply bg-primary text-white font-semibold rounded shadow-md hover:shadow-lg hover:bg-gray-800 transition-transform duration-300 transform hover:scale-105;
+    p {
+        @apply text-lg text-center text-primary-light mb-8;
+    }
+
+    form {
+        @apply bg-white p-8 rounded-2xl shadow-xl space-y-6;
+
+        label {
+            @apply block text-sm font-medium text-primary-light mb-2;
+        }
+
+        .input {
+            @apply w-full border border-gray-300 rounded-lg px-4 py-2 text-primary shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition;
+
+            &:hover {
+                @apply border-primary-light;
+                /* Subtle hover effect */
+            }
+
+            &.textarea {
+                @apply h-32 resize-none;
+            }
+
+            &.ng-invalid.ng-touched {
+                @apply border-red-500;
+                /* Highlight invalid fields */
+            }
+        }
+
+        .button {
+            @apply w-full py-3 text-secondary font-semibold bg-primary rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105;
+            background-color: var(--color-accent);
+        }
+
+        small {
+            @apply text-sm text-red-500 mt-1;
+        }
+    }
+
+    .background-circle {
+        @apply absolute top-[-50px] left-[-50px] w-[300px] h-[300px] bg-accent/20 rounded-full blur-3xl -z-10;
     }
 }

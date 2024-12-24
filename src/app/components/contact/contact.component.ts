@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import emailjs from 'emailjs-com';
 import { environment } from '../../../environments/environment.prod';
-// import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  sendEmail(event: Event): void {
+  public sendEmail(event: Event): void {
     event.preventDefault();
     const form: HTMLFormElement = event.target as HTMLFormElement;
 
@@ -23,14 +24,13 @@ export class ContactComponent {
       environment.emailServiceId,
       environment.emailTemplateId,
       form,
-      environment.emailPublicKey)
-      .then(() => {
-        alert('Your message has been sent!');
-        form.reset();
-      })
-      .catch((error) => {
-        console.error('Email send error:', error);
-        alert('Oops! Something went wrong. Please contact me on er.rajpawar@gmail.com.');
-      });
+      environment.emailPublicKey
+    ).then(() => {
+      alert('Your message has been sent!');
+      form.reset();
+    }).catch((error) => {
+      console.error('Email send error:', error);
+      alert('Oops! Something went wrong. Please contact me on er.rajpawar@gmail.com.');
+    });
   }
 }

@@ -13,7 +13,7 @@ export class FooterComponent implements OnInit {
 
   constructor(private dateService: DateService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.currentYear = this.dateService.getCurrentYear();
   }
 }

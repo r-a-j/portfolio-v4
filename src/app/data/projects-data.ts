@@ -23,7 +23,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Modeled height using human body measurements',
         thumbnail: 'portfolio/regression-analysis/regression-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Regression-Analysis',
-        filePath: 'project-files/placeholder_project_ipynb.html',
+        filePath: 'https://github.com/r-a-j/Regression-Analysis/blob/main/Python/Problem_3_Code_Raj_231811.ipynb',
     },
     {
         id: 'comparison-multiple-distributions',

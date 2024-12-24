@@ -6,12 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#1a202c", // Dark gray for modern look
-        secondary: "#edf2f7", // Light gray for contrast
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        "primary-hover": "rgb(var(--color-primary-hover) / <alpha-value>)",
+        "primary-dark": "rgb(var(--color-primary-dark) / <alpha-value>)",
+        "primary-light": "#718096",
+        secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+        "secondary-hover": "rgb(var(--color-secondary-hover) / <alpha-value>)",
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        "accent-hover": "rgb(var(--color-accent-hover) / <alpha-value>)"
       },
       fontFamily: {
         sans: ['"Inter"', "sans-serif"],
-      },  
+      },
     },
   },
   plugins: [],

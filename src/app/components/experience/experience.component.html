@@ -8,9 +8,25 @@
                 <p>{{ experience.location }}</p>
             </div>
         </div>
-        <p class="company">{{ experience.company }}</p>
+        <a href="{{ experience.company_url }}" class="company" target="_blank">{{ experience.company }}</a>
         <div class="description">
-            <p>{{ experience.description }}</p>
+            <div *ngFor="let category of experience.description">
+                <h4 class="category">{{ category.category }}</h4>
+                <ul>
+                    <li *ngFor="let item of category.items">
+                        {{ item.text }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="media-gallery" *ngIf="experience.media && experience.media.length > 0">
+            <div class="media-item" *ngFor="let mediaItem of experience.media; let i = index"
+                (click)="toggleMediaView(i, experience.id)">
+                <img *ngIf="!isExpanded(experience.id, i)" [src]="mediaItem.url" alt="Media Thumbnail"
+                    class="media-thumbnail" />
+                <img *ngIf="isExpanded(experience.id, i)" [src]="mediaItem.url" alt="Expanded Media"
+                    class="media-expanded" />
+            </div>
         </div>
     </div>
 </div>

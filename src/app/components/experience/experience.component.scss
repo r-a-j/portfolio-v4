@@ -1,52 +1,105 @@
 .experience-section {
-    background-color: #f9fafb;
-    padding: 2rem 1rem;
+    background-color: var(--color-secondary);
+    padding: var(--spacing-large) var(--spacing-medium);
 
     h2 {
         @apply text-4xl font-extrabold mb-6;
-        text-align: center;        
+        color: var(--color-text-primary);
+        text-align: center;
     }
 
     .experience-card {
         background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 0.5rem;
-        padding: 1.5rem;
-        margin: 1rem auto;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: var(--spacing-medium);
+        margin: var(--spacing-medium) auto;
         max-width: 700px;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: var(--spacing-small);
+        transition: box-shadow 0.2s ease-in-out;
+
+        &:hover {
+            box-shadow: var(--box-shadow-hover);
+        }
 
         .experience-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
 
             .role {
-                font-size: 1.2rem;
+                font-size: var(--font-title-size);
+                color: var(--color-text-primary);
                 font-weight: 700;
-                color: #111827;
             }
 
             .details {
                 font-size: 0.875rem;
-                color: #6b7280;
+                color: var(--color-text-muted);
                 text-align: right;
             }
         }
 
         .company {
-            font-size: 0.9rem;
+            font-size: var(--font-description-size);
             font-weight: 600;
-            color: #374151;
+            color: var(--color-primary);
         }
 
         .description {
             font-size: 0.875rem;
-            color: #4b5563;
+            color: var(--color-text-muted);
             line-height: 1.5;
-            margin-top: 0.5rem;
+            margin-top: var(--spacing-small);
+
+            ul {
+                list-style-type: disc;
+                padding-left: var(--spacing-medium);
+            }
+
+            li {
+                margin-bottom: var(--spacing-small);
+            }
+        }
+
+        .category {            
+            font-weight: 600;
+            margin-bottom: var(--spacing-small);
+        }
+
+        .media-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-small);
+            margin-top: var(--spacing-medium);
+
+            .media-item {
+                position: relative;
+                cursor: pointer;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                box-shadow: var(--box-shadow);
+                transition: transform 0.2s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                .media-thumbnail {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                }
+
+                .media-expanded {
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                    max-height: 500px;
+                }
+            }
         }
     }
 }

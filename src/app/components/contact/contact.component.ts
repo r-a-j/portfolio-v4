@@ -73,7 +73,7 @@ export class ContactComponent implements OnInit {
 
   private initializeForm(): FormGroup {
     return this.fb.group({
-      name: [
+      form_name: [
         '',
         [
           Validators.required,
@@ -81,7 +81,7 @@ export class ContactComponent implements OnInit {
           Validators.maxLength(this.maxNameLength),
         ],
       ],
-      email: [
+      form_email: [
         '',
         [
           Validators.required,

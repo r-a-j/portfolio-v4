@@ -1,0 +1,16 @@
+<div class="notification-container">
+    <div *ngFor="let notification of notificationService.notifications" class="notification"
+        [ngClass]="notification.type">
+        <div class="icon-container">
+            <ng-container [ngSwitch]="notification.type">
+                <img *ngSwitchCase="'success'" src="icons/direct.gif" alt="Success Icon" class="icon" />
+                <img *ngSwitchCase="'error'" src="icons/error.gif" alt="Error Icon" class="icon" />
+                <img *ngSwitchCase="'info'" src="icons/information.gif" alt="Info Icon" class="icon" />
+                <img *ngSwitchCase="'warning'" src="icons/warning.gif" alt="Warning Icon" class="icon" />
+            </ng-container>
+        </div>
+        <div class="message-container">
+            <span class="message">{{ notification.message }}</span>
+        </div>
+    </div>
+</div>

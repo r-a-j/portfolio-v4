@@ -8,32 +8,63 @@
             Have questions or want to connect? Drop a message below, and I'll get back to you!
         </p>
 
-        <form #contactForm="ngForm" (submit)="sendEmail($event)" class="bg-white p-8 rounded-2xl shadow-xl space-y-6"
-            novalidate>
+        <form [formGroup]="contactForm" (ngSubmit)="sendEmail()" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
             <!-- Name Field -->
             <div>
                 <label for="name" class="block text-sm font-medium text-primary-light mb-2">Your Name</label>
-                <input type="text" id="name" name="from_name" ngModel #name="ngModel" class="w-full input"
-                    placeholder="Enter your name" required />
-                <small *ngIf="name.invalid && name.touched" class="text-red-500 text-sm mt-1">Name is required.</small>
+                <input type="text" formControlName="name" id="name" class="w-full input"
+                    placeholder="Enter your name" />
+                <ng-container *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                    <small *ngIf="contactForm.get('name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                        Name is required.
+                    </small>
+                    <small *ngIf="contactForm.get('name')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+                        Name must be at least {{ minNameLength }} characters long.
+                    </small>
+                    <small *ngIf="contactForm.get('name')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                        Name must not exceed {{ maxNameLength }} characters.
+                    </small>
+                </ng-container>
             </div>
 
             <!-- Email Field -->
             <div>
                 <label for="email" class="block text-sm font-medium text-primary-light mb-2">Your Email</label>
-                <input type="email" id="email" name="from_email" ngModel #email="ngModel" class="w-full input"
-                    placeholder="Enter your email" required />
-                <small *ngIf="email.invalid && email.touched" class="text-red-500 text-sm mt-1">Valid email is
-                    required.</small>
+                <input type="email" formControlName="email" id="email" class="w-full input"
+                    placeholder="Enter your email" />
+                <ng-container
+                    *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                    <small *ngIf="contactForm.get('email')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                        Email is required.
+                    </small>
+                    <small *ngIf="contactForm.get('email')?.errors?.['email']" class="text-red-500 text-sm mt-1">
+                        Invalid email format.
+                    </small>
+                    <small *ngIf="contactForm.get('email')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+                        Email must be at least {{ minEmailLength }} characters long.
+                    </small>
+                    <small *ngIf="contactForm.get('email')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                        Email must not exceed {{ maxEmailLength }} characters.
+                    </small>
+                </ng-container>
             </div>
 
             <!-- Message Field -->
             <div>
                 <label for="message" class="block text-sm font-medium text-primary-light mb-2">Your Message</label>
-                <textarea id="message" name="message" ngModel #message="ngModel" class="w-full input textarea"
-                    placeholder="Type your message here..." required></textarea>
-                <small *ngIf="message.invalid && message.touched" class="text-red-500 text-sm mt-1">Message is
-                    required.</small>
+                <textarea formControlName="message" id="message" class="w-full input textarea"
+                    placeholder="Type your message here..."></textarea>
+                <ng-container *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+                    <small *ngIf="contactForm.get('message')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                        Message is required.
+                    </small>
+                    <small *ngIf="contactForm.get('message')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+                        Message must be at least {{ minMessageLength }} characters long.
+                    </small>
+                    <small *ngIf="contactForm.get('message')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                        Message must not exceed {{ maxMessageLength }} characters.
+                    </small>
+                </ng-container>
             </div>
 
             <!-- Submit Button -->

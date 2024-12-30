@@ -11,17 +11,17 @@
         <form [formGroup]="contactForm" (ngSubmit)="sendEmail()" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
             <!-- Name Field -->
             <div>
-                <label for="form_name" class="block text-sm font-medium text-primary-light mb-2">Your Name</label>
-                <input type="text" formControlName="form_name" id="form_name" class="w-full input"
+                <label for="name" class="block text-sm font-medium text-primary-light mb-2">Your Name</label>
+                <input type="text" formControlName="name" id="name" class="w-full input"
                     placeholder="Enter your name" />
-                <ng-container *ngIf="contactForm.get('form_name')?.invalid && contactForm.get('form_name')?.touched">
-                    <small *ngIf="contactForm.get('form_name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                <ng-container *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                    <small *ngIf="contactForm.get('name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
                         Name is required.
                     </small>
-                    <small *ngIf="contactForm.get('form_name')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+                    <small *ngIf="contactForm.get('name')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
                         Name must be at least {{ minNameLength }} characters long.
                     </small>
-                    <small *ngIf="contactForm.get('form_name')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                    <small *ngIf="contactForm.get('name')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
                         Name must not exceed {{ maxNameLength }} characters.
                     </small>
                 </ng-container>
@@ -29,21 +29,20 @@
 
             <!-- Email Field -->
             <div>
-                <label for="form_email" class="block text-sm font-medium text-primary-light mb-2">Your Email</label>
-                <input type="email" formControlName="form_email" id="form_email" class="w-full input"
+                <label for="email" class="block text-sm font-medium text-primary-light mb-2">Your Email</label>
+                <input type="email" formControlName="email" id="email" class="w-full input"
                     placeholder="Enter your email" />
-                <ng-container
-                    *ngIf="contactForm.get('form_email')?.invalid && contactForm.get('form_email')?.touched">
-                    <small *ngIf="contactForm.get('form_email')?.errors?.['required']" class="text-red-500 text-sm mt-1">
+                <ng-container *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                    <small *ngIf="contactForm.get('email')?.errors?.['required']" class="text-red-500 text-sm mt-1">
                         Email is required.
                     </small>
-                    <small *ngIf="contactForm.get('form_email')?.errors?.['email']" class="text-red-500 text-sm mt-1">
+                    <small *ngIf="contactForm.get('email')?.errors?.['email']" class="text-red-500 text-sm mt-1">
                         Invalid email format.
                     </small>
-                    <small *ngIf="contactForm.get('form_email')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+                    <small *ngIf="contactForm.get('email')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
                         Email must be at least {{ minEmailLength }} characters long.
                     </small>
-                    <small *ngIf="contactForm.get('form_email')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
+                    <small *ngIf="contactForm.get('email')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
                         Email must not exceed {{ maxEmailLength }} characters.
                     </small>
                 </ng-container>

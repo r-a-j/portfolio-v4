@@ -42,6 +42,7 @@ export class ContactComponent implements OnInit {
         'Please fill in all the fields correctly.',
         this.formErrorMessageDuration
       );
+
       return;
     }
 
@@ -55,7 +56,7 @@ export class ContactComponent implements OnInit {
         environment.emailPublicKey
       )
       .then(() => {
-        this.notificationService.success(
+        this.notificationService.messageSent(
           'Your message has been sent!',
           this.formSuccessMessageDuration
         );

@@ -1,17 +1,20 @@
 <section id="about" class="p-8 bg-gray-100 text-primary rounded-lg shadow-lg">
-    <div class="max-w-4xl mx-auto text-center">
+    <div class="max-w-4xl mx-auto text-center space-y-12">
         <!-- Heading -->
-        <h2 class="text-4xl font-bold mb-6 text-gray-800">{{ aboutContent.heading }}</h2>
+        <h2 class="text-5xl font-extrabold mb-6 text-gray-800 tracking-tight">{{ aboutContent.heading }}</h2>
 
-        <!-- TL;DR Version -->
-        <div class="bg-gray-200 p-4 rounded-lg mb-6">
-            <h3 class="text-2xl font-semibold mb-4 text-gray-700">TL;DR</h3>
-            <p class="text-lg leading-relaxed text-gray-700">{{ aboutContent.tldr }}</p>
+        <!-- TL;DR Section -->
+        <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-6 rounded-lg shadow-md">
+            <h3 class="text-3xl font-semibold mb-4 text-gray-700">TL;DR</h3>
+            <p class="text-lg leading-relaxed text-gray-600 italic text-justify">
+                "{{ aboutContent.tldr }}"
+            </p>
         </div>
 
         <!-- Full Content -->
-        <div class="space-y-6">
-            <p class="text-lg leading-relaxed text-gray-700" *ngFor="let paragraph of aboutContent.paragraphs">
+        <div class="space-y-8 text-left">
+            <p class="text-lg leading-relaxed text-gray-700 text-justify"
+                *ngFor="let paragraph of aboutContent.paragraphs">
                 {{ paragraph }}
             </p>
         </div>
@@ -19,7 +22,7 @@
         <!-- Button -->
         <div class="mt-8">
             <button (click)="openCV()"
-                class="bg-primary text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-primary-dark transition duration-300">
+                class="bg-blue-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
                 {{ aboutContent.buttonText }}
             </button>
         </div>

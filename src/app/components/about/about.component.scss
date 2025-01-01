@@ -1,26 +1,42 @@
-// Section Styles
+// Ensure all text in the section is justified
 section {
     @apply p-8 rounded-lg shadow-lg;
     background-color: var(--color-secondary);
 
     h2 {
-        @apply text-4xl font-bold mb-6;
+        @apply text-5xl font-extrabold mb-6 tracking-tight;
         color: var(--color-text-primary);
     }
 
     p {
-        @apply text-lg leading-relaxed;
+        @apply text-lg leading-relaxed text-justify; // Add text-justify for all paragraphs
         color: var(--color-text-secondary);
     }
 
     button {
         background-color: var(--color-primary);
         color: #fff;
-        @apply font-semibold px-6 py-3 rounded-lg shadow-md transition duration-300;
+        @apply font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300 transform;
 
         &:hover {
             background-color: var(--color-primary-hover);
+            @apply scale-105;
         }
+    }
+}
+
+// TL;DR Section Styles
+.tldr {
+    @apply bg-gray-200 p-4 rounded-lg mb-6;
+
+    h3 {
+        @apply text-3xl font-semibold mb-4;
+        color: var(--color-text-primary);
+    }
+
+    p {
+        @apply text-lg leading-relaxed italic text-justify;
+        color: var(--color-text-secondary);
     }
 }
 
@@ -32,23 +48,15 @@ section {
         @apply rounded-lg shadow-lg relative;
 
         background-color: var(--color-secondary);
-        /* Modal size */
         width: clamp(80vw, 80%, 60vw);
         height: clamp(80vh, 80%, 60vh);
 
-        /* Enable scrolling but hide scrollbar */
         overflow-y: auto;
-        scrollbar-width: none;
-        /* Firefox */
-        -ms-overflow-style: none;
-        /* IE and Edge */
 
         &::-webkit-scrollbar {
             display: none;
-            /* Chrome, Safari, Opera */
         }
 
-        /* Header with Title and Close Button */
         .modal-header {
             @apply flex items-center justify-between px-4 py-2 border-b;
             border-color: var(--color-border);
@@ -74,18 +82,12 @@ section {
                     box-shadow: var(--box-shadow-hover);
                 }
 
-                &:focus {
-                    @apply ring-2 ring-offset-2;
-                    ring-color: var(--color-accent);
-                }
-
                 &:active {
                     transform: scale(0.95);
                 }
             }
         }
 
-        /* PDF Viewer */
         .pdf-viewer {
             @apply w-full h-full rounded;
             min-height: 80%;
@@ -93,32 +95,14 @@ section {
     }
 }
 
-// Mobile-specific styles
 @media (max-width: 768px) {
     section {
         button {
-            /* Adjust button styling for mobile */
             @apply px-4 py-2 text-sm;
         }
     }
 
     .modal-overlay {
         display: none;
-        /* Hide modal entirely on mobile */
-    }
-}
-
-// TL;DR Section Styles
-.tldr {
-    @apply bg-gray-200 p-4 rounded-lg mb-6;
-
-    h3 {
-        @apply text-2xl font-semibold mb-4;
-        color: var(--color-text-primary);
-    }
-
-    p {
-        @apply text-lg leading-relaxed;
-        color: var(--color-text-secondary);
     }
 }

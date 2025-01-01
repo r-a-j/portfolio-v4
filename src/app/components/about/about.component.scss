@@ -107,3 +107,18 @@ section {
         /* Hide modal entirely on mobile */
     }
 }
+
+// TL;DR Section Styles
+.tldr {
+    @apply bg-gray-200 p-4 rounded-lg mb-6;
+
+    h3 {
+        @apply text-2xl font-semibold mb-4;
+        color: var(--color-text-primary);
+    }
+
+    p {
+        @apply text-lg leading-relaxed;
+        color: var(--color-text-secondary);
+    }
+}

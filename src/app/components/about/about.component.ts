@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ABOUT_CONTENT } from '../../data/about-data';
 
 @Component({
   selector: 'app-about',
@@ -11,18 +12,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class AboutComponent {
   public showCVModal: boolean = false;
   public safePdfUrl: SafeResourceUrl = '';
+  public aboutContent = ABOUT_CONTENT;
 
   constructor(private sanitizer: DomSanitizer) { }
 
   public openCV(): void {
-    const pdfUrl = 'docs/Raj_Pawar_CV.pdf'; // Path to your PDF file
-    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
+    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.aboutContent.pdfPath);
 
     if (this.isMobileView()) {
-      // Open PDF in a new tab on mobile devices
-      window.open(pdfUrl, '_blank');
+      window.open(this.aboutContent.pdfPath, '_blank');
     } else {
-      // Open modal for larger screens
       this.showCVModal = true;
     }
   }
@@ -31,7 +30,6 @@ export class AboutComponent {
     this.showCVModal = false;
   }
 
-  // Detect if the view is mobile based on window width
   private isMobileView(): boolean {
     return window.innerWidth <= 768;
   }

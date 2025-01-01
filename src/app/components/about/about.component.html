@@ -1,65 +1,18 @@
 <section id="about" class="p-8 bg-gray-100 text-primary rounded-lg shadow-lg">
     <div class="max-w-4xl mx-auto text-center">
         <!-- Heading -->
-        <h2 class="text-4xl font-bold mb-6 text-gray-800">About</h2>
+        <h2 class="text-4xl font-bold mb-6 text-gray-800">{{ aboutContent.heading }}</h2>
 
-        <!-- Content -->
+        <!-- TL;DR Version -->
+        <div class="bg-gray-200 p-4 rounded-lg mb-6">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">TL;DR</h3>
+            <p class="text-lg leading-relaxed text-gray-700">{{ aboutContent.tldr }}</p>
+        </div>
+
+        <!-- Full Content -->
         <div class="space-y-6">
-            <p class="text-lg leading-relaxed text-gray-700">
-                I believe data tells stories that words cannot, and I’ve made it my mission to listen, understand, and
-                bring
-                those stories to life. Whether it's pixels on an image or rows in a dataset, I find joy in uncovering
-                patterns
-                and turning abstract numbers into meaningful insights.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                My love for problem-solving started early—when curiosity led me to dismantle everyday gadgets to
-                understand how
-                they worked. Today, that same curiosity fuels my passion for <span
-                    class="font-semibold text-primary">data
-                    science</span>, where I dismantle complex problems, analyze their components, and create solutions
-                that work
-                in the real world.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                What sets me apart isn’t just my technical expertise; it’s the mindset I bring to every challenge. I
-                thrive at
-                the intersection of creativity and logic—where art meets science. Crafting an elegant algorithm feels
-                like
-                composing a piece of music; every line of code, every choice of model is a note that builds toward
-                harmony.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                I’m not afraid of hard questions; in fact, I seek them out. What excites me the most is taking on
-                problems that
-                don’t have obvious answers, digging deeper, and iterating until I get it right. I view challenges as
-                opportunities to grow and push boundaries—not just for myself, but for the people and systems I work
-                with.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                At my core, I value curiosity, persistence, and integrity. These principles guide my work and my
-                interactions
-                with others. Data might be the tool I work with, but understanding people—their needs, goals, and
-                aspirations—is
-                what drives me.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                My journey in data science is more than a career; it’s a way of thinking. It's about asking the right
-                questions,
-                embracing the unknown, and continuously learning. I’m committed to shaping the future of data-driven
-                solutions
-                with not just accuracy, but heart.
-            </p>
-
-            <p class="text-lg leading-relaxed text-gray-700">
-                When I’m not diving into datasets, you can find me exploring photography, losing myself in a good book,
-                or
-                having meaningful conversations that inspire new ideas.
+            <p class="text-lg leading-relaxed text-gray-700" *ngFor="let paragraph of aboutContent.paragraphs">
+                {{ paragraph }}
             </p>
         </div>
 
@@ -67,7 +20,7 @@
         <div class="mt-8">
             <button (click)="openCV()"
                 class="bg-primary text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-primary-dark transition duration-300">
-                View CV
+                {{ aboutContent.buttonText }}
             </button>
         </div>
 
@@ -76,12 +29,13 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3>Raj Pawar - CV</h3>
+                    <h3>{{ aboutContent.modalTitle }}</h3>
                     <button (click)="closeCV()" class="close-button">&times;</button>
                 </div>
 
                 <!-- PDF Viewer -->
-                <iframe [src]="safePdfUrl" frameborder="0" class="pdf-viewer" title="Raj Pawar CV"></iframe>
+                <iframe [src]="safePdfUrl" frameborder="0" class="pdf-viewer"
+                    title="{{ aboutContent.modalTitle }}"></iframe>
             </div>
         </div>
     </div>

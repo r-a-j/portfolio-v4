@@ -11,20 +11,20 @@
             </p>
         </div>
 
-        <!-- Full Content -->
-        <div class="space-y-8 text-left">
-            <p class="text-lg leading-relaxed text-gray-700 text-justify"
-                *ngFor="let paragraph of aboutContent.paragraphs">
-                {{ paragraph }}
-            </p>
-        </div>
-
         <!-- Button -->
         <div class="mt-8">
             <button (click)="openCV()"
                 class="bg-blue-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
                 {{ aboutContent.buttonText }}
             </button>
+        </div>
+
+        <!-- Full Content -->
+        <div class="space-y-8 text-left">
+            <p class="text-lg leading-relaxed text-gray-700 text-justify"
+                *ngFor="let paragraph of aboutContent.paragraphs">
+                {{ paragraph }}
+            </p>
         </div>
 
         <!-- Modal (only for desktop and tablet) -->

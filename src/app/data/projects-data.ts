@@ -50,6 +50,14 @@ export const PROJECTS: ProjectDetails[] = [
         filePath: 'project-files/placeholder_project_rmd.html',
     },
     {
+        id: 'world-value-survey',
+        title: 'World Value Survey (Trust In Government)',
+        description: 'Ongoing...',
+        thumbnail: 'portfolio/world-value-survey/world-value-survey.webp',
+        githubLink: 'https://github.com/r-a-j/World-Value-Survey',
+        filePath: 'project-files/placeholder_project_rmd.html',
+    },
+    {
         id: 'applied-bayesian-data-analysis',
         title: 'Applied Bayesian Data Analysis',
         description: 'Ongoing...',

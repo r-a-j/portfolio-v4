@@ -10,6 +10,14 @@ export const PROJECTS: ProjectDetails[] = [
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
     {
+        id: 'cine-scope',
+        title: 'Cinescope',
+        description: 'Android mobile app that helps track movies & TV series they have watched or plan to watch',
+        thumbnail: 'portfolio/cine-scope/cinescope.png',
+        githubLink: 'https://github.com/r-a-j/cine-scope',
+        filePath: 'project-files/cine-scope.html',
+    },
+    {
         id: 'metal-nonmetal-classification',
         title: 'Metal / Non-metal Image Classification',
         description: 'Industry use case - PartikelART Solutions GmbH',

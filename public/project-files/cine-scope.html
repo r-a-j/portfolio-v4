@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/1.jpg" alt="Screenshot 1">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/2.jpg" alt="Screenshot 2">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/3.jpg" alt="Screenshot 3">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/4.jpg" alt="Screenshot 4">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/6.jpg" alt="Screenshot 6">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/7.jpg" alt="Screenshot 7">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/5.jpg" alt="Screenshot 5">
+    </div>
+</body>
+
+</html>

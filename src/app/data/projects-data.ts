@@ -59,9 +59,9 @@ export const PROJECTS: ProjectDetails[] = [
     },
     {
         id: 'applied-bayesian-data-analysis',
-        title: 'Applied Bayesian Data Analysis',
+        title: 'Applied Bayesian Data Analysis (Arctic Sea Ice Shrinkage)',
         description: 'Ongoing...',
-        thumbnail: 'portfolio/applied-bayesian-data-analysis/applied-bayesian-data-analysis.jpg',
+        thumbnail: 'portfolio/applied-bayesian-data-analysis/applied-bayesian-data-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Applied-Bayesian-Data-Analysis',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },

@@ -4,31 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
+    <title>App Showcase</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             background-color: #f8f8f8;
             margin: 0;
+            padding: 20px;
         }
 
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
-            max-width: 800px;
+            gap: 15px;
+            max-width: 900px;
             padding: 20px;
         }
 
-        .gallery img {
+        .gallery img,
+        .long-screenshot img {
             width: 100%;
             height: auto;
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .long-screenshot {
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .long-screenshot {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -41,7 +58,9 @@
         <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/4.jpg" alt="Screenshot 4">
         <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/6.jpg" alt="Screenshot 6">
         <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/7.jpg" alt="Screenshot 7">
-        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/5.jpg" alt="Screenshot 5">
+    </div>
+    <div class="long-screenshot">
+        <img src="https://raw.githubusercontent.com/r-a-j/cine-scope/master/screenshots/5.jpg" alt="Long Screenshot">
     </div>
 </body>
 

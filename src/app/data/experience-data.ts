@@ -3,7 +3,7 @@ import { Experience } from "../shared/types/experience-details";
 export const EXPERIENCES: Experience[] = [
   {
     id: 5,
-    role: 'Working Student',
+    role: 'Data Science - Working Student',
     company: 'PartikelART Solution GmbH',
     company_url: 'https://partikelart.com/',
     description: [

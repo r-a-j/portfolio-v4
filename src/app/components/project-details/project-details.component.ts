@@ -41,10 +41,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   private loadProjectDetails(projectId: string): void {
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.projectDetails.filePath
-      );
-
       if (this.projectDetails.githubReadmeUrl) {
         this.http.get(this.projectDetails.githubReadmeUrl, { responseType: 'text' })
           .subscribe({

@@ -4,5 +4,6 @@ export interface ProjectDetails {
     description: string;
     thumbnail?: string;
     githubLink?: string;
+    githubReadmeUrl?: string;
     filePath: string;
 }

@@ -7,6 +7,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Generate images using diffusion models',
         thumbnail: 'portfolio/social-scope/social-scope-2.webp',
         githubLink: 'https://github.com/r-a-j/Social-Scope',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Social-Scope/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
     {
@@ -15,6 +16,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Android mobile app that helps track movies & TV series they have watched or plan to watch',
         thumbnail: 'portfolio/cine-scope/cinescope.png',
         githubLink: 'https://github.com/r-a-j/cine-scope',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/cine-scope/refs/heads/master/README.md',
         filePath: 'project-files/cine-scope.html',
     },
     {
@@ -23,6 +25,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Industry use case - PartikelART Solutions GmbH',
         thumbnail: 'portfolio/met-nmet-classifier/met-nmet-classifier-2.webp',
         githubLink: 'https://github.com/r-a-j/IDS-Image-Classification',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/IDS-Image-Classification/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
     {
@@ -31,6 +34,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Modeled height using human body measurements',
         thumbnail: 'portfolio/regression-analysis/regression-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Regression-Analysis',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Regression-Analysis/refs/heads/main/README.md',
         filePath: 'https://raw.githubusercontent.com/r-a-j/Regression-Analysis/refs/heads/main/Python/Problem_3_Code_Raj_231811.ipynb',
     },
     {
@@ -39,6 +43,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Analysed swimmer timings using ANOVA and adjusted pairwise tests',
         thumbnail: 'portfolio/comparing multiple distributions/comparing-multiple-distributions.webp',
         githubLink: 'https://github.com/r-a-j/Comparison-of-multiple-distributions',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Comparison-of-multiple-distributions/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
     {
@@ -47,6 +52,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Analysed rising life expectancies and strong correlations between mortality and birth life expectancy',
         thumbnail: 'portfolio/descriptive-analysis/descriptive-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Descriptive-Analysis',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Descriptive-Analysis/refs/heads/master/readme.md',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
     {
@@ -55,6 +61,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Ongoing...',
         thumbnail: 'portfolio/eye-tracking/eye-tracking.webp',
         githubLink: 'https://github.com/r-a-j/Eye-Tracking-Fixations',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Eye-Tracking-Fixations/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_rmd.html',
     },
     {
@@ -63,6 +70,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Ongoing...',
         thumbnail: 'portfolio/world-value-survey/world-value-survey.webp',
         githubLink: 'https://github.com/r-a-j/World-Value-Survey',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/World-Value-Survey/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_rmd.html',
     },
     {
@@ -71,6 +79,7 @@ export const PROJECTS: ProjectDetails[] = [
         description: 'Ongoing...',
         thumbnail: 'portfolio/applied-bayesian-data-analysis/applied-bayesian-data-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Applied-Bayesian-Data-Analysis',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Applied-Bayesian-Data-Analysis/refs/heads/main/README.md',
         filePath: 'project-files/placeholder_project_ipynb.html',
     },
 ];

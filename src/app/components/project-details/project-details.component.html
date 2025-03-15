@@ -1,8 +1,15 @@
 <div class="project-detail-container" *ngIf="projectDetails">
+    <div class="back-button">
+        <button (click)="goBack()">
+            <div class="back-icon"></div> Back
+        </button>
+    </div>
+
     <h1 class="title">{{ projectDetails.title }}</h1>
     <p class="description">{{ projectDetails.description }}</p>
 
     <div class="content">
-        <iframe *ngIf="safeUrl" [src]="safeUrl" width="100%" height="600px" frameborder="0"></iframe>
+        <markdown class="markdown-body" *ngIf="markdownContent" [data]="markdownContent"></markdown>
+        <p *ngIf="!markdownContent">Loading project details...</p>
     </div>
 </div>

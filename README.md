@@ -1,4 +1,4 @@
-**LIVE** - **[View here](https://rajpawar.in/)**
+<a href="https://rajpawar.in/" target="blank">View Live Website</a>
 
 ![Home Page View](https://raw.githubusercontent.com/r-a-j/portfolio-v4/master/public/HomePageView.png)
 

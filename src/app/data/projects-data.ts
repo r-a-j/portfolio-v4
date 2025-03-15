@@ -58,7 +58,7 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'eye-tracking-fixations',
         title: 'Eye Tracking (Fixations)',
-        description: 'Ongoing...',
+        description: 'Exploring age-related and temporal patterns in eye-tracking data using statistical modelling. A case study with data from the Nemo Science Museum',
         thumbnail: 'portfolio/eye-tracking/eye-tracking.webp',
         githubLink: 'https://github.com/r-a-j/Eye-Tracking-Fixations',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Eye-Tracking-Fixations/refs/heads/main/README.md',
@@ -67,7 +67,7 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'world-value-survey',
         title: 'World Value Survey (Trust In Government)',
-        description: 'Ongoing...',
+        description: 'Analyzing public trust in government using statistical modelling and machine learning. A case study with data from the World Values Survey',
         thumbnail: 'portfolio/world-value-survey/world-value-survey.webp',
         githubLink: 'https://github.com/r-a-j/World-Value-Survey',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/World-Value-Survey/refs/heads/main/README.md',
@@ -76,7 +76,7 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'applied-bayesian-data-analysis',
         title: 'Applied Bayesian Data Analysis (Arctic Sea Ice Shrinkage)',
-        description: 'Ongoing...',
+        description: 'Analysing arctic sea ice decline through Bayesian Hierarchical Models that capture both temporal dependencies and regional variability',
         thumbnail: 'portfolio/applied-bayesian-data-analysis/applied-bayesian-data-analysis.webp',
         githubLink: 'https://github.com/r-a-j/Applied-Bayesian-Data-Analysis',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Applied-Bayesian-Data-Analysis/refs/heads/main/README.md',

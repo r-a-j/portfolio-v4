@@ -1,6 +1,6 @@
 **LIVE** - **[View here](https://rajpawar.in/)**
 
-![https://assets.digitalocean.com/articles/alligator/boo.svg](https://raw.githubusercontent.com/r-a-j/portfolio-v4/master/public/HomePageView.png)
+![Home Page View](https://raw.githubusercontent.com/r-a-j/portfolio-v4/master/public/HomePageView.png)
 
 ## Development server
 

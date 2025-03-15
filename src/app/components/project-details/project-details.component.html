@@ -1,12 +1,32 @@
 <div class="project-detail-container" *ngIf="projectDetails">
-    <div class="back-button">
-        <button (click)="goBack()">
-            <div class="back-icon"></div> Back
-        </button>
+    <div class="top-nav">
+        <div class="back-button">
+            <button (click)="goBack()">
+                <div class="back-icon"></div>
+                Back
+            </button>
+        </div>
+
+        <div class="prev-next-buttons">
+            <button (click)="goToPrevProject()" class="prev-project-button">
+                <div class="prev-icon"></div>
+                Previous
+            </button>
+            <button (click)="goToNextProject()" class="next-project-button">
+                Next
+                <div class="next-icon"></div>
+            </button>
+        </div>
     </div>
 
     <h1 class="title">{{ projectDetails.title }}</h1>
     <p class="description">{{ projectDetails.description }}</p>
+
+    <div class="github-button-container">
+        <a [href]="projectDetails.githubLink" target="_blank" class="github-button">
+            GitHub
+        </a>
+    </div>
 
     <div class="content">
         <markdown class="markdown-body" *ngIf="markdownContent" [data]="markdownContent"></markdown>

@@ -3,9 +3,13 @@
     background-color: #fff;
     text-align: left;
 
-    .back-button {
+    .top-nav {
+        display: flex;
+        justify-content: space-between;
         margin-bottom: 1rem;
+    }
 
+    .back-button {
         button {
             background: transparent;
             border: none;
@@ -18,7 +22,7 @@
         .back-icon {
             width: 24px;
             height: 24px;
-            background-image: url('/icons/back-button.png');
+            background-image: url('/icons/left-arrow.png');
             background-size: contain;
             background-repeat: no-repeat;
             transition: background-image 0.2s ease;
@@ -26,7 +30,49 @@
         }
 
         button:hover .back-icon {
-            background-image: url('/icons/back-button.gif');
+            background-image: url('/icons/left-arrow.gif');
+        }
+    }
+
+    .prev-next-buttons {
+        display: flex;
+        gap: 1rem;
+
+        button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .prev-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url('/icons/left-arrow.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: background-image 0.2s ease;
+            margin-right: 5px;
+        }
+
+        button:hover .prev-icon {
+            background-image: url('/icons/left-arrow.gif');
+        }
+
+        .next-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url('/icons/right-arrow.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: background-image 0.2s ease;
+            margin-left: 5px;
+        }
+
+        button:hover .next-icon {
+            background-image: url('/icons/right-arrow.gif');
         }
     }
 
@@ -45,6 +91,27 @@
         text-align: center;
     }
 
+    .github-button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        .github-button {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background-color: var(--color-primary-hover);
+            }
+        }
+    }
+
     .content {
         display: block;
         margin: 0 auto;
@@ -56,7 +123,15 @@
     .project-detail-container {
         padding: 1rem;
 
-        .back-button .back-icon {
+        .top-nav {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .back-button .back-icon,
+        .prev-icon,
+        .next-icon {
             width: 20px;
             height: 20px;
         }
@@ -67,6 +142,10 @@
 
         .description {
             font-size: 0.9rem;
+        }
+
+        .github-button-container {
+            margin-bottom: 1rem;
         }
     }
 }

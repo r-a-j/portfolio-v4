@@ -70,12 +70,13 @@ export class SkillsComponent {
     {
       name: 'Tools & Platforms',
       technologies: [
-        { name: 'Postman', link: 'https://www.postman.com', image: 'technologies/postman.svg' },
-        { name: 'Swagger', link: 'https://swagger.io/', image: 'technologies/swagger.svg' },
-        { name: 'VS Code', link: 'https://code.visualstudio.com/', image: 'technologies/vscode.svg' },
+        { name: 'PyCharm', link: 'https://www.jetbrains.com/pycharm/', image: 'technologies/pycharm.svg' },
         { name: 'WebStorm', link: 'https://www.jetbrains.com/webstorm', image: 'technologies/webstorm.svg' },
+        { name: 'VS Code', link: 'https://code.visualstudio.com/', image: 'technologies/vscode.svg' },
         { name: 'Visual Studio', link: 'https://visualstudio.microsoft.com/', image: 'technologies/visualstudio.svg' },
         { name: 'Android Studio', link: 'https://developer.android.com/studio', image: 'technologies/androidstudio.svg' },
+        { name: 'Postman', link: 'https://www.postman.com', image: 'technologies/postman.svg' },
+        { name: 'Swagger', link: 'https://swagger.io/', image: 'technologies/swagger.svg' },
       ],
     },
   ];

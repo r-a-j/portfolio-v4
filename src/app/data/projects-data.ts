@@ -1,14 +1,14 @@
 import { ProjectDetails } from '../shared/types/project-details';
 
 export const PROJECTS: ProjectDetails[] = [
-    {
-        id: 'social-scope',
-        title: 'Social Scope',
-        description: 'Generate images using diffusion models',
-        thumbnail: 'portfolio/social-scope/social-scope-2.webp',
-        githubLink: 'https://github.com/r-a-j/socialscope',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/socialscope/refs/heads/main/README.md',
-    },
+    // {
+    //     id: 'social-scope',
+    //     title: 'Social Scope',
+    //     description: 'Generate images using diffusion models',
+    //     thumbnail: 'portfolio/social-scope/social-scope-2.webp',
+    //     githubLink: 'https://github.com/r-a-j/socialscope',
+    //     githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/socialscope/refs/heads/main/README.md',
+    // },
     {
         id: 'cine-scope',
         title: 'Cinescope',

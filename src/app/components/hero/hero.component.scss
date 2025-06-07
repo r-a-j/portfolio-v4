@@ -33,7 +33,7 @@ p {
 
 // Call-to-Action Button
 button {
-    @apply mt-8 px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2 animate-bounce shadow-lg;
+    @apply mt-8 px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg;
     background: var(--color-primary-dark);
     color: var(--color-secondary);
     transition: transform 0.3s ease;

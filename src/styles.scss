@@ -68,3 +68,11 @@ main {
   margin: 0 auto;
   text-align: left;
 }
+
+.page-heading {
+  font-size: var(--font-heading-size);
+  text-align: center;
+  margin-bottom: var(--spacing-large);
+  color: var(--color-text-primary);
+  font-weight: bolder;
+}

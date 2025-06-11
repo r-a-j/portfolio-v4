@@ -1,14 +1,7 @@
 .projects-section {
     padding: var(--spacing-large);
     max-width: 1200px;
-    margin: 0 auto;
-
-    &__heading {
-        font-size: var(--font-heading-size);
-        text-align: center;
-        margin-bottom: var(--spacing-large);
-        color: var(--color-text-primary);
-    }
+    margin: 0 auto;    
 
     &__filters {
         display: flex;

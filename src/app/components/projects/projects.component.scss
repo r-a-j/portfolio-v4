@@ -1,122 +1,262 @@
-.projects-container {
+.projects-section {
     padding: var(--spacing-large);
-    background-color: var(--color-secondary);
+    max-width: 1200px;
+    margin: 0 auto;
 
-    .heading {
-        font-weight: bold;
+    &__heading {
+        font-size: var(--font-heading-size);
+        text-align: center;
         margin-bottom: var(--spacing-large);
         color: var(--color-text-primary);
-        text-align: center;
     }
 
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: var(--spacing-large);
+    &__filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-small);
+        margin-bottom: var(--spacing-large);
 
-        /* Limit to 4 rows */
-        grid-template-rows: repeat(4, auto);
-        max-height: calc(4 * 400px + 3 * var(--spacing-large));
-        /* Approx height: 4 project cards + gaps */
-        overflow-y: auto;
-        /* Allow scrolling if more projects exist */
-
-        .project-card {
-            background-color: #fff;
+        .filter-chip {
+            padding: var(--spacing-small) var(--spacing-medium);
+            background-color: var(--color-secondary);
+            border: 1px solid var(--color-border);
             border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 400px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: var(--font-description-size);
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, transform 0.1s ease;
 
-            &:hover {
-                transform: translateY(-5px);
-                box-shadow: var(--box-shadow-hover);
+            &:active {
+                transform: scale(1.05);
             }
 
-            .thumbnail {
-                width: 100%;
-                height: 180px;
-                object-fit: cover;
-                border-bottom: 1px solid var(--color-border);
-            }
-
-            .info-container {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: var(--spacing-medium) calc(var(--spacing-medium) * 1.5);
-
-                .info {
-                    text-align: left;
-
-                    .title {
-                        font-size: var(--font-title-size);
-                        font-weight: 700;
-                        margin: 0;
-                        color: var(--color-text-primary);
-                    }
-
-                    .description {
-                        font-size: var(--font-description-size);
-                        color: var(--color-text-secondary);
-                        margin-top: var(--spacing-small);
-                    }
-                }
-
-                .button-container {
-                    margin-top: var(--spacing-medium);
-                    display: flex;
-                    gap: var(--spacing-small);
-
-                    .github-button,
-                    .view-project-button {
-                        flex: 1;
-                        padding: var(--spacing-small) var(--spacing-medium);
-                        font-size: var(--font-description-size);
-                        font-weight: 600;
-                        border-radius: 30px;
-                        text-align: center;
-                        text-decoration: none;
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        transition: all 0.3s;
-                    }
-
-                    .github-button {
-                        color: var(--color-text-muted);
-                        background-color: var(--color-secondary);
-                        border: 1px solid var(--color-border);
-
-                        &:hover {
-                            background-color: var(--color-text-muted);
-                            color: #fff;
-                            border-color: var(--color-text-muted);
-                        }
-
-                        .github-logo {
-                            width: 18px;
-                            height: 18px;
-                            margin-right: var(--spacing-small);
-                        }
-                    }
-
-                    .view-project-button {
-                        color: #fff;
-                        background-color: var(--color-primary);
-                        border: none;
-
-                        &:hover {
-                            background-color: var(--color-primary-hover);
-                        }
-                    }
-                }
+            &.active,
+            &:hover,
+            &:focus {
+                background-color: var(--color-primary);
+                color: #fff;
+                outline: none;
             }
         }
+    }
+}
+
+.projects-grid {
+    display: grid;
+    gap: var(--spacing-large);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    // grid-auto-rows: 380px;
+    // justify-content: right;
+}
+
+.project-card {
+    max-width: 400px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    /* fill the fixed-height grid row */
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    outline: none;
+
+    &:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+
+    /* ==== IMAGE & PEEK ==== */
+    &__image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-size: cover;
+        background-position: center;
+        /* no transform on hover */
+    }
+
+    &__peek {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        padding: var(--spacing-small) var(--spacing-medium);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        pointer-events: none;
+        min-height: 4rem;
+
+        .peek__title {
+            color: #fff;
+            font-size: var(--font-title-size);
+            font-weight: 700;
+            line-height: 1.2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        .peek__badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-small);
+            margin-top: var(--spacing-small);
+
+            .badge {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                padding: 0.2em 0.5em;
+                border-radius: var(--border-radius);
+                font-size: 0.7rem;
+                font-weight: 500;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            }
+        }
+    }
+
+    /* mobile fallback: gradient-only */
+    @media (max-width: 480px) {
+        &__peek {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0));
+        }
+    }
+
+    /* ==== INFO PANEL ==== */
+    &__info {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        justify-content: space-between;
+        /* ← take up all remaining space */
+        background-color: #fff;
+        padding: var(--spacing-medium);
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+        gap: var(--spacing-small);
+        overflow: hidden;
+    }
+
+    &__title {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-small);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    &__description {
+        font-size: var(--font-description-size);
+        margin-bottom: var(--spacing-medium);
+        max-height: 4.5em;
+        overflow: hidden;
+    }
+
+    &__rating {
+        margin-bottom: var(--spacing-medium);
+
+        .star {
+            font-size: 1.1rem;
+            color: rgba(0, 0, 0, 0.2);
+
+            &.filled {
+                color: var(--color-accent);
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: var(--spacing-small);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ==== BUTTONS & SHINE ==== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius);
+    font-size: var(--font-description-size);
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: background-color 0.2s, color 0.2s;
+
+    &--icon {
+        background-color: var(--color-secondary);
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        color: var(--color-text-muted);
+
+        .btn__icon {
+            width: 18px;
+            height: 18px;
+            margin-right: var(--spacing-small);
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--color-text-muted);
+            color: white;
+        }
+    }
+
+    &--primary {
+        background-color: var(--color-primary);
+        color: white;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.6),
+                    transparent);
+            transform: skewX(-20deg);
+        }
+
+        &:hover::after {
+            animation: shine 0.8s forwards;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--color-accent-hover);
+        }
+    }
+}
+
+@keyframes shine {
+    to {
+        left: 200%;
+    }
+}
+
+/* stack on very narrow */
+@media (max-width: 360px) {
+    .project-card__actions {
+        flex-direction: column;
     }
 }

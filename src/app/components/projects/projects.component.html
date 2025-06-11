@@ -1,25 +1,69 @@
-<div class="projects-container">
-    <h1 class="text-4xl heading">Projects</h1>
-    <div class="grid-container">
-        <div *ngFor="let project of projects" class="project-card">
-            <img [src]="project.thumbnail" alt="{{ project.title }}" class="thumbnail" />
-            <div class="info-container">
-                <div class="info">
-                    <h2 class="title">{{ project.title }}</h2>
-                    <p class="description">{{ project.description }}</p>
+<section class="projects-section">
+    <h1 class="projects-section__heading">Projects</h1>
+
+    <!-- Category filters -->
+    <div class="projects-section__filters">
+        <button class="filter-chip" [class.active]="!activeCategory" (click)="filterByCategory('')">
+            All Categories
+        </button>
+        <button class="filter-chip" *ngFor="let cat of categories" [class.active]="cat === activeCategory"
+            (click)="filterByCategory(cat)">
+            {{ cat }}
+        </button>
+    </div>
+
+    <!-- Year filters -->
+    <div class="projects-section__filters">
+        <button class="filter-chip" [class.active]="!activeYear" (click)="filterByYear('')">
+            All Years
+        </button>
+        <button class="filter-chip" *ngFor="let yr of years" [class.active]="yr === activeYear"
+            (click)="filterByYear(yr)">
+            {{ yr }}
+        </button>
+    </div>
+
+    <!-- Language filters -->
+    <div class="projects-section__filters">
+        <button class="filter-chip" [class.active]="!activeLanguage" (click)="filterByLanguage('')">
+            All Languages
+        </button>
+        <button class="filter-chip" *ngFor="let lang of languages" [class.active]="lang === activeLanguage"
+            (click)="filterByLanguage(lang)">
+            {{ lang }}
+        </button>
+    </div>
+
+    <ul class="projects-grid">
+        <li *ngFor="let project of filteredProjects" class="project-card" role="article"
+            [attr.aria-labelledby]="'title-' + project.id" tabindex="0" (click)="viewProject(project.id)"
+            (keyup.enter)="viewProject(project.id)">
+            <div class="project-card__image" [style.backgroundImage]="'url(' + project.thumbnail + ')'"
+                aria-hidden="true">
+                <div class="project-card__peek">
+                    <span class="peek__title">{{ project.title }}</span>
+                    <div class="peek__badges">
+                        <span class="badge" *ngFor="let tech of project.techStack" [title]="tech">
+                            {{ tech }}
+                        </span>
+                    </div>
                 </div>
-                <div class="button-container">
-                    <!-- GitHub Button -->
-                    <a [href]="project.githubLink" target="_blank" class="github-button">
-                        <img src="technologies/github.svg" alt="GitHub" class="github-logo" />
+            </div>
+            <div class="project-card__info">
+                <p class="project-card__description">
+                    {{ project.description }}
+                </p>
+                <div class="project-card__actions">
+                    <a *ngIf="project.githubLink" class="btn btn--icon" [href]="project.githubLink" target="_blank"
+                        rel="noopener" (click)="$event.stopPropagation()">
+                        <img src="technologies/github.svg" alt="" class="btn__icon" aria-hidden="true" />
                         GitHub
                     </a>
-                    <!-- View Project Button -->
-                    <button (click)="viewProject(project.id)" class="view-project-button">
-                        View Project
+                    <button class="btn btn--primary" (click)="viewProject(project.id); $event.stopPropagation()">
+                        View
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </li>
+    </ul>
+</section>

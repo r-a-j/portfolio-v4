@@ -1,0 +1,9 @@
+<div *ngIf="show" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{{ modalTitle }}</h3>
+            <button class="close-button" (click)="handleClose()">&times;</button>
+        </div>
+        <iframe [src]="safePdfUrl" frameborder="0" class="pdf-viewer" title="{{ modalTitle }}"></iframe>
+    </div>
+</div>

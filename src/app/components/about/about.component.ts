@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ABOUT_CONTENT } from '../../data/about-data';
+import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule],
+  imports: [CommonModule, CvModalComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
   public showCVModal: boolean = false;
-  public safePdfUrl: SafeResourceUrl = '';
   public aboutContent = ABOUT_CONTENT;
+  
+  constructor() { }
 
-  constructor(private sanitizer: DomSanitizer) { }
-
-  public openCV(): void {
-    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.aboutContent.pdfPath);
-
+  public openCV(): void {    
     if (this.isMobileView()) {
       window.open(this.aboutContent.pdfPath, '_blank');
     } else {

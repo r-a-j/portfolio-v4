@@ -7,6 +7,6 @@ export const ABOUT_CONTENT = {
         'Whether analyzing datasets, refining algorithms, or collaborating with stakeholders, I focus on delivering impactful, data-driven results that align with people\'s needs and goals. Beyond data, I enjoy exploring photography, engaging in thought-provoking conversations, and seeking inspiration through continuous learning.'        
     ],
     buttonText: 'View CV',
-    modalTitle: 'Raj Pawar - CV',
+    modalTitle: 'Curriculum vitae',
     pdfPath: 'docs/Raj_Pawar_CV.pdf'
 };

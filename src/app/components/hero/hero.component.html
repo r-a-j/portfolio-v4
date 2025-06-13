@@ -2,7 +2,7 @@
     <!-- Profile Picture -->
     <div class="relative">
         <img src="profile_1_yellow_bg.png" alt="Profile Picture"
-            class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-accent shadow-lg">
+            class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-accent shadow-lg profile-picture">
         <div class="absolute inset-0 w-full h-full rounded-full border-4 border-transparent bg-accent blur-md">
         </div>
     </div>
@@ -18,16 +18,27 @@
         <span class="text-accent font-semibold">Software Engineer</span>, driven by curiosity and innovation.
     </p>
 
-
     <!-- Call-to-Action Button -->
-    <a routerLink="/projects" class="font-medium">
-        <button
-            class="mt-8 px-8 py-3 bg-accent text-secondary rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform">
-            View My Work
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <!-- CV Button -->
+        <button (click)="openCV()"
+            class="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform">
+            CV
+            <img src="icons/document-icon.svg" alt="CV Icon" class="h-5 w-5" />
         </button>
-    </a>
+
+        <!-- Projects Button -->
+        <a routerLink="/projects" class="font-medium">
+            <button
+                class="px-8 py-3 bg-accent text-secondary rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform">
+                Project's
+                <img src="icons/project-icon.svg" alt="Projects Icon" class="h-5 w-5" />
+            </button>
+        </a>
+    </div>
+
+    <app-cv-modal [show]="showCVModal" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
+        (close)="closeCV()">
+    </app-cv-modal>
+
 </section>

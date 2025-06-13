@@ -29,17 +29,9 @@
 
         <!-- Modal (only for desktop and tablet) -->
         <div *ngIf="showCVModal" class="modal-overlay">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h3>{{ aboutContent.modalTitle }}</h3>
-                    <button (click)="closeCV()" class="close-button">&times;</button>
-                </div>
-
-                <!-- PDF Viewer -->
-                <iframe [src]="safePdfUrl" frameborder="0" class="pdf-viewer"
-                    title="{{ aboutContent.modalTitle }}"></iframe>
-            </div>
+            <app-cv-modal [show]="showCVModal" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
+                (close)="closeCV()">
+            </app-cv-modal>
         </div>
     </div>
 </section>

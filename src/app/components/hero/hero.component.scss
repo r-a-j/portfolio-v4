@@ -60,3 +60,9 @@ button {
 .animate-fadeIn {
     animation: fadeIn 1s ease-in-out forwards;
 }
+
+@media (max-width: 600px) {
+    .custom-project-btn {
+        margin-top: 10px;
+    }
+}

@@ -16,6 +16,7 @@ export interface Experience {
     role: string;
     company: string;
     company_url: string;
+    company_logo_url: string;
     description: ExperienceCategory[];
     duration: string;
     location: string;

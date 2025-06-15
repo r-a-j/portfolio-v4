@@ -3,9 +3,10 @@ import { Experience } from "../shared/types/experience-details";
 export const EXPERIENCES: Experience[] = [
   {
     id: 5,
-    role: 'Data Science - Working Student',
+    role: 'Working Student',
     company: 'PartikelART Solution GmbH',
     company_url: 'https://partikelart.com/',
+    company_logo_url: 'experience/partikelart/partikel-art_logo.png',
     description: [
       {
         category: '',
@@ -24,6 +25,7 @@ export const EXPERIENCES: Experience[] = [
     role: 'Software Engineer',
     company: 'ADVISORI FTC GmbH',
     company_url: 'https://www.advisori.de/',
+    company_logo_url: 'experience/advisori/advisori_icon.png',
     description: [
       {
         category: 'AI Hackathon',
@@ -58,8 +60,8 @@ export const EXPERIENCES: Experience[] = [
     duration: 'Feb 2024 - Sep 2024',
     location: 'Frankfurt am Main, Hesse, Germany · Remote',
     media: [
-      { url: 'experience/ADV1.jpeg' },
-      { url: 'experience/ADV2.jpeg' },
+      { url: 'experience/advisori/ADV1.jpeg' },
+      { url: 'experience/advisori/ADV2.jpeg' },
     ]
   },
   {
@@ -67,6 +69,7 @@ export const EXPERIENCES: Experience[] = [
     role: 'Freelance Web Developer',
     company: 'Freelance',
     company_url: '#',
+    company_logo_url: 'experience/freelance/freelance_icon.png',
     description: [
       {
         category: '',
@@ -88,9 +91,10 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     id: 2,
-    role: 'Jr. .NET Developer',
+    role: 'Junior .NET Developer',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
+    company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
     description: [
       {
         category: '',
@@ -108,7 +112,7 @@ export const EXPERIENCES: Experience[] = [
     duration: 'Jul 2019 - Dec 2020',
     location: 'Surat, Gujarat, India',
     media: [
-      { url: 'experience/XIT1.jpeg' },
+      { url: 'experience/xcellenceit/XIT1.jpeg' },
     ]
   },
   {
@@ -116,6 +120,7 @@ export const EXPERIENCES: Experience[] = [
     role: 'Trainee',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
+    company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
     description: [
       {
         category: '',

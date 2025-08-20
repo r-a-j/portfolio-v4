@@ -113,4 +113,17 @@ export const PROJECTS: ProjectDetails[] = [
         year: 2025,
         language: 'R',
     },
+    {
+        id: 'simulation-based-inference',
+        title: 'Simulation-based inference for a leaky integrate-and-fire (LIF) neuron',
+        description: 'BayesFlow + TensorFlow implementation of a likelihood-free inference pipeline for a single-compartment Leaky Integrate-and-Fire (LIF) neuron.',
+        thumbnail: 'projects/simulation-based-inference/simulation-based-inference.png',
+        githubLink: 'https://github.com/r-a-j/simulation-based-inference',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/simulation-based-inference/refs/heads/main/README.md',
+        techStack: ['Python', 'bayesflow', 'tensorflow', 'keras', 'numpy', 'scipy', 'matplotlib', 'seaborn'],
+        rating: 4,
+        category: 'Bayesian Statistics',
+        year: 2025,
+        language: 'Python',
+    },
 ];

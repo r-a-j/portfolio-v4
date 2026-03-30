@@ -12,7 +12,7 @@ export const PROJECTS: ProjectDetails[] = [
         rating: 4,
         category: 'Web App',
         year: 2024,
-        language: 'TypeScript, Python',
+        language: 'TypeScript',
     },
     {
         id: 'cine-scope',

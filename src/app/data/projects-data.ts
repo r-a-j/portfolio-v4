@@ -2,6 +2,19 @@ import { ProjectDetails } from '../shared/types/project-details';
 
 export const PROJECTS: ProjectDetails[] = [
     {
+        id: 'kosh',
+        title: 'Kosh (कोश)',
+        description: 'A private, offline-first personal knowledge assistant running local Large Language Models (LLMs) via LiteRT on Android.',
+        thumbnail: 'projects/kosh/kosh_thumb.png',
+        githubLink: 'https://github.com/r-a-j/kosh',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/kosh/refs/heads/main/README.md',
+        techStack: ['Android', 'Kotlin', 'Jetpack Compose', 'LiteRT', 'SQLite FTS5', 'AES-256-GCM', 'Tavily API'],
+        rating: 5,
+        category: 'Android',
+        year: 2026,
+        language: 'Kotlin',
+    },
+    {
         id: 'social-scope',
         title: 'Social Scope',
         description: 'Generate images using diffusion models',

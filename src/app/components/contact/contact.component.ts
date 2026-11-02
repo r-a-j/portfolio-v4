@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import emailjs from 'emailjs-com';
+import { Component, OnInit, ChangeDetectionStrategy, inject, ChangeDetectorRef } from '@angular/core';
+import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment.prod';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationService } from '../../services/notification.service';
 import { FormValidationService } from '../../services/validation.service';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements OnInit {
+  private fb = inject(FormBuilder);
+  private notificationService = inject(NotificationService);
+  private formValidationService = inject(FormValidationService);
+  private cdr = inject(ChangeDetectorRef);
+
   public contactForm!: FormGroup;
   public formErrorMessageDuration = 5000;
   public formSuccessMessageDuration = 5000;
@@ -24,12 +30,6 @@ export class ContactComponent implements OnInit {
   public readonly maxEmailLength = 254;
   public readonly minMessageLength = 20;
   public readonly maxMessageLength = 2000;
-
-  constructor(
-    private fb: FormBuilder,
-    private notificationService: NotificationService,
-    private formValidationService: FormValidationService
-  ) { }
 
   public ngOnInit(): void {
     this.contactForm = this.initializeForm();
@@ -61,6 +61,7 @@ export class ContactComponent implements OnInit {
           this.formSuccessMessageDuration
         );
         this.contactForm.reset();
+        this.cdr.markForCheck();
       })
       .catch((error) => {
         console.error('Email send error:', error);
@@ -68,6 +69,7 @@ export class ContactComponent implements OnInit {
           'Oops! Something went wrong. Please contact me on er.rajpawar@gmail.com',
           this.sendEmailErrorMessageDuration
         );
+        this.cdr.markForCheck();
       });
   }
 

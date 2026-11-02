@@ -8,7 +8,7 @@ export class FormValidationService {
 
     private static readonly EMAIL_REGEX: RegExp = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
 
-    public isValidEmail(control: FormControl): { [key: string]: any } | null {
+    public isValidEmail(control: FormControl): ValidationErrors | null {
         const value: string = control.value;
         if (!value) {
             return null;

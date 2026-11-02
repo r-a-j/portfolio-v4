@@ -1,16 +1,20 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+
+import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { ProjectDetails } from '../../shared/types/project-details';
 
 @Component({
   selector: 'app-projects',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './projects.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './projects.component.scss'
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
+  private router = inject(Router);
+  private projectService = inject(ProjectService);
+
   allProjects: ProjectDetails[];
   filteredProjects: ProjectDetails[];
 
@@ -24,10 +28,7 @@ export class ProjectsComponent {
   activeYear: number | '' = '';
   activeLanguage = '';
 
-  constructor(
-    private router: Router,
-    private projectService: ProjectService
-  ) {
+  constructor() {
     this.allProjects = this.projectService.getProjects();
     this.filteredProjects = [];
   }

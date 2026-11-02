@@ -1,18 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CvModalComponent } from '../cv-modal/cv-modal.component';
 import { ABOUT_CONTENT } from '../../data/about-data';
 
 @Component({
   selector: 'app-hero',
-  imports: [RouterLink, CommonModule, CvModalComponent],
+  imports: [RouterLink, CvModalComponent],
   templateUrl: './hero.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
   public greeting: string;
-  public showCVModal = false;
+  public showCVModal = signal(false);
   public aboutContent = ABOUT_CONTENT;
 
   constructor() {
@@ -30,11 +30,11 @@ export class HeroComponent {
     if (window.innerWidth <= 768) {
       window.open(this.aboutContent.pdfPath, '_blank');
     } else {
-      this.showCVModal = true;
+      this.showCVModal.set(true);
     }
   }
 
   public closeCV(): void {
-    this.showCVModal = false;
+    this.showCVModal.set(false);
   }
 }

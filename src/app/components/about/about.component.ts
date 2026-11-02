@@ -1,30 +1,28 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { ABOUT_CONTENT } from '../../data/about-data';
 import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, CvModalComponent],
+  imports: [CvModalComponent],
   templateUrl: './about.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  public showCVModal: boolean = false;
+  public showCVModal = signal(false);
   public aboutContent = ABOUT_CONTENT;
-  
-  constructor() { }
 
   public openCV(): void {    
     if (this.isMobileView()) {
       window.open(this.aboutContent.pdfPath, '_blank');
     } else {
-      this.showCVModal = true;
+      this.showCVModal.set(true);
     }
   }
 
   public closeCV(): void {
-    this.showCVModal = false;
+    this.showCVModal.set(false);
   }
 
   private isMobileView(): boolean {

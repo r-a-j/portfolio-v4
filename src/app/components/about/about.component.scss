@@ -1,3 +1,5 @@
+@reference "../../../styles.scss";
+
 // Ensure all text in the section is justified
 section {
     @apply p-8 rounded-lg shadow-lg;

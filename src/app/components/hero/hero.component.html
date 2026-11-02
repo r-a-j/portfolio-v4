@@ -37,8 +37,8 @@
         </a>
     </div>
 
-    <app-cv-modal [show]="showCVModal" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
-        (close)="closeCV()">
+    <app-cv-modal [show]="showCVModal()" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
+        (closeModal)="closeCV()">
     </app-cv-modal>
 
 </section>

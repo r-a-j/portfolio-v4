@@ -1,8 +1,4 @@
 import { Routes } from '@angular/router';
-import { HeroComponent } from './components/hero/hero.component';
-import { AboutComponent } from './components/about/about.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ProjectsComponent } from './components/projects/projects.component';
 
 export const routes: Routes = [
     {
@@ -51,5 +47,9 @@ export const routes: Routes = [
         title: "Contact",
         loadComponent: () =>
             import('./components/contact/contact.component').then((c) => c.ContactComponent)
+    },
+    {
+        path: '**',
+        redirectTo: '/home'
     }
 ];

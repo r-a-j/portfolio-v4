@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { EXPERIENCES } from '../../data/experience-data';
 import { Experience } from '../../shared/types/experience-details';
 
@@ -7,9 +7,13 @@ import { Experience } from '../../shared/types/experience-details';
   selector: 'app-experience',
   imports: [CommonModule],
   templateUrl: './experience.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './experience.component.scss'
 })
-export class ExperienceComponent implements AfterViewInit {
+export class ExperienceComponent implements AfterViewInit, OnDestroy {
+  private host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private io?: IntersectionObserver;
+
   public experiences: Experience[] = EXPERIENCES;  
   private expandedIds = new Set<number>();  
   lightbox = {
@@ -19,8 +23,6 @@ export class ExperienceComponent implements AfterViewInit {
     index: 0,
   };  
   private touchX = 0;
-
-  constructor(private host: ElementRef<HTMLElement>) { }
 
   openLightbox(arr: { url: string }[], idx: number) {
     this.lightbox.open = true;
@@ -38,7 +40,11 @@ export class ExperienceComponent implements AfterViewInit {
     if (Math.abs(dist) < 40) { 
       return; 
     }
-    dist > 0 ? this.prev() : this.next();
+    if (dist > 0) {
+      this.prev();
+    } else {
+      this.next();
+    }
   }
   
   prev(ev?: Event) {
@@ -60,7 +66,11 @@ export class ExperienceComponent implements AfterViewInit {
   }
 
   toggle(id: number): void {
-    this.expandedIds.has(id) ? this.expandedIds.delete(id) : this.expandedIds.add(id);
+    if (this.expandedIds.has(id)) {
+      this.expandedIds.delete(id);
+    } else {
+      this.expandedIds.add(id);
+    }
   }
 
   isExpanded(id: number): boolean {
@@ -75,7 +85,7 @@ export class ExperienceComponent implements AfterViewInit {
       return;
     }
 
-    const io = new IntersectionObserver(
+    this.io = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -87,6 +97,10 @@ export class ExperienceComponent implements AfterViewInit {
       { threshold: 0.15 }
     );
 
-    items.forEach(item => io.observe(item));
+    items.forEach(item => this.io?.observe(item));
+  }
+
+  ngOnDestroy(): void {
+    this.io?.disconnect();
   }
 }

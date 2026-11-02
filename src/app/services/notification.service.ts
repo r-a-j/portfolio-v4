@@ -1,35 +1,48 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+
+export type NotificationType = 'message-sent' | 'success' | 'error' | 'info' | 'warning';
+
+export interface NotificationItem {
+  message: string;
+  type: NotificationType;
+}
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class NotificationService {
-    notifications: { message: string; type: string }[] = [];
+  public readonly notifications = signal<NotificationItem[]>([]);
 
-    public show(message: string,
-        type: 'message-sent' | 'success' | 'error' | 'info' | 'warning',
-        duration: number = 5000): void {
-        this.notifications.push({ message, type });
-        setTimeout(() => this.notifications.shift(), duration);
-    }
+  public show(
+    message: string,
+    type: NotificationType,
+    duration = 5000
+  ): void {
+    const item: NotificationItem = { message, type };
+    this.notifications.update((list) => [...list, item]);
 
-    public messageSent(message: string, duration: number): void {
-        this.show(message, 'message-sent', duration);
-    }
+    setTimeout(() => {
+      this.notifications.update((list) => list.filter((n) => n !== item));
+    }, duration);
+  }
 
-    public success(message: string, duration: number): void {
-        this.show(message, 'success', duration);
-    }
+  public messageSent(message: string, duration: number): void {
+    this.show(message, 'message-sent', duration);
+  }
 
-    public error(message: string, duration: number): void {
-        this.show(message, 'error', duration);
-    }
+  public success(message: string, duration: number): void {
+    this.show(message, 'success', duration);
+  }
 
-    public info(message: string, duration: number): void {
-        this.show(message, 'info', duration);
-    }
+  public error(message: string, duration: number): void {
+    this.show(message, 'error', duration);
+  }
 
-    public warning(message: string, duration: number): void {
-        this.show(message, 'warning', duration);
-    }
+  public info(message: string, duration: number): void {
+    this.show(message, 'info', duration);
+  }
+
+  public warning(message: string, duration: number): void {
+    this.show(message, 'warning', duration);
+  }
 }

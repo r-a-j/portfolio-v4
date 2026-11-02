@@ -1,28 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, OnChanges, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cv-modal',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './cv-modal.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './cv-modal.component.scss'
 })
-export class CvModalComponent {
-  @Input() pdfUrl: string = '';
-  @Input() modalTitle: string = 'Curriculum vitae';
-  @Input() show: boolean = false;
-  @Output() close = new EventEmitter<void>();
+export class CvModalComponent implements OnChanges {
+  private sanitizer = inject(DomSanitizer);
+
+  @Input() pdfUrl = '';
+  @Input() modalTitle = 'Curriculum vitae';
+  @Input() show = false;
+  @Output() closeModal = new EventEmitter<void>();
 
   safePdfUrl: SafeResourceUrl = '';
-
-  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnChanges(): void {
     this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrl);
   }
 
   handleClose(): void {
-    this.close.emit();
+    this.closeModal.emit();
   }
 }

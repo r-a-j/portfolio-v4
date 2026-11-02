@@ -1,9 +1,22 @@
 @use "@fontsource/inter" as *;
+@use "github-markdown-css/github-markdown-light.css";
 
-@tailwind base;
-@tailwind components;
-@import "github-markdown-css/github-markdown-light.css";
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0d3b66;
+  --color-primary-hover: #082d4d;
+  --color-primary-dark: #0b2841;
+  --color-primary-light: #718096;
+
+  --color-secondary: #fafafa;
+  --color-secondary-hover: #f4f4f4;
+
+  --color-accent: #f4d35e;
+  --color-accent-hover: #e9b44c;
+
+  --font-sans: "Inter", sans-serif;
+}
 
 :root {
   --color-primary: #0d3b66;

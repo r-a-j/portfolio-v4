@@ -1,26 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink],
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  public isMenuOpen: Boolean = false;
-  public innerWidth: number = window.innerWidth;
+  public isMenuOpen = signal(false);
 
   @HostListener('window:resize', ['$event'])
   public onResize(event: Event): void {
-    this.innerWidth = (event.target as Window).innerWidth;
-    if (this.innerWidth >= 768 && this.isMenuOpen) {
-      this.isMenuOpen = false;
+    const innerWidth = (event.target as Window).innerWidth;
+    if (innerWidth >= 768 && this.isMenuOpen()) {
+      this.isMenuOpen.set(false);
     }
   }
 
+  public toggleMenu(): void {
+    this.isMenuOpen.update(v => !v);
+  }
+
   public closeMenu(): void {
-    this.isMenuOpen = false;
+    this.isMenuOpen.set(false);
   }
 }

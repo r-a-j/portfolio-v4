@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, ChangeDetectorRef, effect } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
 
@@ -6,8 +6,17 @@ import { CommonModule } from '@angular/common';
   selector: 'app-notification',
   imports: [CommonModule],
   templateUrl: './notification.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './notification.component.scss'
 })
 export class NotificationComponent {
-  constructor(public notificationService: NotificationService) {}
+  public notificationService = inject(NotificationService);
+  private cdr = inject(ChangeDetectorRef);
+
+  constructor() {
+    effect(() => {
+      this.notificationService.notifications();
+      this.cdr.markForCheck();
+    });
+  }
 }

@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SkillCategory } from '../../shared/types/skill-category';
 import { SKILLS } from '../../data/skills-data';
 
 @Component({
   selector: 'app-skills',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './skills.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './skills.component.scss'
 })
 export class SkillsComponent {

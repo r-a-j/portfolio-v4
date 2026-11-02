@@ -1,17 +1,29 @@
 <div class="notification-container">
-    <div *ngFor="let notification of notificationService.notifications" class="notification"
-        [ngClass]="notification.type">
-        <div class="icon-container">
-            <ng-container [ngSwitch]="notification.type">
-                <img *ngSwitchCase="'success'" src="icons/success.gif" alt="Success Icon" class="icon" />
-                <img *ngSwitchCase="'message-sent'" src="icons/message-sent.gif" alt="Success Icon" class="icon" />
-                <img *ngSwitchCase="'error'" src="icons/error.gif" alt="Error Icon" class="icon" />
-                <img *ngSwitchCase="'info'" src="icons/information.gif" alt="Info Icon" class="icon" />
-                <img *ngSwitchCase="'warning'" src="icons/warning.gif" alt="Warning Icon" class="icon" />
-            </ng-container>
-        </div>
-        <div class="message-container">
-            <span class="message">{{ notification.message }}</span>
-        </div>
+  @for (notification of notificationService.notifications(); track notification) {
+    <div class="notification"
+      [ngClass]="notification.type">
+      <div class="icon-container">
+        @switch (notification.type) {
+          @case ('success') {
+            <img src="icons/success.gif" alt="Success Icon" class="icon" />
+          }
+          @case ('message-sent') {
+            <img src="icons/message-sent.gif" alt="Success Icon" class="icon" />
+          }
+          @case ('error') {
+            <img src="icons/error.gif" alt="Error Icon" class="icon" />
+          }
+          @case ('info') {
+            <img src="icons/information.gif" alt="Info Icon" class="icon" />
+          }
+          @case ('warning') {
+            <img src="icons/warning.gif" alt="Warning Icon" class="icon" />
+          }
+        }
+      </div>
+      <div class="message-container">
+        <span class="message">{{ notification.message }}</span>
+      </div>
     </div>
+  }
 </div>

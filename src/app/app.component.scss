@@ -1,3 +1,5 @@
+@reference "../styles.scss";
+
 .custom-button {
     @apply bg-secondary text-primary py-2 px-4 rounded;
 }

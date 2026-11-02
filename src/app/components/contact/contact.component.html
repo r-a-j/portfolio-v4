@@ -1,76 +1,96 @@
 <section id="contact" class="p-12 bg-secondary text-primary relative">
-    <!-- Background Circle -->
-    <div class="absolute top-[-50px] left-[-50px] w-[300px] h-[300px] bg-accent/20 rounded-full blur-3xl -z-10"></div>
+  <!-- Background Circle -->
+  <div class="absolute top-[-50px] left-[-50px] w-[300px] h-[300px] bg-accent/20 rounded-full blur-3xl -z-10"></div>
 
-    <div class="max-w-3xl mx-auto relative z-10">
-        <h1 class="page-heading">Get in Touch</h1>
-        <p class="text-lg text-center text-primary-light mb-8">
-            Have questions or want to connect? Drop a message below, and I'll get back to you!
-        </p>
+  <div class="max-w-3xl mx-auto relative z-10">
+    <h1 class="page-heading">Get in Touch</h1>
+    <p class="text-lg text-center text-primary-light mb-8">
+      Have questions or want to connect? Drop a message below, and I'll get back to you!
+    </p>
 
-        <form [formGroup]="contactForm" (ngSubmit)="sendEmail()" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
-            <!-- Name Field -->
-            <div>
-                <label for="name" class="block text-sm font-medium text-primary-light mb-2">Your Name</label>
-                <input type="text" formControlName="name" id="name" class="w-full input"
-                    placeholder="Enter your name" />
-                <ng-container *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
-                    <small *ngIf="contactForm.get('name')?.errors?.['required']" class="text-red-500 text-sm mt-1">
-                        Name is required.
-                    </small>
-                    <small *ngIf="contactForm.get('name')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
-                        Name must be at least {{ minNameLength }} characters long.
-                    </small>
-                    <small *ngIf="contactForm.get('name')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
-                        Name must not exceed {{ maxNameLength }} characters.
-                    </small>
-                </ng-container>
-            </div>
+    <form [formGroup]="contactForm" (ngSubmit)="sendEmail()" class="bg-white p-8 rounded-2xl shadow-xl space-y-6">
+      <!-- Name Field -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-primary-light mb-2">Your Name</label>
+        <input type="text" formControlName="name" id="name" class="w-full input"
+          placeholder="Enter your name" />
+          @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+            @if (contactForm.get('name')?.errors?.['required']) {
+              <small class="text-red-500 text-sm mt-1">
+                Name is required.
+              </small>
+            }
+            @if (contactForm.get('name')?.errors?.['minlength']) {
+              <small class="text-red-500 text-sm mt-1">
+                Name must be at least {{ minNameLength }} characters long.
+              </small>
+            }
+            @if (contactForm.get('name')?.errors?.['maxlength']) {
+              <small class="text-red-500 text-sm mt-1">
+                Name must not exceed {{ maxNameLength }} characters.
+              </small>
+            }
+          }
+        </div>
 
-            <!-- Email Field -->
-            <div>
-                <label for="email" class="block text-sm font-medium text-primary-light mb-2">Your Email</label>
-                <input type="email" formControlName="email" id="email" class="w-full input"
-                    placeholder="Enter your email" />
-                <ng-container *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-                    <small *ngIf="contactForm.get('email')?.errors?.['required']" class="text-red-500 text-sm mt-1">
-                        Email is required.
-                    </small>
-                    <small *ngIf="contactForm.get('email')?.errors?.['email']" class="text-red-500 text-sm mt-1">
-                        Invalid email format.
-                    </small>
-                    <small *ngIf="contactForm.get('email')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
-                        Email must be at least {{ minEmailLength }} characters long.
-                    </small>
-                    <small *ngIf="contactForm.get('email')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
-                        Email must not exceed {{ maxEmailLength }} characters.
-                    </small>
-                </ng-container>
-            </div>
+        <!-- Email Field -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-primary-light mb-2">Your Email</label>
+          <input type="email" formControlName="email" id="email" class="w-full input"
+            placeholder="Enter your email" />
+            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+              @if (contactForm.get('email')?.errors?.['required']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Email is required.
+                </small>
+              }
+              @if (contactForm.get('email')?.errors?.['email'] || contactForm.get('email')?.errors?.['invalidEmail']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Invalid email format.
+                </small>
+              }
+              @if (contactForm.get('email')?.errors?.['minlength']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Email must be at least {{ minEmailLength }} characters long.
+                </small>
+              }
+              @if (contactForm.get('email')?.errors?.['maxlength']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Email must not exceed {{ maxEmailLength }} characters.
+                </small>
+              }
+            }
+          </div>
 
-            <!-- Message Field -->
-            <div>
-                <label for="message" class="block text-sm font-medium text-primary-light mb-2">Your Message</label>
-                <textarea formControlName="message" id="message" class="w-full input textarea"
-                    placeholder="Type your message here..."></textarea>
-                <ng-container *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
-                    <small *ngIf="contactForm.get('message')?.errors?.['required']" class="text-red-500 text-sm mt-1">
-                        Message is required.
-                    </small>
-                    <small *ngIf="contactForm.get('message')?.errors?.['minlength']" class="text-red-500 text-sm mt-1">
-                        Message must be at least {{ minMessageLength }} characters long.
-                    </small>
-                    <small *ngIf="contactForm.get('message')?.errors?.['maxlength']" class="text-red-500 text-sm mt-1">
-                        Message must not exceed {{ maxMessageLength }} characters.
-                    </small>
-                </ng-container>
-            </div>
+          <!-- Message Field -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-primary-light mb-2">Your Message</label>
+            <textarea formControlName="message" id="message" class="w-full input textarea"
+            placeholder="Type your message here..."></textarea>
+            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+              @if (contactForm.get('message')?.errors?.['required']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Message is required.
+                </small>
+              }
+              @if (contactForm.get('message')?.errors?.['minlength']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Message must be at least {{ minMessageLength }} characters long.
+                </small>
+              }
+              @if (contactForm.get('message')?.errors?.['maxlength']) {
+                <small class="text-red-500 text-sm mt-1">
+                  Message must not exceed {{ maxMessageLength }} characters.
+                </small>
+              }
+            }
+          </div>
 
-            <!-- Submit Button -->
-            <button type="submit"
-                class="button w-full py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
-                Send Message
-            </button>
+          <!-- Submit Button -->
+          <button type="submit"
+            class="button w-full py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+            Send Message
+          </button>
         </form>
-    </div>
-</section>
+      </div>
+    </section>

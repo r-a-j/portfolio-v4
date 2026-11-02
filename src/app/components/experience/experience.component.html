@@ -1,67 +1,85 @@
 <section id="experience" class="experience-section p-8">
-    <div class="max-w-4xl mx-auto space-y-12">
-        <h1 class="page-heading text-center">Experience</h1>        
-        <ul class="timeline">
-            <li *ngFor="let exp of experiences" class="timeline-item" [class.open]="isExpanded(exp.id)"
-                style="--rope-color: var(--color-primary)">
-                <div class="icon-wrap">
-                    <img *ngIf="exp.company_logo_url; else fallback" [src]="exp.company_logo_url"
-                        [alt]="exp.company + ' logo'" class="company-logo" />
-                    <ng-template #fallback>
-                        <span class="icon-letter">{{ exp.company | slice: 0 : 1 }}</span>
-                    </ng-template>
+  <div class="max-w-4xl mx-auto space-y-12">
+    <h1 class="page-heading text-center">Experience</h1>
+    <ul class="timeline">
+      @for (exp of experiences; track exp) {
+        <li class="timeline-item" [class.open]="isExpanded(exp.id)"
+          style="--rope-color: var(--color-primary)">
+          <div class="icon-wrap">
+            @if (exp.company_logo_url) {
+              <img [src]="exp.company_logo_url"
+                [alt]="exp.company + ' logo'" class="company-logo" />
+            } @else {
+              <span class="icon-letter">{{ exp.company | slice: 0 : 1 }}</span>
+            }
+          </div>
+          <div class="panel panel--soft-gradient">
+            <button type="button" class="header" [attr.aria-expanded]="isExpanded(exp.id)"
+              (click)="toggle(exp.id)">
+              <div class="title">
+                <h3 class="role">{{ exp.role }}</h3>
+                @if (exp.company_url && exp.company_url !== '#') {
+                  <a [href]="exp.company_url" target="_blank"
+                    rel="noopener" class="company">
+                    {{ exp.company }}
+                  </a>
+                } @else {
+                  <span class="company">{{ exp.company }}</span>
+                }
+              </div>
+              <span class="meta">
+                {{ exp.duration }} • {{ exp.location }}
+              </span>
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+                <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+              </svg>
+            </button>
+            <div class="card-body">
+              @for (cat of exp.description; track cat) {
+                @if (cat.category) {
+                  <h4 class="category">
+                    {{ cat.category }}
+                  </h4>
+                }
+                <ul>
+                  @for (item of cat.items; track item) {
+                    <li>
+                      {{ item.text }}
+                    </li>
+                  }
+                </ul>
+              }
+              @if (exp.media?.length) {
+                <div class="media-gallery">
+                  @for (m of exp.media; track m; let i = $index) {
+                    <figure class="thumb"
+                      (click)="openLightbox(exp.media, i)">
+                      <img [src]="m.url" [alt]="'Media ' + (i + 1)" />
+                    </figure>
+                  }
                 </div>
-                <div class="panel panel--soft-gradient">
-                    <button type="button" class="header" [attr.aria-expanded]="isExpanded(exp.id)"
-                        (click)="toggle(exp.id)">
-                        <div class="title">
-                            <h3 class="role">{{ exp.role }}</h3>
-                            <a *ngIf="exp.company_url && exp.company_url !== '#'; else plain" [href]="exp.company_url" target="_blank"
-                                rel="noopener" class="company">
-                                {{ exp.company }}
-                            </a>
-                            <ng-template #plain>
-                                <span class="company">{{ exp.company }}</span>
-                            </ng-template>
-                        </div>
-                        <span class="meta">
-                            {{ exp.duration }} • {{ exp.location }}
-                        </span>
-                        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
-                            <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-                        </svg>
-                    </button>                    
-                    <div class="card-body">
-                        <ng-container *ngFor="let cat of exp.description">
-                            <h4 *ngIf="cat.category" class="category">
-                                {{ cat.category }}
-                            </h4>
-                            <ul>
-                                <li *ngFor="let item of cat.items">
-                                    {{ item.text }}
-                                </li>
-                            </ul>
-                        </ng-container>
-                        <div class="media-gallery" *ngIf="exp.media?.length">
-                            <figure class="thumb" *ngFor="let m of exp.media; let i = index"
-                                (click)="openLightbox(exp.media, i)">
-                                <img [src]="m.url" [alt]="'Media ' + (i + 1)" />
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="lightbox" *ngIf="lightbox.open" (click)="closeLightbox()" (touchstart)="touchStart($event)"
-        (touchend)="touchEnd($event)">        
-        <button *ngIf="lightbox.items.length > 1" class="nav prev" (click)="prev($event)">
-            ‹
+              }
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+  @if (lightbox.open) {
+    <div class="lightbox" (click)="closeLightbox()" (touchstart)="touchStart($event)"
+      (touchend)="touchEnd($event)">
+      @if (lightbox.items.length > 1) {
+        <button class="nav prev" (click)="prev($event)">
+          ‹
         </button>
-        <img [src]="lightbox.items[lightbox.index].url" alt="expanded media" (click)="$event.stopPropagation()" />
-        <button *ngIf="lightbox.items.length > 1" class="nav next" (click)="next($event)">
-            ›
+      }
+      <img [src]="lightbox.items[lightbox.index].url" alt="expanded media" (click)="$event.stopPropagation()" />
+      @if (lightbox.items.length > 1) {
+        <button class="nav next" (click)="next($event)">
+          ›
         </button>
-        <span class="close" (click)="closeLightbox($event)">✕</span>
+      }
+      <span class="close" (click)="closeLightbox($event)">✕</span>
     </div>
+  }
 </section>

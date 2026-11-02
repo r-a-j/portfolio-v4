@@ -1,37 +1,38 @@
 <section id="about" class="p-8 text-primary">
-    <div class="max-w-4xl mx-auto text-center space-y-12">
-        <!-- Heading -->
-        <h1 class="page-heading">{{ aboutContent.heading }}</h1>
+  <div class="max-w-4xl mx-auto text-center space-y-12">
+    <!-- Heading -->
+    <h1 class="page-heading">{{ aboutContent.heading }}</h1>
 
-        <!-- TL;DR Section -->
-        <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-6 rounded-lg shadow-md">
-            <h3 class="text-3xl font-semibold mb-4 text-gray-700">TL;DR</h3>
-            <p class="text-lg leading-relaxed text-gray-600 italic text-justify">
-                "{{ aboutContent.tldr }}"
-            </p>
-        </div>
-
-        <!-- Button -->
-        <div class="mt-8">
-            <button (click)="openCV()"
-                class="bg-blue-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
-                {{ aboutContent.buttonText }}
-            </button>
-        </div>
-
-        <!-- Full Content -->
-        <div class="space-y-8 text-left">
-            <p class="text-lg leading-relaxed text-gray-700 text-justify"
-                *ngFor="let paragraph of aboutContent.paragraphs">
-                {{ paragraph }}
-            </p>
-        </div>
-
-        <!-- Modal (only for desktop and tablet) -->
-        <div *ngIf="showCVModal" class="modal-overlay">
-            <app-cv-modal [show]="showCVModal" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
-                (close)="closeCV()">
-            </app-cv-modal>
-        </div>
+    <!-- TL;DR Section -->
+    <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-6 rounded-lg shadow-md">
+      <h3 class="text-3xl font-semibold mb-4 text-gray-700">TL;DR</h3>
+      <p class="text-lg leading-relaxed text-gray-600 italic text-justify">
+        "{{ aboutContent.tldr }}"
+      </p>
     </div>
+
+    <!-- Button -->
+    <div class="mt-8">
+      <button (click)="openCV()"
+        class="bg-blue-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
+        {{ aboutContent.buttonText }}
+      </button>
+    </div>
+
+    <!-- Full Content -->
+    <div class="space-y-8 text-left">
+      @for (paragraph of aboutContent.paragraphs; track paragraph) {
+        <p class="text-lg leading-relaxed text-gray-700 text-justify">
+          {{ paragraph }}
+        </p>
+      }
+    </div>
+
+    <!-- Modal (only for desktop and tablet) -->
+    @if (showCVModal()) {
+      <app-cv-modal [show]="showCVModal()" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
+        (closeModal)="closeCV()">
+      </app-cv-modal>
+    }
+  </div>
 </section>

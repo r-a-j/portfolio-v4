@@ -104,7 +104,7 @@
     </div>
   </section>
 
-  <!-- Key Engineering Pillars / Metrics -->
+  <!-- Key Metrics / Pillars -->
   <section aria-label="Key product pillars">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       @for (metric of showcase().metrics; track metric.label) {
@@ -120,17 +120,136 @@
     </div>
   </section>
 
+  <!-- Interactive Live Mobile Preview -->
+  @if (showcase().liveDemoUrl; as demoUrl) {
+    <section class="demo-panel" aria-label="Interactive live web preview">
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_390px] gap-8 lg:gap-10 items-center">
+        <div class="flex flex-col gap-5">
+          <div>
+            <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
+              Interactive Web Build
+            </span>
+            <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+              {{ showcase().liveDemoTitle || 'Try It Live' }}
+            </h2>
+            @if (showcase().liveDemoDescription) {
+              <p class="mt-3 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400 max-w-xl">
+                {{ showcase().liveDemoDescription }}
+              </p>
+            }
+          </div>
+
+          @if (showcase().liveDemoPrompts?.length) {
+            <div class="flex flex-col gap-2.5">
+              <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400">
+                Suggested things to try
+              </span>
+              <ul class="list-none m-0 p-0 flex flex-col gap-2">
+                @for (prompt of showcase().liveDemoPrompts; track prompt) {
+                  <li class="flex items-start gap-2.5 text-sm text-slate-300 leading-relaxed">
+                    <i class="fa-solid fa-chevron-right text-cinema text-[0.65rem] mt-1.5 shrink-0" aria-hidden="true"></i>
+                    <span>{{ prompt }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            @if (!isLiveDemoActive()) {
+              <button type="button" class="hero-btn hero-btn--primary" (click)="launchLiveDemo()">
+                <i class="fa-solid fa-play text-xs" aria-hidden="true"></i>
+                Launch Interactive Preview
+              </button>
+            } @else {
+              <button type="button" class="hero-btn hero-btn--secondary" (click)="closeLiveDemo()">
+                <i class="fa-solid fa-stop text-xs" aria-hidden="true"></i>
+                Close Preview
+              </button>
+            }
+
+            <a
+              [href]="demoUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-btn hero-btn--secondary"
+            >
+              Open Fullscreen
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <p class="m-0 text-xs font-mono-meta text-slate-500">
+            Note: Mobile visitors open the live web app fullscreen in a new tab. Android Share Sheet intents are exclusive to the Play Beta APK.
+          </p>
+        </div>
+
+        <!-- Mobile-Viewport Live Simulator Frame (Desktop) -->
+        <div class="hidden sm:flex flex-col items-center">
+          <div class="sim-phone">
+            <div class="sim-phone__bar">
+              <span class="text-[0.68rem] font-mono-meta text-slate-400 flex items-center gap-1.5">
+                <span
+                  class="w-2 h-2 rounded-full"
+                  [class.bg-emerald-400]="isLiveDemoActive()"
+                  [class.bg-slate-600]="!isLiveDemoActive()"
+                  aria-hidden="true"
+                ></span>
+                {{ isLiveDemoActive() ? 'Live Web Build' : 'Mobile Preview (375px)' }}
+              </span>
+              <a
+                [href]="demoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[0.7rem] font-mono-meta text-slate-400 hover:text-white no-underline"
+                aria-label="Open live app in new tab"
+              >
+                New Tab <i class="fa-solid fa-arrow-up-right-from-square text-[0.62rem]" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="sim-phone__viewport">
+              @if (isLiveDemoActive() && safeLiveDemoUrl(); as safeUrl) {
+                <iframe
+                  [src]="safeUrl"
+                  [title]="project().title + ' live interactive web application'"
+                  class="w-full h-full border-0 bg-black"
+                  loading="lazy"
+                ></iframe>
+              } @else {
+                <img
+                  [src]="showcase().heroPreviewScreenshot || showcase().screenshots[0].src"
+                  [alt]="project().title + ' interactive preview poster'"
+                  class="w-full h-full object-cover opacity-55"
+                />
+                <div class="sim-phone__overlay">
+                  <button type="button" class="sim-launch-btn" (click)="launchLiveDemo()">
+                    <i class="fa-solid fa-play" aria-hidden="true"></i>
+                    Launch Live App
+                  </button>
+                  <span class="text-xs font-mono-meta text-slate-300">
+                    Loads live build inside this mobile frame
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+
   <!-- Live Android Screenshot Gallery -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Live Android Experience
+        Android Screenshots
       </span>
       <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
         Inside the App
       </h2>
       <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
-        Real screenshots captured directly from the Android release. Select any screen to inspect full-resolution detail.
+        Screenshots captured from the Android release. Select any screen to inspect full-resolution detail.
       </p>
     </div>
 
@@ -172,15 +291,15 @@
     </div>
   </section>
 
-  <!-- Flagship Workflow Spotlight (AI Inbox & Gesture Triage) -->
+  <!-- AI Inbox & Gesture Triage Spotlight -->
   @if (showcase().spotlights?.length) {
     <section class="flex flex-col gap-6">
       <div class="text-center max-w-2xl mx-auto">
         <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-          Flagship AI Workflow
+          AI Inbox Workflow
         </span>
         <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-          {{ showcase().spotlightHeading || 'Multimodal Capture to Zero-Friction Triage' }}
+          {{ showcase().spotlightHeading || 'Share-to-Inbox & Swipe Triage' }}
         </h2>
         @if (showcase().spotlightIntro) {
           <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
@@ -213,17 +332,17 @@
     </section>
   }
 
-  <!-- Core Capabilities -->
+  <!-- Core Features -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Product &amp; Engineering Depth
+        Features &amp; Implementation
       </span>
       <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-        What Was Built
+        Core Features
       </h2>
       <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
-        Designed end-to-end as a production consumer app — uniting multimodal AI, reactive local storage, and native Android integration.
+        End-to-end engineering combining Gemini AI extraction, local RxDB state, and native Android Capacitor plugins.
       </p>
     </div>
 
@@ -305,7 +424,7 @@
           <i class="fa-solid fa-lock"></i>
         </div>
         <div>
-          <h3 class="m-0 text-base font-bold text-slate-100">Private Codebase &amp; Public Documentation</h3>
+          <h3 class="m-0 text-base font-bold text-slate-100">Private Codebase &amp; Live Access</h3>
           <p class="mt-1 mb-0 text-sm leading-relaxed text-slate-400">{{ showcase().availabilityNote }}</p>
         </div>
       </div>

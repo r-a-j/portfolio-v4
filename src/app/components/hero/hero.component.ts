@@ -27,7 +27,7 @@ export class HeroComponent implements OnDestroy {
     'YOLOv8 / U-Net / SAM 2.1',
     'Bayesian Stan & SBI',
     'Angular / NestJS / .NET',
-    'On-Device AI (Gemini, LiteRT)',
+    'Applied AI (Gemini, AWS Bedrock)',
   ];
 
   readonly impactMetrics: ImpactMetric[] = [
@@ -39,17 +39,17 @@ export class HeroComponent implements OnDestroy {
     {
       value: '~10×',
       label: 'Faster CV Annotation',
-      detail: 'Active-learning pipeline with ParSeGNet2 & SAM 2.1',
+      detail: 'Label Studio backend with ParSeGNet2 & SAM 2.1',
     },
     {
       value: '3,000+',
       label: 'Particles / Frame UI',
-      detail: 'Zero-lag real-time VDA 19.1 / ISO 16232 inspection',
+      detail: 'Real-time VDA 19.1 inspection without UI lag',
     },
     {
-      value: '2 Shipped',
-      label: 'Android AI Products',
-      detail: 'CineScope (Play Beta) & Kosh (Offline LiteRT LLM)',
+      value: 'Live App',
+      label: 'CineScope (Web & Play Beta)',
+      detail: 'Gemini semantic search, share-to-inbox & swipe triage',
     },
   ];
 

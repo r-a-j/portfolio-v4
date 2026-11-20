@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   signal,
 } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {
   ProjectDetails,
   ProjectShowcase,
@@ -21,10 +23,18 @@ import {
   },
 })
 export class ProjectShowcaseComponent {
+  private sanitizer = inject(DomSanitizer);
+
   readonly project = input.required<ProjectDetails>();
   readonly showcase = input.required<ProjectShowcase>();
 
   readonly activeScreenshotIndex = signal<number | null>(null);
+  readonly isLiveDemoActive = signal(false);
+
+  readonly safeLiveDemoUrl = computed<SafeResourceUrl | null>(() => {
+    const url = this.showcase().liveDemoUrl;
+    return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : null;
+  });
 
   readonly activeScreenshot = computed(() => {
     const index = this.activeScreenshotIndex();
@@ -34,6 +44,22 @@ export class ProjectShowcaseComponent {
     }
     return screenshots[index];
   });
+
+  launchLiveDemo(): void {
+    const url = this.showcase().liveDemoUrl;
+    if (!url) {
+      return;
+    }
+    if (window.innerWidth < 640) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    this.isLiveDemoActive.set(true);
+  }
+
+  closeLiveDemo(): void {
+    this.isLiveDemoActive.set(false);
+  }
 
   openLightbox(index: number): void {
     this.activeScreenshotIndex.set(index);

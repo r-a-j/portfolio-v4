@@ -47,6 +47,10 @@ export interface ProjectShowcase {
     wordmark?: string;
     heroBanner: string;
     heroPreviewScreenshot?: string;
+    liveDemoUrl?: string;
+    liveDemoTitle?: string;
+    liveDemoDescription?: string;
+    liveDemoPrompts?: string[];
     overview: string;
     metrics: ProjectShowcaseMetric[];
     screenshots: ProjectShowcaseScreenshot[];

@@ -4,15 +4,188 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'metal-nonmetal-classification',
         title: 'Particle Classification & Segmentation (VDA 19.1)',
-        description: 'Technical cleanliness inspection system (VDA 19.1) classifying metallic, non-metallic, and fiber particulates using YOLOv8 and U-Net.',
+        description: 'Deep learning classification and segmentation of metallic, non-metallic, and fiber particles across microscope and mobile images — from TU Dortmund PoC to production at PartikelART.',
         thumbnail: 'projects/metal-nonmetal-classification/metal-nonmetal-classification_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Particle-Classification-and-Segmentation',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Particle-Classification-and-Segmentation/refs/heads/main/README.md',
-        techStack: ['Python', 'NumPy', 'OpenCV', 'PyTorch', 'YOLOv8', 'U-Net', 'Gradio', 'TypeScript'],
+        techStack: ['Python', 'TensorFlow', 'PyTorch', 'YOLOv8', 'U-Net', 'OpenCV', 'Gradio', 'TypeScript'],
         rating: 5,
         category: 'Deep Learning',
         year: 2024,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Industrial Data Science 2',
+            role: 'Team of 5 · U-Net, Mobile CNN & Gradio App',
+            subtitle:
+                'Classifying metallic and non-metallic contaminants across high-resolution microscope images and low-resolution smartphone photos — the university project that led directly to my 2-year engineering role at PartikelART Solution GmbH.',
+            metrics: [
+                {
+                    value: '54,540',
+                    label: 'Particle Images',
+                    detail: '53,880 microscope crops (19,206 metal, 34,674 non-metal) plus 660 mobile phone captures provided by PartikelART.',
+                },
+                {
+                    value: '97% / 88%',
+                    label: 'CNN Val Accuracy',
+                    detail: 'Custom 128×128 grayscale CNN hit 97% (AP 0.97–1.00) on microscope images; fine-tuned MobileNetV2 reached 88% on mobile.',
+                },
+                {
+                    value: '0.82 mAP@0.5',
+                    label: 'YOLOv8n Detection',
+                    detail: '0.756 mAP@0.5 on microscope detection, 0.717 mask mAP@0.5 on instance segmentation, and 0.820 mAP@0.5 on mobile.',
+                },
+                {
+                    value: 'PoC → Job',
+                    label: 'Production Spin-Off',
+                    detail: 'Joined PartikelART full-time after this course to scale segmentation, fiber measurement, and active learning under VDA 19.1.',
+                },
+            ],
+            problem:
+                'In automotive, battery, and electronics manufacturing, microscopic metal chips and stray fibers left on components can cause short circuits or premature wear. Traditional technical cleanliness checks depend on lab microscopes and slow manual inspection. Partnering with PartikelART Solution GmbH, our 5-student team tested whether lightweight vision models could classify and segment metal vs. non-metal particles across two very different domains: 53,880 high-resolution microscope images and just 660 low-resolution mobile phone captures.',
+            ownership:
+                'Within Group 3 (5 M.Sc. Data Science students), I built and iterated on the custom Keras U-Net segmentation pipeline (including scripts converting YOLO bounding boxes into binary masks across 5 training runs with LR scheduling and augmentation), trained and exported the MobileNetV2 transfer-learning classifier to TensorFlow Lite, and wrote the Gradio web app combining YOLOv8 detection, OpenCV contour-based CNN inference, and a 17-transform augmentation utility. I also wrote the individual evaluation report comparing the trained architectures.',
+            approachHeading: 'Data, Models & Evaluation',
+            approach: [
+                {
+                    label: '01 · Data & Labeling',
+                    title: 'Microscope vs. Mobile Phone Domains',
+                    description:
+                        'Standardized microscope crops to 128×128 grayscale for CNN training with geometric augmentation (rotation, shifts, shear, zoom, flips). Manually labeled 1,024 full images at 640×640 with bounding boxes and masks in makesense.ai (70/15/15 split) for YOLOv8 and U-Net.',
+                },
+                {
+                    label: '02 · Model Comparison',
+                    title: 'CNN, MobileNetV2, YOLOv8n & U-Net',
+                    description:
+                        'Benchmarked a 3-block Conv2D + BatchNorm + Dropout CNN on microscope crops, two-stage frozen/fine-tuned MobileNetV2 on mobile captures (with TFLite export), YOLOv8n for detection and instance segmentation, and a scratch 640×640 U-Net for binary masks.',
+                },
+                {
+                    label: '03 · Demo & Error Analysis',
+                    title: 'Gradio Prototype & Failure Diagnosis',
+                    description:
+                        'Packaged inference into a 3-tab Gradio interface for interactive image testing and augmentation. Audited validation curves and failure cases across reflective non-metals, dense filter backgrounds, and the tiny mobile sample split.',
+                },
+            ],
+            resultsTable: {
+                title: 'University PoC Benchmark (IDS 2)',
+                subtitle:
+                    'Comparison across high-resolution microscope images (53,880 crops) and low-resolution mobile captures (660 images).',
+                columns: ['Model', 'Image Source', 'Train Acc', 'Val Acc / mAP@0.5', 'Val Loss'],
+                rows: [
+                    {
+                        cells: ['Custom CNN (128×128 Grayscale)', 'Microscope (53,880)', '97%', '97% (AP 0.97 / 1.00)', '0.20'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['MobileNetV2 (Two-Stage Fine-Tune)', 'Mobile Phone (660)', '93%', '88%', '0.30'],
+                    },
+                    {
+                        cells: ['YOLOv8n (Object Detection)', 'Microscope (100 ep.)', '75%', '75% · 0.756 mAP@0.5', '3.32'],
+                    },
+                    {
+                        cells: ['YOLOv8n (Instance Segmentation)', 'Microscope (100 ep.)', '71%', '71% · 0.717 Mask mAP', '1.61'],
+                    },
+                    {
+                        cells: ['YOLOv8n (Object Detection)', 'Mobile Phone (200 ep.)', '66%*', '0.820 mAP@0.5 (peak ep. 144)', '1.41'],
+                    },
+                    {
+                        cells: ['Custom U-Net (Box-Derived Masks)', 'Mobile Phone (50 ep.)', '49–55%', '32–92% (unstable)', '0.28'],
+                    },
+                ],
+                footnote:
+                    '*Mobile YOLOv8n peaked at 0.825 mAP@0.5 at epoch 144 before overfitting by epoch 200 (0.665 mAP@0.5), exposing the 660-image data bottleneck. U-Net trained on masks approximated from rectangular YOLO boxes oscillated heavily across epochs.',
+            },
+            figuresHeading: 'Validation Predictions & Curves',
+            figuresIntro:
+                'Unedited validation batches and evaluation curves from the TU Dortmund IDS 2 repository. Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/metal-nonmetal-classification/yolo-microscope-segment.webp',
+                    badge: 'YOLOv8n-Seg · Microscope',
+                    title: 'Microscope Instance Segmentation',
+                    caption:
+                        'Pixel masks on textured filter membranes isolating a reflective metallic flake (metal 0.9) and a looped non-metal fiber strand.',
+                    surface: 'dark',
+                },
+                {
+                    src: 'projects/metal-nonmetal-classification/yolo-mobile-detect.webp',
+                    badge: 'YOLOv8n · Mobile',
+                    title: 'Mobile Phone Detection Batch',
+                    caption:
+                        'Validation predictions on smartphone photos detecting spiral metal shavings, rings, and chips alongside non-metal fragments.',
+                    surface: 'dark',
+                },
+                {
+                    src: 'projects/metal-nonmetal-classification/yolo-microscope-detect.webp',
+                    badge: 'YOLOv8n · Microscope',
+                    title: 'Microscope Detection Grid (4×4)',
+                    caption:
+                        'Holdout microscope batch showing solid detection on isolated metallic particles and overlapping boxes on dark clustered debris.',
+                    surface: 'dark',
+                },
+                {
+                    src: 'projects/metal-nonmetal-classification/cnn-microscope-pr-curve.webp',
+                    badge: 'Custom CNN · PR Curve',
+                    title: 'CNN Precision-Recall (Microscope)',
+                    caption:
+                        'Average Precision of 0.97 for metal (met) and 1.00 for non-metal (nichtmet) on the microscope holdout split.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/metal-nonmetal-classification/yolo-mobile-pr-curve.webp',
+                    badge: 'YOLOv8n · PR Curve',
+                    title: 'YOLOv8n Precision-Recall (Mobile)',
+                    caption:
+                        'Peak mobile detection performance reaching 0.820 mAP@0.5 (0.834 metal, 0.806 non-metal) from 660 phone captures.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/metal-nonmetal-classification/unet-training-curves.webp',
+                    badge: 'U-Net · Diagnostics',
+                    title: 'U-Net Instability Diagnostics',
+                    caption:
+                        'Training loss dropped smoothly while validation accuracy swung from 32% to 92% — directly showing why box-derived masks fail on fine particle contours.',
+                    surface: 'light',
+                },
+            ],
+            followUp: {
+                eyebrow: 'Oct 2024 – Nov 2026 · Production Continuation',
+                title: 'How This Grew Into Production at PartikelART',
+                intro:
+                    'After this course, PartikelART Solution GmbH hired me as a Machine Learning & Software Engineer. Moving from a classroom prototype to VDA 19.1 / ISO 16232 factory inspection exposed four practical problems that standard bounding boxes could not handle:',
+                items: [
+                    {
+                        title: '5–10 µm Small Particles via Tiled U²-Net & ONNX',
+                        description:
+                            'Downsampling full filter scans wiped out sub-10 µm contaminants. Switched to multi-scale patchified U²-Net / U²-NetP models in PyTorch with overlapping sliding-window inference and ONNX export for mobile and server use.',
+                        tags: ['PyTorch', 'U²-Net', 'ONNX', 'Tiled Inference'],
+                    },
+                    {
+                        title: 'Curved Fiber Length via Zhang-Suen Skeletonization',
+                        description:
+                            'Bounding boxes badly underestimate coiled or S-shaped fibers. Implemented Zhang-Suen topological thinning with precomputed 256-entry static LUTs in OpenCV/TypeScript alongside Feret Max/Min rotating calipers and inscribed-circle checks.',
+                        tags: ['OpenCV', 'TypeScript', 'Zhang-Suen LUT', 'VDA 19.1'],
+                    },
+                    {
+                        title: 'Cross-Polarization & Post-Inference HSV Recovery',
+                        description:
+                            'Pure RGB networks confused shiny plastics with metal and dropped faint translucent fibers. Added polarized vs. non-polarized gloss photometry with local background gain normalization plus HSV saturation and inverted-value mask refinement.',
+                        tags: ['Photometry', 'HSV Refinement', 'Morphology'],
+                    },
+                    {
+                        title: 'Active Learning With SAM 2.1 & Label Studio (~10× Faster)',
+                        description:
+                            'Hand-tracing dense filters took hours per scan. Built a custom Label Studio ML backend combining SAM 2.1 interactive masks, in-house U-Net pre-annotations with Douglas-Peucker polygon simplification, and Azure Blob retraining sync.',
+                        tags: ['SAM 2.1', 'Label Studio', 'Azure Blob', 'Active Learning'],
+                    },
+                ],
+            },
+            takeaways: [
+                'Crop-level classification is much easier than full-frame detection: the custom CNN reached 97% on pre-cropped microscope particles, while YOLOv8n sat at 0.756 mAP@0.5 because textured filter backgrounds add localization noise.',
+                'Label quality matters more than architecture tweaks: training U-Net on masks approximated from rectangular YOLO boxes caused 32%–92% validation swings. Accurate polygon and SAM masks later proved essential in production.',
+                'Small datasets overfit quickly without checkpoint selection: mobile YOLOv8n peaked at 0.825 mAP@0.5 around epoch 144 and fell to 0.665 by epoch 200.',
+                'Industrial computer vision under VDA 19.1 rarely stops at neural inference — deterministic geometry (Feret calipers, skeleton length) and optical physics (cross-polarization) were what made measurements reliable on real parts.',
+            ],
+        },
     },
     {
         id: 'cine-scope',

@@ -1,5 +1,8 @@
 @if (projectDetails) {
-  <div class="project-detail-container" [class.is-showcase]="projectDetails.showcase">
+  <div
+    class="project-detail-container"
+    [class.is-showcase]="projectDetails.showcase || projectDetails.caseStudy"
+  >
     <div class="top-nav">
       <button type="button" class="nav-pill" (click)="goBack()">
         <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
@@ -22,6 +25,14 @@
         [project]="projectDetails"
         [showcase]="showcaseData"
       ></app-project-showcase>
+    } @else if (projectDetails.caseStudy; as caseStudyData) {
+      <app-project-case-study
+        [project]="projectDetails"
+        [caseStudy]="caseStudyData"
+        [markdownContent]="markdownContent"
+        [hasReadme]="!!projectDetails.githubReadmeUrl"
+        (requestReadme)="loadReadmeIfNeeded()"
+      ></app-project-case-study>
     } @else {
       <div class="readme-header">
         <div class="flex flex-wrap justify-center gap-2 mb-4">

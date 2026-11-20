@@ -7,11 +7,12 @@ import { ProjectDetails } from '../../shared/types/project-details';
 import { MarkdownModule } from 'ngx-markdown';
 import { Subscription } from 'rxjs';
 import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.component';
+import { ProjectCaseStudyComponent } from '../project-case-study/project-case-study.component';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [MarkdownModule, ProjectShowcaseComponent],
+  imports: [MarkdownModule, ProjectShowcaseComponent, ProjectCaseStudyComponent],
   templateUrl: './project-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./project-details.component.scss']
@@ -46,25 +47,36 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
       this.titleService.setTitle(`${this.projectDetails.title} — Raj Pawar`);
-      if (!this.projectDetails.showcase && this.projectDetails.githubReadmeUrl) {
-        this.httpSub = this.http.get(this.projectDetails.githubReadmeUrl, { responseType: 'text' })
-          .subscribe({
-            next: (data: string) => {
-              this.markdownContent = data;
-              this.cdr.markForCheck();
-            },
-            error: (error) => {
-              console.error('Error loading markdown:', error);
-              this.markdownContent = 'Failed to load project details from GitHub.';
-              this.cdr.markForCheck();
-            }
-          });
+      if (!this.projectDetails.showcase && !this.projectDetails.caseStudy && this.projectDetails.githubReadmeUrl) {
+        this.fetchReadme(this.projectDetails.githubReadmeUrl);
       }
     } else {
       this.titleService.setTitle('Project Not Found — Raj Pawar');
       console.error(`Project with ID '${projectId}' not found.`);
     }
     this.cdr.markForCheck();
+  }
+
+  public loadReadmeIfNeeded(): void {
+    const url = this.projectDetails?.githubReadmeUrl;
+    if (!url || this.markdownContent) return;
+    this.fetchReadme(url);
+  }
+
+  private fetchReadme(url: string): void {
+    this.httpSub?.unsubscribe();
+    this.httpSub = this.http.get(url, { responseType: 'text' })
+      .subscribe({
+        next: (data: string) => {
+          this.markdownContent = data;
+          this.cdr.markForCheck();
+        },
+        error: (error) => {
+          console.error('Error loading markdown:', error);
+          this.markdownContent = 'Failed to load project details from GitHub.';
+          this.cdr.markForCheck();
+        }
+      });
   }
 
   public goBack(): void {

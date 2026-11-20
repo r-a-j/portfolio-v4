@@ -63,6 +63,73 @@ export interface ProjectShowcase {
     availabilityNote?: string;
 }
 
+export interface ProjectCaseStudyMetric {
+    value: string;
+    label: string;
+    detail: string;
+}
+
+export interface ProjectCaseStudyStep {
+    label: string;
+    title: string;
+    description: string;
+}
+
+export interface ProjectCaseStudyTableRow {
+    cells: string[];
+    highlight?: boolean;
+}
+
+export interface ProjectCaseStudyTable {
+    title: string;
+    subtitle?: string;
+    columns: string[];
+    rows: ProjectCaseStudyTableRow[];
+    footnote?: string;
+}
+
+export interface ProjectCaseStudyFigure {
+    src: string;
+    title: string;
+    caption: string;
+    badge?: string;
+    surface?: 'dark' | 'light';
+}
+
+export interface ProjectCaseStudySectionItem {
+    title: string;
+    description: string;
+    tags?: string[];
+}
+
+export interface ProjectCaseStudySection {
+    eyebrow?: string;
+    title: string;
+    intro?: string;
+    items: ProjectCaseStudySectionItem[];
+}
+
+export interface ProjectCaseStudy {
+    context: string;
+    role?: string;
+    subtitle: string;
+    metrics: ProjectCaseStudyMetric[];
+    problem: string;
+    ownership: string;
+    approachHeading?: string;
+    approach?: ProjectCaseStudyStep[];
+    resultsTable?: ProjectCaseStudyTable;
+    figuresHeading?: string;
+    figuresIntro?: string;
+    figures?: ProjectCaseStudyFigure[];
+    followUp?: ProjectCaseStudySection;
+    takeaways?: string[];
+    pdfReport?: {
+        label: string;
+        url: string;
+    };
+}
+
 export interface ProjectDetails {
     id: string;
     title: string;
@@ -73,6 +140,7 @@ export interface ProjectDetails {
     externalLinks?: ProjectActionLink[];
     statusBadge?: string;
     showcase?: ProjectShowcase;
+    caseStudy?: ProjectCaseStudy;
     techStack: string[];
     rating: number;
     category: string;

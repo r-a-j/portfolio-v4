@@ -6,14 +6,11 @@ export const EXPERIENCES: Experience[] = [
     role: 'Software Engineer & ML Lead',
     company: 'PartikelART Solution GmbH',
     company_url: 'https://partikel-art.de/',
-    company_logo_url: 'experience/partikelart/partikel-art_logo.png',
+    company_logo_url: 'experience/partikelart/PartikelART-Logo.svg',
+    logoStyle: 'wide-light',
+    summary:
+      'Computer vision pipelines for VDA 19.1 particle inspection, SAM 2.1 active-learning annotation (~10× speedup), and full-stack Nx monorepo (Ionic/Angular + NestJS).',
     description: [
-      {
-        category: 'TU Start-up Award 2025',
-        items: [
-          { text: 'Won 1st Place (€6,000, Wilo-Foundation) and the TU capital VC Seed Sonderpreis (€50,000 convertible note offer) for our mobile technical cleanliness inspection system.' },
-        ]
-      },
       {
         category: 'Computer Vision',
         items: [
@@ -37,15 +34,16 @@ export const EXPERIENCES: Experience[] = [
         ]
       },
       {
-        category: 'Consulting & University Teaching',
+        category: 'Awards, Consulting & Teaching',
         items: [
+          { text: 'Won 1st Place (Wilo-Foundation) and the TU capital VC Seed Sonderpreis at the TU Start-up Award 2025 for our mobile technical cleanliness inspection system.' },
           { text: 'Authored automated Keyence microscope inspection proposal and technical requirements for Tier-1 automotive supplier Stoneridge.' },
           { text: 'Co-delivered invited guest lecture for the Industrial Data Science 1 Master\'s course at TU Dortmund on deploying CV models in production.' }
         ]
       }
     ],
-    duration: 'Oct 2024 - Nov 2026',
-    location: 'Dortmund, Germany • Hybrid',
+    duration: 'Oct 2024 – Nov 2026',
+    location: 'Dortmund, Germany · Hybrid',
     documents: [
       {
         label: 'Reference Letter (EN)',
@@ -73,11 +71,11 @@ export const EXPERIENCES: Experience[] = [
       },
       {
         url: 'recognition/tu-capital-certificate.webp',
-        caption: 'TU capital Sonderpreis Urkunde (€50,000 convertible note offer)',
+        caption: 'TU capital Special Prize certificate (Sonderpreis Urkunde)',
       },
       {
         url: 'recognition/tu-award-stage.webp',
-        caption: 'All finalists and award winners on stage at TU Start-up Award 2025',
+        caption: 'Finalists and award winners on stage at TU Start-up Award 2025',
       },
     ]
   },
@@ -87,6 +85,9 @@ export const EXPERIENCES: Experience[] = [
     company: 'ADVISORI FTC GmbH',
     company_url: 'https://www.advisori.de/',
     company_logo_url: 'experience/advisori/advisori_icon.png',
+    logoStyle: 'icon',
+    summary:
+      'Built an AWS Bedrock / Claude 3 test-validation tool, restructured internal Retool RBAC workflows, and delivered a full-stack Angular + Spring Boot booking platform.',
     description: [
       {
         category: 'AI Hackathon',
@@ -111,11 +112,11 @@ export const EXPERIENCES: Experience[] = [
         ]
       }
     ],
-    duration: 'Feb 2024 - Sep 2024',
-    location: 'Frankfurt am Main, Germany • Remote',
+    duration: 'Feb 2024 – Sep 2024',
+    location: 'Frankfurt am Main, Germany · Remote',
     media: [
-      { url: 'experience/advisori/ADV1.jpeg' },
-      { url: 'experience/advisori/ADV2.jpeg' },
+      { url: 'experience/advisori/ADV1.jpeg', caption: 'ADVISORI FTC GmbH team and engineering workspace' },
+      { url: 'experience/advisori/ADV2.jpeg', caption: 'ADVISORI FTC GmbH project work' },
     ]
   },
   {
@@ -124,6 +125,9 @@ export const EXPERIENCES: Experience[] = [
     company: 'Freelance',
     company_url: '#',
     company_logo_url: 'experience/freelance/freelance_icon.png',
+    logoStyle: 'icon',
+    summary:
+      'Delivered CLASSBOOK, an online education portal with .NET Core, MSSQL, Razorpay payments, and Firebase Cloud Messaging.',
     description: [
       {
         category: '',
@@ -134,7 +138,7 @@ export const EXPERIENCES: Experience[] = [
         ]
       },
     ],
-    duration: 'Jan 2021 - Mar 2021',
+    duration: 'Jan 2021 – Mar 2021',
     location: 'Surat, India',
     media: []
   },
@@ -144,6 +148,9 @@ export const EXPERIENCES: Experience[] = [
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
     company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
+    logoStyle: 'icon',
+    summary:
+      'Built and maintained ASP.NET Core e-commerce platforms, SVG manipulation services, Swagger REST APIs, and optimized SQL Server queries.',
     description: [
       {
         category: '',
@@ -154,18 +161,21 @@ export const EXPERIENCES: Experience[] = [
         ]
       },
     ],
-    duration: 'Jul 2019 - Dec 2020',
+    duration: 'Jul 2019 – Dec 2020',
     location: 'Surat, India',
     media: [
-      { url: 'experience/xcellenceit/XIT1.jpeg' },
+      { url: 'experience/xcellenceit/XIT1.jpeg', caption: 'Xcellence-IT team' },
     ]
   },
   {
     id: 1,
-    role: 'Trainee',
+    role: 'Software Developer Trainee',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
     company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
+    logoStyle: 'icon',
+    summary:
+      'Completed intensive training in ASP.NET Core, C# engineering standards, and nopCommerce plugin development.',
     description: [
       {
         category: '',
@@ -174,7 +184,7 @@ export const EXPERIENCES: Experience[] = [
         ]
       },
     ],
-    duration: 'Jan 2019 - Jun 2019',
+    duration: 'Jan 2019 – Jun 2019',
     location: 'Surat, India',
     media: []
   }

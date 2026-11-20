@@ -70,17 +70,17 @@ export const RECOGNITION_PHOTOS: RecognitionPhoto[] = [
   },
   {
     src: 'recognition/tu-award-trophy.webp',
-    badge: 'Wilo-Foundation • €6,000',
+    badge: 'Wilo-Foundation',
     title: 'TU Start-up Award 2025 — 1st Place Trophy',
     caption:
       'Awarded by CET (Centrum für Entrepreneurship & Transfer) and the Wilo-Foundation at TU Dortmund University.',
   },
   {
     src: 'recognition/tu-capital-certificate.webp',
-    badge: 'TU capital • €50,000',
+    badge: 'TU capital Special Prize',
     title: 'TU capital Special Prize Certificate',
     caption:
-      'Official Urkunde granting the €50,000 convertible note option (Wandelschuldverschreibung) from TU Dortmund\'s venture seed fund.',
+      'Official Sonderpreis Urkunde awarded by TU Dortmund\'s venture seed fund.',
   },
   {
     src: 'recognition/tu-award-stage.webp',
@@ -105,7 +105,7 @@ export const PRESS_COVERAGE: PressItem[] = [
     title: 'Start-Up Award-Vergabe an der TU Dortmund 2025',
     url: 'https://www.wilo-foundation.de/aktuelles/artikel/start-up-award-vergabe-an-der-tu-dortmund-2025',
     category: 'Official & Awards',
-    highlight: '1st Place (€6,000) & TU capital Special Prize announcement',
+    highlight: '1st Place & TU capital Special Prize announcement',
   },
   {
     source: 'TechnologieZentrumDortmund (TZDO)',

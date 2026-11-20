@@ -21,15 +21,15 @@
   --border-strong: rgba(255, 255, 255, 0.16);
   --color-border: rgba(255, 255, 255, 0.09);
 
-  /* Signature Accents (Restrained) */
-  --accent-cinema: #e50914;
-  --accent-cinema-soft: rgba(229, 9, 20, 0.14);
+  /* Signature Accents (Eye-friendly dark-mode coral-rose & warm gold) */
+  --accent-cinema: #e06c75;
+  --accent-cinema-soft: rgba(224, 108, 117, 0.14);
   --color-accent: #f4d35e;
   --color-accent-hover: #e5be3c;
 
   /* Backwards-compatible brand tokens */
-  --color-primary: #e50914;
-  --color-primary-hover: #c60812;
+  --color-primary: #e06c75;
+  --color-primary-hover: #c9525c;
   --color-primary-dark: #080b11;
   --color-secondary: #0f141e;
   --color-secondary-hover: #151c2a;
@@ -73,7 +73,7 @@ body {
 }
 
 ::selection {
-  background: rgba(229, 9, 20, 0.35);
+  background: rgba(224, 108, 117, 0.3);
   color: #ffffff;
 }
 

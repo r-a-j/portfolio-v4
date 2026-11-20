@@ -1,114 +1,230 @@
-<section id="experience" class="experience-section py-16 px-6 border-b border-white/[0.06]">
-  <div class="max-w-4xl mx-auto space-y-10">
-    <div class="text-center">
-      <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-        Work History
-      </span>
-      <h2 class="page-heading text-center mb-0">Experience</h2>
+<section id="experience" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+  <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
+          Work History
+        </span>
+        <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+          Experience
+        </h2>
+      </div>
+      <p class="m-0 text-sm text-slate-400 max-w-md leading-relaxed">
+        Roles across computer vision, applied machine learning, and full-stack software engineering in Germany and India.
+      </p>
     </div>
 
-    <ul class="timeline">
-      @for (exp of experiences; track exp.id) {
-        <li class="timeline-item" [class.open]="isExpanded(exp.id)"
-          style="--rope-color: var(--color-primary)">
-          <div class="icon-wrap">
-            @if (exp.company_logo_url) {
-              <img [src]="exp.company_logo_url"
-                [alt]="exp.company + ' logo'" class="company-logo" />
-            } @else {
-              <span class="icon-letter">{{ exp.company | slice: 0 : 1 }}</span>
-            }
-          </div>
-          <div class="panel panel--soft-gradient">
-            <button type="button" class="header" [attr.aria-expanded]="isExpanded(exp.id)"
-              (click)="toggle(exp.id)">
-              <div class="title">
-                <h3 class="role">{{ exp.role }}</h3>
-                @if (exp.company_url && exp.company_url !== '#') {
-                  <a [href]="exp.company_url" target="_blank"
-                    rel="noopener noreferrer" class="company" (click)="$event.stopPropagation()">
-                    · {{ exp.company }}
-                  </a>
-                } @else {
-                  <span class="company">· {{ exp.company }}</span>
-                }
+    <!-- Clean Structured Timeline -->
+    <div class="exp-list">
+      @for (exp of experiences; track exp.id; let isFirst = $first) {
+        <article class="exp-card" [class.exp-card--open]="isExpanded(exp.id)">
+          <!-- Clickable Role Header -->
+          <button
+            type="button"
+            class="exp-header"
+            [attr.aria-expanded]="isExpanded(exp.id)"
+            (click)="toggle(exp.id)"
+          >
+            <div class="flex flex-col sm:flex-row sm:items-start gap-4 min-w-0 flex-1">
+              <!-- Company Logo -->
+              <div
+                class="logo-box shrink-0"
+                [class.logo-box--wide-light]="exp.logoStyle === 'wide-light'"
+              >
+                <img
+                  [src]="exp.company_logo_url"
+                  [alt]="exp.company + ' logo'"
+                  class="logo-box__img"
+                />
               </div>
-              <span class="meta">
-                {{ exp.duration }} • {{ exp.location }}
+
+              <!-- Role, Company & Always-Visible 1-Line Summary -->
+              <div class="min-w-0 flex-1 text-left">
+                <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                  <h3 class="m-0 text-base sm:text-lg font-bold text-slate-50 leading-snug">
+                    {{ exp.role }}
+                  </h3>
+                  @if (isFirst) {
+                    <span class="recent-badge">Most Recent</span>
+                  }
+                </div>
+
+                <div class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  @if (exp.company_url && exp.company_url !== '#') {
+                    <a
+                      [href]="exp.company_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="company-link"
+                      (click)="$event.stopPropagation()"
+                    >
+                      {{ exp.company }}
+                      <i class="fa-solid fa-arrow-up-right-from-square text-[0.62rem] opacity-70" aria-hidden="true"></i>
+                    </a>
+                  } @else {
+                    <span class="text-slate-300 font-medium">{{ exp.company }}</span>
+                  }
+                  <span class="text-slate-600" aria-hidden="true">·</span>
+                  <span class="text-xs font-mono-meta text-slate-400">{{ exp.location }}</span>
+                </div>
+
+                <p class="mt-2 mb-0 text-sm leading-relaxed text-slate-400 max-w-3xl">
+                  {{ exp.summary }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Date & Expand Toggle -->
+            <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2.5 shrink-0 pt-2 sm:pt-0">
+              <span class="date-pill">{{ exp.duration }}</span>
+              <span class="toggle-chip" aria-hidden="true">
+                <span>{{ isExpanded(exp.id) ? 'Hide details' : 'Details' }}</span>
+                <i
+                  class="fa-solid fa-chevron-down text-[0.65rem] transition-transform duration-200"
+                  [class.rotate-180]="isExpanded(exp.id)"
+                ></i>
               </span>
-              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-              </svg>
-            </button>
-            <div class="card-body">
+            </div>
+          </button>
+
+          <!-- Expanded Details Body -->
+          @if (isExpanded(exp.id)) {
+            <div class="exp-body">
+              <!-- Reference Documents Row (if available) -->
               @if (exp.documents?.length) {
-                <div class="flex flex-wrap gap-2 mb-4">
+                <div class="flex flex-wrap items-center gap-2.5 pb-5 mb-5 border-b border-white/[0.07]">
+                  <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400 mr-1">
+                    Signed References:
+                  </span>
                   @for (doc of exp.documents; track doc.url) {
                     <button
                       type="button"
-                      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.14] text-slate-100 hover:bg-white/[0.12] cursor-pointer"
+                      class="doc-pill"
                       (click)="openDocument(doc, $event)"
                     >
-                      <i class="fa-regular fa-file-pdf text-cinema" aria-hidden="true"></i>
+                      <i class="fa-regular fa-file-pdf text-slate-300 text-xs" aria-hidden="true"></i>
                       {{ doc.label }}
                     </button>
                   }
                 </div>
               }
 
-              @for (cat of exp.description; track cat.category) {
-                @if (cat.category) {
-                  <h4 class="category">
-                    {{ cat.category }}
-                  </h4>
+              <!-- Structured Achievement Grid (2-col when multi-category, 1-col when simple) -->
+              @if (exp.description.length > 1) {
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  @for (cat of exp.description; track cat.category) {
+                    <div class="detail-group">
+                      @if (cat.category) {
+                        <h4 class="detail-group__title">{{ cat.category }}</h4>
+                      }
+                      <ul class="detail-list">
+                        @for (item of cat.items; track item.text) {
+                          <li>{{ item.text }}</li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                </div>
+              } @else {
+                @for (cat of exp.description; track cat.category) {
+                  <ul class="detail-list detail-list--single">
+                    @for (item of cat.items; track item.text) {
+                      <li>{{ item.text }}</li>
+                    }
+                  </ul>
                 }
-                <ul>
-                  @for (item of cat.items; track item.text) {
-                    <li>
-                      {{ item.text }}
-                    </li>
-                  }
-                </ul>
               }
-              @if (exp.media?.length) {
-                <div class="media-gallery">
-                  @for (m of exp.media; track m.url; let i = $index) {
-                    <figure class="thumb m-0"
-                      (click)="openLightbox(exp.media, i)">
-                      <img [src]="m.url" [alt]="m.caption || ('Media ' + (i + 1))" loading="lazy" />
-                    </figure>
-                  }
+
+              <!-- Photo Gallery Strip -->
+              @if (exp.media.length) {
+                <div class="mt-6 pt-5 border-t border-white/[0.07]">
+                  <span class="block text-xs font-mono-meta uppercase tracking-wider text-slate-400 mb-3">
+                    Photos
+                  </span>
+                  <div class="media-strip">
+                    @for (m of exp.media; track m.url; let i = $index) {
+                      <button
+                        type="button"
+                        class="media-thumb"
+                        (click)="openLightbox(exp.media, i)"
+                        [attr.aria-label]="'Inspect photo: ' + (m.caption || ('Photo ' + (i + 1)))"
+                      >
+                        <img
+                          [src]="m.url"
+                          [alt]="m.caption || ('Photo ' + (i + 1))"
+                          loading="lazy"
+                        />
+                      </button>
+                    }
+                  </div>
                 </div>
               }
             </div>
-          </div>
-        </li>
+          }
+        </article>
       }
-    </ul>
+    </div>
   </div>
 
-  @if (lightbox.open) {
-    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Experience media preview"
-      (click)="closeLightbox()" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)">
-      @if (lightbox.items.length > 1) {
-        <button type="button" class="nav prev" (click)="prev($event)" aria-label="Previous image">
-          ‹
+  <!-- Fullscreen Photo Lightbox -->
+  @if (lightbox().open) {
+    <div
+      class="exp-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Experience photo preview"
+      (click)="closeLightbox()"
+      (touchstart)="touchStart($event)"
+      (touchend)="touchEnd($event)"
+    >
+      <div class="relative w-full max-w-4xl" (click)="$event.stopPropagation()">
+        <button
+          type="button"
+          class="exp-lightbox__close"
+          (click)="closeLightbox($event)"
+          aria-label="Close preview"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
-      }
-      <div class="flex flex-col items-center gap-3 px-14" (click)="$event.stopPropagation()">
-        <img [src]="lightbox.items[lightbox.index].url" [alt]="lightbox.items[lightbox.index].caption || 'Expanded media'" />
-        @if (lightbox.items[lightbox.index].caption) {
-          <p class="m-0 text-sm text-slate-200 text-center max-w-xl">
-            {{ lightbox.items[lightbox.index].caption }}
-          </p>
-        }
+
+        <div class="flex items-center justify-center gap-3 pt-11">
+          @if (lightbox().items.length > 1) {
+            <button
+              type="button"
+              class="exp-lightbox__nav"
+              (click)="prev($event)"
+              aria-label="Previous photo"
+            >
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+          }
+
+          <figure class="m-0 flex flex-col items-center gap-3">
+            <img
+              [src]="lightbox().items[lightbox().index].url"
+              [alt]="lightbox().items[lightbox().index].caption || 'Photo'"
+              class="max-h-[74vh] max-w-full w-auto rounded-2xl border border-white/15 shadow-2xl"
+            />
+            @if (lightbox().items[lightbox().index].caption; as cap) {
+              <figcaption class="text-sm text-slate-300 text-center max-w-xl leading-relaxed">
+                {{ cap }}
+              </figcaption>
+            }
+          </figure>
+
+          @if (lightbox().items.length > 1) {
+            <button
+              type="button"
+              class="exp-lightbox__nav"
+              (click)="next($event)"
+              aria-label="Next photo"
+            >
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          }
+        </div>
       </div>
-      @if (lightbox.items.length > 1) {
-        <button type="button" class="nav next" (click)="next($event)" aria-label="Next image">
-          ›
-        </button>
-      }
-      <button type="button" class="close bg-transparent border-0" (click)="closeLightbox($event)" aria-label="Close lightbox">✕</button>
     </div>
   }
 

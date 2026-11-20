@@ -1,11 +1,6 @@
-import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  OnDestroy,
-  inject,
   signal,
 } from '@angular/core';
 import { EXPERIENCES } from '../../data/experience-data';
@@ -18,7 +13,7 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule, CvModalComponent],
+  imports: [CvModalComponent],
   templateUrl: './experience.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './experience.component.scss',
@@ -26,27 +21,74 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
     '(window:keydown)': 'onKeydown($event)',
   },
 })
-export class ExperienceComponent implements AfterViewInit, OnDestroy {
-  private host = inject<ElementRef<HTMLElement>>(ElementRef);
-  private io?: IntersectionObserver;
+export class ExperienceComponent {
+  readonly experiences: Experience[] = EXPERIENCES;
 
-  public experiences: Experience[] = EXPERIENCES;
-  // Expand the most recent flagship role (PartikelART) by default so recruiters see it immediately
-  private expandedIds = new Set<number>([5]);
-
+  // Keep most recent role (PartikelART) open by default; earlier roles stay compact until clicked
+  readonly expandedIds = signal<Set<number>>(new Set([5]));
   readonly activeDoc = signal<ExperienceDocument | null>(null);
 
-  lightbox = {
+  readonly lightbox = signal<{
+    open: boolean;
+    items: ExperienceMedia[];
+    index: number;
+  }>({
     open: false,
-    items: [] as ExperienceMedia[],
+    items: [],
     index: 0,
-  };
+  });
+
   private touchX = 0;
 
-  openLightbox(arr: ExperienceMedia[], idx: number): void {
-    this.lightbox.open = true;
-    this.lightbox.items = arr;
-    this.lightbox.index = idx;
+  isExpanded(id: number): boolean {
+    return this.expandedIds().has(id);
+  }
+
+  toggle(id: number): void {
+    this.expandedIds.update((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
+  openLightbox(items: ExperienceMedia[], index: number): void {
+    this.lightbox.set({ open: true, items, index });
+  }
+
+  closeLightbox(ev?: Event): void {
+    ev?.stopPropagation();
+    this.lightbox.set({ open: false, items: [], index: 0 });
+  }
+
+  prev(ev?: Event): void {
+    ev?.stopPropagation();
+    this.lightbox.update((state) => {
+      if (!state.items.length) {
+        return state;
+      }
+      return {
+        ...state,
+        index: (state.index - 1 + state.items.length) % state.items.length,
+      };
+    });
+  }
+
+  next(ev?: Event): void {
+    ev?.stopPropagation();
+    this.lightbox.update((state) => {
+      if (!state.items.length) {
+        return state;
+      }
+      return {
+        ...state,
+        index: (state.index + 1) % state.items.length,
+      };
+    });
   }
 
   touchStart(e: TouchEvent): void {
@@ -65,23 +107,6 @@ export class ExperienceComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  prev(ev?: Event): void {
-    ev?.stopPropagation();
-    const { items, index } = this.lightbox;
-    this.lightbox.index = (index - 1 + items.length) % items.length;
-  }
-
-  next(ev?: Event): void {
-    ev?.stopPropagation();
-    const { items, index } = this.lightbox;
-    this.lightbox.index = (index + 1) % items.length;
-  }
-
-  closeLightbox(ev?: Event): void {
-    this.lightbox.open = false;
-    ev?.stopPropagation();
-  }
-
   openDocument(doc: ExperienceDocument, event: Event): void {
     event.stopPropagation();
     if (window.innerWidth <= 768) {
@@ -95,20 +120,8 @@ export class ExperienceComponent implements AfterViewInit, OnDestroy {
     this.activeDoc.set(null);
   }
 
-  toggle(id: number): void {
-    if (this.expandedIds.has(id)) {
-      this.expandedIds.delete(id);
-    } else {
-      this.expandedIds.add(id);
-    }
-  }
-
-  isExpanded(id: number): boolean {
-    return this.expandedIds.has(id);
-  }
-
   onKeydown(event: KeyboardEvent): void {
-    if (!this.lightbox.open) {
+    if (!this.lightbox().open) {
       return;
     }
     if (event.key === 'Escape') {
@@ -118,32 +131,5 @@ export class ExperienceComponent implements AfterViewInit, OnDestroy {
     } else if (event.key === 'ArrowRight') {
       this.next();
     }
-  }
-
-  ngAfterViewInit(): void {
-    const items = this.host.nativeElement.querySelectorAll('.timeline-item');
-
-    if (!('IntersectionObserver' in window)) {
-      items.forEach((el) => el.classList.add('in-view'));
-      return;
-    }
-
-    this.io = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in-view');
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    items.forEach((item) => this.io?.observe(item));
-  }
-
-  ngOnDestroy(): void {
-    this.io?.disconnect();
   }
 }

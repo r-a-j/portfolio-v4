@@ -24,6 +24,8 @@ export interface Experience {
     company: string;
     company_url: string;
     company_logo_url: string;
+    logoStyle?: 'wide-light' | 'icon';
+    summary: string;
     description: ExperienceCategory[];
     duration: string;
     location: string;

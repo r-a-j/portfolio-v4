@@ -4,7 +4,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: radial-gradient(
     ellipse 80% 55% at 20% 0%,
-    rgba(229, 9, 20, 0.08) 0%,
+    rgba(224, 108, 117, 0.07) 0%,
     rgba(8, 11, 17, 0) 65%
   ),
   #080b11;
@@ -153,7 +153,7 @@
   &__accent {
     height: 2px;
     width: 100%;
-    background: linear-gradient(90deg, #e50914 0%, rgba(229, 9, 20, 0.2) 55%, transparent 100%);
+    background: linear-gradient(90deg, #e06c75 0%, rgba(224, 108, 117, 0.15) 55%, transparent 100%);
   }
 }
 

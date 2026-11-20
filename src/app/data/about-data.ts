@@ -6,6 +6,12 @@ export interface AboutCredential {
     icon: string;
 }
 
+export interface AboutReferenceLink {
+    label: string;
+    url: string;
+    modalTitle: string;
+}
+
 export const ABOUT_CONTENT = {
     heading: 'About',
     tldr: 'Machine Learning, Computer Vision, and Full-Stack Applied AI Engineer based in Dortmund, Germany. M.Sc. Data Science student at TU Dortmund and former core engineer at PartikelART Solution GmbH (Oct 2024 – Nov 2026; 1st place, TU Start-up Award 2025). Currently open to my next engineering or applied ML role.',
@@ -37,6 +43,18 @@ export const ABOUT_CONTENT = {
             icon: 'fa-solid fa-industry',
         },
     ] as AboutCredential[],
+    references: [
+        {
+            label: 'PartikelART Reference (EN)',
+            url: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
+            modalTitle: 'Recommendation Letter — PartikelART Solution GmbH (EN)',
+        },
+        {
+            label: 'PartikelART Arbeitszeugnis (DE)',
+            url: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
+            modalTitle: 'Arbeitszeugnis — PartikelART Solution GmbH (DE)',
+        },
+    ] as AboutReferenceLink[],
     buttonText: 'View CV',
     modalTitle: 'Curriculum Vitae',
     pdfPath: 'docs/Raj_Pawar_CV.pdf'

@@ -20,7 +20,7 @@
           </p>
         </div>
 
-        <div class="space-y-4">
+        <div class="flex flex-col gap-4">
           @for (paragraph of aboutContent.paragraphs; track paragraph) {
             <p class="m-0 text-[0.95rem] leading-relaxed text-slate-400">
               {{ paragraph }}
@@ -37,22 +37,16 @@
             <i class="fa-regular fa-file-lines text-xs" aria-hidden="true"></i>
             Curriculum Vitae (PDF)
           </button>
-          <button
-            type="button"
-            class="doc-btn"
-            (click)="openPdf('docs/Arbeitszeugnis_PartikelART_EN.pdf', 'Recommendation Letter — PartikelART (EN)')"
-          >
-            <i class="fa-regular fa-file-pdf text-cinema text-xs" aria-hidden="true"></i>
-            Reference (EN)
-          </button>
-          <button
-            type="button"
-            class="doc-btn"
-            (click)="openPdf('docs/Arbeitszeugnis_PartikelART_DE.pdf', 'Arbeitszeugnis — PartikelART (DE)')"
-          >
-            <i class="fa-regular fa-file-pdf text-cinema text-xs" aria-hidden="true"></i>
-            Arbeitszeugnis (DE)
-          </button>
+          @for (ref of aboutContent.references; track ref.url) {
+            <button
+              type="button"
+              class="doc-btn"
+              (click)="openPdf(ref.url, ref.modalTitle)"
+            >
+              <i class="fa-regular fa-file-pdf text-cinema text-xs" aria-hidden="true"></i>
+              {{ ref.label }}
+            </button>
+          }
         </div>
       </div>
 

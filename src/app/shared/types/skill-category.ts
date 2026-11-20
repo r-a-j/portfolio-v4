@@ -1,10 +1,13 @@
-export interface SkillCategory {
-  name: string;
-  technologies: Technology[];
+export interface CapabilityPillar {
+  index: string;
+  title: string;
+  summary: string;
+  icon: string;
+  technologies: string[];
+  appliedIn: string;
 }
 
-export interface Technology {
+export interface CoreLanguage {
   name: string;
-  link: string;
-  image: string;
+  context: string;
 }

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ABOUT_CONTENT } from '../../data/about-data';
 import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
@@ -7,25 +7,25 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
   imports: [CvModalComponent],
   templateUrl: './about.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './about.component.scss'
+  styleUrl: './about.component.scss',
 })
 export class AboutComponent {
-  public showCVModal = signal(false);
-  public aboutContent = ABOUT_CONTENT;
+  readonly showCVModal = signal(false);
+  readonly activePdfUrl = signal(ABOUT_CONTENT.pdfPath);
+  readonly activeModalTitle = signal(ABOUT_CONTENT.modalTitle);
+  readonly aboutContent = ABOUT_CONTENT;
 
-  public openCV(): void {    
-    if (this.isMobileView()) {
-      window.open(this.aboutContent.pdfPath, '_blank');
+  openPdf(url: string, title: string): void {
+    if (window.innerWidth <= 768) {
+      window.open(url, '_blank', 'noopener,noreferrer');
     } else {
+      this.activePdfUrl.set(url);
+      this.activeModalTitle.set(title);
       this.showCVModal.set(true);
     }
   }
 
-  public closeCV(): void {
+  closeCV(): void {
     this.showCVModal.set(false);
-  }
-
-  private isMobileView(): boolean {
-    return window.innerWidth <= 768;
   }
 }

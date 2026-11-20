@@ -1,3 +1,11 @@
+export interface AboutCredential {
+    eyebrow: string;
+    title: string;
+    organization: string;
+    detail: string;
+    icon: string;
+}
+
 export const ABOUT_CONTENT = {
     heading: 'About',
     tldr: 'Machine Learning, Computer Vision, and Full-Stack Applied AI Engineer based in Dortmund, Germany. M.Sc. Data Science student at TU Dortmund and former core engineer at PartikelART Solution GmbH (Oct 2024 – Nov 2026; 1st place, TU Start-up Award 2025). Currently open to my next engineering or applied ML role.',
@@ -6,6 +14,29 @@ export const ABOUT_CONTENT = {
         'At PartikelART (Oct 2024 – Nov 2026), I developed computer vision algorithms for microscopic particle inspection under VDA 19.1, built a Label Studio + SAM 2.1 active learning backend that accelerated training data creation by ~10×, and worked across the Ionic/Angular mobile app, web portal, and NestJS API.',
         'Alongside industry work, my Master\'s research at TU Dortmund covers Bayesian hierarchical modeling (Stan/brms), simulation-based inference (BayesFlow), and Markov Chain Monte Carlo methods. I care about clean code, practical math, and software that holds up in production.'
     ],
+    credentials: [
+        {
+            eyebrow: 'Graduate Studies',
+            title: 'M.Sc. Data Science',
+            organization: 'TU Dortmund University',
+            detail: 'Focus on Bayesian hierarchical modeling, simulation-based inference (SBI), MCMC, and industrial computer vision.',
+            icon: 'fa-solid fa-graduation-cap',
+        },
+        {
+            eyebrow: 'University Teaching',
+            title: 'Invited Guest Lecturer',
+            organization: 'Industrial Data Science 1 (M.Sc.), TU Dortmund',
+            detail: 'Co-delivered a graduate guest lecture on taking computer vision models from notebooks into industrial production.',
+            icon: 'fa-solid fa-chalkboard-user',
+        },
+        {
+            eyebrow: 'Industry Consulting',
+            title: 'Automated Inspection Proposal',
+            organization: 'Stoneridge (Tier-1 Automotive Supplier)',
+            detail: 'Authored technical requirements and automation proposal for Keyence microscope cleanliness inspection.',
+            icon: 'fa-solid fa-industry',
+        },
+    ] as AboutCredential[],
     buttonText: 'View CV',
     modalTitle: 'Curriculum Vitae',
     pdfPath: 'docs/Raj_Pawar_CV.pdf'

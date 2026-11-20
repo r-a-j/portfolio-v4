@@ -193,21 +193,24 @@ $line-gray: var(--color-border);
 }
 
 .media-gallery {
-    margin-top: 1rem;    
+    margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
     gap: .75rem;
 }
 
 .thumb {
     cursor: pointer;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
-    transition: transform .25s ease;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #05070c;
+    transition: transform .2s ease, border-color .2s ease;
 
     &:hover {
-        transform: scale(1.05);
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.26);
     }
 
     img {

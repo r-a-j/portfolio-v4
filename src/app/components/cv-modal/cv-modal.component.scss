@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(4, 6, 12, 0.82);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -15,11 +15,11 @@
   height: min(86vh, 880px);
   display: flex;
   flex-direction: column;
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .modal-header {
@@ -28,8 +28,8 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem 1.15rem;
-  background: #0b0f18;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-inset);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .modal-action {
@@ -41,24 +41,24 @@
   font-size: 0.78rem;
   font-weight: 600;
   text-decoration: none;
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: background-color 0.18s ease, color 0.18s ease;
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
+    background: var(--bg-subtle-hover);
+    border-color: var(--border-strong);
   }
 
   &--primary {
-    background: #f4f6fa;
-    color: #080b11;
-    border-color: #f4f6fa;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
 
     &:hover {
-      background: #fff;
-      color: #080b11;
+      background: var(--btn-primary-hover);
+      color: var(--btn-primary-text);
     }
   }
 }
@@ -67,19 +67,19 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  color: #cbd5e1;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.18s ease, color 0.18s ease;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 
   &:hover {
-    background: rgba(229, 9, 20, 0.2);
-    border-color: rgba(229, 9, 20, 0.45);
-    color: #fff;
+    background: var(--bg-subtle-hover);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
   }
 }
 
@@ -87,5 +87,5 @@
   flex: 1;
   width: 100%;
   border: 0;
-  background: #080b11;
+  background: var(--bg-canvas);
 }

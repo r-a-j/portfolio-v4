@@ -1,17 +1,31 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="charcoal-brass" class="dark">
 <head>
   <meta charset="utf-8">
   <title>Raj Pawar | ML, Computer Vision &amp; Full-Stack Applied AI Engineer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b11">
+  <meta name="theme-color" content="#111110">
+  <script>
+    (function () {
+      try {
+        var valid = ['charcoal-brass', 'monochrome', 'paper-ink', 'charcoal-sage'];
+        var saved = localStorage.getItem('rp-theme');
+        var theme = valid.indexOf(saved) !== -1 ? saved : 'charcoal-brass';
+        document.documentElement.dataset.theme = theme;
+        var isLight = theme === 'paper-ink';
+        document.documentElement.classList.toggle('light', isLight);
+        document.documentElement.classList.toggle('dark', !isLight);
+      } catch (e) {}
+    })();
+  </script>
   <meta
     name="description"
     content="Raj Pawar: Machine Learning, Computer Vision & Full-Stack Applied AI Engineer. Former Machine Learning & Software Engineer at PartikelART (1st Place, TU Start-up Award 2025), M.Sc. Data Science at TU Dortmund. Open to new roles."
   >
   <link rel="canonical" href="https://rajpawar.in/">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">

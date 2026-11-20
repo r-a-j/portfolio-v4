@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angu
 import { RouterLink } from '@angular/router';
 import { ABOUT_CONTENT } from '../../data/about-data';
 import { DateService } from '../../services/date.service';
+import { BrandMarkComponent } from '../brand-mark/brand-mark.component';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, BrandMarkComponent],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './footer.component.scss',

@@ -1,13 +1,10 @@
-<section id="contact" class="py-16 px-6 bg-canvas text-slate-100 border-t border-white/[0.06]">
+<section id="contact" class="py-16 px-6 bg-canvas text-ink">
   <div class="max-w-[1120px] mx-auto">
     <div class="mb-10">
-      <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-        Contact
-      </span>
-      <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
         Get in Touch
       </h2>
-      <p class="mt-2.5 mb-0 text-base text-slate-400 max-w-2xl leading-relaxed">
+      <p class="mt-2.5 mb-0 text-base text-ink-secondary max-w-2xl leading-relaxed">
         After wrapping up my role at PartikelART (Oct 2024 – Nov 2026), I am looking for my next challenge in Machine Learning, Computer Vision, or Full-Stack Applied AI. Feel free to email me directly or leave a note below.
       </p>
     </div>
@@ -16,28 +13,28 @@
       <!-- Left Column: Direct Actions -->
       <div class="flex flex-col gap-4">
         <div class="info-card">
-          <div class="flex items-center gap-2 text-xs font-mono-meta text-emerald-400 mb-3">
-            <span class="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+          <div class="status-line flex items-center gap-2 text-xs font-mono-meta mb-3">
+            <span class="status-dot" aria-hidden="true"></span>
             OPEN TO ML, CV &amp; FULL-STACK ROLES
           </div>
-          <div class="text-sm text-slate-300 leading-relaxed">
-            Based in <strong class="text-slate-100">Dortmund, Germany</strong>, and open to on-site, hybrid, or remote teams across Germany &amp; Europe.
+          <div class="text-sm text-ink-secondary leading-relaxed">
+            Based in <strong class="text-ink">Dortmund, Germany</strong>, and open to on-site, hybrid, or remote teams across Germany &amp; Europe.
           </div>
         </div>
 
         <!-- 1-Click Copy Email -->
         <div class="info-card flex flex-col gap-3">
-          <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400">Email</span>
+          <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted">Email</span>
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a
               [href]="'mailto:' + email"
-              class="font-mono-meta text-sm font-semibold text-slate-100 no-underline hover:underline"
+              class="font-mono-meta text-sm font-semibold text-ink no-underline hover:underline"
             >
               {{ email }}
             </a>
             <button type="button" class="copy-btn" (click)="copyEmail()">
               <i
-                [class]="emailCopied() ? 'fa-solid fa-check text-emerald-400' : 'fa-regular fa-copy'"
+                [class]="emailCopied() ? 'fa-solid fa-check text-emerald-500' : 'fa-regular fa-copy'"
                 aria-hidden="true"
               ></i>
               {{ emailCopied() ? 'Copied' : 'Copy' }}
@@ -47,7 +44,7 @@
 
         <!-- Direct Links & Documents -->
         <div class="info-card flex flex-col gap-3">
-          <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400">
+          <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted">
             Links &amp; Documents
           </span>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -57,9 +54,9 @@
               rel="noopener noreferrer"
               class="direct-link"
             >
-              <i class="fa-brands fa-linkedin-in text-slate-300" aria-hidden="true"></i>
+              <i class="fa-brands fa-linkedin-in text-ink-secondary" aria-hidden="true"></i>
               <span>LinkedIn</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-slate-500 ml-auto" aria-hidden="true"></i>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-ink-muted ml-auto" aria-hidden="true"></i>
             </a>
             <a
               href="https://github.com/r-a-j"
@@ -67,18 +64,18 @@
               rel="noopener noreferrer"
               class="direct-link"
             >
-              <i class="fa-brands fa-github text-slate-300" aria-hidden="true"></i>
+              <i class="fa-brands fa-github text-ink-secondary" aria-hidden="true"></i>
               <span>GitHub</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-slate-500 ml-auto" aria-hidden="true"></i>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-ink-muted ml-auto" aria-hidden="true"></i>
             </a>
             <a
               [href]="cvPath"
               download="Raj_Pawar_CV.pdf"
               class="direct-link"
             >
-              <i class="fa-regular fa-file-pdf text-cinema" aria-hidden="true"></i>
+              <i class="fa-regular fa-file-pdf text-brand" aria-hidden="true"></i>
               <span>Download CV</span>
-              <i class="fa-solid fa-download text-[0.65rem] text-slate-500 ml-auto" aria-hidden="true"></i>
+              <i class="fa-solid fa-download text-[0.65rem] text-ink-muted ml-auto" aria-hidden="true"></i>
             </a>
             <a
               href="docs/Arbeitszeugnis_PartikelART_EN.pdf"
@@ -86,9 +83,9 @@
               rel="noopener noreferrer"
               class="direct-link"
             >
-              <i class="fa-solid fa-award text-accent" aria-hidden="true"></i>
+              <i class="fa-solid fa-award text-brand" aria-hidden="true"></i>
               <span>PartikelART Ref (EN)</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-slate-500 ml-auto" aria-hidden="true"></i>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem] text-ink-muted ml-auto" aria-hidden="true"></i>
             </a>
           </div>
         </div>

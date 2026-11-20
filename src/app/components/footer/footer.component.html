@@ -2,20 +2,20 @@
   <div class="site-footer__inner">
     <div class="flex flex-col gap-2">
       <div class="flex items-center gap-2.5">
-        <span class="footer-mark" aria-hidden="true">RP<span class="footer-mark__dot"></span></span>
-        <span class="text-sm font-bold text-slate-100">{{ name }}</span>
+        <app-brand-mark [size]="28"></app-brand-mark>
+        <span class="font-display text-base font-medium text-ink">{{ name }}</span>
       </div>
-      <p class="m-0 text-xs text-slate-400 max-w-md leading-relaxed">
+      <p class="m-0 text-xs text-ink-secondary max-w-md leading-relaxed">
         Machine Learning, Computer Vision &amp; Full-Stack Applied AI Engineer based in Dortmund, Germany.
       </p>
     </div>
 
-    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-slate-400">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-ink-secondary">
       <a routerLink="/projects" class="footer-nav-link">Projects</a>
       <a routerLink="/experience" class="footer-nav-link">Experience</a>
       <a routerLink="/skills" class="footer-nav-link">Skills</a>
       <a routerLink="/contact" class="footer-nav-link">Contact</a>
-      <a [href]="pdfPath" download="Raj_Pawar_CV.pdf" class="footer-nav-link text-slate-200">
+      <a [href]="pdfPath" download="Raj_Pawar_CV.pdf" class="footer-nav-link text-ink">
         <i class="fa-solid fa-download text-[0.68rem] mr-1" aria-hidden="true"></i>
         CV PDF
       </a>
@@ -57,7 +57,7 @@
 
   <div class="site-footer__bottom">
     <span>&copy; {{ currentYear }} {{ name }}. All rights reserved.</span>
-    <span class="font-mono-meta text-[0.7rem] text-slate-500">
+    <span class="font-mono-meta text-[0.7rem] text-ink-muted">
       Built with Angular 22 &amp; Tailwind CSS 4
     </span>
   </div>

@@ -1,5 +1,5 @@
-<article class="flex flex-col gap-12 text-slate-100">
-  <!-- Hero Banner -->
+<article class="flex flex-col gap-12 text-ink">
+  <!-- Hero Banner (Cinema dark card intentionally preserved for CineScope branding) -->
   <section class="showcase-hero">
     <img
       [src]="showcase().heroBanner"
@@ -49,7 +49,7 @@
                 />
               </h1>
             } @else {
-              <h1 class="m-0 text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              <h1 class="section-heading m-0 text-3xl sm:text-4xl leading-tight text-white">
                 {{ project().title }}
               </h1>
             }
@@ -104,17 +104,17 @@
     </div>
   </section>
 
-  <!-- Key Metrics / Pillars -->
-  <section aria-label="Key product pillars">
+  <!-- Key Metrics -->
+  <section aria-label="Key product highlights">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       @for (metric of showcase().metrics; track metric.label) {
-        <div class="bg-surface border border-white/[0.08] rounded-2xl p-5">
-          <div class="w-10 h-10 rounded-xl bg-cinema/15 text-cinema flex items-center justify-center text-base mb-3.5" aria-hidden="true">
+        <div class="surface-card rounded-2xl p-5">
+          <div class="icon-badge w-10 h-10 rounded-xl flex items-center justify-center text-base mb-3.5" aria-hidden="true">
             <i [class]="metric.icon"></i>
           </div>
-          <div class="text-lg font-extrabold text-slate-50 leading-tight">{{ metric.value }}</div>
-          <div class="text-xs font-mono-meta font-semibold text-slate-300 mt-1">{{ metric.label }}</div>
-          <p class="mt-2 mb-0 text-xs sm:text-[0.84rem] leading-relaxed text-slate-400">{{ metric.detail }}</p>
+          <div class="text-lg font-extrabold text-ink leading-tight">{{ metric.value }}</div>
+          <div class="text-xs font-mono-meta font-semibold text-ink-secondary mt-1">{{ metric.label }}</div>
+          <p class="mt-2 mb-0 text-xs sm:text-[0.84rem] leading-relaxed text-ink-secondary">{{ metric.detail }}</p>
         </div>
       }
     </div>
@@ -126,14 +126,11 @@
       <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_390px] gap-8 lg:gap-10 items-center">
         <div class="flex flex-col gap-5">
           <div>
-            <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-              Live Web App
-            </span>
-            <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+            <h2 class="section-heading m-0 text-2xl sm:text-3xl">
               {{ showcase().liveDemoTitle || 'Try It Live' }}
             </h2>
             @if (showcase().liveDemoDescription) {
-              <p class="mt-3 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400 max-w-xl">
+              <p class="mt-3 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary max-w-xl">
                 {{ showcase().liveDemoDescription }}
               </p>
             }
@@ -141,13 +138,13 @@
 
           @if (showcase().liveDemoPrompts?.length) {
             <div class="flex flex-col gap-2.5">
-              <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400">
+              <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted">
                 Suggested things to try
               </span>
               <ul class="list-none m-0 p-0 flex flex-col gap-2">
                 @for (prompt of showcase().liveDemoPrompts; track prompt) {
-                  <li class="flex items-start gap-2.5 text-sm text-slate-300 leading-relaxed">
-                    <i class="fa-solid fa-chevron-right text-cinema text-[0.65rem] mt-1.5 shrink-0" aria-hidden="true"></i>
+                  <li class="flex items-start gap-2.5 text-sm text-ink-secondary leading-relaxed">
+                    <i class="fa-solid fa-chevron-right text-brand text-[0.65rem] mt-1.5 shrink-0" aria-hidden="true"></i>
                     <span>{{ prompt }}</span>
                   </li>
                 }
@@ -157,12 +154,12 @@
 
           <div class="flex flex-wrap items-center gap-3 pt-1">
             @if (!isLiveDemoActive()) {
-              <button type="button" class="hero-btn hero-btn--primary" (click)="launchLiveDemo()">
+              <button type="button" class="surface-btn surface-btn--primary" (click)="launchLiveDemo()">
                 <i class="fa-solid fa-play text-xs" aria-hidden="true"></i>
                 Launch Interactive Preview
               </button>
             } @else {
-              <button type="button" class="hero-btn hero-btn--secondary" (click)="closeLiveDemo()">
+              <button type="button" class="surface-btn surface-btn--secondary" (click)="closeLiveDemo()">
                 <i class="fa-solid fa-stop text-xs" aria-hidden="true"></i>
                 Close Preview
               </button>
@@ -172,14 +169,14 @@
               [href]="demoUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="hero-btn hero-btn--secondary"
+              class="surface-btn surface-btn--secondary"
             >
               Open Fullscreen
               <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
             </a>
           </div>
 
-          <p class="m-0 text-xs font-mono-meta text-slate-500">
+          <p class="m-0 text-xs font-mono-meta text-ink-muted">
             Note: Mobile visitors open the live web app fullscreen in a new tab. Android Share Sheet intents are exclusive to the Play Beta APK.
           </p>
         </div>
@@ -242,13 +239,10 @@
   <!-- Live Android Screenshot Gallery -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Android Screenshots
-      </span>
-      <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+      <h2 class="section-heading m-0 text-2xl sm:text-3xl">
         Inside the App
       </h2>
-      <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
+      <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
         Screenshots captured from the Android release. Select any screen to inspect full-resolution detail.
       </p>
     </div>
@@ -275,14 +269,12 @@
           </div>
           <div class="mt-3.5 flex flex-col gap-1">
             @if (shot.badge) {
-              <span class="self-start text-[0.68rem] font-mono-meta font-semibold uppercase tracking-wider text-slate-300 bg-white/[0.06] border border-white/[0.08] px-2.5 py-0.5 rounded-full">
-                {{ shot.badge }}
-              </span>
+              <span class="shot-badge self-start">{{ shot.badge }}</span>
             }
-            <h3 class="mt-1 mb-0 text-[0.95rem] font-bold text-slate-100 leading-snug">
+            <h3 class="mt-1 mb-0 text-[0.95rem] font-bold text-ink leading-snug">
               {{ shot.title }}
             </h3>
-            <p class="m-0 text-[0.82rem] leading-relaxed text-slate-400">
+            <p class="m-0 text-[0.82rem] leading-relaxed text-ink-secondary">
               {{ shot.caption }}
             </p>
           </div>
@@ -295,14 +287,11 @@
   @if (showcase().spotlights?.length) {
     <section class="flex flex-col gap-6">
       <div class="text-center max-w-2xl mx-auto">
-        <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-          AI Inbox Workflow
-        </span>
-        <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+        <h2 class="section-heading m-0 text-2xl sm:text-3xl">
           {{ showcase().spotlightHeading || 'Share-to-Inbox & Swipe Triage' }}
         </h2>
         @if (showcase().spotlightIntro) {
-          <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
+          <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
             {{ showcase().spotlightIntro }}
           </p>
         }
@@ -310,7 +299,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         @for (item of showcase().spotlights; track item.src) {
-          <div class="bg-surface text-slate-50 rounded-2xl overflow-hidden border border-white/[0.09]">
+          <div class="surface-card rounded-2xl overflow-hidden">
             <div class="aspect-video overflow-hidden bg-black">
               <img
                 [src]="item.src"
@@ -320,11 +309,11 @@
               />
             </div>
             <div class="p-6">
-              <span class="text-[0.72rem] font-mono-meta font-semibold tracking-widest uppercase text-accent">
+              <span class="text-[0.72rem] font-mono-meta font-semibold tracking-wider uppercase text-ink-muted">
                 {{ item.eyebrow }}
               </span>
-              <h3 class="mt-1.5 mb-2 text-lg font-bold text-white">{{ item.title }}</h3>
-              <p class="m-0 text-sm leading-relaxed text-slate-400">{{ item.description }}</p>
+              <h3 class="mt-1.5 mb-2 text-lg font-bold text-ink">{{ item.title }}</h3>
+              <p class="m-0 text-sm leading-relaxed text-ink-secondary">{{ item.description }}</p>
             </div>
           </div>
         }
@@ -335,30 +324,27 @@
   <!-- Core Features -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Features
-      </span>
-      <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+      <h2 class="section-heading m-0 text-2xl sm:text-3xl">
         What CineScope Does
       </h2>
-      <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
+      <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
         Gemini AI search and extraction, local RxDB library storage, and native Android plugins built with Capacitor.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       @for (feature of showcase().highlights; track feature.title) {
-        <div class="flex flex-col bg-surface border border-white/[0.08] rounded-2xl p-5">
+        <div class="surface-card flex flex-col rounded-2xl p-5">
           <div class="flex items-center gap-3 mb-3">
-            <span class="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.1] text-slate-100 flex items-center justify-center text-sm shrink-0" aria-hidden="true">
+            <span class="icon-badge w-9 h-9 rounded-xl flex items-center justify-center text-sm shrink-0" aria-hidden="true">
               <i [class]="feature.icon"></i>
             </span>
-            <h3 class="m-0 text-base font-bold text-slate-100 leading-snug">{{ feature.title }}</h3>
+            <h3 class="m-0 text-base font-bold text-ink leading-snug">{{ feature.title }}</h3>
           </div>
-          <p class="mt-0 mb-4 text-sm leading-relaxed text-slate-400 flex-1">{{ feature.description }}</p>
+          <p class="mt-0 mb-4 text-sm leading-relaxed text-ink-secondary flex-1">{{ feature.description }}</p>
           <div class="flex flex-wrap gap-1.5">
             @for (tag of feature.tags; track tag) {
-              <span class="text-xs font-mono-meta font-medium px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-slate-300">{{ tag }}</span>
+              <span class="stack-chip">{{ tag }}</span>
             }
           </div>
         </div>
@@ -369,14 +355,11 @@
   <!-- Architecture & Stack -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Architecture
-      </span>
-      <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+      <h2 class="section-heading m-0 text-2xl sm:text-3xl">
         How It's Built
       </h2>
       @if (showcase().architectureIntro) {
-        <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
+        <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
           {{ showcase().architectureIntro }}
         </p>
       }
@@ -384,30 +367,26 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       @for (layer of showcase().architecture; track layer.layer) {
-        <div class="bg-surface border border-white/[0.08] rounded-2xl p-6">
-          <span class="inline-block text-xs font-mono-meta font-semibold uppercase tracking-wider text-cinema mb-1.5">
+        <div class="surface-card rounded-2xl p-6">
+          <span class="inline-block text-xs font-mono-meta font-semibold uppercase tracking-wider text-ink-muted mb-1.5">
             {{ layer.layer }}
           </span>
-          <h3 class="mt-0 mb-2 text-base sm:text-lg font-bold text-slate-100">{{ layer.title }}</h3>
-          <p class="mt-0 mb-4 text-sm leading-relaxed text-slate-400">{{ layer.description }}</p>
+          <h3 class="mt-0 mb-2 text-base sm:text-lg font-bold text-ink">{{ layer.title }}</h3>
+          <p class="mt-0 mb-4 text-sm leading-relaxed text-ink-secondary">{{ layer.description }}</p>
           <div class="flex flex-wrap gap-1.5">
             @for (tech of layer.technologies; track tech) {
-              <span class="text-xs font-mono-meta font-medium px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-slate-300">
-                {{ tech }}
-              </span>
+              <span class="stack-chip">{{ tech }}</span>
             }
           </div>
         </div>
       }
     </div>
 
-    <div class="flex flex-wrap items-center justify-between gap-4 bg-surface border border-white/[0.08] rounded-2xl px-6 py-4">
-      <span class="text-xs font-mono-meta font-semibold uppercase tracking-wider text-slate-400">Tech Stack</span>
+    <div class="surface-card flex flex-wrap items-center justify-between gap-4 rounded-2xl px-6 py-4">
+      <span class="text-xs font-mono-meta font-semibold uppercase tracking-wider text-ink-muted">Tech Stack</span>
       <div class="flex flex-wrap gap-2">
         @for (tech of project().techStack; track tech) {
-          <span class="text-xs sm:text-sm font-mono-meta font-medium px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-slate-200">
-            {{ tech }}
-          </span>
+          <span class="stack-chip rounded-full px-3">{{ tech }}</span>
         }
       </div>
     </div>
@@ -416,16 +395,16 @@
   <!-- Availability / Privacy Footer Callout -->
   @if (showcase().availabilityNote) {
     <section
-      class="availability-banner flex flex-wrap items-center justify-between gap-5 p-6 sm:p-7 rounded-2xl"
+      class="surface-card flex flex-wrap items-center justify-between gap-5 p-6 sm:p-7 rounded-2xl"
       aria-label="Availability and source privacy"
     >
       <div class="flex items-start gap-4 max-w-2xl">
-        <div class="w-10 h-10 rounded-xl bg-cinema/15 border border-cinema/30 text-cinema flex items-center justify-center shrink-0" aria-hidden="true">
+        <div class="icon-badge w-10 h-10 rounded-xl flex items-center justify-center shrink-0" aria-hidden="true">
           <i class="fa-solid fa-lock"></i>
         </div>
         <div>
-          <h3 class="m-0 text-base font-bold text-slate-100">Source &amp; Access</h3>
-          <p class="mt-1 mb-0 text-sm leading-relaxed text-slate-400">{{ showcase().availabilityNote }}</p>
+          <h3 class="m-0 text-base font-bold text-ink">Source &amp; Access</h3>
+          <p class="mt-1 mb-0 text-sm leading-relaxed text-ink-secondary">{{ showcase().availabilityNote }}</p>
         </div>
       </div>
 
@@ -486,7 +465,7 @@
             [alt]="current.title + ': ' + current.caption"
             class="lightbox__img"
           />
-          <figcaption class="text-center max-w-md text-slate-50">
+          <figcaption class="text-center max-w-md text-white">
             <div class="flex items-center justify-center gap-3">
               <span class="text-base font-bold">{{ current.title }}</span>
               <span class="text-xs font-mono-meta px-2.5 py-0.5 rounded-full bg-white/15 text-slate-200">

@@ -1,6 +1,4 @@
 <section class="hero-section">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-
   <div class="hero-container">
     <!-- Left Column: Positioning, Proof & Direct Recruiter CTAs -->
     <div class="flex flex-col gap-6">
@@ -16,14 +14,14 @@
       <h1 class="hero-title">
         Machine Learning &amp; Computer Vision
         <span class="hero-title__sub">
-          Full-Stack Applied AI Engineer<span class="text-cinema">.</span>
+          Full-Stack Applied AI Engineer<span class="text-brand">.</span>
         </span>
       </h1>
 
       <p class="hero-summary">
         I build real-time VDA 19.1 particle inspection pipelines, active learning workflows with SAM 2.1,
         Bayesian models, and full-stack AI applications.
-        <strong class="text-slate-100 font-semibold">1st Place Winner of the TU Start-up Award 2025</strong>,
+        <strong class="text-ink font-semibold">1st Place Winner of the TU Start-up Award 2025</strong>,
         focused on clean code, practical math, and software that holds up in production.
       </p>
 
@@ -46,7 +44,7 @@
           [attr.aria-label]="emailCopied() ? 'Email address copied to clipboard' : 'Copy email address ' + email"
         >
           <i
-            [class]="emailCopied() ? 'fa-solid fa-check text-emerald-400 text-xs' : 'fa-regular fa-copy text-xs'"
+            [class]="emailCopied() ? 'fa-solid fa-check text-emerald-500 text-xs' : 'fa-regular fa-copy text-xs'"
             aria-hidden="true"
           ></i>
           <span class="font-mono-meta text-xs">
@@ -64,10 +62,8 @@
     </div>
 
     <!-- Right Column: Profile & Key Highlights -->
-    <aside class="dossier-card" aria-label="Profile and key highlights">
-      <div class="dossier-card__accent" aria-hidden="true"></div>
-
-      <div class="p-5 sm:p-6 flex items-center gap-4 border-b border-white/[0.08]">
+    <aside class="profile-card" aria-label="Profile and key highlights">
+      <div class="p-5 sm:p-6 flex items-center gap-4 border-b border-hairline">
         <div class="portrait-frame">
           <img
             src="profile_1_no_bg.png"
@@ -76,9 +72,9 @@
           />
         </div>
         <div class="min-w-0 flex-1">
-          <div class="text-base font-bold text-slate-50 leading-tight">Raj Pawar</div>
-          <div class="text-xs font-medium text-slate-300 mt-0.5">ML, CV &amp; Full-Stack Engineer</div>
-          <div class="text-xs font-mono-meta text-slate-400 mt-1">Ex-PartikelART (Oct 2024 – Nov 2026)</div>
+          <div class="font-display text-lg font-medium text-ink leading-tight">Raj Pawar</div>
+          <div class="text-xs font-medium text-ink-secondary mt-0.5">ML, CV &amp; Full-Stack Engineer</div>
+          <div class="text-xs font-mono-meta text-ink-muted mt-1">Ex-PartikelART (Oct 2024 – Nov 2026)</div>
         </div>
         <div class="flex flex-col gap-1.5">
           <a
@@ -102,27 +98,27 @@
         </div>
       </div>
 
-      <div class="px-5 sm:px-6 py-2.5 bg-white/[0.02] border-b border-white/[0.08] flex items-center justify-between">
-        <span class="text-[0.7rem] font-mono-meta uppercase tracking-[0.14em] text-slate-400">
+      <div class="px-5 sm:px-6 py-2.5 bg-elevated/40 border-b border-hairline flex items-center justify-between">
+        <span class="text-[0.7rem] font-mono-meta uppercase tracking-[0.12em] text-ink-muted">
           Recent Highlights
         </span>
-        <span class="text-[0.7rem] font-mono-meta text-slate-500">2024 – 2026</span>
+        <span class="text-[0.7rem] font-mono-meta text-ink-muted">2024 – 2026</span>
       </div>
 
-      <div class="ledger-grid">
+      <div class="metrics-grid">
         @for (metric of impactMetrics; track metric.label) {
-          <div class="ledger-cell">
-            <div class="ledger-cell__value">{{ metric.value }}</div>
-            <div class="ledger-cell__label">{{ metric.label }}</div>
-            <p class="ledger-cell__detail">{{ metric.detail }}</p>
+          <div class="metric-cell">
+            <div class="metric-cell__value">{{ metric.value }}</div>
+            <div class="metric-cell__label">{{ metric.label }}</div>
+            <p class="metric-cell__detail">{{ metric.detail }}</p>
           </div>
         }
       </div>
 
-      <div class="px-5 sm:px-6 py-3.5 bg-white/[0.02] border-t border-white/[0.08] flex items-center gap-2.5 text-xs text-slate-300">
-        <i class="fa-solid fa-chalkboard-user text-cinema text-xs shrink-0" aria-hidden="true"></i>
+      <div class="px-5 sm:px-6 py-3.5 bg-elevated/40 border-t border-hairline flex items-center gap-2.5 text-xs text-ink-secondary">
+        <i class="fa-solid fa-chalkboard-user text-brand text-xs shrink-0" aria-hidden="true"></i>
         <span>
-          Invited Guest Lecturer: <span class="text-slate-100 font-medium">Industrial Data Science 1</span>, TU Dortmund
+          Invited Guest Lecturer: <span class="text-ink font-medium">Industrial Data Science 1</span>, TU Dortmund
         </span>
       </div>
     </aside>

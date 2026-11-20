@@ -10,11 +10,11 @@
       }
     </div>
 
-    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-50 leading-tight m-0">
+    <h1 class="section-heading text-3xl sm:text-4xl lg:text-[2.65rem] leading-tight m-0">
       {{ project.title }}
     </h1>
 
-    <p class="mt-4 text-base sm:text-[1.05rem] leading-relaxed text-slate-300 max-w-3xl m-0">
+    <p class="mt-4 text-base sm:text-[1.05rem] leading-relaxed text-ink-secondary max-w-3xl m-0">
       {{ caseStudy.subtitle }}
     </p>
 
@@ -56,7 +56,7 @@
 
     <!-- Tech Stack -->
     @if (project.techStack.length) {
-      <div class="mt-6 pt-5 border-t border-white/[0.07] flex flex-wrap gap-2">
+      <div class="mt-6 pt-5 border-t border-hairline flex flex-wrap gap-2">
         @for (tech of project.techStack; track tech) {
           <span class="cs-tech-chip">{{ tech }}</span>
         }
@@ -70,11 +70,11 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         @for (metric of caseStudy.metrics; track metric.label) {
           <div class="cs-card p-5 flex flex-col gap-1.5">
-            <span class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-slate-50">
+            <span class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-ink">
               {{ metric.value }}
             </span>
-            <span class="text-sm font-semibold text-slate-200">{{ metric.label }}</span>
-            <p class="text-xs leading-relaxed text-slate-400 m-0 mt-1">{{ metric.detail }}</p>
+            <span class="text-sm font-semibold text-ink">{{ metric.label }}</span>
+            <p class="text-xs leading-relaxed text-ink-secondary m-0 mt-1">{{ metric.detail }}</p>
           </div>
         }
       </div>
@@ -85,16 +85,16 @@
   <section class="grid grid-cols-1 lg:grid-cols-2 gap-5" aria-label="Problem and role">
     <div class="cs-card p-6 sm:p-7 flex flex-col gap-3">
       <span class="cs-eyebrow">The Problem</span>
-      <h2 class="text-lg font-bold text-slate-100 m-0">Why this mattered</h2>
-      <p class="text-sm sm:text-[0.95rem] leading-relaxed text-slate-300 m-0">
+      <h2 class="font-display text-xl font-medium text-ink m-0">Why this mattered</h2>
+      <p class="text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary m-0">
         {{ caseStudy.problem }}
       </p>
     </div>
 
     <div class="cs-card p-6 sm:p-7 flex flex-col gap-3">
       <span class="cs-eyebrow">My Contribution</span>
-      <h2 class="text-lg font-bold text-slate-100 m-0">What I built and owned</h2>
-      <p class="text-sm sm:text-[0.95rem] leading-relaxed text-slate-300 m-0">
+      <h2 class="font-display text-xl font-medium text-ink m-0">What I built and owned</h2>
+      <p class="text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary m-0">
         {{ caseStudy.ownership }}
       </p>
     </div>
@@ -103,21 +103,18 @@
   <!-- Methodology / Approach -->
   @if (caseStudy.approach?.length) {
     <section class="flex flex-col gap-4" aria-label="Methodology">
-      <div>
-        <span class="cs-eyebrow">How It Was Built</span>
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-50 m-0 mt-1">
-          {{ caseStudy.approachHeading || 'Data, Models & Evaluation' }}
-        </h2>
-      </div>
+      <h2 class="section-heading text-2xl sm:text-3xl m-0">
+        {{ caseStudy.approachHeading || 'Data, Models & Evaluation' }}
+      </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @for (step of caseStudy.approach; track step.title) {
           <div class="cs-card p-5 sm:p-6 flex flex-col gap-2.5">
-            <span class="font-mono text-xs text-slate-400 uppercase tracking-wider">
+            <span class="font-mono text-xs text-ink-muted uppercase tracking-wider">
               {{ step.label }}
             </span>
-            <h3 class="text-base font-bold text-slate-100 m-0">{{ step.title }}</h3>
-            <p class="text-sm leading-relaxed text-slate-400 m-0">{{ step.description }}</p>
+            <h3 class="text-base font-bold text-ink m-0">{{ step.title }}</h3>
+            <p class="text-sm leading-relaxed text-ink-secondary m-0">{{ step.description }}</p>
           </div>
         }
       </div>
@@ -128,10 +125,9 @@
   @if (caseStudy.resultsTable; as table) {
     <section class="cs-card p-6 sm:p-7 flex flex-col gap-4" aria-label="Benchmark results">
       <div>
-        <span class="cs-eyebrow">Quantitative Results</span>
-        <h2 class="text-xl font-bold tracking-tight text-slate-50 m-0 mt-1">{{ table.title }}</h2>
+        <h2 class="section-heading text-2xl m-0">{{ table.title }}</h2>
         @if (table.subtitle) {
-          <p class="text-sm text-slate-400 m-0 mt-1.5">{{ table.subtitle }}</p>
+          <p class="text-sm text-ink-secondary m-0 mt-1.5">{{ table.subtitle }}</p>
         }
       </div>
 
@@ -148,7 +144,7 @@
             @for (row of table.rows; track $index) {
               <tr [class.is-highlight]="row.highlight">
                 @for (cell of row.cells; track $index) {
-                  <td [class.font-semibold]="$index === 0" [class.text-slate-100]="$index === 0">
+                  <td [class.font-semibold]="$index === 0" [class.text-ink]="$index === 0">
                     {{ cell }}
                   </td>
                 }
@@ -159,7 +155,7 @@
       </div>
 
       @if (table.footnote) {
-        <p class="text-xs leading-relaxed text-slate-400 m-0 pt-2 border-t border-white/[0.06]">
+        <p class="text-xs leading-relaxed text-ink-muted m-0 pt-2 border-t border-hairline">
           {{ table.footnote }}
         </p>
       }
@@ -170,12 +166,11 @@
   @if (caseStudy.figures?.length) {
     <section class="flex flex-col gap-4" aria-label="Visual outputs and plots">
       <div>
-        <span class="cs-eyebrow">Results & Visuals</span>
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-50 m-0 mt-1">
+        <h2 class="section-heading text-2xl sm:text-3xl m-0">
           {{ caseStudy.figuresHeading || 'Model Outputs & Diagnostics' }}
         </h2>
         @if (caseStudy.figuresIntro) {
-          <p class="text-sm text-slate-400 m-0 mt-1.5 max-w-2xl">{{ caseStudy.figuresIntro }}</p>
+          <p class="text-sm text-ink-secondary m-0 mt-1.5 max-w-2xl">{{ caseStudy.figuresIntro }}</p>
         }
       </div>
 
@@ -204,12 +199,12 @@
 
             <div class="p-4 sm:p-5 flex flex-col gap-1.5 text-left">
               @if (fig.badge) {
-                <span class="font-mono text-[0.7rem] uppercase tracking-wider text-slate-400">
+                <span class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-muted">
                   {{ fig.badge }}
                 </span>
               }
-              <h3 class="text-sm sm:text-base font-bold text-slate-100 m-0">{{ fig.title }}</h3>
-              <p class="text-xs sm:text-[0.84rem] leading-relaxed text-slate-400 m-0">
+              <h3 class="text-sm sm:text-base font-bold text-ink m-0">{{ fig.title }}</h3>
+              <p class="text-xs sm:text-[0.84rem] leading-relaxed text-ink-secondary m-0">
                 {{ fig.caption }}
               </p>
             </div>
@@ -226,11 +221,11 @@
         @if (followUp.eyebrow) {
           <span class="cs-eyebrow">{{ followUp.eyebrow }}</span>
         }
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-50 m-0 mt-1">
+        <h2 class="section-heading text-2xl sm:text-3xl m-0 mt-1">
           {{ followUp.title }}
         </h2>
         @if (followUp.intro) {
-          <p class="text-sm sm:text-[0.95rem] leading-relaxed text-slate-300 m-0 mt-2 max-w-3xl">
+          <p class="text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary m-0 mt-2 max-w-3xl">
             {{ followUp.intro }}
           </p>
         }
@@ -239,8 +234,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @for (item of followUp.items; track item.title) {
           <div class="cs-subcard p-5 flex flex-col gap-2.5">
-            <h3 class="text-[0.95rem] font-bold text-slate-100 m-0">{{ item.title }}</h3>
-            <p class="text-sm leading-relaxed text-slate-400 m-0">{{ item.description }}</p>
+            <h3 class="text-[0.95rem] font-bold text-ink m-0">{{ item.title }}</h3>
+            <p class="text-sm leading-relaxed text-ink-secondary m-0">{{ item.description }}</p>
             @if (item.tags?.length) {
               <div class="flex flex-wrap gap-1.5 mt-1">
                 @for (tag of item.tags; track tag) {
@@ -257,13 +252,10 @@
   <!-- Key Takeaways / Limitations -->
   @if (caseStudy.takeaways?.length) {
     <section class="cs-card p-6 sm:p-7 flex flex-col gap-4" aria-label="Key takeaways">
-      <div>
-        <span class="cs-eyebrow">What Worked & What Didn't</span>
-        <h2 class="text-xl font-bold tracking-tight text-slate-50 m-0 mt-1">Key Takeaways</h2>
-      </div>
+      <h2 class="section-heading text-2xl m-0">Key Takeaways</h2>
       <ul class="m-0 p-0 list-none flex flex-col gap-3">
         @for (point of caseStudy.takeaways; track point) {
-          <li class="flex items-start gap-3 text-sm sm:text-[0.94rem] leading-relaxed text-slate-300">
+          <li class="flex items-start gap-3 text-sm sm:text-[0.94rem] leading-relaxed text-ink-secondary">
             <span class="cs-bullet-dot mt-2" aria-hidden="true"></span>
             <span>{{ point }}</span>
           </li>
@@ -277,21 +269,21 @@
     <section class="cs-card overflow-hidden" aria-label="Repository README">
       <button
         type="button"
-        class="w-full px-6 py-4 flex items-center justify-between text-left bg-transparent border-0 cursor-pointer hover:bg-white/[0.02] transition-colors"
+        class="w-full px-6 py-4 flex items-center justify-between text-left bg-transparent border-0 cursor-pointer hover:opacity-90 transition-opacity"
         (click)="toggleReadme()"
         [attr.aria-expanded]="showReadme"
       >
         <div class="flex items-center gap-3">
-          <i class="fa-brands fa-github text-slate-400" aria-hidden="true"></i>
+          <i class="fa-brands fa-github text-ink-secondary" aria-hidden="true"></i>
           <div>
-            <span class="text-sm font-semibold text-slate-200 block">Original GitHub README</span>
-            <span class="text-xs text-slate-400">
+            <span class="text-sm font-semibold text-ink block">Original GitHub README</span>
+            <span class="text-xs text-ink-muted">
               View the raw repository documentation directly from GitHub
             </span>
           </div>
         </div>
         <i
-          class="fa-solid text-xs text-slate-400"
+          class="fa-solid text-xs text-ink-muted"
           [class.fa-chevron-up]="showReadme"
           [class.fa-chevron-down]="!showReadme"
           aria-hidden="true"
@@ -299,11 +291,11 @@
       </button>
 
       @if (showReadme) {
-        <div class="px-6 pb-6 pt-4 border-t border-white/[0.07]">
+        <div class="px-6 pb-6 pt-4 border-t border-hairline">
           @if (markdownContent) {
             <markdown class="markdown-body" [data]="markdownContent"></markdown>
           } @else {
-            <p class="text-sm text-slate-400 m-0 py-4 text-center">Loading README from GitHub...</p>
+            <p class="text-sm text-ink-muted m-0 py-4 text-center">Loading README from GitHub...</p>
           }
         </div>
       }
@@ -366,10 +358,10 @@
       </div>
 
       <div class="text-center max-w-2xl px-4">
-        <p class="text-base font-bold text-slate-100 m-0">{{ activeFig.title }}</p>
-        <p class="text-sm text-slate-400 m-0 mt-1">{{ activeFig.caption }}</p>
+        <p class="text-base font-bold text-white m-0">{{ activeFig.title }}</p>
+        <p class="text-sm text-slate-300 m-0 mt-1">{{ activeFig.caption }}</p>
         @if ((caseStudy.figures?.length ?? 0) > 1) {
-          <p class="font-mono text-xs text-slate-500 m-0 mt-2">
+          <p class="font-mono text-xs text-slate-400 m-0 mt-2">
             {{ activeFigureIndex + 1 }} / {{ caseStudy.figures?.length }}
           </p>
         }

@@ -1,10 +1,8 @@
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary navigation">
-    <!-- Monogram & Name -->
+    <!-- Custom Personal Mark & Name -->
     <a routerLink="/home" class="brand-link" (click)="closeMenu()" aria-label="Raj Pawar Home">
-      <span class="brand-mark" aria-hidden="true">
-        RP<span class="brand-mark__dot"></span>
-      </span>
+      <app-brand-mark [size]="34"></app-brand-mark>
       <span class="brand-name">Raj Pawar</span>
     </a>
 
@@ -23,8 +21,73 @@
       }
     </ul>
 
-    <!-- Desktop Recruiter Quick Actions -->
-    <div class="hidden md:flex items-center gap-2.5">
+    <!-- Desktop Actions + Theme Picker -->
+    <div class="hidden md:flex items-center gap-2">
+      <!-- Theme Swatch Menu (Compare all 4 palettes) -->
+      <div class="theme-picker relative">
+        <button
+          type="button"
+          class="theme-trigger"
+          (click)="toggleThemeMenu($event)"
+          [attr.aria-expanded]="isThemeMenuOpen()"
+          aria-haspopup="menu"
+          aria-label="Choose color theme"
+          title="Switch theme palette"
+        >
+          <span class="swatch-pair" aria-hidden="true">
+            <span class="swatch-dot" [style.background]="themeService.currentTheme().canvasColor"></span>
+            <span class="swatch-dot swatch-dot--accent" [style.background]="themeService.currentTheme().accentColor"></span>
+          </span>
+          <span class="hidden lg:inline">{{ themeService.currentTheme().shortName }}</span>
+          <i class="fa-solid fa-chevron-down text-[0.6rem] opacity-70" aria-hidden="true"></i>
+        </button>
+
+        @if (isThemeMenuOpen()) {
+          <div class="theme-menu" role="menu" aria-label="Theme palettes">
+            <div class="theme-menu__header">
+              <span>Theme Palette</span>
+              <span class="font-mono-meta text-[0.66rem]">{{ themeService.isLight() ? 'Light' : 'Dark' }}</span>
+            </div>
+            @for (theme of themeService.themes; track theme.id) {
+              <button
+                type="button"
+                role="menuitemradio"
+                [attr.aria-checked]="themeService.activeThemeId() === theme.id"
+                class="theme-option"
+                [class.is-active]="themeService.activeThemeId() === theme.id"
+                (click)="selectTheme(theme.id)"
+              >
+                <span class="swatch-pair shrink-0" aria-hidden="true">
+                  <span class="swatch-dot" [style.background]="theme.canvasColor"></span>
+                  <span class="swatch-dot swatch-dot--accent" [style.background]="theme.accentColor"></span>
+                </span>
+                <span class="min-w-0 flex-1 text-left">
+                  <span class="block text-xs font-semibold theme-option__name">{{ theme.name }}</span>
+                  <span class="block text-[0.68rem] theme-option__desc">{{ theme.description }}</span>
+                </span>
+                @if (themeService.activeThemeId() === theme.id) {
+                  <i class="fa-solid fa-check text-[0.68rem] text-brand shrink-0" aria-hidden="true"></i>
+                }
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Quick Light / Dark Toggle -->
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleLightDark()"
+        [attr.aria-label]="themeService.isLight() ? 'Switch to dark mode' : 'Switch to light mode'"
+        [title]="themeService.isLight() ? 'Switch to dark mode' : 'Switch to light mode'"
+      >
+        <i
+          [class]="themeService.isLight() ? 'fa-regular fa-moon' : 'fa-regular fa-sun'"
+          aria-hidden="true"
+        ></i>
+      </button>
+
       <a
         href="https://github.com/r-a-j"
         target="_blank"
@@ -51,6 +114,17 @@
 
     <!-- Mobile Menu Toggle -->
     <div class="flex md:hidden items-center gap-2">
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleLightDark()"
+        [attr.aria-label]="themeService.isLight() ? 'Switch to dark mode' : 'Switch to light mode'"
+      >
+        <i
+          [class]="themeService.isLight() ? 'fa-regular fa-moon' : 'fa-regular fa-sun'"
+          aria-hidden="true"
+        ></i>
+      </button>
       <a
         [href]="aboutContent.pdfPath"
         target="_blank"
@@ -91,7 +165,31 @@
           </li>
         }
       </ul>
-      <div class="flex items-center gap-3 pt-4 mt-3 border-t border-white/[0.08]">
+
+      <!-- Mobile Theme Picker -->
+      <div class="pt-4 mt-3 border-t border-hairline">
+        <div class="text-[0.7rem] font-mono-meta uppercase tracking-wider text-ink-muted mb-2">
+          Theme Palette
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          @for (theme of themeService.themes; track theme.id) {
+            <button
+              type="button"
+              class="mobile-theme-btn"
+              [class.is-active]="themeService.activeThemeId() === theme.id"
+              (click)="selectTheme(theme.id)"
+            >
+              <span class="swatch-pair shrink-0" aria-hidden="true">
+                <span class="swatch-dot" [style.background]="theme.canvasColor"></span>
+                <span class="swatch-dot swatch-dot--accent" [style.background]="theme.accentColor"></span>
+              </span>
+              <span class="truncate">{{ theme.shortName }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 pt-4 mt-3 border-t border-hairline">
         <a
           href="https://github.com/r-a-j"
           target="_blank"
@@ -110,7 +208,7 @@
         >
           <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
         </a>
-        <a href="mailto:er.rajpawar@gmail.com" class="text-xs font-mono-meta text-slate-400 hover:text-white ml-auto">
+        <a href="mailto:er.rajpawar@gmail.com" class="text-xs font-mono-meta text-ink-secondary hover:text-ink ml-auto no-underline">
           er.rajpawar&#64;gmail.com
         </a>
       </div>

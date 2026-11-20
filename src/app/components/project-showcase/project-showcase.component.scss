@@ -1,11 +1,11 @@
 .showcase-hero {
   position: relative;
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
-  background: #0a0e16;
+  background: #0a0b0e;
   color: #f8fafc;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card-hover);
 
   &__backdrop {
     position: absolute;
@@ -23,12 +23,48 @@
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba(8, 11, 17, 0.96) 0%,
-      rgba(15, 20, 30, 0.88) 55%,
-      rgba(10, 14, 22, 0.95) 100%
+      rgba(10, 11, 14, 0.96) 0%,
+      rgba(17, 19, 24, 0.88) 55%,
+      rgba(10, 11, 14, 0.95) 100%
     );
     pointer-events: none;
   }
+}
+
+.surface-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.icon-badge {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+}
+
+.stack-chip {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.shot-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  padding: 0.16rem 0.6rem;
+  border-radius: 999px;
 }
 
 .pill {
@@ -41,15 +77,15 @@
   font-weight: 600;
 
   &--live {
-    background: rgba(16, 185, 129, 0.14);
+    background: rgba(16, 185, 129, 0.16);
     border: 1px solid rgba(52, 211, 153, 0.4);
     color: #a7f3d0;
   }
 
   &--subtle {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #e2e8f0;
   }
 
   &__dot {
@@ -57,7 +93,6 @@
     height: 7px;
     border-radius: 50%;
     background: #34d399;
-    box-shadow: 0 0 8px rgba(52, 211, 153, 0.9);
   }
 }
 
@@ -70,11 +105,13 @@
   font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 
   &--primary {
     background: #f4f6fa;
-    color: #080b11;
+    color: #0b0b0c;
+    border: 1px solid #f4f6fa;
 
     &:hover {
       background: #ffffff;
@@ -82,13 +119,45 @@
   }
 
   &--secondary {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.07);
     color: #f4f6fa;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.32);
+      background: rgba(255, 255, 255, 0.14);
+    }
+  }
+}
+
+.surface-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.68rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+
+  &--primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--btn-primary-bg);
+
+    &:hover {
+      background: var(--btn-primary-hover);
+    }
+  }
+
+  &--secondary {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+
+    &:hover {
+      background: var(--bg-subtle-hover);
     }
   }
 }
@@ -99,7 +168,7 @@
   padding: 9px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  background: #06090f;
+  background: #06070a;
   box-shadow: 0 24px 55px rgba(0, 0, 0, 0.65);
   cursor: pointer;
   transition: transform 0.25s ease, border-color 0.25s ease;
@@ -128,17 +197,18 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
   padding: 1rem;
   cursor: pointer;
+  box-shadow: var(--shadow-card);
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 
   &:hover {
     transform: translateY(-3px);
-    background: #141b29;
-    border-color: rgba(255, 255, 255, 0.22);
+    background: var(--bg-surface-hover);
+    border-color: var(--border-strong);
 
     .phone-frame__zoom {
       opacity: 1;
@@ -150,8 +220,8 @@
   position: relative;
   padding: 7px;
   border-radius: 24px;
-  background: #05070c;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #08090c;
+  border: 1px solid var(--border-subtle);
 
   &__speaker {
     position: absolute;
@@ -172,7 +242,7 @@
     width: 32px;
     height: 32px;
     border-radius: 999px;
-    background: rgba(8, 11, 17, 0.85);
+    background: rgba(12, 12, 13, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
     display: flex;
@@ -184,15 +254,11 @@
   }
 }
 
-.availability-banner {
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .demo-panel {
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 22px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  border-radius: 20px;
   padding: 2rem;
 }
 
@@ -200,16 +266,16 @@
   width: 375px;
   border-radius: 28px;
   overflow: hidden;
-  background: #05070c;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  background: #050608;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-card-hover);
 
   &__bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.6rem 1rem;
-    background: #0b0f18;
+    background: #101114;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
@@ -223,7 +289,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(8, 11, 17, 0.45) 0%, rgba(8, 11, 17, 0.86) 100%);
+    background: linear-gradient(180deg, rgba(10, 11, 14, 0.45) 0%, rgba(10, 11, 14, 0.86) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -242,7 +308,7 @@
   border-radius: 999px;
   border: 1px solid #f4f6fa;
   background: #f4f6fa;
-  color: #080b11;
+  color: #0b0b0c;
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
@@ -264,24 +330,23 @@
   font-size: 0.84rem;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.04);
-  transition: background-color 0.18s ease, color 0.18s ease;
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  background: var(--bg-subtle);
+  transition: background-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: var(--bg-subtle-hover);
   }
 
   &--primary {
-    background: #f4f6fa;
-    color: #080b11;
-    border-color: #f4f6fa;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
 
     &:hover {
-      background: #ffffff;
-      color: #080b11;
+      background: var(--btn-primary-hover);
+      color: var(--btn-primary-text);
     }
   }
 }
@@ -290,7 +355,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(2, 6, 15, 0.9);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -300,8 +365,8 @@
   &__close,
   &__nav {
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(15, 20, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(20, 20, 20, 0.92);
     color: #fff;
     cursor: pointer;
     display: flex;

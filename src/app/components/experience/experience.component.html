@@ -1,16 +1,11 @@
-<section id="experience" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+<section id="experience" class="py-16 px-6 bg-canvas text-ink border-b border-hairline">
   <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-          Work History
-        </span>
-        <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-          Experience
-        </h2>
-      </div>
-      <p class="m-0 text-sm text-slate-400 max-w-md leading-relaxed">
+      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+        Experience
+      </h2>
+      <p class="m-0 text-sm text-ink-secondary max-w-md leading-relaxed">
         Roles across computer vision, applied machine learning, and full-stack software engineering in Germany and India.
       </p>
     </div>
@@ -42,7 +37,7 @@
               <!-- Role, Company & Always-Visible 1-Line Summary -->
               <div class="min-w-0 flex-1 text-left">
                 <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <h3 class="m-0 text-base sm:text-lg font-bold text-slate-50 leading-snug">
+                  <h3 class="m-0 text-base sm:text-lg font-bold text-ink leading-snug">
                     {{ exp.role }}
                   </h3>
                   @if (isFirst) {
@@ -63,13 +58,13 @@
                       <i class="fa-solid fa-arrow-up-right-from-square text-[0.62rem] opacity-70" aria-hidden="true"></i>
                     </a>
                   } @else {
-                    <span class="text-slate-300 font-medium">{{ exp.company }}</span>
+                    <span class="text-ink font-medium">{{ exp.company }}</span>
                   }
-                  <span class="text-slate-600" aria-hidden="true">·</span>
-                  <span class="text-xs font-mono-meta text-slate-400">{{ exp.location }}</span>
+                  <span class="text-ink-muted" aria-hidden="true">·</span>
+                  <span class="text-xs font-mono-meta text-ink-muted">{{ exp.location }}</span>
                 </div>
 
-                <p class="mt-2 mb-0 text-sm leading-relaxed text-slate-400 max-w-3xl">
+                <p class="mt-2 mb-0 text-sm leading-relaxed text-ink-secondary max-w-3xl">
                   {{ exp.summary }}
                 </p>
               </div>
@@ -93,8 +88,8 @@
             <div class="exp-body">
               <!-- Reference Documents Row (if available) -->
               @if (exp.documents?.length) {
-                <div class="flex flex-wrap items-center gap-2.5 pb-5 mb-5 border-b border-white/[0.07]">
-                  <span class="text-xs font-mono-meta uppercase tracking-wider text-slate-400 mr-1">
+                <div class="flex flex-wrap items-center gap-2.5 pb-5 mb-5 border-b border-hairline">
+                  <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted mr-1">
                     Signed References:
                   </span>
                   @for (doc of exp.documents; track doc.url) {
@@ -103,14 +98,14 @@
                       class="doc-pill"
                       (click)="openDocument(doc, $event)"
                     >
-                      <i class="fa-regular fa-file-pdf text-slate-300 text-xs" aria-hidden="true"></i>
+                      <i class="fa-regular fa-file-pdf text-brand text-xs" aria-hidden="true"></i>
                       {{ doc.label }}
                     </button>
                   }
                 </div>
               }
 
-              <!-- Structured Achievement Grid (2-col when multi-category, 1-col when simple) -->
+              <!-- Structured Achievement Grid -->
               @if (exp.description.length > 1) {
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   @for (cat of exp.description; track cat.category) {
@@ -138,8 +133,8 @@
 
               <!-- Photo Gallery Strip -->
               @if (exp.media.length) {
-                <div class="mt-6 pt-5 border-t border-white/[0.07]">
-                  <span class="block text-xs font-mono-meta uppercase tracking-wider text-slate-400 mb-3">
+                <div class="mt-6 pt-5 border-t border-hairline">
+                  <span class="block text-xs font-mono-meta uppercase tracking-wider text-ink-muted mb-3">
                     Photos
                   </span>
                   <div class="media-strip">

@@ -1,7 +1,7 @@
 .site-footer {
-  background: #06090f;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: var(--bg-footer);
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
 
   &__inner {
     max-width: 1200px;
@@ -18,40 +18,14 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem 1.5rem 1.75rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-subtle);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
     font-size: 0.76rem;
-    color: #64748b;
-  }
-}
-
-.footer-mark {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #f4f6fa;
-
-  &__dot {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #e06c75;
+    color: var(--text-muted);
   }
 }
 
@@ -61,24 +35,24 @@
   transition: color 0.18s ease;
 
   &:hover {
-    color: #ffffff;
+    color: var(--text-primary);
   }
 }
 
 .footer-email {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.76rem;
-  color: #cbd5e1;
+  color: var(--text-secondary);
   text-decoration: none;
   padding: 0.42rem 0.75rem;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
   transition: border-color 0.18s ease, color 0.18s ease;
 
   &:hover {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.24);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
   }
 }
 
@@ -86,9 +60,9 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
-  color: #cbd5e1;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
   font-size: 0.88rem;
   display: inline-flex;
   align-items: center;
@@ -97,8 +71,8 @@
   transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
 
   &:hover {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.24);
-    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--bg-subtle-hover);
   }
 }

@@ -1,9 +1,10 @@
 .info-card,
 .contact-form {
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
   padding: 1.35rem 1.5rem;
+  box-shadow: var(--shadow-card);
 }
 
 .contact-form {
@@ -13,23 +14,33 @@
   gap: 1.2rem;
 }
 
+.status-line {
+  color: var(--status-green);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--status-green);
+}
+
 .copy-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.36rem 0.72rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.05);
-  color: #e2e8f0;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
   font-size: 0.76rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.28);
+    background: var(--bg-subtle-hover);
   }
 }
 
@@ -39,18 +50,17 @@
   gap: 0.6rem;
   padding: 0.62rem 0.85rem;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    background: var(--bg-subtle-hover);
+    border-color: var(--border-strong);
   }
 }
 
@@ -58,27 +68,27 @@
   display: block;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-secondary);
   margin-bottom: 0.4rem;
 }
 
 .form-input {
   width: 100%;
-  background: #080b11;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 0.68rem 0.9rem;
-  color: #f4f6fa;
+  color: var(--text-primary);
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.18s ease;
 
   &::placeholder {
-    color: #64748b;
+    color: var(--text-muted);
   }
 
   &:focus {
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color: var(--border-strong);
   }
 
   &--area {
@@ -87,14 +97,14 @@
   }
 
   &.ng-invalid.ng-touched {
-    border-color: #ef4444;
+    border-color: #dc2626;
   }
 }
 
 .form-error {
   display: block;
   font-size: 0.76rem;
-  color: #f87171;
+  color: #dc2626;
   margin-top: 0.3rem;
 }
 
@@ -106,16 +116,16 @@
   width: 100%;
   padding: 0.78rem 1.25rem;
   border-radius: 10px;
-  border: 1px solid #f4f6fa;
-  background: #f4f6fa;
-  color: #080b11;
+  border: 1px solid var(--btn-primary-bg);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.18s ease, opacity 0.18s ease;
 
   &:hover:not(:disabled) {
-    background: #ffffff;
+    background: var(--btn-primary-hover);
   }
 
   &:disabled {

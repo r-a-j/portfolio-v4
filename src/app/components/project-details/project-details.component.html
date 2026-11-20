@@ -55,9 +55,9 @@
         @if (markdownContent) {
           <markdown class="markdown-body" [data]="markdownContent"></markdown>
         } @else if (projectDetails.githubReadmeUrl) {
-          <p class="text-center text-slate-400 text-sm py-8">Loading project documentation...</p>
+          <p class="text-center text-ink-muted text-sm py-8">Loading project documentation...</p>
         } @else {
-          <p class="text-center text-slate-400 text-sm py-8">
+          <p class="text-center text-ink-muted text-sm py-8">
             Full code and documentation are available in the GitHub repository linked above.
           </p>
         }

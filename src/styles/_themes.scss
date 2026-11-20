@@ -1,0 +1,210 @@
+/* ==========================================================================
+   Personal Brand Theme Registry
+   --------------------------------------------------------------------------
+   To add a new theme:
+   1. Add a new :root[data-theme="your-theme"] block below.
+   2. Register it in src/app/services/theme.service.ts (THEMES array).
+   To change the site default, update DEFAULT_THEME_ID in theme.service.ts
+   and the fallback string in src/index.html.
+   ========================================================================== */
+
+/* 1. Warm Charcoal & Precision Brass (Default Dark) */
+:root,
+:root[data-theme="charcoal-brass"] {
+  color-scheme: dark;
+
+  --bg-canvas: #111110;
+  --bg-surface: #181816;
+  --bg-elevated: #22211e;
+  --bg-surface-hover: #242320;
+  --bg-inset: #131311;
+  --bg-footer: #0d0d0c;
+  --bg-subtle: rgba(244, 241, 234, 0.035);
+  --bg-subtle-hover: rgba(244, 241, 234, 0.075);
+  --nav-bg: rgba(17, 17, 16, 0.88);
+  --overlay-bg: rgba(10, 10, 9, 0.9);
+
+  --text-primary: #f4f1ea;
+  --text-secondary: #b5afa4;
+  --text-muted: #847e74;
+
+  --border-subtle: rgba(244, 241, 234, 0.09);
+  --border-strong: rgba(244, 241, 234, 0.21);
+
+  --accent: #d49a47;
+  --accent-hover: #e3ac5d;
+  --accent-soft: rgba(212, 154, 71, 0.13);
+  --accent-border: rgba(212, 154, 71, 0.34);
+
+  --btn-primary-bg: #f4f1ea;
+  --btn-primary-text: #111110;
+  --btn-primary-hover: #ffffff;
+
+  --status-green: #4ade80;
+  --status-green-bg: rgba(74, 222, 128, 0.12);
+  --status-green-border: rgba(74, 222, 128, 0.32);
+
+  --award-bg: rgba(212, 154, 71, 0.13);
+  --award-border: rgba(212, 154, 71, 0.34);
+  --award-text: #e6ba73;
+
+  --highlight-row-bg: rgba(212, 154, 71, 0.09);
+  --highlight-row-text: #fbf6eb;
+
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.38);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.52);
+
+  --logo-invert: invert(1);
+  --selection-bg: rgba(212, 154, 71, 0.32);
+  --selection-text: #ffffff;
+}
+
+/* 2. Monochrome Obsidian (Minimal Swiss Dark, Zero Color Chrome) */
+:root[data-theme="monochrome"] {
+  color-scheme: dark;
+
+  --bg-canvas: #0c0c0d;
+  --bg-surface: #131315;
+  --bg-elevated: #1c1c1f;
+  --bg-surface-hover: #1f1f23;
+  --bg-inset: #0f0f11;
+  --bg-footer: #09090a;
+  --bg-subtle: rgba(255, 255, 255, 0.035);
+  --bg-subtle-hover: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(12, 12, 13, 0.88);
+  --overlay-bg: rgba(6, 6, 7, 0.92);
+
+  --text-primary: #f5f5f6;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  --accent: #e4e4e7;
+  --accent-hover: #ffffff;
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  --accent-border: rgba(255, 255, 255, 0.22);
+
+  --btn-primary-bg: #f5f5f6;
+  --btn-primary-text: #0c0c0d;
+  --btn-primary-hover: #ffffff;
+
+  --status-green: #4ade80;
+  --status-green-bg: rgba(74, 222, 128, 0.12);
+  --status-green-border: rgba(74, 222, 128, 0.32);
+
+  --award-bg: rgba(255, 255, 255, 0.07);
+  --award-border: rgba(255, 255, 255, 0.2);
+  --award-text: #f4f4f5;
+
+  --highlight-row-bg: rgba(255, 255, 255, 0.06);
+  --highlight-row-text: #ffffff;
+
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.42);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.56);
+
+  --logo-invert: invert(1);
+  --selection-bg: rgba(255, 255, 255, 0.22);
+  --selection-text: #ffffff;
+}
+
+/* 3. Warm Paper & Prussian Ink (Editorial Light Mode) */
+:root[data-theme="paper-ink"] {
+  color-scheme: light;
+
+  --bg-canvas: #f6f3ec;
+  --bg-surface: #ffffff;
+  --bg-elevated: #efeae0;
+  --bg-surface-hover: #faf8f3;
+  --bg-inset: #f2efe8;
+  --bg-footer: #ece7dc;
+  --bg-subtle: rgba(24, 24, 22, 0.035);
+  --bg-subtle-hover: rgba(24, 24, 22, 0.075);
+  --nav-bg: rgba(246, 243, 236, 0.9);
+  --overlay-bg: rgba(15, 16, 18, 0.86);
+
+  --text-primary: #181816;
+  --text-secondary: #4e4c46;
+  --text-muted: #706d65;
+
+  --border-subtle: rgba(24, 24, 22, 0.11);
+  --border-strong: rgba(24, 24, 22, 0.24);
+
+  --accent: #1e4b7a;
+  --accent-hover: #15385c;
+  --accent-soft: rgba(30, 75, 122, 0.09);
+  --accent-border: rgba(30, 75, 122, 0.26);
+
+  --btn-primary-bg: #181816;
+  --btn-primary-text: #f6f3ec;
+  --btn-primary-hover: #2d2c28;
+
+  --status-green: #15803d;
+  --status-green-bg: rgba(21, 128, 61, 0.1);
+  --status-green-border: rgba(21, 128, 61, 0.28);
+
+  --award-bg: rgba(161, 98, 7, 0.1);
+  --award-border: rgba(161, 98, 7, 0.28);
+  --award-text: #854d0e;
+
+  --highlight-row-bg: rgba(30, 75, 122, 0.07);
+  --highlight-row-text: #102a46;
+
+  --shadow-card: 0 8px 24px rgba(24, 24, 22, 0.06);
+  --shadow-card-hover: 0 14px 34px rgba(24, 24, 22, 0.11);
+
+  --logo-invert: none;
+  --selection-bg: rgba(30, 75, 122, 0.2);
+  --selection-text: #181816;
+}
+
+/* 4. Warm Charcoal & Scientific Sage (Calm Lab Dark) */
+:root[data-theme="charcoal-sage"] {
+  color-scheme: dark;
+
+  --bg-canvas: #101211;
+  --bg-surface: #171a18;
+  --bg-elevated: #202422;
+  --bg-surface-hover: #222724;
+  --bg-inset: #131614;
+  --bg-footer: #0c0e0d;
+  --bg-subtle: rgba(238, 242, 240, 0.035);
+  --bg-subtle-hover: rgba(238, 242, 240, 0.075);
+  --nav-bg: rgba(16, 18, 17, 0.88);
+  --overlay-bg: rgba(8, 10, 9, 0.9);
+
+  --text-primary: #eef2f0;
+  --text-secondary: #9daaa4;
+  --text-muted: #727f79;
+
+  --border-subtle: rgba(238, 242, 240, 0.09);
+  --border-strong: rgba(238, 242, 240, 0.21);
+
+  --accent: #5fa891;
+  --accent-hover: #73bda5;
+  --accent-soft: rgba(95, 168, 145, 0.13);
+  --accent-border: rgba(95, 168, 145, 0.34);
+
+  --btn-primary-bg: #eef2f0;
+  --btn-primary-text: #101211;
+  --btn-primary-hover: #ffffff;
+
+  --status-green: #4ade80;
+  --status-green-bg: rgba(74, 222, 128, 0.12);
+  --status-green-border: rgba(74, 222, 128, 0.32);
+
+  --award-bg: rgba(212, 168, 79, 0.13);
+  --award-border: rgba(212, 168, 79, 0.34);
+  --award-text: #e4be73;
+
+  --highlight-row-bg: rgba(95, 168, 145, 0.1);
+  --highlight-row-text: #eefaf6;
+
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.38);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.52);
+
+  --logo-invert: invert(1);
+  --selection-bg: rgba(95, 168, 145, 0.32);
+  --selection-text: #ffffff;
+}

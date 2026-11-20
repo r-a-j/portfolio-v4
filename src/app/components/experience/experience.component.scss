@@ -5,18 +5,16 @@
 }
 
 .exp-card {
-  border-radius: 18px;
-  background: #0f141e;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   transition: border-color 0.2s ease;
 
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.16);
-  }
-
+  &:hover,
   &--open {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--border-strong);
   }
 }
 
@@ -35,7 +33,7 @@
   transition: background-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-subtle);
   }
 }
 
@@ -44,7 +42,7 @@
   height: 48px;
   border-radius: 12px;
   background: #f8fafc;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--border-subtle);
   padding: 0.45rem;
   display: flex;
   align-items: center;
@@ -76,21 +74,20 @@
   font-weight: 600;
   padding: 0.18rem 0.55rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #cbd5e1;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  color: var(--text-primary);
 }
 
 .company-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #e2e8f0;
+  color: var(--text-primary);
   font-weight: 600;
   text-decoration: none;
 
   &:hover {
-    color: #ffffff;
     text-decoration: underline;
   }
 }
@@ -101,9 +98,9 @@
   font-weight: 500;
   padding: 0.28rem 0.68rem;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: #cbd5e1;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   white-space: nowrap;
 }
 
@@ -113,13 +110,13 @@
   gap: 0.4rem;
   font-size: 0.76rem;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .exp-body {
   padding: 1.25rem 1.5rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(8, 11, 17, 0.42);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-inset);
 }
 
 .doc-pill {
@@ -128,23 +125,22 @@
   gap: 0.45rem;
   padding: 0.44rem 0.85rem;
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #f1f5f9;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.18s ease, border-color 0.18s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(255, 255, 255, 0.26);
+    background: var(--bg-surface-hover);
   }
 }
 
 .detail-group {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
   border-radius: 14px;
   padding: 1.15rem 1.25rem;
 
@@ -153,9 +149,9 @@
     font-size: 0.86rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-    color: #f1f5f9;
+    color: var(--text-primary);
     padding-bottom: 0.55rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--border-subtle);
   }
 }
 
@@ -172,7 +168,7 @@
     padding-left: 1rem;
     font-size: 0.875rem;
     line-height: 1.62;
-    color: #cbd5e1;
+    color: var(--text-secondary);
 
     &::before {
       content: "";
@@ -182,7 +178,8 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #64748b;
+      background: var(--accent);
+      opacity: 0.75;
     }
   }
 
@@ -199,17 +196,17 @@
 
 .media-thumb {
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  background: #05070c;
+  background: #0a0a0a;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.28);
+    border-color: var(--border-strong);
   }
 
   img {
@@ -224,7 +221,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(2, 6, 15, 0.92);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -235,7 +232,7 @@
   &__nav {
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.22);
-    background: rgba(15, 20, 30, 0.9);
+    background: rgba(20, 20, 20, 0.9);
     color: #fff;
     cursor: pointer;
     display: flex;
@@ -243,7 +240,7 @@
     justify-content: center;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.18);
     }
   }
 

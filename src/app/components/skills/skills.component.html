@@ -1,16 +1,11 @@
-<section id="skills" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+<section id="skills" class="py-16 px-6 bg-canvas text-ink border-b border-hairline">
   <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-          Tech Stack
-        </span>
-        <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-          Skills &amp; Tools
-        </h2>
-      </div>
-      <p class="m-0 text-sm text-slate-400 max-w-md leading-relaxed">
+      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+        Skills &amp; Tools
+      </h2>
+      <p class="m-0 text-sm text-ink-secondary max-w-md leading-relaxed">
         Technologies I use regularly across computer vision, statistical modeling, full-stack apps, and deployment pipelines.
       </p>
     </div>
@@ -23,12 +18,12 @@
             <span class="group-icon" aria-hidden="true">
               <i [class]="group.groupIcon"></i>
             </span>
-            <h3 class="m-0 text-lg font-bold text-slate-50 leading-snug">
+            <h3 class="m-0 text-lg font-bold text-ink leading-snug">
               {{ group.title }}
             </h3>
           </div>
 
-          <p class="m-0 text-sm leading-relaxed text-slate-400">
+          <p class="m-0 text-sm leading-relaxed text-ink-secondary">
             {{ group.summary }}
           </p>
 
@@ -53,10 +48,10 @@
           </div>
 
           <div class="group-proof">
-            <span class="text-[0.7rem] font-mono-meta uppercase tracking-wider text-slate-500 block mb-1">
+            <span class="text-[0.7rem] font-mono-meta uppercase tracking-wider text-ink-muted block mb-1">
               Used in
             </span>
-            <p class="m-0 text-xs leading-relaxed text-slate-300">
+            <p class="m-0 text-xs leading-relaxed text-ink-secondary">
               {{ group.usedIn }}
             </p>
           </div>
@@ -66,11 +61,11 @@
 
     <!-- Programming Languages Strip -->
     <div class="lang-bar">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/[0.08]">
-        <span class="text-xs font-mono-meta uppercase tracking-[0.14em] text-slate-300 font-semibold">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-hairline">
+        <span class="text-xs font-mono-meta uppercase tracking-[0.12em] text-ink font-semibold">
           Programming Languages
         </span>
-        <span class="text-xs font-mono-meta text-slate-500">
+        <span class="text-xs font-mono-meta text-ink-muted">
           Primary working languages
         </span>
       </div>
@@ -88,9 +83,9 @@
                   class="w-4 h-4 object-contain shrink-0"
                 />
               }
-              <span class="text-sm font-mono-meta font-semibold text-slate-100">{{ lang.name }}</span>
+              <span class="text-sm font-mono-meta font-semibold text-ink">{{ lang.name }}</span>
             </div>
-            <span class="text-xs text-slate-400 leading-snug">{{ lang.context }}</span>
+            <span class="text-xs text-ink-secondary leading-snug">{{ lang.context }}</span>
           </div>
         }
       </div>

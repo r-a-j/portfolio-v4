@@ -1,27 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  /* Obsidian Cinema Palette */
-  --color-canvas: #080b11;
-  --color-surface: #0f141e;
-  --color-elevated: #151c2a;
+  /* Semantic Theme Surfaces (driven by src/styles/_themes.scss) */
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
 
-  /* Restrained Dark-Mode Accents (eye-friendly coral-rose & warm gold) */
-  --color-cinema: #e06c75;
-  --color-cinema-deep: #c9525c;
-  --color-accent: #f4d35e;
-  --color-accent-hover: #e5be3c;
+  /* Semantic Ink & Borders */
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-hairline: var(--border-subtle);
 
-  /* Legacy-compatible semantic tokens mapped to dark editorial system */
-  --color-primary: #f4f6fa;
-  --color-primary-hover: #ffffff;
-  --color-primary-dark: #080b11;
-  --color-primary-light: #94a3b8;
+  /* Brand Accent Tokens */
+  --color-brand: var(--accent);
+  --color-brand-hover: var(--accent-hover);
 
-  --color-secondary: #0f141e;
-  --color-secondary-hover: #151c2a;
+  /* Legacy-compatible tokens mapped cleanly to active theme */
+  --color-cinema: var(--accent);
+  --color-cinema-deep: var(--accent-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-primary: var(--btn-primary-bg);
+  --color-primary-hover: var(--btn-primary-hover);
+  --color-primary-dark: var(--bg-canvas);
+  --color-primary-light: var(--text-secondary);
+  --color-secondary: var(--bg-surface);
+  --color-secondary-hover: var(--bg-elevated);
 
   /* Typography */
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }

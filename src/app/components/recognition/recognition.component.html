@@ -1,16 +1,11 @@
-<section id="recognition" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+<section id="recognition" class="py-16 px-6 bg-canvas text-ink border-b border-hairline">
   <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-          Recognition
-        </span>
-        <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-          Awards, Press &amp; Reference Letters
-        </h2>
-      </div>
-      <p class="m-0 text-sm text-slate-400 max-w-md leading-relaxed">
+      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+        Awards, Press &amp; Reference Letters
+      </h2>
+      <p class="m-0 text-sm text-ink-secondary max-w-md leading-relaxed">
         TU Dortmund press coverage, award ceremony &amp; hardware photos, and signed recommendation letters from PartikelART (EN &amp; DE).
       </p>
     </div>
@@ -44,19 +39,19 @@
               </span>
               <span class="meta-pill">TU capital Special Prize</span>
             </div>
-            <h3 class="m-0 text-lg font-bold text-slate-50">{{ heroPhoto.title }}</h3>
-            <p class="mt-2 mb-0 text-sm leading-relaxed text-slate-400">
+            <h3 class="m-0 text-lg font-bold text-ink">{{ heroPhoto.title }}</h3>
+            <p class="mt-2 mb-0 text-sm leading-relaxed text-ink-secondary">
               {{ heroPhoto.caption }}
             </p>
           </div>
 
-          <div class="pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-2 text-xs">
-            <span class="font-mono-meta text-slate-400">TU Dortmund • CET • Oct 2025</span>
+          <div class="pt-3 border-t border-hairline flex flex-wrap items-center justify-between gap-2 text-xs">
+            <span class="font-mono-meta text-ink-muted">TU Dortmund • CET • Oct 2025</span>
             <a
               href="https://www.tu-dortmund.de/campus/detail/tu-dortmund-praemiert-drei-innovative-ausgruendungen-2-58461/"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-slate-200 hover:text-white font-medium no-underline inline-flex items-center gap-1.5"
+              class="text-ink hover:underline font-medium no-underline inline-flex items-center gap-1.5"
             >
               Read TU Dortmund Press Release
               <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem]" aria-hidden="true"></i>
@@ -66,41 +61,41 @@
       </article>
 
       <!-- Right: Verified Reference Letter Card -->
-      <article class="rec-card rec-card--accent flex flex-col justify-between p-6 sm:p-7 gap-5">
+      <article class="rec-card flex flex-col justify-between p-6 sm:p-7 gap-5">
         <div class="flex flex-col gap-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="text-xs font-mono-meta uppercase tracking-widest text-cinema font-semibold">
+            <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted font-medium">
               Employer Reference
             </span>
             <span class="grade-pill">
-              <i class="fa-solid fa-file-signature text-emerald-400 text-xs" aria-hidden="true"></i>
+              <i class="fa-solid fa-file-signature text-brand text-xs" aria-hidden="true"></i>
               Official Arbeitszeugnis
             </span>
           </div>
 
           <div>
-            <h3 class="m-0 text-xl font-bold text-slate-50">{{ reference.company }}</h3>
-            <p class="mt-1 mb-0 text-xs font-mono-meta text-slate-400">
+            <h3 class="font-display m-0 text-2xl font-medium text-ink">{{ reference.company }}</h3>
+            <p class="mt-1 mb-0 text-xs font-mono-meta text-ink-muted">
               {{ reference.period }} &nbsp;•&nbsp; Issued {{ reference.date }}
             </p>
           </div>
 
-          <blockquote class="m-0 pl-4 border-l-2 border-cinema/60 text-sm sm:text-[0.94rem] leading-relaxed text-slate-200">
+          <blockquote class="ref-quote m-0 pl-4 text-sm sm:text-[0.94rem] leading-relaxed text-ink">
             “{{ reference.quote }}”
           </blockquote>
 
-          <p class="m-0 text-sm leading-relaxed text-slate-400 italic">
+          <p class="m-0 text-sm leading-relaxed text-ink-secondary italic">
             “{{ reference.closingQuote }}”
           </p>
         </div>
 
-        <div class="flex flex-col gap-4 pt-4 border-t border-white/[0.08]">
+        <div class="flex flex-col gap-4 pt-4 border-t border-hairline">
           <div class="flex items-center justify-between gap-3">
             <div>
-              <div class="text-sm font-bold text-slate-100">{{ reference.author }}</div>
-              <div class="text-xs text-slate-400">{{ reference.authorRole }}, {{ reference.company }}</div>
+              <div class="text-sm font-bold text-ink">{{ reference.author }}</div>
+              <div class="text-xs text-ink-secondary">{{ reference.authorRole }}, {{ reference.company }}</div>
             </div>
-            <span class="text-[0.7rem] font-mono-meta text-slate-500 hidden sm:inline">
+            <span class="text-[0.7rem] font-mono-meta text-ink-muted hidden sm:inline">
               Signed PDF (EN &amp; DE)
             </span>
           </div>
@@ -136,13 +131,13 @@
               [src]="photo.src"
               [alt]="photo.title"
               loading="lazy"
-              class="w-full h-full object-cover block transition-transform duration-300 group-hover:scale-105"
+              class="w-full h-full object-cover block transition-transform duration-300"
             />
             <span class="tile-badge">{{ photo.badge }}</span>
           </div>
           <div class="p-3.5 text-left">
-            <h3 class="m-0 text-sm font-bold text-slate-100 leading-snug">{{ photo.title }}</h3>
-            <p class="mt-1 mb-0 text-xs leading-relaxed text-slate-400 line-clamp-2">{{ photo.caption }}</p>
+            <h3 class="m-0 text-sm font-bold text-ink leading-snug">{{ photo.title }}</h3>
+            <p class="mt-1 mb-0 text-xs leading-relaxed text-ink-secondary line-clamp-2">{{ photo.caption }}</p>
           </div>
         </button>
       }
@@ -152,10 +147,10 @@
     <div class="rec-card p-6 sm:p-7 flex flex-col gap-5">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span class="text-xs font-mono-meta uppercase tracking-widest text-slate-400">
+          <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted">
             In the Media
           </span>
-          <h3 class="m-0 mt-1 text-lg font-bold text-slate-50">
+          <h3 class="font-display m-0 mt-1 text-xl font-medium text-ink">
             Press, Interviews &amp; Videos ({{ allPress.length }})
           </h3>
         </div>
@@ -184,20 +179,20 @@
             class="press-row"
           >
             <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-2 text-[0.7rem] font-mono-meta uppercase tracking-wider text-slate-400">
+              <div class="flex items-center gap-2 text-[0.7rem] font-mono-meta uppercase tracking-wider text-ink-muted">
                 <span class="truncate">{{ item.source }}</span>
                 @if (item.category === 'Video & Photos') {
-                  <i class="fa-brands fa-youtube text-cinema text-xs shrink-0" aria-hidden="true"></i>
+                  <i class="fa-brands fa-youtube text-brand text-xs shrink-0" aria-hidden="true"></i>
                 }
               </div>
-              <div class="text-sm font-semibold text-slate-100 mt-1 leading-snug">
+              <div class="text-sm font-semibold text-ink mt-1 leading-snug">
                 {{ item.title }}
               </div>
               @if (item.highlight) {
-                <div class="text-xs text-slate-400 mt-1">{{ item.highlight }}</div>
+                <div class="text-xs text-ink-secondary mt-1">{{ item.highlight }}</div>
               }
             </div>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 press-row__icon shrink-0" aria-hidden="true"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-ink-muted press-row__icon shrink-0" aria-hidden="true"></i>
           </a>
         }
       </div>
@@ -241,9 +236,9 @@
             class="max-h-[74vh] max-w-full w-auto rounded-2xl border border-white/15 shadow-2xl"
           />
           <figcaption class="text-center max-w-xl">
-            <div class="flex items-center justify-center gap-2.5 text-slate-50">
+            <div class="flex items-center justify-center gap-2.5 text-white">
               <span class="text-base font-bold">{{ current.title }}</span>
-              <span class="text-xs font-mono-meta px-2 py-0.5 rounded-full bg-white/10 text-slate-300">
+              <span class="text-xs font-mono-meta px-2 py-0.5 rounded-full bg-white/15 text-slate-200">
                 {{ (activePhotoIndex() ?? 0) + 1 }} / {{ photos.length }}
               </span>
             </div>

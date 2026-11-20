@@ -710,15 +710,134 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'monte-carlo-simulation',
         title: 'Bayesian Logistic Regression via Metropolis-Hastings',
-        description: 'From-scratch MCMC sampler in pure R estimating posterior distributions and uncertainty on the Pima Indians Diabetes dataset.',
-        thumbnail: 'projects/comparing-multiple-distributions/comparing-multiple-distributions_thumb.webp',
-        githubLink: 'https://github.com/r-a-j/On-the-Theory-and-Practice-of-Monte-Carlo-Simulations',
-        githubReadmeUrl: '',
-        techStack: ['R', 'MCMC', 'Metropolis-Hastings', 'Bayesian Statistics', 'LaTeX'],
+        description: 'From-scratch multi-chain Random Walk Metropolis-Hastings sampler in R estimating full posteriors and credible intervals on the Pima Indians Diabetes dataset, validated against Frequentist MLE.',
+        thumbnail: 'projects/monte-carlo-simulation/monte-carlo-simulation_thumb.webp',
+        githubLink: 'https://github.com/r-a-j/Project_Bayes_Logistic',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Project_Bayes_Logistic/refs/heads/main/README.md',
+        techStack: ['R', 'Metropolis-Hastings', 'MCMC', 'coda', 'mvtnorm', 'caret', 'renv', 'LaTeX'],
         rating: 5,
         category: 'Bayesian Statistics',
         year: 2026,
         language: 'R',
+        caseStudy: {
+            context: 'TU Dortmund · On the Theory & Practice of Monte Carlo Simulations',
+            role: 'Team of 2 · Prof. Dr. Katja Ickstadt & Zeyu Ding',
+            subtitle:
+                'Building a multi-chain Random Walk Metropolis-Hastings sampler from scratch in R to infer full posterior distributions for binary diabetes prediction without relying on Stan or JAGS.',
+            metrics: [
+                {
+                    value: '120,000 Draws',
+                    label: '3 Chains × 40k Post-Burn-In',
+                    detail: 'Custom RWMH sampler in R: 3 chains × 50,000 iterations (10,000 burn-in) initialized from overdispersed N(0, 2) states.',
+                },
+                {
+                    value: 'R-hat <= 1.01',
+                    label: 'Multi-Chain Convergence',
+                    detail: 'Univariate and multivariate Gelman-Rubin PSRF strictly <= 1.01, with ESS from 2,054 (BMI) to 3,113 (Intercept).',
+                },
+                {
+                    value: '77.78% Acc',
+                    label: 'Held-Out Test Set (N = 153)',
+                    detail: '95% CI [70.36%, 84.09%] vs. 65.36% baseline (p = 0.00059); 74.13% balanced accuracy, 62.26% diabetes recall, 86.00% specificity.',
+                },
+                {
+                    value: 'MLE Aligned',
+                    label: 'Validated Against glm()',
+                    detail: 'All 9 posterior means and 95% credible intervals closely match Frequentist MLE on standardized clinical predictors.',
+                },
+            ],
+            problem:
+                'Logistic regression has no conjugate prior for a multivariate Gaussian prior on its coefficients, so the posterior normalizing constant cannot be solved in closed form. Rather than treating Stan or JAGS as a black box, this project implements a Random Walk Metropolis-Hastings (RWMH) sampler directly in R to estimate full posterior distributions and credible intervals across 8 clinical risk factors on the Pima Indians Diabetes dataset (768 patients).',
+            ownership:
+                'Completed as a two-person M.Sc. Data Science project (with Harsh Rana) for Prof. Dr. Katja Ickstadt and Zeyu Ding\'s course On the Theory and Practice of Monte Carlo Simulations (Winter Semester 2025/26, TU Dortmund). I refactored the R script from a single-chain prototype into a reproducible 3-chain MCMC workflow with overdispersed starts, coda Gelman-Rubin (R-hat) and ESS diagnostics, renv dependency locking, portable here::here() paths, and 3x3 diagnostic figures, and authored my final LaTeX technical report.',
+            approachHeading: 'Preprocessing, Custom MCMC Kernel & Diagnostics',
+            approach: [
+                {
+                    label: '01 · Preprocessing & Baseline GLM',
+                    title: 'Standardization & 80/20 Split',
+                    description:
+                        'Standardized all 8 clinical predictors (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age) to mean 0 and SD 1 so an isotropic proposal navigates posterior geometry evenly. Split the 768 patients 80/20 (615 train, 153 test, seed 2026) and fit a binomial glm() baseline as the MLE reference.',
+                },
+                {
+                    label: '02 · Custom RWMH Sampler',
+                    title: 'Log-Posterior & 3 Overdispersed Chains',
+                    description:
+                        'Implemented the log-posterior manually combining a Bernoulli logistic likelihood (with epsilon clamping against log(0)) and a weakly informative N(0, 100 I) prior. Simulated 3 independent chains of 50,000 iterations (10,000 burn-in) starting from N(0, 2) draws with an isotropic multivariate normal random walk tuned to step variance 0.003 (~30-50% acceptance).',
+                },
+                {
+                    label: '03 · Convergence & Validation',
+                    title: 'R-hat, ESS, MLE Overlay & Test Scoring',
+                    description:
+                        'Audited convergence via coda::gelman.diag (all univariate and multivariate R-hat <= 1.01), coda::effectiveSize (ESS 2,054 to 3,113), and LOWESS trace overlays. Verified posterior accuracy by plotting Frequentist MLE lines directly over all 9 marginal posterior densities and evaluating posterior-mean predictions on the 153-patient held-out set.',
+                },
+            ],
+            resultsTable: {
+                title: 'Bayesian RWMH Posteriors vs. Frequentist MLE (Standardized Predictors)',
+                subtitle:
+                    'Pooled across 3 chains (120,000 post-burn-in draws) on 615 training patients with weakly informative prior Beta ~ N(0, 100 I).',
+                columns: ['Parameter', 'Freq. MLE', 'MLE 95% CI', 'Bayes Mean', 'Bayes 95% CI', '95% CI Signal'],
+                rows: [
+                    {
+                        cells: ['Glucose', '1.020', '[0.773, 1.283]', '1.042', '[0.785, 1.308]', 'Strong positive driver'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['BMI', '0.794', '[0.541, 1.062]', '0.813', '[0.556, 1.079]', 'Strong positive driver'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Pregnancies', '0.379', '[0.148, 0.616]', '0.384', '[0.153, 0.617]', 'Positive effect (> 0)'],
+                    },
+                    {
+                        cells: ['DiabetesPedigreeFunction', '0.325', '[0.107, 0.548]', '0.334', '[0.107, 0.561]', 'Positive effect (> 0)'],
+                    },
+                    {
+                        cells: ['Age', '0.206', '[-0.030, 0.442]', '0.212', '[-0.026, 0.451]', 'Mild positive (crosses 0)'],
+                    },
+                    {
+                        cells: ['BloodPressure', '-0.191', '[-0.409, 0.025]', '-0.198', '[-0.418, 0.019]', 'Uncertain (crosses 0)'],
+                    },
+                    {
+                        cells: ['Insulin', '-0.090', '[-0.319, 0.141]', '-0.091', '[-0.324, 0.143]', 'No clear effect (374 raw zeros)'],
+                    },
+                    {
+                        cells: ['SkinThickness', '-0.018', '[-0.258, 0.225]', '-0.017', '[-0.264, 0.232]', 'Centered near 0 (227 raw zeros)'],
+                    },
+                    {
+                        cells: ['Intercept', '-0.853', '[-1.070, -0.646]', '-0.863', '[-1.074, -0.654]', 'Baseline log-odds'],
+                    },
+                ],
+                footnote:
+                    'Held-out test confusion matrix (N = 153, 0.5 cutoff): 86 TN, 14 FP, 20 FN, 33 TP for Diabetes (Outcome = 1). Overall accuracy = 77.78%, balanced accuracy = 74.13%, diabetes recall (sensitivity) = 62.26%, healthy specificity = 86.00%, diabetes precision = 70.21%.',
+            },
+            figuresHeading: 'MCMC Convergence & Posterior Validation Plots',
+            figuresIntro:
+                'Vector PDFs exported directly by Code/main_analysis.R across 120,000 pooled post-burn-in draws. Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/monte-carlo-simulation/posterior-density.webp',
+                    badge: '120k Draws · MLE Check',
+                    title: 'Marginal Posterior Densities vs. Frequentist MLE',
+                    caption:
+                        'All 9 posterior density curves peak right on top of the red dashed glm() MLE vertical lines, confirming the custom RWMH sampler targets the true posterior.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/monte-carlo-simulation/trace-plots.webp',
+                    badge: '3 Chains · R-hat <= 1.01',
+                    title: 'Pooled Post-Burn-In MCMC Trace Plots',
+                    caption:
+                        'Stationary horizontal bands and flat blue LOWESS curves across 120,000 pooled draws confirm healthy mixing across all 9 parameters (ESS 2,054 to 3,113).',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'The from-scratch RWMH sampler reproduced all 9 Frequentist MLE estimates within 0.02 standardized log-odds units while giving direct posterior probability intervals for every clinical risk factor.',
+                'Glucose (mean 1.042, 95% CI [0.785, 1.308]) and BMI (0.813, [0.556, 1.079]) dominate diabetes risk, followed by Pregnancies and DiabetesPedigreeFunction; SkinThickness and Insulin remain centered near zero.',
+                'At the default 0.5 threshold on the 153-patient test split, the classifier reaches 77.78% accuracy (86.00% specificity on healthy patients, 62.26% recall on diabetic patients, 70.21% diabetes precision). Clinical screening would tune the probability cutoff below 0.5 and integrate over full posterior draws.',
+                'Two direct next steps for stronger clinical modeling: impute zero-encoded missing measurements in the Pima dataset (374 raw zeros in Insulin, 227 in SkinThickness) as latent variables, and replace isotropic random-walk proposals (ESS ~2% of raw draws) with adaptive covariance MCMC or HMC/NUTS.',
+            ],
+        },
     },
     {
         id: 'kosh',

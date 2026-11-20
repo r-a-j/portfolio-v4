@@ -35,9 +35,9 @@ export const PROJECTS: ProjectDetails[] = [
                     detail: '0.756 mAP@0.5 on microscope detection, 0.717 mask mAP@0.5 on instance segmentation, and 0.820 mAP@0.5 on mobile.',
                 },
                 {
-                    value: 'PoC → Job',
-                    label: 'Production Spin-Off',
-                    detail: 'Joined PartikelART full-time after this course to scale segmentation, fiber measurement, and active learning under VDA 19.1.',
+                    value: '1st Place',
+                    label: 'Hired & Award-Winning',
+                    detail: 'PartikelART co-founder Dr.-Ing. Ronny Zwinkau hired me after the final presentation; we later won 1st Place at TU Start-up Award 2025.',
                 },
             ],
             problem:
@@ -151,7 +151,7 @@ export const PROJECTS: ProjectDetails[] = [
                 eyebrow: 'Oct 2024 – Nov 2026 · Production Continuation',
                 title: 'How This Grew Into Production at PartikelART',
                 intro:
-                    'After this course, PartikelART Solution GmbH hired me as a Machine Learning & Software Engineer. Moving from a classroom prototype to VDA 19.1 / ISO 16232 factory inspection exposed four practical problems that standard bounding boxes could not handle:',
+                    'During the final Industrial Data Science 2 presentation, PartikelART co-founder Dr.-Ing. Ronny Zwinkau was sitting in the audience. Based on the results and the next-step architecture ideas I presented, he brought me onto the startup in October 2024 as a Machine Learning & Software Engineer, and in 2025 our team went on to win 1st Place at the TU Start-up Award. Moving from a classroom prototype to VDA 19.1 / ISO 16232 factory inspection exposed four practical problems that standard bounding boxes could not handle:',
                 items: [
                     {
                         title: '5–10 µm Small Particles via Tiled U²-Net & ONNX',

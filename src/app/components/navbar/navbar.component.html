@@ -38,14 +38,14 @@
             <span class="swatch-dot" [style.background]="themeService.currentTheme().canvasColor"></span>
             <span class="swatch-dot swatch-dot--accent" [style.background]="themeService.currentTheme().accentColor"></span>
           </span>
-          <span class="hidden lg:inline">{{ themeService.currentTheme().shortName }}</span>
+          <span class="hidden lg:inline">Theme</span>
           <i class="fa-solid fa-chevron-down text-[0.6rem] opacity-70" aria-hidden="true"></i>
         </button>
 
         @if (isThemeMenuOpen()) {
-          <div class="theme-menu" role="menu" aria-label="Theme palettes">
+          <div class="theme-menu" role="menu" aria-label="Theme">
             <div class="theme-menu__header">
-              <span>Theme Palette</span>
+              <span>Theme</span>
               <span class="font-mono-meta text-[0.66rem]">{{ themeService.isLight() ? 'Light' : 'Dark' }}</span>
             </div>
             @for (theme of themeService.themes; track theme.id) {
@@ -169,7 +169,7 @@
       <!-- Mobile Theme Picker -->
       <div class="pt-4 mt-3 border-t border-hairline">
         <div class="text-[0.7rem] font-mono-meta uppercase tracking-wider text-ink-muted mb-2">
-          Theme Palette
+          Theme
         </div>
         <div class="grid grid-cols-2 gap-2">
           @for (theme of themeService.themes; track theme.id) {

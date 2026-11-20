@@ -26,6 +26,10 @@ export class NotificationService {
     }, duration);
   }
 
+  public dismiss(item: NotificationItem): void {
+    this.notifications.update((list) => list.filter((n) => n !== item));
+  }
+
   public messageSent(message: string, duration: number): void {
     this.show(message, 'message-sent', duration);
   }

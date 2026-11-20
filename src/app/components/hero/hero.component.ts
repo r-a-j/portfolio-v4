@@ -34,17 +34,17 @@ export class HeroComponent implements OnDestroy {
     {
       value: '1st Place',
       label: 'TU Start-up Award 2025',
-      detail: '€6,000 Wilo-Foundation & TU capital VC Seed Prize',
+      detail: '€6,000 Wilo-Foundation & €50,000 TU capital prize',
+    },
+    {
+      value: '< 60 sec',
+      label: 'On-Site Particle Analysis',
+      detail: 'U²-Net & OpenCV pipelines for VDA 19.1 inspection',
     },
     {
       value: '~10×',
       label: 'Faster CV Annotation',
-      detail: 'Label Studio backend with ParSeGNet2 & SAM 2.1',
-    },
-    {
-      value: '3,000+',
-      label: 'Particles / Frame UI',
-      detail: 'Real-time VDA 19.1 inspection without UI lag',
+      detail: 'Label Studio active-learning backend with SAM 2.1',
     },
     {
       value: 'Live App',

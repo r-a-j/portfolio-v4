@@ -7,8 +7,15 @@ interface ExperienceCategory {
     items: ExperienceItem[];
 }
 
-interface ExperienceMedia {
+export interface ExperienceMedia {
     url: string;
+    caption?: string;
+}
+
+export interface ExperienceDocument {
+    label: string;
+    url: string;
+    lang: string;
 }
 
 export interface Experience {
@@ -21,4 +28,5 @@ export interface Experience {
     duration: string;
     location: string;
     media: ExperienceMedia[];
+    documents?: ExperienceDocument[];
 }

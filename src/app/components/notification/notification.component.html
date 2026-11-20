@@ -1,29 +1,36 @@
-<div class="notification-container">
+<div class="notification-container" aria-live="polite" aria-atomic="true">
   @for (notification of notificationService.notifications(); track notification) {
-    <div class="notification"
-      [ngClass]="notification.type">
-      <div class="icon-container">
+    <div class="toast" [class]="'toast toast--' + notification.type" role="status">
+      <span class="toast__icon" aria-hidden="true">
         @switch (notification.type) {
           @case ('success') {
-            <img src="icons/success.gif" alt="Success Icon" class="icon" />
+            <i class="fa-solid fa-circle-check"></i>
           }
           @case ('message-sent') {
-            <img src="icons/message-sent.gif" alt="Success Icon" class="icon" />
+            <i class="fa-solid fa-paper-plane"></i>
           }
           @case ('error') {
-            <img src="icons/error.gif" alt="Error Icon" class="icon" />
-          }
-          @case ('info') {
-            <img src="icons/information.gif" alt="Info Icon" class="icon" />
+            <i class="fa-solid fa-circle-exclamation"></i>
           }
           @case ('warning') {
-            <img src="icons/warning.gif" alt="Warning Icon" class="icon" />
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          }
+          @default {
+            <i class="fa-solid fa-circle-info"></i>
           }
         }
-      </div>
-      <div class="message-container">
-        <span class="message">{{ notification.message }}</span>
-      </div>
+      </span>
+
+      <span class="toast__message">{{ notification.message }}</span>
+
+      <button
+        type="button"
+        class="toast__close"
+        (click)="dismiss(notification)"
+        aria-label="Dismiss notification"
+      >
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
     </div>
   }
 </div>

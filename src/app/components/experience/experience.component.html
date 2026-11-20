@@ -1,8 +1,14 @@
-<section id="experience" class="experience-section p-8">
-  <div class="max-w-4xl mx-auto space-y-12">
-    <h2 class="page-heading text-center">Experience</h2>
+<section id="experience" class="experience-section py-16 px-6 border-b border-white/[0.06]">
+  <div class="max-w-4xl mx-auto space-y-10">
+    <div class="text-center">
+      <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
+        Career Timeline
+      </span>
+      <h2 class="page-heading text-center mb-0">Experience</h2>
+    </div>
+
     <ul class="timeline">
-      @for (exp of experiences; track exp) {
+      @for (exp of experiences; track exp.id) {
         <li class="timeline-item" [class.open]="isExpanded(exp.id)"
           style="--rope-color: var(--color-primary)">
           <div class="icon-wrap">
@@ -20,29 +26,44 @@
                 <h3 class="role">{{ exp.role }}</h3>
                 @if (exp.company_url && exp.company_url !== '#') {
                   <a [href]="exp.company_url" target="_blank"
-                    rel="noopener" class="company">
-                    {{ exp.company }}
+                    rel="noopener noreferrer" class="company" (click)="$event.stopPropagation()">
+                    · {{ exp.company }}
                   </a>
                 } @else {
-                  <span class="company">{{ exp.company }}</span>
+                  <span class="company">· {{ exp.company }}</span>
                 }
               </div>
               <span class="meta">
                 {{ exp.duration }} • {{ exp.location }}
               </span>
-              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24">
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
               </svg>
             </button>
             <div class="card-body">
-              @for (cat of exp.description; track cat) {
+              @if (exp.documents?.length) {
+                <div class="flex flex-wrap gap-2 mb-4">
+                  @for (doc of exp.documents; track doc.url) {
+                    <button
+                      type="button"
+                      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.06] border border-white/[0.14] text-slate-100 hover:bg-white/[0.12] cursor-pointer"
+                      (click)="openDocument(doc, $event)"
+                    >
+                      <i class="fa-regular fa-file-pdf text-cinema" aria-hidden="true"></i>
+                      {{ doc.label }}
+                    </button>
+                  }
+                </div>
+              }
+
+              @for (cat of exp.description; track cat.category) {
                 @if (cat.category) {
                   <h4 class="category">
                     {{ cat.category }}
                   </h4>
                 }
                 <ul>
-                  @for (item of cat.items; track item) {
+                  @for (item of cat.items; track item.text) {
                     <li>
                       {{ item.text }}
                     </li>
@@ -51,10 +72,10 @@
               }
               @if (exp.media?.length) {
                 <div class="media-gallery">
-                  @for (m of exp.media; track m; let i = $index) {
-                    <figure class="thumb"
+                  @for (m of exp.media; track m.url; let i = $index) {
+                    <figure class="thumb m-0"
                       (click)="openLightbox(exp.media, i)">
-                      <img [src]="m.url" [alt]="'Media ' + (i + 1)" />
+                      <img [src]="m.url" [alt]="m.caption || ('Media ' + (i + 1))" loading="lazy" />
                     </figure>
                   }
                 </div>
@@ -65,21 +86,36 @@
       }
     </ul>
   </div>
+
   @if (lightbox.open) {
-    <div class="lightbox" (click)="closeLightbox()" (touchstart)="touchStart($event)"
-      (touchend)="touchEnd($event)">
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Experience media preview"
+      (click)="closeLightbox()" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)">
       @if (lightbox.items.length > 1) {
-        <button class="nav prev" (click)="prev($event)">
+        <button type="button" class="nav prev" (click)="prev($event)" aria-label="Previous image">
           ‹
         </button>
       }
-      <img [src]="lightbox.items[lightbox.index].url" alt="expanded media" (click)="$event.stopPropagation()" />
+      <div class="flex flex-col items-center gap-3 px-14" (click)="$event.stopPropagation()">
+        <img [src]="lightbox.items[lightbox.index].url" [alt]="lightbox.items[lightbox.index].caption || 'Expanded media'" />
+        @if (lightbox.items[lightbox.index].caption) {
+          <p class="m-0 text-sm text-slate-200 text-center max-w-xl">
+            {{ lightbox.items[lightbox.index].caption }}
+          </p>
+        }
+      </div>
       @if (lightbox.items.length > 1) {
-        <button class="nav next" (click)="next($event)">
+        <button type="button" class="nav next" (click)="next($event)" aria-label="Next image">
           ›
         </button>
       }
-      <span class="close" (click)="closeLightbox($event)">✕</span>
+      <button type="button" class="close bg-transparent border-0" (click)="closeLightbox($event)" aria-label="Close lightbox">✕</button>
     </div>
   }
+
+  <app-cv-modal
+    [show]="activeDoc() !== null"
+    [pdfUrl]="activeDoc()?.url || ''"
+    [modalTitle]="activeDoc()?.label || 'Reference Document'"
+    (closeModal)="closeDocument()"
+  ></app-cv-modal>
 </section>

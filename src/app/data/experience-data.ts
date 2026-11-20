@@ -11,13 +11,13 @@ export const EXPERIENCES: Experience[] = [
       {
         category: 'TU Start-up Award 2025',
         items: [
-          { text: 'Won 1st Place (€6,000, Wilo-Foundation) and the TU capital VC Seed Sonderpreis for our mobile cleanliness inspection system.' },
+          { text: 'Won 1st Place (€6,000, Wilo-Foundation) and the TU capital VC Seed Sonderpreis (€50,000 convertible note offer) for our mobile technical cleanliness inspection system.' },
         ]
       },
       {
         category: 'Computer Vision',
         items: [
-          { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification.' },
+          { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification — supporting automated on-site particle analysis in under 60 seconds.' },
           { text: 'Implemented Zhang-Suen topological thinning with precomputed 256-entry static LUTs to extract true unrolled centerline lengths of curved fibers.' },
           { text: 'Engineered post-inference HSV saturation and inverted value channel injection to recover faint translucent fibers and dark carbon dust missed by neural networks.' }
         ]
@@ -25,7 +25,7 @@ export const EXPERIENCES: Experience[] = [
       {
         category: 'Active Learning & Data Pipeline',
         items: [
-          { text: 'Built custom Label Studio ML backend (ParSeGNet2 U-Net) with Douglas-Peucker polygon simplification and SAM 2.1 integration, cutting annotation time by ~10x.' },
+          { text: 'Built custom Label Studio ML backend (ParSeGNet2 U²-Net) with Douglas-Peucker polygon simplification and SAM 2.1 integration, accelerating training dataset generation by ~10×.' },
           { text: 'Automated continuous data synchronization between Azure Blob Storage, Label Studio, and training pipelines for human-in-the-loop retraining.' }
         ]
       },
@@ -40,13 +40,46 @@ export const EXPERIENCES: Experience[] = [
         category: 'Consulting & University Teaching',
         items: [
           { text: 'Authored automated Keyence microscope inspection proposal and technical requirements for Tier-1 automotive supplier Stoneridge.' },
-          { text: 'Delivered invited guest lecture for the Industrial Data Science 1 Master\'s course at TU Dortmund on deploying CV models in production.' }
+          { text: 'Co-delivered invited guest lecture for the Industrial Data Science 1 Master\'s course at TU Dortmund on deploying CV models in production.' }
         ]
       }
     ],
-    duration: 'Oct 2024 - Present',
+    duration: 'Oct 2024 - Nov 2026',
     location: 'Dortmund, Germany • Hybrid',
-    media: []
+    documents: [
+      {
+        label: 'Reference Letter (EN)',
+        url: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
+        lang: 'EN',
+      },
+      {
+        label: 'Arbeitszeugnis (DE)',
+        url: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
+        lang: 'DE',
+      },
+    ],
+    media: [
+      {
+        url: 'recognition/tu-award-team.webp',
+        caption: 'PartikelART team winning 1st Place & TU capital Special Prize at TU Start-up Award 2025',
+      },
+      {
+        url: 'recognition/partikelart-lightbox-app.webp',
+        caption: 'PartikelART LightBox hardware running live mobile particle analysis (Feret max/min, MaxInkreis)',
+      },
+      {
+        url: 'recognition/tu-award-trophy.webp',
+        caption: '1st Place Trophy — TU Start-up Award 2025 (CET & Wilo-Foundation)',
+      },
+      {
+        url: 'recognition/tu-capital-certificate.webp',
+        caption: 'TU capital Sonderpreis Urkunde (€50,000 convertible note offer)',
+      },
+      {
+        url: 'recognition/tu-award-stage.webp',
+        caption: 'All finalists and award winners on stage at TU Start-up Award 2025',
+      },
+    ]
   },
   {
     id: 4,

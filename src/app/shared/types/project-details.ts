@@ -43,6 +43,8 @@ export interface ProjectShowcaseArchitectureLayer {
 export interface ProjectShowcase {
     tagline: string;
     versionBadge?: string;
+    brandIcon?: string;
+    wordmark?: string;
     heroBanner: string;
     heroPreviewScreenshot?: string;
     overview: string;

@@ -42,6 +42,8 @@ export const PROJECTS: ProjectDetails[] = [
         showcase: {
             tagline: 'AI-Powered, Offline-First Cinema Discovery & Watchlist Companion for Android',
             versionBadge: 'v2.1.5',
+            brandIcon: 'projects/cinescope/app-icon.png',
+            wordmark: 'projects/cinescope/wordmark.svg',
             heroBanner: 'projects/cinescope/visuals/inbox-hero.png',
             heroPreviewScreenshot: 'projects/cinescope/screenshots/02-discover.jpg',
             overview:

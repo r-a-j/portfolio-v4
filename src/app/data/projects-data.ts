@@ -553,15 +553,159 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'simulation-based-inference',
         title: 'Simulation-Based Inference for LIF Neurons',
-        description: 'Likelihood-free amortized parameter estimation for biophysical neuron dynamics using BayesFlow and Invertible Neural Networks.',
-        thumbnail: 'projects/simulation-based-inference/simulation-based-inference.png',
+        description: 'Amortized neural posterior estimation for a 6-parameter Leaky Integrate-and-Fire neuron simulator in BayesFlow 2, evaluating parameter recovery, calibration, and passive-parameter identifiability.',
+        thumbnail: 'projects/simulation-based-inference/simulation-based-inference_thumb.webp',
         githubLink: 'https://github.com/r-a-j/simulation-based-inference',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/simulation-based-inference/refs/heads/main/README.md',
-        techStack: ['Python', 'BayesFlow', 'TensorFlow', 'Neural Posterior Estimation', 'SciPy', 'NumPy'],
+        techStack: ['Python', 'BayesFlow', 'TensorFlow', 'Keras', 'CouplingFlow', 'SciPy', 'NumPy', 'Matplotlib'],
         rating: 5,
         category: 'Bayesian Statistics',
         year: 2025,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Simulation-Based Inference',
+            role: 'Team of 3 · Prof. Dr. Paul Bürkner',
+            subtitle:
+                'Training an amortized neural posterior estimator (CNN + GRU summary network and CouplingFlow) in BayesFlow 2 to infer six biophysical Leaky Integrate-and-Fire neuron parameters directly from 50 ms voltage traces without an explicit likelihood.',
+            metrics: [
+                {
+                    value: 'r >= 0.998',
+                    label: '4 Threshold & Reset Params',
+                    detail: 'Held-out test recovery (400 traces, 1,000 posterior draws each): E_L = 1.000, V_res = 1.000, t_ref = 0.999, V_th = 0.998.',
+                },
+                {
+                    value: '10,000 Traces',
+                    label: 'Offline Simulation Budget',
+                    detail: '8,000 train / 2,000 validation plus 400 unseen test traces (50 ms window at 0.1 ms step = 501 voltage samples).',
+                },
+                {
+                    value: 'val_loss -8.14',
+                    label: 'Epoch 95 Best Checkpoint',
+                    detail: 'Trained 100 epochs (Adam, batch 64, ReduceLROnPlateau) on an RTX 3070 Laptop GPU with clean convergence and no overfitting.',
+                },
+                {
+                    value: 'Cm & g_L',
+                    label: 'Identifiability Diagnosed',
+                    detail: 'Passive parameters drop to r = 0.491 and r = 0.046 with near-zero contraction, exposing structural confounding via tau_m = Cm/g_L.',
+                },
+            ],
+            problem:
+                'Mechanistic neuron models like Leaky Integrate-and-Fire (LIF) are straightforward to simulate forward, but discrete spike thresholds, voltage resets, refractory holdouts, and stochastic colored synaptic currents make the analytical likelihood intractable for standard MCMC. Simulation-based inference (SBI) bypasses the likelihood by learning a neural posterior directly from simulated parameter-trace pairs, while also showing which biophysical parameters are genuinely identifiable from voltage recordings alone.',
+            ownership:
+                'Completed in a 3-person M.Sc. Data Science group (with Harsh Rana and Siddhartha Karki) in Prof. Dr. Paul Bürkner\'s Simulation-Based Inference course at TU Dortmund (Aug 2025). I authored and ran the full Python pipeline in the repository: implementing the LIF Euler integrator, ordered biophysical prior sampler (V_res < E_L < V_th), colored synaptic current generator, BayesFlow 2 TimeSeriesNetwork + CouplingFlow training script on GPU, and all recovery, SBC, contraction, and predictive check diagnostics.',
+            approachHeading: 'Simulator, Amortized Estimator & Diagnostics',
+            approach: [
+                {
+                    label: '01 · Forward LIF Simulator',
+                    title: '6 Biophysical Priors & Colored Input',
+                    description:
+                        'Simulated 10,000 single-compartment LIF voltage traces over 50 ms (dt = 0.1 ms, 501 time steps) with explicit Euler integration. Sampled six uniform biophysical priors (Cm, g_L, E_L, V_th, V_res, t_ref) under an enforced V_res < E_L < V_th ordering constraint, driven by an exponentially filtered colored synaptic current (tau = 10 ms, 10 Hz modulation) with random per-trial amplitude A in [0.3, 3.0] nA.',
+                },
+                {
+                    label: '02 · BayesFlow 2 Pipeline',
+                    title: 'CNN + GRU Encoder & CouplingFlow',
+                    description:
+                        'Wrapped the batched simulator in BayesFlow 2 BasicWorkflow with float32 casting and z-score standardization via Adapter. Coupled a TimeSeriesNetwork (1D CNN + GRU) to summarize each 501-step voltage trace with a conditional CouplingFlow normalizing flow. Trained offline on an 8,000/2,000 split for 100 epochs (Adam lr = 1e-3, batch 64, ReduceLROnPlateau, ModelCheckpoint), reaching best validation loss -8.1362 at epoch 95.',
+                },
+                {
+                    label: '03 · Posterior Validation',
+                    title: 'Recovery, SBC, Contraction & PPC',
+                    description:
+                        'Evaluated amortized posteriors on 400 unseen test traces (1,000 posterior draws per trace) plus BayesFlow default diagnostics on the 2,000-trace validation set (500 draws). Audited point recovery (Pearson r), rank-based Simulation-Based Calibration (SBC) ECDFs against 95% uniformity bands, posterior z-score vs. contraction plots, and posterior predictive voltage overlays re-simulated through the full stochastic LIF model.',
+                },
+            ],
+            resultsTable: {
+                title: 'Six-Parameter Biophysical Prior Ranges & Posterior Diagnostics',
+                subtitle:
+                    'Test recovery measured on 400 held-out traces (1,000 posterior draws each); posterior contraction and SBC measured on 2,000 validation traces (500 draws each).',
+                columns: ['Parameter', 'Prior Support', 'Test Pearson r', 'Posterior Contraction', 'Identifiability & Calibration'],
+                rows: [
+                    {
+                        cells: ['E_L (Resting potential)', '[-80, -65] mV', '1.000', '~1.00 (Sharp)', 'Near-exact recovery; slight positive SBC rank shift'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['V_res (Reset potential)', '[-80, -70] mV (< E_L)', '1.000', '~1.00 (Sharp)', 'Near-exact recovery; SBC shift linked to -80 mV clip boundary'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['t_ref (Refractory period)', '[1, 5] ms', '0.999', '~1.00 (Sharp)', 'Sharp recovery; rank ECDF well inside 95% band'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['V_th (Spike threshold)', '[-60, -50] mV', '0.998', '~1.00 (Sharp)', 'Sharp recovery; rank ECDF well inside 95% band'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Cm (Membrane capacitance)', '[100, 200] pF', '0.491', 'Low (0.0 to 0.5)', 'Weakly identified; confounded through tau_m = Cm / g_L'],
+                    },
+                    {
+                        cells: ['g_L (Leak conductance)', '[5, 15] nS', '0.046', 'Near 0 (Prior-like)', 'Unidentifiable under unobserved varying input amplitude A'],
+                    },
+                ],
+                footnote:
+                    'Ordering V_res < E_L < V_th is enforced by shifting violating draws by 2 to 5 mV and clipping back to prior bounds. Validation recovery (2,000 traces, 500 draws) closely mirrors test recovery (Cm = 0.432, g_L = 0.066, E_L = 1.000, V_th = 0.998, V_res = 1.000, t_ref = 0.999).',
+            },
+            figuresHeading: 'Posterior Diagnostics & Simulator Checks',
+            figuresIntro:
+                'Plots exported directly from main.ipynb and BayesFlow 2 diagnostic routines. Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/simulation-based-inference/param-recovery.webp',
+                    badge: '400 Held-Out Traces',
+                    title: 'Posterior Mean vs. Ground Truth (All 6 Parameters)',
+                    caption:
+                        'E_L (r = 1.000), V_res (r = 1.000), t_ref (r = 0.999), and V_th (r = 0.998) hug the diagonal, while Cm (0.491) and g_L (0.046) flatten toward the prior mean.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/simulation-based-inference/ppc-voltage-trace.webp',
+                    badge: 'Generative Check',
+                    title: 'Posterior Predictive Check (10 Posterior Draws)',
+                    caption:
+                        'Simulated voltage traces from posterior draws (blue) recover the spike threshold, reset floor, and firing cadence of the observed trace (black) under freshly resampled colored input.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/simulation-based-inference/z-score-contraction.webp',
+                    badge: 'BayesFlow · Contraction',
+                    title: 'Posterior Z-Score vs. Posterior Contraction',
+                    caption:
+                        'Contraction cleanly splits identifiable parameters (parameters_2..5 pinned at 1.0) from passive parameters (parameters_0..1 near 0), where centered z-scores show honest uncertainty rather than overconfidence.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/simulation-based-inference/calibration-ecdf.webp',
+                    badge: 'SBC · 95% Bands',
+                    title: 'Simulation-Based Calibration Rank ECDFs',
+                    caption:
+                        'V_th (parameters_3) and t_ref (parameters_5) sit inside the 95% uniformity bands, while subtle rank shifts show up on E_L (parameters_2) and V_res (parameters_4) near the clipped -80 mV prior boundary.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/simulation-based-inference/loss-trajectory.webp',
+                    badge: '100 Epochs · Adam',
+                    title: 'Training & Validation Loss Trajectory',
+                    caption:
+                        'Validation loss tracks training loss smoothly from 3.08 down to -8.14 (epoch 95) under ReduceLROnPlateau scheduling without overfitting.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/simulation-based-inference/sensitivity-min-med-max.webp',
+                    badge: 'Simulator Sensitivity',
+                    title: 'LIF Voltage Response (Min / Median / Max Priors)',
+                    caption:
+                        'Overlaying extreme and median prior draws shows why threshold, reset, and refractory changes visibly reshape spike trains while passive membrane changes are much subtler.',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Once trained (~12 minutes on an RTX 3070 Laptop GPU), the amortized CouplingFlow generates 1,000 posterior draws per voltage trace in seconds without deriving or evaluating an explicit likelihood.',
+                'Weak recovery on Cm (r = 0.491) and g_L (r = 0.046) reflects a structural identifiability limit, not failed optimization: when per-trial input amplitude A varies unobserved, subthreshold voltage mainly depends on the ratios tau_m = Cm/g_L and R_m = 1/g_L.',
+                'Reading SBC rank ECDFs alongside point recovery exposed subtle sub-millivolt calibration shifts on E_L and V_res that Pearson r = 1.000 hides, partly tied to clipping V_res at -80 mV when enforcing V_res < E_L.',
+                'Practical next steps to unlock passive parameters: reparameterize inference to (tau_m, R_m) or record/fix input current amplitude A, extend recording windows from 50 ms to 200-500 ms using multi-level step and chirp stimuli, and replace boundary clipping with rejection sampling for V_res < E_L.',
+            ],
+        },
     },
     {
         id: 'monte-carlo-simulation',

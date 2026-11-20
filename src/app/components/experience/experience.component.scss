@@ -3,7 +3,7 @@ $muted-gray: var(--color-text-secondary);
 $line-gray: var(--color-border);
 
 .experience-section {
-    background: var(--color-secondary);
+    background: var(--bg-canvas);
 }
 
 .timeline {
@@ -107,28 +107,30 @@ $line-gray: var(--color-border);
 
     h3 {
         margin: 0;
-        font-size: 1rem;
-        font-weight: 600;
-        color: $muted-gray;
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
     }
 
     .meta {
-        font-size: .875rem;
-        color: $muted-gray;
+        font-size: .84rem;
+        font-family: "JetBrains Mono", monospace;
+        color: var(--color-text-muted);
         line-height: 1.4;
     }
 
     .arrow {
         position: absolute;
-        right: 0;
+        right: 0.5rem;
         top: .4rem;
+        fill: var(--color-text-secondary);
         transition: transform .3s ease;
     }
 
     .company {
-        font-size: .85rem;
+        font-size: .88rem;
         font-weight: 500;
-        color: $muted-gray;
+        color: #cbd5e1;
 
         &:hover {
             text-decoration: underline;
@@ -184,12 +186,10 @@ $line-gray: var(--color-border);
 }
 
 .panel--soft-gradient {
-    border-radius: 8px;
-    background: linear-gradient(90deg,
-            rgba(13, 59, 102, .05) 0%,
-            rgba(13, 59, 102, .00) 70%);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .04);
-    padding: 5px 5px 5px 5px;
+    border-radius: 14px;
+    background: #0f141e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.85rem 1rem;
 }
 
 .media-gallery {

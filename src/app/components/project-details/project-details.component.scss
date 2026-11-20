@@ -1,158 +1,115 @@
 .project-detail-container {
-    padding: 2rem;
-    background-color: #fff;
-    text-align: left;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  color: var(--color-text-primary);
 
-    &.is-showcase {
-        max-width: 1180px;
-        margin: 0 auto;
-        background-color: transparent;
-        padding-bottom: 4rem;
-    }
+  &.is-showcase {
+    max-width: 1200px;
+  }
+}
 
-    .top-nav {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
 
-    .back-button {
-        button {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 0.9rem;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 
-        .back-icon {
-            width: 24px;
-            height: 24px;
-            background-image: url('/icons/left-arrow.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: background-image 0.2s ease;
-            margin-right: 5px;
-        }
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
 
-        button:hover .back-icon {
-            background-image: url('/icons/left-arrow.gif');
-        }
-    }
+.readme-header {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 18px;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+}
 
-    .prev-next-buttons {
-        display: flex;
-        gap: 1rem;
+.meta-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
 
-        button {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
+.title {
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.75rem;
+  color: #f8fafc;
+}
 
-        .prev-icon {
-            width: 24px;
-            height: 24px;
-            background-image: url('/icons/left-arrow.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: background-image 0.2s ease;
-            margin-right: 5px;
-        }
+.description {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin: 0 auto 1.5rem;
+  max-width: 62ch;
+  color: #94a3b8;
+}
 
-        button:hover .prev-icon {
-            background-image: url('/icons/left-arrow.gif');
-        }
+.github-button-container {
+  display: flex;
+  justify-content: center;
+}
 
-        .next-icon {
-            width: 24px;
-            height: 24px;
-            background-image: url('/icons/right-arrow.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: background-image 0.2s ease;
-            margin-left: 5px;
-        }
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  background: #f4f6fa;
+  color: #080b11;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.18s ease;
 
-        button:hover .next-icon {
-            background-image: url('/icons/right-arrow.gif');
-        }
-    }
+  &:hover {
+    background: #ffffff;
+  }
+}
 
-    .title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #333;
-        text-align: center;
-    }
-
-    .description {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        color: #555;
-        text-align: center;
-    }
-
-    .github-button-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-
-        .github-button {
-            background-color: var(--color-primary);
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s ease;
-
-            &:hover {
-                background-color: var(--color-primary-hover);
-            }
-        }
-    }
-
-    .content {
-        display: block;
-        margin: 0 auto;
-        max-width: 800px;
-    }
+.content {
+  padding: 2rem;
+  border-radius: 18px;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (max-width: 600px) {
-    .project-detail-container {
-        padding: 1rem;
+  .project-detail-container {
+    padding: 1.25rem 1rem 3rem;
+  }
 
-        .top-nav {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .back-button .back-icon,
-        .prev-icon,
-        .next-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .title {
-            font-size: 1.5rem;
-        }
-
-        .description {
-            font-size: 0.9rem;
-        }
-
-        .github-button-container {
-            margin-bottom: 1rem;
-        }
-    }
+  .content {
+    padding: 1.25rem;
+  }
 }

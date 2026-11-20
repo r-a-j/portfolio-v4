@@ -1,5 +1,12 @@
-
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, OnChanges, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  inject,
+} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -7,13 +14,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   imports: [],
   templateUrl: './cv-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './cv-modal.component.scss'
+  styleUrl: './cv-modal.component.scss',
+  host: {
+    '(window:keydown.escape)': 'onEscape()',
+  },
 })
 export class CvModalComponent implements OnChanges {
   private sanitizer = inject(DomSanitizer);
 
   @Input() pdfUrl = '';
-  @Input() modalTitle = 'Curriculum vitae';
+  @Input() modalTitle = 'Curriculum Vitae';
   @Input() show = false;
   @Output() closeModal = new EventEmitter<void>();
 
@@ -21,6 +31,12 @@ export class CvModalComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrl);
+  }
+
+  onEscape(): void {
+    if (this.show) {
+      this.handleClose();
+    }
   }
 
   handleClose(): void {

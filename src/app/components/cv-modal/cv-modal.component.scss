@@ -1,68 +1,91 @@
-@reference "../../../tailwind.css";
-
-// Modal Styles
 .modal-overlay {
-    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
-
-    .modal-content {
-        @apply rounded-lg shadow-lg relative;
-
-        background-color: var(--color-secondary);
-        width: clamp(80vw, 80%, 60vw);
-        height: clamp(80vh, 80%, 60vh);
-
-        overflow-y: auto;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        .modal-header {
-            @apply flex items-center justify-between px-4 py-2 border-b;
-            border-color: var(--color-border);
-            background-color: var(--color-primary);
-
-            h3 {
-                @apply text-lg font-semibold;
-                color: var(--color-secondary);
-            }
-
-            .close-button {
-                @apply text-xl font-bold flex items-center justify-center transition;
-
-                width: 32px;
-                height: 32px;
-                border-radius: var(--border-radius);
-                box-shadow: var(--box-shadow);
-                background-color: var(--color-accent);
-                color: var(--color-text-primary);
-
-                &:hover {
-                    background-color: var(--color-accent-hover);
-                    box-shadow: var(--box-shadow-hover);
-                }
-
-                &:active {
-                    transform: scale(0.95);
-                }
-            }
-        }
-
-        .pdf-viewer {
-            @apply w-full h-full rounded;
-            min-height: 80%;
-        }
-    }
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 6, 12, 0.82);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
 }
 
-@media (max-width: 768px) {
-    section {
-        button {
-            @apply px-4 py-2 text-sm;
-        }
-    }
+.modal-content {
+  width: min(960px, 94vw);
+  height: min(86vh, 880px);
+  display: flex;
+  flex-direction: column;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.65);
+}
 
-    .modal-overlay {
-        display: none;
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.15rem;
+  background: #0b0f18;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.18s ease, color 0.18s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  &--primary {
+    background: #f4f6fa;
+    color: #080b11;
+    border-color: #f4f6fa;
+
+    &:hover {
+      background: #fff;
+      color: #080b11;
     }
+  }
+}
+
+.close-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.18s ease, color 0.18s ease;
+
+  &:hover {
+    background: rgba(229, 9, 20, 0.2);
+    border-color: rgba(229, 9, 20, 0.45);
+    color: #fff;
+  }
+}
+
+.pdf-viewer {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #080b11;
 }

@@ -1,30 +1,64 @@
-<footer class="bg-primary text-secondary py-6">
-    <div class="container">
-        <!-- Social Media Links -->
-        <div class="social-icons">
-            <a href="https://github.com/r-a-j" target="_blank" class="hover:text-accent" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/rajpawar/" target="_blank" class="hover:text-accent"
-                aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://dev.to/rajpawar" target="_blank" class="hover:text-accent" aria-label="Dev.to">
-                <i class="fab fa-dev"></i>
-            </a>
-            <a href="https://instagram.com/raj.pwr" target="_blank" class="hover:text-accent" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-
-        <!-- Contact Links -->
-        <div class="contact-links">
-            <a href="mailto:er.rajpawar@gmail.com">er.rajpawar&#64;gmail.com</a>
-        </div>
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2.5">
+        <span class="footer-mark" aria-hidden="true">RP<span class="footer-mark__dot"></span></span>
+        <span class="text-sm font-bold text-slate-100">{{ name }}</span>
+      </div>
+      <p class="m-0 text-xs text-slate-400 max-w-md leading-relaxed">
+        Machine Learning, Computer Vision &amp; Full-Stack Applied AI Engineer based in Dortmund, Germany.
+      </p>
     </div>
 
-    <!-- Copyright Text -->
-    <div class="text-center mt-4 text-sm">
-        <p>&copy; {{ currentYear }} Raj Pawar. All Rights Reserved.</p>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-slate-400">
+      <a routerLink="/projects" class="footer-nav-link">Work</a>
+      <a routerLink="/experience" class="footer-nav-link">Experience</a>
+      <a routerLink="/skills" class="footer-nav-link">Capabilities</a>
+      <a routerLink="/contact" class="footer-nav-link">Contact</a>
+      <a [href]="pdfPath" download="Raj_Pawar_CV.pdf" class="footer-nav-link text-slate-200">
+        <i class="fa-solid fa-download text-[0.68rem] mr-1" aria-hidden="true"></i>
+        CV PDF
+      </a>
     </div>
+
+    <div class="flex items-center gap-2.5">
+      <a href="mailto:er.rajpawar@gmail.com" class="footer-email">
+        er.rajpawar&#64;gmail.com
+      </a>
+      <a
+        href="https://github.com/r-a-j"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-icon"
+        aria-label="GitHub"
+      >
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/rajpawar/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-icon"
+        aria-label="LinkedIn"
+      >
+        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+      </a>
+      <a
+        href="https://dev.to/rajpawar"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-icon"
+        aria-label="Dev.to"
+      >
+        <i class="fa-brands fa-dev" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <span>&copy; {{ currentYear }} {{ name }}. All rights reserved.</span>
+    <span class="font-mono-meta text-[0.7rem] text-slate-500">
+      Built with Angular 22 &amp; Tailwind CSS 4
+    </span>
+  </div>
 </footer>

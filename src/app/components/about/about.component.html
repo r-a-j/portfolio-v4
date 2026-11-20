@@ -1,38 +1,41 @@
-<section id="about" class="p-8 text-primary">
-  <div class="max-w-4xl mx-auto text-center space-y-12">
-    <!-- Heading -->
-    <h1 class="page-heading">{{ aboutContent.heading }}</h1>
+<section id="about" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center">
+      <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
+        Background
+      </span>
+      <h2 class="page-heading mb-0">{{ aboutContent.heading }}</h2>
+    </div>
 
-    <!-- TL;DR Section -->
-    <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-6 rounded-lg shadow-md">
-      <h3 class="text-3xl font-semibold mb-4 text-gray-700">TL;DR</h3>
-      <p class="text-lg leading-relaxed text-gray-600 italic text-justify">
-        "{{ aboutContent.tldr }}"
+    <div class="bg-surface border border-white/[0.09] p-6 sm:p-8 rounded-2xl">
+      <div class="text-xs font-mono-meta uppercase tracking-widest text-slate-400 mb-3">Executive Summary</div>
+      <p class="m-0 text-base sm:text-lg leading-relaxed text-slate-100 font-medium">
+        {{ aboutContent.tldr }}
       </p>
     </div>
 
-    <!-- Button -->
-    <div class="mt-8">
-      <button (click)="openCV()"
-        class="bg-blue-500 text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
-        {{ aboutContent.buttonText }}
-      </button>
-    </div>
-
-    <!-- Full Content -->
-    <div class="space-y-8 text-left">
+    <div class="space-y-5 text-left">
       @for (paragraph of aboutContent.paragraphs; track paragraph) {
-        <p class="text-lg leading-relaxed text-gray-700 text-justify">
+        <p class="m-0 text-base leading-relaxed text-slate-400">
           {{ paragraph }}
         </p>
       }
     </div>
 
-    <!-- Modal (only for desktop and tablet) -->
+    <div class="pt-2">
+      <button type="button" (click)="openCV()" class="about-cv-btn">
+        <i class="fa-regular fa-file-lines text-sm" aria-hidden="true"></i>
+        {{ aboutContent.buttonText }}
+      </button>
+    </div>
+
     @if (showCVModal()) {
-      <app-cv-modal [show]="showCVModal()" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
-        (closeModal)="closeCV()">
-      </app-cv-modal>
+      <app-cv-modal
+        [show]="showCVModal()"
+        [pdfUrl]="aboutContent.pdfPath"
+        [modalTitle]="aboutContent.modalTitle"
+        (closeModal)="closeCV()"
+      ></app-cv-modal>
     }
   </div>
 </section>

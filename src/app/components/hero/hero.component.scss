@@ -1,71 +1,231 @@
-@reference "../../../tailwind.css";
-
-// Section Styles
-section {
-    @apply h-screen flex flex-col justify-center items-center text-primary text-center px-4;
-    background-color: var(--color-primary);
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(
+    ellipse 80% 55% at 20% 0%,
+    rgba(229, 9, 20, 0.08) 0%,
+    rgba(8, 11, 17, 0) 65%
+  ),
+  #080b11;
 }
 
-// Profile Picture
-.profile-picture {
-    @apply rounded-full border-4 shadow-lg;
-    border-color: var(--color-primary);
-    box-shadow: var(--box-shadow-hover);
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 90%);
+  pointer-events: none;
 }
 
-div.relative div {
-    display: none;
+.hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.75rem 1.5rem 4.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+  gap: 3rem;
+  align-items: center;
 }
 
-// Greeting Text
-h1 {
-    @apply font-bold mt-6 text-secondary;
-    animation: fadeIn 0.5s ease-out;
-    color: var(--color-secondary);
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #cbd5e1;
+
+  &__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.85);
+  }
+
+  &__sep {
+    color: rgba(255, 255, 255, 0.25);
+  }
 }
 
-p {
-    @apply mt-4 text-lg md:text-xl max-w-xl;
-    color: var(--color-secondary);
-    /* Adjusted to a brighter secondary color for better readability */
+.hero-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4.1vw, 3.45rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.09;
+  color: #f8fafc;
+
+  &__sub {
+    display: block;
+    margin-top: 0.2rem;
+    color: #94a3b8;
+    font-weight: 700;
+  }
 }
 
-.text-accent {
-    color: var(--color-accent);
+.hero-summary {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #94a3b8;
+  max-width: 60ch;
 }
 
-// Call-to-Action Button
-button {
-    @apply mt-8 px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg;
-    background: var(--color-primary-dark);
-    color: var(--color-secondary);
-    transition: transform 0.3s ease;
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+
+  &--primary {
+    background: #f4f6fa;
+    color: #080b11;
+    border: 1px solid #f4f6fa;
 
     &:hover {
-        transform: scale(1.05);
-        background: var(--color-primary-dark);
+      background: #ffffff;
     }
+  }
+
+  &--secondary {
+    background: #0f141e;
+    color: #f4f6fa;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    &:hover {
+      background: #151c2a;
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+  }
+
+  &--ghost {
+    background: rgba(255, 255, 255, 0.03);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
 }
 
-// Animations
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.focus-chip {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
 }
 
-.animate-fadeIn {
-    animation: fadeIn 1s ease-in-out forwards;
+.dossier-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+
+  &__accent {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, #e50914 0%, rgba(229, 9, 20, 0.2) 55%, transparent 100%);
+  }
 }
 
-@media (max-width: 600px) {
-    .custom-project-btn {
-        margin-top: 10px;
-    }
+.portrait-frame {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1c2436 0%, #0b0f18 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.mini-social {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+
+  &:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ledger-cell {
+  background: #0f141e;
+  padding: 1.05rem 1.2rem;
+
+  &__value {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f8fafc;
+    line-height: 1.2;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-top: 0.25rem;
+  }
+
+  &__detail {
+    margin: 0.3rem 0 0;
+    font-size: 0.73rem;
+    line-height: 1.45;
+    color: #7b8ca3;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    padding: 2.75rem 1.25rem 3.25rem;
+    gap: 2.25rem;
+  }
 }

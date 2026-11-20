@@ -1,52 +1,70 @@
-@reference "../../../tailwind.css";
+.contact-form {
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
 
-#contact {
-    @apply p-12 bg-secondary text-primary relative;
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.45rem;
+}
 
-    h2 {
-        @apply text-4xl font-bold mb-4 text-center text-primary-dark;
-    }
+.form-input {
+  width: 100%;
+  background: #080b11;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.72rem 0.95rem;
+  color: #f4f6fa;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.18s ease;
 
-    p {
-        @apply text-lg text-center text-primary-light mb-8;
-    }
+  &::placeholder {
+    color: #64748b;
+  }
 
-    form {
-        @apply bg-white p-8 rounded-2xl shadow-xl space-y-6;
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
 
-        label {
-            @apply block text-sm font-medium text-primary-light mb-2;
-        }
+  &--area {
+    height: 8.5rem;
+    resize: vertical;
+  }
 
-        .input {
-            @apply w-full border border-gray-300 rounded-lg px-4 py-2 text-primary shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition;
+  &.ng-invalid.ng-touched {
+    border-color: #ef4444;
+  }
+}
 
-            &:hover {
-                @apply border-primary-light;
-                /* Subtle hover effect */
-            }
+.form-error {
+  display: block;
+  font-size: 0.78rem;
+  color: #f87171;
+  margin-top: 0.35rem;
+}
 
-            &.textarea {
-                @apply h-32 resize-none;
-            }
+.submit-btn {
+  width: 100%;
+  padding: 0.78rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid #f4f6fa;
+  background: #f4f6fa;
+  color: #080b11;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
 
-            &.ng-invalid.ng-touched {
-                @apply border-red-500;
-                /* Highlight invalid fields */
-            }
-        }
-
-        .button {
-            @apply w-full py-3 text-secondary font-semibold bg-primary rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105;
-            background-color: var(--color-accent);
-        }
-
-        small {
-            @apply text-sm text-red-500 mt-1;
-        }
-    }
-
-    .background-circle {
-        @apply absolute top-[-50px] left-[-50px] w-[300px] h-[300px] bg-accent/20 rounded-full blur-3xl -z-10;
-    }
+  &:hover {
+    background: #ffffff;
+  }
 }

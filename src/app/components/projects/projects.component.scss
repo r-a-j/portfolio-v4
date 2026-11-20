@@ -11,23 +11,22 @@
         margin-bottom: var(--spacing-large);
 
         .filter-chip {
-            padding: var(--spacing-small) var(--spacing-medium);
-            background-color: var(--color-secondary);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            font-size: var(--font-description-size);
+            padding: 0.42rem 0.9rem;
+            background-color: #0f141e;
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s, color 0.2s, transform 0.1s ease;
-
-            &:active {
-                transform: scale(1.05);
-            }
+            transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 
             &.active,
             &:hover,
             &:focus {
-                background-color: var(--color-primary);
-                color: #fff;
+                background-color: #f4f6fa;
+                border-color: #f4f6fa;
+                color: #080b11;
                 outline: none;
             }
         }
@@ -151,8 +150,9 @@
         flex-direction: column;
         flex: 1 1 auto;
         justify-content: space-between;
-        /* ← take up all remaining space */
-        background-color: #fff;
+        background-color: #0f141e;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: none;
         padding: var(--spacing-medium);
         border-bottom-left-radius: var(--border-radius);
         border-bottom-right-radius: var(--border-radius);
@@ -168,6 +168,7 @@
 
     &__description {
         font-size: var(--font-description-size);
+        color: #94a3b8;
         margin-bottom: var(--spacing-medium);
         max-height: 4.5em;
         overflow: hidden;
@@ -212,14 +213,15 @@
     transition: background-color 0.2s, color 0.2s;
 
     &--icon {
-        background-color: var(--color-secondary);
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        color: var(--color-text-muted);
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #cbd5e1;
 
         .btn__icon {
             width: 18px;
             height: 18px;
             margin-right: var(--spacing-small);
+            filter: invert(1);
         }
 
         .btn__fa-icon {
@@ -229,36 +231,19 @@
 
         &:hover,
         &:focus {
-            background-color: var(--color-text-muted);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.28);
+            color: #ffffff;
         }
     }
 
     &--primary {
-        background-color: var(--color-primary);
-        color: white;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(120deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.6),
-                    transparent);
-            transform: skewX(-20deg);
-        }
-
-        &:hover::after {
-            animation: shine 0.8s forwards;
-        }
+        background-color: #f4f6fa;
+        color: #080b11;
 
         &:hover,
         &:focus {
-            background-color: var(--color-accent-hover);
+            background-color: #ffffff;
         }
     }
 }

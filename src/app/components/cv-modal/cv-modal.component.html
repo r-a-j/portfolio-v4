@@ -1,11 +1,46 @@
 @if (show) {
-  <div class="modal-overlay" (click)="handleClose()">
+  <div
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="modalTitle"
+    (click)="handleClose()"
+  >
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-header">
-        <h3>{{ modalTitle }}</h3>
-        <button class="close-button" (click)="handleClose()">&times;</button>
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-file-pdf text-cinema text-sm" aria-hidden="true"></i>
+          <h3 class="m-0 text-sm sm:text-base font-semibold text-slate-100">{{ modalTitle }}</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <a
+            [href]="pdfUrl"
+            download="Raj_Pawar_CV.pdf"
+            class="modal-action modal-action--primary"
+          >
+            <i class="fa-solid fa-download text-xs" aria-hidden="true"></i>
+            Download PDF
+          </a>
+          <a
+            [href]="pdfUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="modal-action"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+            Open Tab
+          </a>
+          <button
+            type="button"
+            class="close-button"
+            (click)="handleClose()"
+            aria-label="Close CV preview"
+          >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-      <iframe [src]="safePdfUrl" frameborder="0" class="pdf-viewer" title="{{ modalTitle }}"></iframe>
+      <iframe [src]="safePdfUrl" class="pdf-viewer" [title]="modalTitle"></iframe>
     </div>
   </div>
 }

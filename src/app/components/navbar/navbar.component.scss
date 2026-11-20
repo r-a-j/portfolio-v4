@@ -1,27 +1,155 @@
-@reference "../../../tailwind.css";
+.site-header {
+  background: rgba(8, 11, 17, 0.84);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-nav {
-    @apply shadow-md;
-    background-color: var(--color-primary);
-    /* Navy Blue */
-    color: var(--color-secondary);
-    /* Soft White */
+.site-nav {
+  max-width: 1200px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
 
-    a {
-        @apply text-sm font-semibold px-4 py-2 transition;
-        color: var(--color-secondary);
-        /* Soft White */
-        text-decoration: none;
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #f4f6fa;
+}
 
-        &:hover {
-            color: var(--color-accent);
-            /* Vibrant Gold */
-        }
+.brand-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #f4f6fa;
+
+  &__dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #e50914;
+  }
+}
+
+.brand-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.18s ease, background-color 0.18s ease;
+
+  &:hover {
+    color: #f4f6fa;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &.active-link {
+    color: #ffffff;
+    font-weight: 600;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.8rem;
+      right: 0.8rem;
+      bottom: 2px;
+      height: 2px;
+      border-radius: 999px;
+      background: #e50914;
     }
+  }
+}
 
-    .active-link {
-        color: var(--color-accent);
-        /* Vibrant Gold */
-        @apply underline;
-    }
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+
+  &:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.44rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #f4f6fa;
+  background: #f4f6fa;
+  color: #080b11;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+
+  &:hover {
+    background: #ffffff;
+  }
+}
+
+.mobile-drawer {
+  padding: 0.75rem 1.5rem 1.25rem;
+  background: #0b0f18;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-link {
+  display: block;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+
+  &:hover,
+  &.active-link {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
 }

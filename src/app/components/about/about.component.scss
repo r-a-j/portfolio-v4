@@ -1,43 +1,19 @@
-@reference "../../../tailwind.css";
+.about-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #0f141e;
+  color: #f4f6fa;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 
-// Ensure all text in the section is justified
-section {
-    @apply p-8 rounded-lg shadow-lg;
-    background-color: var(--color-secondary);
-
-    h2 {
-        @apply text-5xl font-extrabold mb-6 tracking-tight;
-        color: var(--color-text-primary);
-    }
-
-    p {
-        @apply text-lg leading-relaxed text-justify; // Add text-justify for all paragraphs
-        color: var(--color-text-secondary);
-    }
-
-    button {
-        background-color: var(--color-primary);
-        color: #fff;
-        @apply font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300 transform;
-
-        &:hover {
-            background-color: var(--color-primary-hover);
-            @apply scale-105;
-        }
-    }
-}
-
-// TL;DR Section Styles
-.tldr {
-    @apply bg-gray-200 p-4 rounded-lg mb-6;
-
-    h3 {
-        @apply text-3xl font-semibold mb-4;
-        color: var(--color-text-primary);
-    }
-
-    p {
-        @apply text-lg leading-relaxed italic text-justify;
-        color: var(--color-text-secondary);
-    }
+  &:hover {
+    background: #151c2a;
+    border-color: rgba(255, 255, 255, 0.28);
+  }
 }

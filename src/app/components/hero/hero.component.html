@@ -1,43 +1,137 @@
-<section class="h-screen flex flex-col justify-center items-center bg-primary-dark text-primary text-center px-4">
-    <!-- Profile Picture -->
-    <div class="relative">
-        <img src="profile_1_yellow_bg.png" alt="Profile Picture"
-            class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-accent shadow-lg profile-picture">
-        <div class="absolute inset-0 w-full h-full rounded-full border-4 border-transparent bg-accent blur-md">
-        </div>
-    </div>
+<section class="hero-section">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
 
-    <!-- Greeting -->
-    <h1 class="text-4xl md:text-5xl font-bold animate-fadeIn mt-6 text-secondary">
-        {{ greeting }}, I'm <span class="text-accent">Raj Pawar</span>
-    </h1>
+  <div class="hero-container">
+    <!-- Left Column: Positioning, Proof & Direct Recruiter CTAs -->
+    <div class="flex flex-col gap-6">
+      <div class="status-pill">
+        <span class="status-pill__dot" aria-hidden="true"></span>
+        <span>DORTMUND, DE</span>
+        <span class="status-pill__sep" aria-hidden="true">/</span>
+        <span>ML LEAD &#64; PARTIKELART</span>
+        <span class="status-pill__sep hidden sm:inline" aria-hidden="true">/</span>
+        <span class="hidden sm:inline">M.SC. TU DORTMUND</span>
+      </div>
 
-    <!-- Description -->
-    <p class="mt-4 text-lg md:text-xl max-w-xl text-secondary">
-        <span class="text-accent font-semibold">Software Engineer</span> and <span class="text-accent font-semibold">Data Scientist</span> specializing in Computer Vision, Industrial AI, and Bayesian modeling.
-    </p>
+      <h1 class="hero-title">
+        Machine Learning &amp; Computer Vision
+        <span class="hero-title__sub">
+          Full-Stack Applied AI Engineer<span class="text-cinema">.</span>
+        </span>
+      </h1>
 
-    <!-- Call-to-Action Button -->
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <!-- CV Button -->
-        <button (click)="openCV()"
-            class="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform">
-            CV
-            <img src="icons/document-icon.svg" alt="CV Icon" class="h-5 w-5" />
+      <p class="hero-summary">
+        Building real-time VDA 19.1 industrial metrology, SAM 2.1 active learning pipelines,
+        Bayesian inference models, and offline-first Android AI products.
+        <strong class="text-slate-100 font-semibold">1st Place Winner of the TU Start-up Award 2025</strong> —
+        bridging mathematical rigor with reliable production software from factory floors to edge devices.
+      </p>
+
+      <!-- Recruiter Action Row -->
+      <div class="flex flex-wrap items-center gap-3 pt-1">
+        <button type="button" class="cta-btn cta-btn--primary" (click)="openCV()">
+          <i class="fa-regular fa-file-lines text-sm" aria-hidden="true"></i>
+          View &amp; Download CV
         </button>
 
-        <!-- Projects Button -->
-        <a routerLink="/projects" class="font-medium">
-            <button
-                class="px-8 py-3 bg-accent text-secondary rounded-lg font-medium flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-transform custom-project-btn">
-                Projects
-                <img src="icons/project-icon.svg" alt="Projects Icon" class="h-5 w-5" />
-            </button>
+        <a routerLink="/projects" class="cta-btn cta-btn--secondary">
+          Selected Work
+          <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
         </a>
+
+        <button
+          type="button"
+          class="cta-btn cta-btn--ghost"
+          (click)="copyEmail()"
+          [attr.aria-label]="emailCopied() ? 'Email address copied to clipboard' : 'Copy email address ' + email"
+        >
+          <i
+            [class]="emailCopied() ? 'fa-solid fa-check text-emerald-400 text-xs' : 'fa-regular fa-copy text-xs'"
+            aria-hidden="true"
+          ></i>
+          <span class="font-mono-meta text-xs">
+            {{ emailCopied() ? 'Copied to clipboard' : email }}
+          </span>
+        </button>
+      </div>
+
+      <!-- Scannable Core Engineering Focus -->
+      <div class="flex flex-wrap items-center gap-2 pt-2">
+        @for (item of coreFocus; track item) {
+          <span class="focus-chip">{{ item }}</span>
+        }
+      </div>
     </div>
 
-    <app-cv-modal [show]="showCVModal()" [pdfUrl]="aboutContent.pdfPath" [modalTitle]="aboutContent.modalTitle"
-        (closeModal)="closeCV()">
-    </app-cv-modal>
+    <!-- Right Column: Studio Identity & Verifiable Impact Ledger -->
+    <aside class="dossier-card" aria-label="Profile and verified impact metrics">
+      <div class="dossier-card__accent" aria-hidden="true"></div>
 
+      <div class="p-5 sm:p-6 flex items-center gap-4 border-b border-white/[0.08]">
+        <div class="portrait-frame">
+          <img
+            src="profile_1_no_bg.png"
+            alt="Raj Pawar portrait"
+            class="w-full h-full object-cover object-top"
+          />
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-base font-bold text-slate-50 leading-tight">Raj Pawar</div>
+          <div class="text-xs font-medium text-slate-300 mt-0.5">Software Engineer &amp; ML Lead</div>
+          <div class="text-xs font-mono-meta text-slate-400 mt-1">PartikelART Solution GmbH</div>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <a
+            href="https://github.com/r-a-j"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mini-social"
+            aria-label="GitHub"
+          >
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rajpawar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mini-social"
+            aria-label="LinkedIn"
+          >
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="px-5 sm:px-6 py-2.5 bg-white/[0.02] border-b border-white/[0.08] flex items-center justify-between">
+        <span class="text-[0.7rem] font-mono-meta uppercase tracking-[0.14em] text-slate-400">
+          Verified Impact Ledger
+        </span>
+        <span class="text-[0.7rem] font-mono-meta text-slate-500">2024 – 2026</span>
+      </div>
+
+      <div class="ledger-grid">
+        @for (metric of impactMetrics; track metric.label) {
+          <div class="ledger-cell">
+            <div class="ledger-cell__value">{{ metric.value }}</div>
+            <div class="ledger-cell__label">{{ metric.label }}</div>
+            <p class="ledger-cell__detail">{{ metric.detail }}</p>
+          </div>
+        }
+      </div>
+
+      <div class="px-5 sm:px-6 py-3.5 bg-white/[0.02] border-t border-white/[0.08] flex items-center gap-2.5 text-xs text-slate-300">
+        <i class="fa-solid fa-chalkboard-user text-cinema text-xs shrink-0" aria-hidden="true"></i>
+        <span>
+          Invited Guest Lecturer — <span class="text-slate-100 font-medium">Industrial Data Science 1</span>, TU Dortmund
+        </span>
+      </div>
+    </aside>
+  </div>
+
+  <app-cv-modal
+    [show]="showCVModal()"
+    [pdfUrl]="aboutContent.pdfPath"
+    [modalTitle]="aboutContent.modalTitle"
+    (closeModal)="closeCV()"
+  ></app-cv-modal>
 </section>

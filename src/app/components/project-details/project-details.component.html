@@ -1,20 +1,18 @@
 @if (projectDetails) {
   <div class="project-detail-container" [class.is-showcase]="projectDetails.showcase">
     <div class="top-nav">
-      <div class="back-button">
-        <button type="button" (click)="goBack()">
-          <div class="back-icon"></div>
-          Projects
-        </button>
-      </div>
-      <div class="prev-next-buttons">
-        <button type="button" (click)="goToPrevProject()" class="prev-project-button">
-          <div class="prev-icon"></div>
+      <button type="button" class="nav-pill" (click)="goBack()">
+        <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
+        All Work
+      </button>
+      <div class="flex items-center gap-2">
+        <button type="button" class="nav-pill" (click)="goToPrevProject()">
+          <i class="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
           Previous
         </button>
-        <button type="button" (click)="goToNextProject()" class="next-project-button">
+        <button type="button" class="nav-pill" (click)="goToNextProject()">
           Next
-          <div class="next-icon"></div>
+          <i class="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
         </button>
       </div>
     </div>
@@ -25,34 +23,43 @@
         [showcase]="showcaseData"
       ></app-project-showcase>
     } @else {
-      <h1 class="title">{{ projectDetails.title }}</h1>
-      <p class="description">{{ projectDetails.description }}</p>
-      @if (projectDetails.githubLink) {
-        <div class="github-button-container">
-          <a [href]="projectDetails.githubLink" target="_blank" rel="noopener noreferrer" class="github-button">
-            GitHub
-          </a>
+      <div class="readme-header">
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+          <span class="meta-badge">{{ projectDetails.category }}</span>
+          <span class="meta-badge">{{ projectDetails.year }}</span>
+          <span class="meta-badge">{{ projectDetails.language }}</span>
         </div>
-      }
+        <h1 class="title">{{ projectDetails.title }}</h1>
+        <p class="description">{{ projectDetails.description }}</p>
+        @if (projectDetails.githubLink) {
+          <div class="github-button-container">
+            <a [href]="projectDetails.githubLink" target="_blank" rel="noopener noreferrer" class="github-button">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              View Repository on GitHub
+            </a>
+          </div>
+        }
+      </div>
       <div class="content">
         @if (markdownContent) {
           <markdown class="markdown-body" [data]="markdownContent"></markdown>
-        }
-        @if (!markdownContent) {
-          <p>Loading project details...</p>
+        } @else if (projectDetails.githubReadmeUrl) {
+          <p class="text-center text-slate-400 text-sm py-8">Loading project documentation...</p>
+        } @else {
+          <p class="text-center text-slate-400 text-sm py-8">
+            Full code and documentation are available in the GitHub repository linked above.
+          </p>
         }
       </div>
     }
   </div>
 } @else {
-  <div class="project-detail-container text-center py-12">
+  <div class="project-detail-container text-center py-20">
     <h1 class="title">Project Not Found</h1>
     <p class="description mb-8">The project you are looking for does not exist or may have been moved.</p>
-    <div class="back-button inline-block">
-      <button type="button" (click)="goBack()">
-        <div class="back-icon"></div>
-        Back to Projects
-      </button>
-    </div>
+    <button type="button" class="nav-pill mx-auto" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
+      Back to Projects
+    </button>
   </div>
 }

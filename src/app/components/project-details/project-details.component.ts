@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, ChangeDetectorRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '../../services/project.service';
@@ -19,6 +19,7 @@ import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.c
 export class ProjectDetailsComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
+  private titleService = inject(Title);
   private projectService = inject(ProjectService);
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -44,6 +45,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.markdownContent = '';
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
+      this.titleService.setTitle(`${this.projectDetails.title} — Raj Pawar`);
       if (!this.projectDetails.showcase && this.projectDetails.githubReadmeUrl) {
         this.httpSub = this.http.get(this.projectDetails.githubReadmeUrl, { responseType: 'text' })
           .subscribe({
@@ -59,6 +61,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
           });
       }
     } else {
+      this.titleService.setTitle('Project Not Found — Raj Pawar');
       console.error(`Project with ID '${projectId}' not found.`);
     }
     this.cdr.markForCheck();

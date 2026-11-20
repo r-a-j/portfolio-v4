@@ -1,73 +1,126 @@
-<nav class="flex justify-between items-center p-4 text-secondary">
-  <!-- Logo Section -->
-  <div class="text-xl font-bold">
-    <a routerLink="/home" aria-label="Navigate to Home">Raj Pawar</a>
-  </div>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Primary navigation">
+    <!-- Monogram & Name -->
+    <a routerLink="/home" class="brand-link" (click)="closeMenu()" aria-label="Raj Pawar — Home">
+      <span class="brand-mark" aria-hidden="true">
+        RP<span class="brand-mark__dot"></span>
+      </span>
+      <span class="brand-name">Raj Pawar</span>
+    </a>
 
-  <!-- Hamburger Button (Visible on Mobile, Hidden on Desktop) -->
-  <button class="md:hidden text-secondary hover:text-accent focus:outline-none transition duration-300"
-    (click)="toggleMenu()" aria-label="Toggle navigation">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex items-center gap-1 list-none m-0 p-0">
+      @for (item of navItems; track item.route) {
+        <li>
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="active-link"
+            class="nav-link"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
 
-  <!-- Desktop Navigation -->
-  <ul class="hidden md:flex space-x-8">
-    <li>
-      <a routerLink="/home" routerLinkActive="font-bold" aria-current="page"
-      class="hover:text-accent transition duration-300">Home</a>
-    </li>
-    <li>
-      <a routerLink="/about" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">About</a>
-    </li>
-    <li>
-      <a routerLink="/experience" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Experience</a>
-    </li>
-    <li>
-      <a routerLink="/projects" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Projects</a>
-    </li>
-    <li>
-      <a routerLink="/skills" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Skills</a>
-    </li>
-    <li>
-      <a routerLink="/contact" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Contact</a>
-    </li>
-  </ul>
-</nav>
+    <!-- Desktop Recruiter Quick Actions -->
+    <div class="hidden md:flex items-center gap-2.5">
+      <a
+        href="https://github.com/r-a-j"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="icon-btn"
+        aria-label="GitHub profile"
+      >
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/rajpawar/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="icon-btn"
+        aria-label="LinkedIn profile"
+      >
+        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+      </a>
+      <button type="button" class="cv-btn" (click)="openCV()">
+        <i class="fa-regular fa-file-lines text-xs" aria-hidden="true"></i>
+        Resume
+      </button>
+    </div>
 
-<!-- Mobile Menu (only shown when isMenuOpen is true) -->
-@if (isMenuOpen()) {
-  <ul
-    class="md:hidden flex flex-col bg-primary text-secondary p-4 space-y-4 shadow-md transition-transform duration-300">
-    <li>
-      <a routerLink="/home" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Home</a>
-    </li>
-    <li>
-      <a routerLink="/about" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">About</a>
-    </li>
-    <li>
-      <a routerLink="/experience" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Experience</a>
-    </li>
-    <li>
-      <a routerLink="/projects" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Projects</a>
-    </li>
-    <li>
-      <a routerLink="/skills" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Skills</a>
-    </li>
-    <li>
-      <a routerLink="/contact" (click)="closeMenu()" routerLinkActive="font-bold"
-      class="hover:text-accent transition duration-300">Contact</a>
-    </li>
-  </ul>
-}
+    <!-- Mobile Menu Toggle -->
+    <div class="flex md:hidden items-center gap-2">
+      <a
+        [href]="aboutContent.pdfPath"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cv-btn"
+      >
+        Resume
+      </a>
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-label="Toggle navigation menu"
+      >
+        <i
+          [class]="isMenuOpen() ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  @if (isMenuOpen()) {
+    <div class="mobile-drawer md:hidden">
+      <ul class="flex flex-col gap-1 list-none m-0 p-0">
+        @for (item of navItems; track item.route) {
+          <li>
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="active-link"
+              (click)="closeMenu()"
+              class="mobile-link"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+      <div class="flex items-center gap-3 pt-4 mt-3 border-t border-white/[0.08]">
+        <a
+          href="https://github.com/r-a-j"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="icon-btn"
+          aria-label="GitHub profile"
+        >
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/rajpawar/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="icon-btn"
+          aria-label="LinkedIn profile"
+        >
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="mailto:er.rajpawar@gmail.com" class="text-xs font-mono-meta text-slate-400 hover:text-white ml-auto">
+          er.rajpawar&#64;gmail.com
+        </a>
+      </div>
+    </div>
+  }
+</header>
+
+<app-cv-modal
+  [show]="showCVModal()"
+  [pdfUrl]="aboutContent.pdfPath"
+  [modalTitle]="aboutContent.modalTitle"
+  (closeModal)="closeCV()"
+></app-cv-modal>

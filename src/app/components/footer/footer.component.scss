@@ -1,47 +1,104 @@
-@reference "../../../tailwind.css";
+.site-footer {
+  background: #06090f;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
 
-footer {
-    @apply text-secondary py-6;
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.25rem 1.5rem 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
 
-    background-color: var(--color-primary);
+  &__bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.76rem;
+    color: #64748b;
+  }
+}
 
-    .container {
-        @apply mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0;
-    }
+.footer-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: #0f141e;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #f4f6fa;
 
-    a {
-        @apply transition;
-        color: var(--color-secondary);
-        text-decoration: none;
+  &__dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #e50914;
+  }
+}
 
-        &:hover {
-            color: var(--color-accent);
-        }
-    }
+.footer-nav-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.18s ease;
 
-    p {
-        @apply mt-4 text-gray-300 text-center text-sm transition;
-        color: var(--color-secondary);
-        text-decoration: none;
-    }
+  &:hover {
+    color: #ffffff;
+  }
+}
 
-    .social-icons {
-        @apply flex space-x-4 text-xl transition;
-        color: var(--color-secondary);
-        text-decoration: none;
+.footer-email {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 0.42rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: border-color 0.18s ease, color 0.18s ease;
 
-        &:hover {
-            color: var(--color-accent);
-        }
-    }
+  &:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+}
 
-    .contact-links {
-        @apply flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm transition;
-        color: var(--color-secondary);
-        text-decoration: none;
+.footer-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
 
-        &:hover {
-            color: var(--color-accent);
-        }
-    }
+  &:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
 }

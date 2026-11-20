@@ -3,6 +3,13 @@
     background-color: #fff;
     text-align: left;
 
+    &.is-showcase {
+        max-width: 1180px;
+        margin: 0 auto;
+        background-color: transparent;
+        padding-bottom: 4rem;
+    }
+
     .top-nav {
         display: flex;
         justify-content: space-between;

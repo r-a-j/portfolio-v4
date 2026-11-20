@@ -16,16 +16,204 @@ export const PROJECTS: ProjectDetails[] = [
     },
     {
         id: 'cine-scope',
-        title: 'Cinescope',
-        description: 'Cross-platform mobile app built with Ionic and Angular for tracking movies and television series.',
+        title: 'CineScope',
+        description: 'Private, offline-first Android cinema discovery & watchlist platform powered by multimodal Gemini AI, swipe-to-triage inbox, and RxDB.',
         thumbnail: 'projects/cinescope/cinescope_thumb.png',
-        githubLink: 'https://github.com/r-a-j/cinescope',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/cinescope/refs/heads/master/README.md',
-        techStack: ['Ionic', 'Angular', 'Capacitor', 'TypeScript', 'Android'],
-        rating: 4,
+        statusBadge: 'Android • Google Play Beta',
+        externalLinks: [
+            {
+                label: 'User Guide',
+                url: 'https://docs-ten-pi-73.vercel.app/users/',
+                icon: 'fa-solid fa-book-open',
+                style: 'primary',
+            },
+            {
+                label: 'Privacy Policy',
+                url: 'https://docs-ten-pi-73.vercel.app/users/privacy-policy',
+                icon: 'fa-solid fa-shield-halved',
+                style: 'secondary',
+            },
+        ],
+        techStack: ['Android', 'Angular', 'Ionic', 'Capacitor', 'Google Gemini', 'RxDB', 'TypeScript'],
+        rating: 5,
         category: 'Android',
-        year: 2025,
+        year: 2026,
         language: 'TypeScript',
+        showcase: {
+            tagline: 'AI-Powered, Offline-First Cinema Discovery & Watchlist Companion for Android',
+            versionBadge: 'v2.1.5',
+            heroBanner: 'projects/cinescope/visuals/inbox-hero.png',
+            heroPreviewScreenshot: 'projects/cinescope/screenshots/02-discover.jpg',
+            overview:
+                'CineScope reimagines how film and TV enthusiasts discover, capture, and organize what to watch. Built as a native Android application with an offline-first RxDB core and multimodal Google Gemini intelligence, it turns scattered friend recommendations, social screenshots, and natural-language mood queries into a fast, zero-telemetry personal cinema library.',
+            metrics: [
+                {
+                    value: 'Offline-First',
+                    label: 'Local-First RxDB Core',
+                    detail: 'Instant cold-start browsing and full watchlist & watched archive access without an internet connection or login wall.',
+                    icon: 'fa-solid fa-bolt',
+                },
+                {
+                    value: 'Multimodal AI',
+                    label: 'Text, Screenshots & Links',
+                    detail: 'Semantic search by vibe, composer, or plot memory plus automated title extraction directly from shared chats and screenshots.',
+                    icon: 'fa-solid fa-wand-magic-sparkles',
+                },
+                {
+                    value: 'Zero Telemetry',
+                    label: '100% On-Device Privacy',
+                    detail: 'No user accounts, no behavioral analytics, no ads, and portable JSON backups stored strictly under user control.',
+                    icon: 'fa-solid fa-user-shield',
+                },
+                {
+                    value: 'Google Play',
+                    label: 'Native Android Delivery',
+                    detail: 'Shipped with custom Capacitor plugins, OS Share Sheet capture, Play In-App Updates, and signed App Bundles.',
+                    icon: 'fa-brands fa-android',
+                },
+            ],
+            screenshots: [
+                {
+                    src: 'projects/cinescope/screenshots/02-discover.jpg',
+                    badge: 'Discovery',
+                    title: 'Editorial Discover Hub',
+                    caption: 'Live trending spotlight carousel, daily viral hits, and theatrical releases tailored to regional cinema preferences.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/01-ai-search.jpg',
+                    badge: 'Gemini AI',
+                    title: 'Conversational Semantic Search',
+                    caption: 'Ask naturally — like "movie list that has anirudh music" — and resolve straight into interactive catalog cards.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/04-movie-details.jpg',
+                    badge: 'Cinema Dossier',
+                    title: 'Rich Movie Details',
+                    caption: 'Age certifications, trailer previews, Director/Writer/Composer/Cinematography credits, and one-tap library actions.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/06-tv-details.jpg',
+                    badge: 'Streaming Intel',
+                    title: 'TV Series & OTT Availability',
+                    caption: 'Network metadata, season counts, creator credits, and real-time regional Where-to-Watch streaming pills.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/07-episode-guide.jpg',
+                    badge: 'TV Tracking',
+                    title: 'Interactive Episode Guides',
+                    caption: 'Season-by-season episode breakdowns featuring ratings, finale badges, guest stars, and writing/directing credits.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/08-watchlist-grid.jpg',
+                    badge: 'Local-First',
+                    title: 'High-Density Offline Watchlist',
+                    caption: 'Responsive 4-column poster archive effortlessly managing 300+ saved titles offline with instant filtering and sorting.',
+                },
+                {
+                    src: 'projects/cinescope/screenshots/09-watched-history.jpg',
+                    badge: 'Watch Diary',
+                    title: 'Personal Watched Archive',
+                    caption: 'Track every completed film and series locally to power on-device taste profiling and franchise progress.',
+                },
+            ],
+            spotlightHeading: 'From Any Recommendation to Organized Watchlist in Seconds',
+            spotlightIntro:
+                'Most movie recommendations get buried in WhatsApp chats, Instagram Reels, or camera-roll screenshots. CineScope intercepts them straight from the Android Share Sheet and turns triage into a 5-second gesture flow.',
+            spotlights: [
+                {
+                    src: 'projects/cinescope/visuals/multimodal-extraction.png',
+                    eyebrow: 'Android Share Intent + Vision AI',
+                    title: 'Multimodal AI Inbox Capture',
+                    description:
+                        'Forward chat messages, social captions, or poster screenshots directly into CineScope from any Android app. Multimodal Gemini inference identifies candidate titles, deduplicates against your existing library, and enriches each match with metadata automatically.',
+                },
+                {
+                    src: 'projects/cinescope/visuals/swipe-triage.png',
+                    eyebrow: 'Tactile Gesture Engineering',
+                    title: 'Swipe-to-Triage Card Deck',
+                    description:
+                        'Clear pending recommendations with physics-driven gestures and haptic feedback — swipe right to save to your Watchlist, swipe up to mark Watched, or swipe left to Discard, complete with instant undo protection.',
+                },
+            ],
+            highlights: [
+                {
+                    title: 'Conversational & Mood-Based AI Discovery',
+                    description:
+                        'Go far beyond exact title lookup. Query by director collaborations, music composers, narrative tropes, or foggy plot memories and get grounded, catalog-verified recommendations in seconds.',
+                    icon: 'fa-solid fa-magnifying-glass',
+                    tags: ['Google Gemini', 'Semantic Search', 'Entity Resolution'],
+                },
+                {
+                    title: 'Native Android Share Sheet & AI Inbox',
+                    description:
+                        'Custom Android intent handling receives shared text and images from messaging and social apps, queuing extracted titles into a zero-friction review inbox without leaving your flow.',
+                    icon: 'fa-solid fa-inbox',
+                    tags: ['Android Intents', 'Vision AI', 'Capacitor'],
+                },
+                {
+                    title: 'Hybrid On-Device "For You" Taste Engine',
+                    description:
+                        'Computes personalized genre, era, language, and creator affinity scores locally from your watch history and swipe decisions — delivering tailored discovery without exporting a profile to the cloud.',
+                    icon: 'fa-solid fa-sliders',
+                    tags: ['On-Device Ranking', 'Personalization', 'Zero Tracking'],
+                },
+                {
+                    title: 'Franchise & Cinematic Universe Tracker',
+                    description:
+                        'Automatically links multi-part sagas, trilogies, and cinematic universes so you can inspect release order, spot unwatched installments, and track completion progress at a glance.',
+                    icon: 'fa-solid fa-layer-group',
+                    tags: ['Collections', 'Progress Tracking', 'Metadata Graph'],
+                },
+                {
+                    title: 'Regional Streaming & Deep Crew Intelligence',
+                    description:
+                        'Combines live region-aware streaming platform availability with rich cast portraits, key creative crew credits, trailers, and full multi-season episode guides.',
+                    icon: 'fa-solid fa-tv',
+                    tags: ['OTT Availability', 'Episode Guides', 'Regional Cinema'],
+                },
+                {
+                    title: 'Production Native Android Lifecycle',
+                    description:
+                        'Integrates Google Play In-App Updates for seamless release prompts, post-update "What\'s New" highlights, hardened request authentication, and portable JSON library backups.',
+                    icon: 'fa-solid fa-mobile-screen-button',
+                    tags: ['Play Core SDK', 'In-App Updates', 'Signed AAB'],
+                },
+            ],
+            architectureIntro:
+                'Engineered around strict privacy boundaries: personal watchlists never leave the device, while stateless edge orchestration securely mediates AI inference and live cinema metadata.',
+            architecture: [
+                {
+                    layer: 'Layer 01 • Client & Native Bridge',
+                    title: 'Angular + Ionic Mobile Shell & Custom Capacitor Plugins',
+                    description:
+                        'Standalone Angular architecture with reactive state management, gesture-driven animations, haptic feedback, native Android Share Intent ingestion, and Google Play Core in-app update bindings.',
+                    technologies: ['Angular', 'Ionic', 'Capacitor', 'Android Java/Kotlin'],
+                },
+                {
+                    layer: 'Layer 02 • Persistence',
+                    title: 'Offline-First Reactive Storage Engine',
+                    description:
+                        'RxDB document collections persisted locally via IndexedDB power instant library filtering, offline availability across hundreds of titles, and one-tap portable JSON backup/restore.',
+                    technologies: ['RxDB', 'IndexedDB', 'RxJS', 'Local JSON Backup'],
+                },
+                {
+                    layer: 'Layer 03 • Stateless Edge Orchestration',
+                    title: 'Hardened AI & Cinema Metadata Gateway',
+                    description:
+                        'Stateless serverless proxy enforcing origin validation, request authentication, and rate limiting while coordinating multimodal Gemini extraction and real-time catalog/streaming enrichment with zero user data storage.',
+                    technologies: ['Serverless Edge', 'Google Gemini', 'TMDB', 'Rate Limiting'],
+                },
+                {
+                    layer: 'Layer 04 • Delivery & Quality',
+                    title: 'Automated Android Release & Public User Docs',
+                    description:
+                        'Reproducible builds with strict linting and type gates, signed Android App Bundles verified for Google Play distribution, and an isolated user-facing guide & privacy portal.',
+                    technologies: ['Google Play App Signing', 'CI/CD', 'Docusaurus User Portal'],
+                },
+            ],
+            availabilityNote:
+                'CineScope is an actively maintained closed-source Android product in Google Play Closed Testing. Source code, private APIs, and internal infrastructure remain private to protect user security and intellectual property.',
+        },
     },
     {
         id: 'kosh',

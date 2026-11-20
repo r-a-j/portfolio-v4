@@ -47,6 +47,9 @@
         (keyup.enter)="viewProject(project.id)">
         <div class="project-card__image" [style.backgroundImage]="'url(' + project.thumbnail + ')'"
           aria-hidden="true">
+          @if (project.statusBadge) {
+            <span class="project-card__status">{{ project.statusBadge }}</span>
+          }
           <div class="project-card__peek">
             <span class="peek__title">{{ project.title }}</span>
             <div class="peek__badges">
@@ -65,13 +68,21 @@
           <div class="project-card__actions">
             @if (project.githubLink) {
               <a class="btn btn--icon" [href]="project.githubLink" target="_blank"
-                rel="noopener" (click)="$event.stopPropagation()">
+                rel="noopener noreferrer" (click)="$event.stopPropagation()">
                 <img src="technologies/github.svg" alt="" class="btn__icon" aria-hidden="true" />
                 GitHub
               </a>
+            } @else if (project.externalLinks?.length) {
+              <a class="btn btn--icon" [href]="project.externalLinks![0].url" target="_blank"
+                rel="noopener noreferrer" (click)="$event.stopPropagation()">
+                @if (project.externalLinks![0].icon) {
+                  <i [class]="project.externalLinks![0].icon + ' btn__fa-icon'" aria-hidden="true"></i>
+                }
+                {{ project.externalLinks![0].label }}
+              </a>
             }
-            <button class="btn btn--primary" (click)="viewProject(project.id); $event.stopPropagation()">
-              View
+            <button type="button" class="btn btn--primary" (click)="viewProject(project.id); $event.stopPropagation()">
+              {{ project.showcase ? 'Showcase' : 'View' }}
             </button>
           </div>
         </div>

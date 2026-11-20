@@ -1,45 +1,55 @@
 @if (projectDetails) {
-  <div class="project-detail-container">
+  <div class="project-detail-container" [class.is-showcase]="projectDetails.showcase">
     <div class="top-nav">
       <div class="back-button">
-        <button (click)="goBack()">
+        <button type="button" (click)="goBack()">
           <div class="back-icon"></div>
           Projects
         </button>
       </div>
       <div class="prev-next-buttons">
-        <button (click)="goToPrevProject()" class="prev-project-button">
+        <button type="button" (click)="goToPrevProject()" class="prev-project-button">
           <div class="prev-icon"></div>
           Previous
         </button>
-        <button (click)="goToNextProject()" class="next-project-button">
+        <button type="button" (click)="goToNextProject()" class="next-project-button">
           Next
           <div class="next-icon"></div>
         </button>
       </div>
     </div>
-    <h1 class="title">{{ projectDetails.title }}</h1>
-    <p class="description">{{ projectDetails.description }}</p>
-    <div class="github-button-container">
-      <a [href]="projectDetails.githubLink" target="_blank" class="github-button">
-        GitHub
-      </a>
-    </div>
-    <div class="content">
-      @if (markdownContent) {
-        <markdown class="markdown-body" [data]="markdownContent"></markdown>
+
+    @if (projectDetails.showcase; as showcaseData) {
+      <app-project-showcase
+        [project]="projectDetails"
+        [showcase]="showcaseData"
+      ></app-project-showcase>
+    } @else {
+      <h1 class="title">{{ projectDetails.title }}</h1>
+      <p class="description">{{ projectDetails.description }}</p>
+      @if (projectDetails.githubLink) {
+        <div class="github-button-container">
+          <a [href]="projectDetails.githubLink" target="_blank" rel="noopener noreferrer" class="github-button">
+            GitHub
+          </a>
+        </div>
       }
-      @if (!markdownContent) {
-        <p>Loading project details...</p>
-      }
-    </div>
+      <div class="content">
+        @if (markdownContent) {
+          <markdown class="markdown-body" [data]="markdownContent"></markdown>
+        }
+        @if (!markdownContent) {
+          <p>Loading project details...</p>
+        }
+      </div>
+    }
   </div>
 } @else {
   <div class="project-detail-container text-center py-12">
     <h1 class="title">Project Not Found</h1>
     <p class="description mb-8">The project you are looking for does not exist or may have been moved.</p>
     <div class="back-button inline-block">
-      <button (click)="goBack()">
+      <button type="button" (click)="goBack()">
         <div class="back-icon"></div>
         Back to Projects
       </button>

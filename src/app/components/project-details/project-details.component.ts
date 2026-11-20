@@ -6,11 +6,12 @@ import { ProjectService } from '../../services/project.service';
 import { ProjectDetails } from '../../shared/types/project-details';
 import { MarkdownModule } from 'ngx-markdown';
 import { Subscription } from 'rxjs';
+import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.component';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [MarkdownModule],
+  imports: [MarkdownModule, ProjectShowcaseComponent],
   templateUrl: './project-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./project-details.component.scss']
@@ -39,11 +40,11 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   }
 
   private loadProjectDetails(projectId: string): void {
+    this.httpSub?.unsubscribe();
     this.markdownContent = '';
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
-      if (this.projectDetails.githubReadmeUrl) {
-        this.httpSub?.unsubscribe();
+      if (!this.projectDetails.showcase && this.projectDetails.githubReadmeUrl) {
         this.httpSub = this.http.get(this.projectDetails.githubReadmeUrl, { responseType: 'text' })
           .subscribe({
             next: (data: string) => {

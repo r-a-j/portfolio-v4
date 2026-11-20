@@ -53,7 +53,10 @@
       </div>
       <div class="content">
         @if (markdownContent) {
-          <markdown class="markdown-body" [data]="markdownContent"></markdown>
+          <app-markdown-viewer
+            [content]="markdownContent"
+            [sourceUrl]="projectDetails.githubReadmeUrl ?? ''"
+          ></app-markdown-viewer>
         } @else if (projectDetails.githubReadmeUrl) {
           <p class="text-center text-ink-muted text-sm py-8">Loading project documentation...</p>
         } @else {

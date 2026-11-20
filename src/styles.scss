@@ -9,8 +9,8 @@
 @use "@fontsource/jetbrains-mono/400.css" as *;
 @use "@fontsource/jetbrains-mono/500.css" as *;
 @use "@fontsource/jetbrains-mono/600.css" as *;
-@use "github-markdown-css/github-markdown-dark.css";
 @use "./styles/themes";
+@use "./styles/markdown";
 
 :root {
   /* Compatibility tokens mapped to active theme */
@@ -75,50 +75,6 @@ body {
 
 main {
   flex: 1;
-}
-
-/* Theme-aware GitHub Markdown rendering for both Light & Dark themes */
-.markdown-body {
-  max-width: 820px;
-  margin: 0 auto;
-  text-align: left;
-  background-color: transparent !important;
-  color: var(--text-primary) !important;
-  --fgColor-default: var(--text-primary);
-  --fgColor-muted: var(--text-secondary);
-  --fgColor-accent: var(--accent);
-  --bgColor-default: transparent;
-  --bgColor-muted: var(--bg-inset);
-  --borderColor-default: var(--border-subtle);
-  --borderColor-muted: var(--border-subtle);
-
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--text-primary);
-    border-bottom-color: var(--border-subtle);
-  }
-
-  a {
-    color: var(--accent);
-  }
-
-  code, pre {
-    background-color: var(--bg-inset) !important;
-    color: var(--text-primary);
-  }
-
-  table tr {
-    background-color: transparent !important;
-    border-top-color: var(--border-subtle) !important;
-  }
-
-  table tr:nth-child(2n) {
-    background-color: var(--bg-subtle) !important;
-  }
-
-  table th,
-  table td {
-    border-color: var(--border-subtle) !important;
-  }
 }
 
 .font-display {

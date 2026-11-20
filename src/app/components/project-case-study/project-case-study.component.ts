@@ -7,17 +7,17 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MarkdownModule } from 'ngx-markdown';
 import {
   ProjectCaseStudy,
   ProjectDetails,
 } from '../../shared/types/project-details';
 import { CvModalComponent } from '../cv-modal/cv-modal.component';
+import { MarkdownViewerComponent } from '../markdown-viewer/markdown-viewer.component';
 
 @Component({
   selector: 'app-project-case-study',
   standalone: true,
-  imports: [MarkdownModule, CvModalComponent],
+  imports: [CvModalComponent, MarkdownViewerComponent],
   templateUrl: './project-case-study.component.html',
   styleUrl: './project-case-study.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

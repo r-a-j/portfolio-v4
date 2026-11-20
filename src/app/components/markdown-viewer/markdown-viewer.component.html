@@ -1,0 +1,34 @@
+<div
+  class="md-prose"
+  [innerHTML]="renderedHtml"
+  (click)="onContentClick($event)"
+></div>
+
+@if (zoomImageSrc) {
+  <div
+    class="md-lightbox"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="zoomImageAlt"
+    (click)="closeZoom()"
+  >
+    <div class="md-lightbox__inner" (click)="$event.stopPropagation()">
+      <button
+        type="button"
+        class="md-lightbox__close"
+        (click)="closeZoom()"
+        aria-label="Close image preview"
+      >
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+
+      <div class="md-lightbox__frame">
+        <img [src]="zoomImageSrc" [alt]="zoomImageAlt" class="md-lightbox__img" />
+      </div>
+
+      @if (zoomImageAlt && zoomImageAlt !== 'README figure preview') {
+        <p class="md-lightbox__caption">{{ zoomImageAlt }}</p>
+      }
+    </div>
+  </div>
+}

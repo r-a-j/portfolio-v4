@@ -34,17 +34,10 @@
             "styles": [
               "src/tailwind.css",
               "src/styles.scss",
+              "node_modules/katex/dist/katex.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
-            "scripts": [],
-            "externalDependencies": [
-              "marked-katex-extension",
-              "katex",
-              "mermaid",
-              "clipboard",
-              "emoji-toolkit",
-              "prismjs"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

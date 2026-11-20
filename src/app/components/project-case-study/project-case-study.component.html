@@ -291,9 +291,12 @@
       </button>
 
       @if (showReadme) {
-        <div class="px-6 pb-6 pt-4 border-t border-hairline">
+        <div class="px-6 pb-6 pt-5 border-t border-hairline">
           @if (markdownContent) {
-            <markdown class="markdown-body" [data]="markdownContent"></markdown>
+            <app-markdown-viewer
+              [content]="markdownContent"
+              [sourceUrl]="project.githubReadmeUrl ?? ''"
+            ></app-markdown-viewer>
           } @else {
             <p class="text-sm text-ink-muted m-0 py-4 text-center">Loading README from GitHub...</p>
           }

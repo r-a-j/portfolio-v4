@@ -4,15 +4,15 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProjectService } from '../../services/project.service';
 import { ProjectDetails } from '../../shared/types/project-details';
-import { MarkdownModule } from 'ngx-markdown';
 import { Subscription } from 'rxjs';
 import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.component';
 import { ProjectCaseStudyComponent } from '../project-case-study/project-case-study.component';
+import { MarkdownViewerComponent } from '../markdown-viewer/markdown-viewer.component';
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [MarkdownModule, ProjectShowcaseComponent, ProjectCaseStudyComponent],
+  imports: [MarkdownViewerComponent, ProjectShowcaseComponent, ProjectCaseStudyComponent],
   templateUrl: './project-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./project-details.component.scss']

@@ -57,6 +57,15 @@
   --logo-invert: invert(1);
   --selection-bg: rgba(212, 154, 71, 0.32);
   --selection-text: #ffffff;
+
+  --code-bg: #141412;
+  --code-header-bg: #1c1b18;
+  --hl-comment: #7f786c;
+  --hl-keyword: #e0a458;
+  --hl-string: #98c379;
+  --hl-number: #d19a66;
+  --hl-title: #7eb8da;
+  --hl-attr: #c89be0;
 }
 
 /* 2. Monochrome Obsidian (Minimal Swiss Dark, Zero Color Chrome) */
@@ -107,6 +116,15 @@
   --logo-invert: invert(1);
   --selection-bg: rgba(255, 255, 255, 0.22);
   --selection-text: #ffffff;
+
+  --code-bg: #101012;
+  --code-header-bg: #18181b;
+  --hl-comment: #71717a;
+  --hl-keyword: #e4e4e7;
+  --hl-string: #a7f3d0;
+  --hl-number: #fde68a;
+  --hl-title: #93c5fd;
+  --hl-attr: #d8b4fe;
 }
 
 /* 3. Warm Paper & Prussian Ink (Editorial Light Mode) */
@@ -157,6 +175,15 @@
   --logo-invert: none;
   --selection-bg: rgba(30, 75, 122, 0.2);
   --selection-text: #181816;
+
+  --code-bg: #f4f1ea;
+  --code-header-bg: #ebe6db;
+  --hl-comment: #78736a;
+  --hl-keyword: #9a3412;
+  --hl-string: #166534;
+  --hl-number: #1e4b7a;
+  --hl-title: #4338ca;
+  --hl-attr: #7e22ce;
 }
 
 /* 4. Warm Charcoal & Scientific Sage (Calm Lab Dark) */
@@ -207,4 +234,13 @@
   --logo-invert: invert(1);
   --selection-bg: rgba(95, 168, 145, 0.32);
   --selection-text: #ffffff;
+
+  --code-bg: #111513;
+  --code-header-bg: #191e1b;
+  --hl-comment: #6e7e77;
+  --hl-keyword: #73bda5;
+  --hl-string: #a3be8c;
+  --hl-number: #e4be73;
+  --hl-title: #81a1c1;
+  --hl-attr: #b48ead;
 }

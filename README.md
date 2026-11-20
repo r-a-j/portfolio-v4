@@ -17,7 +17,7 @@
 ## Prerequisites
 
 - **[pnpm](https://pnpm.io/) 10+** (`packageManager` is pinned to `pnpm@10.32.1`)
-- **Node.js `^22.22.3 || ^24.15.0 || >=26.0.0`**
+- **Node.js `24.x`**
   - You do **not** need to change your system-wide Node.js version if it is older: `package.json` configures `pnpm.executionEnv.nodeVersion` (`24.22.3`), so `pnpm` automatically fetches and runs a project-scoped Node 24 runtime for all scripts.
 
 ---
@@ -89,12 +89,14 @@ Projects are defined in `src/app/data/projects-data.ts`:
 
 ---
 
-## Deployment
+## Deployment & CI
 
-Pushing to `master` triggers `.github/workflows/production.yaml`, which:
-1. Sets up `pnpm` + Node.js 24.
-2. Pulls Vercel production configuration and injects EmailJS secrets into `src/environments/environment.prod.ts`.
-3. Builds with `vercel build --prod` (`pnpm run build`) and deploys to [https://www.rajpawar.in/](https://www.rajpawar.in/).
+- **Pull Requests (`.github/workflows/ci.yaml`):** Automatically runs `pnpm check` (`lint`, `typecheck`, and production `build`) on every PR targeting `master`.
+- **Production Deploys (`.github/workflows/production.yaml`):** Pushing to `master` runs:
+  1. `pnpm install --frozen-lockfile` on Node.js 24 with concurrency protection.
+  2. Pre-deploy quality gate (`pnpm lint` + `pnpm typecheck`).
+  3. Vercel environment pull and EmailJS secret injection into `src/environments/environment.prod.ts`.
+  4. `vercel build --prod` (`pnpm run build`) and prebuilt edge deploy to [https://rajpawar.in/](https://rajpawar.in/).
 
 Before pushing, run:
 

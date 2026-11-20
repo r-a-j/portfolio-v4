@@ -15,7 +15,7 @@ export const EXPERIENCES: Experience[] = [
         ]
       },
       {
-        category: 'Computer Vision & Sub-10μm Metrology',
+        category: 'Computer Vision',
         items: [
           { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification.' },
           { text: 'Implemented Zhang-Suen topological thinning with precomputed 256-entry static LUTs to extract true unrolled centerline lengths of curved fibers.' },

@@ -3,7 +3,7 @@ import { Experience } from "../shared/types/experience-details";
 export const EXPERIENCES: Experience[] = [
   {
     id: 5,
-    role: 'Software Engineer & ML Lead',
+    role: 'Machine Learning & Software Engineer',
     company: 'PartikelART Solution GmbH',
     company_url: 'https://partikel-art.de/',
     company_logo_url: 'experience/partikelart/PartikelART-Logo.svg',

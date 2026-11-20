@@ -41,13 +41,13 @@ export const OFFICIAL_REFERENCE = {
       label: 'Read Reference Letter (EN)',
       language: 'English PDF',
       pdfUrl: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
-      modalTitle: 'Recommendation Letter — PartikelART Solution GmbH (EN)',
+      modalTitle: 'Recommendation Letter: PartikelART Solution GmbH (EN)',
     },
     {
       label: 'Arbeitszeugnis ansehen (DE)',
       language: 'German PDF',
       pdfUrl: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
-      modalTitle: 'Arbeitszeugnis — PartikelART Solution GmbH (DE)',
+      modalTitle: 'Arbeitszeugnis: PartikelART Solution GmbH (DE)',
     },
   ] as ReferenceDocument[],
 };
@@ -70,7 +70,7 @@ export const RECOGNITION_PHOTOS: RecognitionPhoto[] = [
   {
     src: 'recognition/tu-award-trophy.webp',
     badge: 'Wilo-Foundation',
-    title: 'TU Start-up Award 2025 — 1st Place Trophy',
+    title: 'TU Start-up Award 2025: 1st Place Trophy',
     caption:
       'Awarded by CET (Centrum für Entrepreneurship & Transfer) and the Wilo-Foundation at TU Dortmund University.',
   },
@@ -113,7 +113,7 @@ export const PRESS_COVERAGE: PressItem[] = [
     category: 'Official & Awards',
   },
   {
-    source: 'CET — TU Dortmund',
+    source: 'CET, TU Dortmund',
     title: 'TU Start-up Award Event Site',
     url: 'https://startup.tu-dortmund.de/',
     category: 'Official & Awards',
@@ -155,7 +155,7 @@ export const PRESS_COVERAGE: PressItem[] = [
   },
   {
     source: 'Campus Start-ups NRW',
-    title: 'PartikelART Solution GmbH — Startup Profile',
+    title: 'PartikelART Solution GmbH Startup Profile',
     url: 'https://www.campus-start-ups.nrw/startupprofile/partikel_art_',
     category: 'Ecosystem',
   },

@@ -46,12 +46,12 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.markdownContent = '';
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
-      this.titleService.setTitle(`${this.projectDetails.title} — Raj Pawar`);
+      this.titleService.setTitle(`${this.projectDetails.title} | Raj Pawar`);
       if (!this.projectDetails.showcase && !this.projectDetails.caseStudy && this.projectDetails.githubReadmeUrl) {
         this.fetchReadme(this.projectDetails.githubReadmeUrl);
       }
     } else {
-      this.titleService.setTitle('Project Not Found — Raj Pawar');
+      this.titleService.setTitle('Project Not Found | Raj Pawar');
       console.error(`Project with ID '${projectId}' not found.`);
     }
     this.cdr.markForCheck();

@@ -39,7 +39,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { name: 'lme4', faIcon: 'fa-solid fa-sliders' },
     ],
     usedIn:
-      'TU Dortmund M.Sc. Data Science — 44-year Arctic sea ice AR(1) models, LIF neuron Simulation-Based Inference, and Metropolis-Hastings in pure R.',
+      'TU Dortmund M.Sc. Data Science: 44-year Arctic sea ice AR(1) models, LIF neuron Simulation-Based Inference, and Metropolis-Hastings in pure R.',
   },
   {
     title: 'Web, Mobile & Backend',

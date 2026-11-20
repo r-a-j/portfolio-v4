@@ -265,7 +265,7 @@
             <span class="phone-frame__speaker" aria-hidden="true"></span>
             <img
               [src]="shot.src"
-              [alt]="shot.title + ' — ' + shot.caption"
+              [alt]="shot.title + ': ' + shot.caption"
               loading="lazy"
               class="block w-full aspect-[9/19.5] object-cover rounded-[17px]"
             />
@@ -483,7 +483,7 @@
         <figure class="m-0 flex flex-col items-center gap-3.5">
           <img
             [src]="current.src"
-            [alt]="current.title + ' — ' + current.caption"
+            [alt]="current.title + ': ' + current.caption"
             class="lightbox__img"
           />
           <figcaption class="text-center max-w-md text-slate-50">

@@ -14,7 +14,7 @@ export const EXPERIENCES: Experience[] = [
       {
         category: 'Computer Vision',
         items: [
-          { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification — supporting automated on-site particle analysis in under 60 seconds.' },
+          { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification, supporting automated on-site particle analysis in under 60 seconds.' },
           { text: 'Implemented Zhang-Suen topological thinning with precomputed 256-entry static LUTs to extract true unrolled centerline lengths of curved fibers.' },
           { text: 'Engineered post-inference HSV saturation and inverted value channel injection to recover faint translucent fibers and dark carbon dust missed by neural networks.' }
         ]
@@ -67,7 +67,7 @@ export const EXPERIENCES: Experience[] = [
       },
       {
         url: 'recognition/tu-award-trophy.webp',
-        caption: '1st Place Trophy — TU Start-up Award 2025 (CET & Wilo-Foundation)',
+        caption: '1st Place Trophy, TU Start-up Award 2025 (CET & Wilo-Foundation)',
       },
       {
         url: 'recognition/tu-capital-certificate.webp',

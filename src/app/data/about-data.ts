@@ -47,12 +47,12 @@ export const ABOUT_CONTENT = {
         {
             label: 'PartikelART Reference (EN)',
             url: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
-            modalTitle: 'Recommendation Letter — PartikelART Solution GmbH (EN)',
+            modalTitle: 'Recommendation Letter: PartikelART Solution GmbH (EN)',
         },
         {
             label: 'PartikelART Arbeitszeugnis (DE)',
             url: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
-            modalTitle: 'Arbeitszeugnis — PartikelART Solution GmbH (DE)',
+            modalTitle: 'Arbeitszeugnis: PartikelART Solution GmbH (DE)',
         },
     ] as AboutReferenceLink[],
     buttonText: 'View CV',

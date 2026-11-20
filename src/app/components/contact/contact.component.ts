@@ -106,7 +106,7 @@ export class ContactComponent implements OnInit, OnDestroy {
         environment.emailPublicKey
       )
       .then(() => {
-        this.notificationService.messageSent('Message sent — I will reply shortly.', 5000);
+        this.notificationService.messageSent('Message sent. I will reply shortly.', 5000);
         this.contactForm.reset();
         this.isSending.set(false);
       })

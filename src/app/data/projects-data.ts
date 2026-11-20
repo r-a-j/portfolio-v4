@@ -4,7 +4,7 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'metal-nonmetal-classification',
         title: 'Particle Classification & Segmentation (VDA 19.1)',
-        description: 'Deep learning classification and segmentation of metallic, non-metallic, and fiber particles across microscope and mobile images — from TU Dortmund PoC to production at PartikelART.',
+        description: 'Deep learning classification and segmentation of metallic, non-metallic, and fiber particles across microscope and mobile images, from TU Dortmund PoC to production at PartikelART.',
         thumbnail: 'projects/metal-nonmetal-classification/metal-nonmetal-classification_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Particle-Classification-and-Segmentation',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Particle-Classification-and-Segmentation/refs/heads/main/README.md',
@@ -17,7 +17,7 @@ export const PROJECTS: ProjectDetails[] = [
             context: 'TU Dortmund · Industrial Data Science 2',
             role: 'Team of 5 · U-Net, Mobile CNN & Gradio App',
             subtitle:
-                'Classifying metallic and non-metallic contaminants across high-resolution microscope images and low-resolution smartphone photos — the university project that led directly to my 2-year engineering role at PartikelART Solution GmbH.',
+                'Classifying metallic and non-metallic contaminants across high-resolution microscope images and low-resolution smartphone photos. This university project led directly to my 2-year engineering role at PartikelART Solution GmbH.',
             metrics: [
                 {
                     value: '54,540',
@@ -143,7 +143,7 @@ export const PROJECTS: ProjectDetails[] = [
                     badge: 'U-Net · Diagnostics',
                     title: 'U-Net Instability Diagnostics',
                     caption:
-                        'Training loss dropped smoothly while validation accuracy swung from 32% to 92% — directly showing why box-derived masks fail on fine particle contours.',
+                        'Training loss dropped smoothly while validation accuracy swung from 32% to 92%, directly showing why box-derived masks fail on fine particle contours.',
                     surface: 'light',
                 },
             ],
@@ -183,7 +183,7 @@ export const PROJECTS: ProjectDetails[] = [
                 'Crop-level classification is much easier than full-frame detection: the custom CNN reached 97% on pre-cropped microscope particles, while YOLOv8n sat at 0.756 mAP@0.5 because textured filter backgrounds add localization noise.',
                 'Label quality matters more than architecture tweaks: training U-Net on masks approximated from rectangular YOLO boxes caused 32%–92% validation swings. Accurate polygon and SAM masks later proved essential in production.',
                 'Small datasets overfit quickly without checkpoint selection: mobile YOLOv8n peaked at 0.825 mAP@0.5 around epoch 144 and fell to 0.665 by epoch 200.',
-                'Industrial computer vision under VDA 19.1 rarely stops at neural inference — deterministic geometry (Feret calipers, skeleton length) and optical physics (cross-polarization) were what made measurements reliable on real parts.',
+                'Industrial computer vision under VDA 19.1 rarely stops at neural inference. Deterministic geometry (Feret calipers, skeleton length) and optical physics (cross-polarization) were what made measurements reliable on real parts.',
             ],
         },
     },
@@ -228,11 +228,11 @@ export const PROJECTS: ProjectDetails[] = [
             liveDemoUrl: 'https://cinescope-rho.vercel.app/tabs/discover',
             liveDemoTitle: 'Try CineScope Live',
             liveDemoDescription:
-                'Launch the live Ionic/Angular web build directly inside a mobile viewport frame — or open it in a full tab. Catalog search, streaming lookups, and Gemini queries hit the live API while your watchlist persists locally in IndexedDB.',
+                'Launch the live Ionic/Angular web build directly inside a mobile viewport frame, or open it in a full tab. Catalog search, streaming lookups, and Gemini queries hit the live API while your watchlist persists locally in IndexedDB.',
             liveDemoPrompts: [
                 'Try natural-language search like "movie list that has anirudh music"',
                 'Open any movie or TV series to inspect cast, crew, and regional OTT providers',
-                'Add titles to your Watchlist or Watched tab — stored locally with zero login',
+                'Add titles to your Watchlist or Watched tab, stored locally with zero login',
             ],
             overview:
                 'CineScope is an Android and Web app for discovering, saving, and organizing movies and TV series. Built with Angular, Ionic, Capacitor, and a dedicated stateless API for TMDB/Gemini queries, it lets you search naturally, forward recommendations from chats or screenshots into a swipeable inbox, and keep your entire personal watchlist strictly on-device in RxDB.',
@@ -273,7 +273,7 @@ export const PROJECTS: ProjectDetails[] = [
                     src: 'projects/cinescope/screenshots/01-ai-search.jpg',
                     badge: 'Gemini Search',
                     title: 'Natural-Language Search',
-                    caption: 'Query by composer, vibe, or partial memory — such as "movie list that has anirudh music" — resolved to catalog cards.',
+                    caption: 'Query by composer, vibe, or partial memory (such as "movie list that has anirudh music") resolved to catalog cards.',
                 },
                 {
                     src: 'projects/cinescope/screenshots/04-movie-details.jpg',
@@ -322,7 +322,7 @@ export const PROJECTS: ProjectDetails[] = [
                     eyebrow: 'Gesture Stack',
                     title: 'Swipe-to-Triage Deck',
                     description:
-                        'Review queued titles with swipe gestures and haptic feedback — swipe right for Watchlist, up for Watched, or left to Discard, with instant undo.',
+                        'Review queued titles with swipe gestures and haptic feedback: swipe right for Watchlist, up for Watched, or left to Discard, with instant undo.',
                 },
             ],
             highlights: [

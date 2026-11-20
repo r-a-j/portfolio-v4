@@ -32,7 +32,6 @@ export const OFFICIAL_REFERENCE = {
   authorRole: 'Managing Director',
   date: 'November 2026',
   period: '1 Oct 2024 – 15 Nov 2026',
-  gradeSummary: 'German Arbeitszeugnis Grade 1.0 ("stets zu unserer vollsten Zufriedenheit")',
   quote:
     'Through his outstanding technical contributions, Mr. Pawar played a key role in advancing our core AI technology. His model optimizations were instrumental in supporting our goal of automated on-site particle analysis in under 60 seconds. His work on active learning and automated annotation accelerated the generation of training data by approximately a factor of ten.',
   closingQuote:

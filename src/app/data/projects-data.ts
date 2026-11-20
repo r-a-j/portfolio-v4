@@ -408,15 +408,147 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'applied-bayesian-data-analysis',
         title: 'Bayesian Hierarchical Modeling of Arctic Sea Ice',
-        description: '44-year spatio-temporal study of Arctic sea ice decline comparing No-AR vs AR(1) models in Stan/brms with LOO-CV.',
+        description: 'Spatio-temporal Bayesian modeling of NSIDC Arctic sea ice extent across 14 regions (1979–2023), comparing No-AR and AR(1) hierarchical models in Stan/brms with LOO-CV and prior sensitivity checks.',
         thumbnail: 'projects/applied-bayesian-data-analysis/applied-bayesian-data-analysis_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Applied-Bayesian-Data-Analysis',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Applied-Bayesian-Data-Analysis/refs/heads/main/README.md',
-        techStack: ['R', 'Stan', 'brms', 'Bayesian Statistics', 'LOO-CV', 'ggplot2'],
+        techStack: ['R', 'Stan', 'brms', 'Python', 'LOO-CV', 'bayesplot', 'ggplot2', 'data.table'],
         rating: 5,
         category: 'Bayesian Statistics',
         year: 2025,
         language: 'R',
+        caseStudy: {
+            context: 'TU Dortmund · Applied Bayesian Data Analysis',
+            role: 'Team of 2 · Prof. Paul Bürkner & Prof. Katja Ickstadt',
+            subtitle:
+                'Modeling 45 years of NSIDC satellite sea ice measurements across 14 Arctic subregions in Stan and brms to separate long-term decline from regional baselines and year-to-year persistence.',
+            metrics: [
+                {
+                    value: '+73.3 ELPD',
+                    label: 'AR(1) vs. No-AR (LOO-CV)',
+                    detail: 'SE = 27.6 (> 2.65 SE), showing strong predictive improvement when modeling year-to-year residual autocorrelation.',
+                },
+                {
+                    value: 'φ = 0.58',
+                    label: 'Lag-1 Persistence',
+                    detail: '95% credible interval [0.50, 0.66], confirming that sea ice anomalies persist strongly across consecutive years.',
+                },
+                {
+                    value: '14 Regions',
+                    label: 'NSIDC Satellite Record',
+                    detail: '28 regional CSV files (1979–2023) merged in Python and modeled as annual log sea ice extent across the Arctic.',
+                },
+                {
+                    value: 'R-hat = 1.00',
+                    label: 'Clean MCMC Convergence',
+                    detail: '2 HMC chains × 4,000 iterations (ESS 900–2,200), validated across two prior sets with zero post-warmup divergences.',
+                },
+            ],
+            problem:
+                'Arctic sea ice extent is a core indicator of climate change, but collapsing satellite measurements into a single global trend masks stark regional differences. The Central Arctic stays heavily ice-covered while the Barents and Kara Seas are declining steeply, and ice extent in one year carries over into the next. Treating regions as independent or ignoring temporal autocorrelation produces overconfident intervals and weaker out-of-sample predictions.',
+            ownership:
+                'Completed as a two-person M.Sc. Data Science project (with Harsh Rana) in Prof. Paul Bürkner (creator of brms) and Prof. Katja Ickstadt\'s Applied Bayesian Data Analysis course at TU Dortmund. I built the Python/pandas ETL script merging all 28 raw NSIDC regional CSVs into a unified dataset, led the exploratory data analysis and ggplot2 diagnostics in R, implemented the brms/Stan No-AR vs. AR(1) and prior sensitivity scripts, and ran the PSIS-LOO model comparison and convergence checks.',
+            approachHeading: 'Data Pipeline, Hierarchical Models & Validation',
+            approach: [
+                {
+                    label: '01 · Data Pipeline & EDA',
+                    title: '28 NSIDC CSVs to Log Annual Extent',
+                    description:
+                        'Merged 28 NSIDC Sea Ice Index v3.0 files (14 regions, area and extent) in Python/pandas. Filtered to sea ice extent (>= 15% ice concentration), aggregated monthly records into annual regional means in R (data.table), and applied a natural log transform to handle strong right skew.',
+                },
+                {
+                    label: '02 · Hierarchical Stan / brms Models',
+                    title: 'Baseline No-AR vs. AR(1) Residuals',
+                    description:
+                        'Fit two Gaussian hierarchical models on log(Sea Ice Extent) with region-specific random intercepts (1 | Region) and a global time slope: an independent-residuals baseline (No-AR) and a lag-1 autoregressive model cor_ar(~ Year | Region, p = 1) capturing temporal persistence.',
+                },
+                {
+                    label: '03 · Diagnostics & Prior Sensitivity',
+                    title: 'LOO-CV, PPC & Alternative Priors',
+                    description:
+                        'Assigned explicit proper priors to every parameter and refit both models with narrower alternative priors to test sensitivity. Verified HMC mixing via R-hat, ESS, and trace plots, checked distributional fit with posterior predictive density overlays (bayesplot), and compared predictive accuracy via PSIS-LOO.',
+                },
+            ],
+            resultsTable: {
+                title: 'Posterior Estimates, Convergence & LOO-CV Comparison',
+                subtitle:
+                    'Fit in brms/Stan using 2 HMC chains × 4,000 iterations (2,000 warmup, adapt_delta = 0.99, max_treedepth = 15).',
+                columns: ['Model Specification', 'Time Slope β1 (95% CI)', 'AR(1) φ (95% CI)', 'Residual σ', 'R-hat / Min ESS', 'LOO ELPD Diff (SE)'],
+                rows: [
+                    {
+                        cells: ['Hierarchical AR(1) (Default Priors)', '-0.05 [-0.07, -0.03]', '0.58 [0.50, 0.66]', '0.14', '1.00 / 1,200', '0.0 (Best)'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Hierarchical No-AR (Default Priors)', '-0.01 [-0.01, -0.01]', 'None (0)', '0.16', '1.00 / 900', '-73.3 (SE 27.6)'],
+                    },
+                    {
+                        cells: ['Alternative Narrower Priors Check', 'Minimal shift', 'Minimal shift', 'Unchanged', '1.00 / Stable', 'Identical ranking'],
+                    },
+                ],
+                footnote:
+                    'Default priors: Intercept N(0, 5), Slope N(0, 2), sigma & sd Exponential(0.1), AR phi N(0, 0.5). Alternative priors: Intercept N(0, 3), Slope N(0, 1), sigma & sd Exponential(0.2), AR phi N(0, 0.3). Because Year entered uncentered, parameter scales differ between No-AR and AR(1), so model selection focused on out-of-sample LOO predictive density.',
+            },
+            figuresHeading: 'Exploratory Plots & Bayesian Diagnostics',
+            figuresIntro:
+                'Direct ggplot2 and bayesplot figures generated from the R/Stan repository scripts. Click any plot to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/applied-bayesian-data-analysis/overall-sea-ice-trend.webp',
+                    badge: 'NSIDC · Time Series',
+                    title: 'Overall Mean Arctic Sea Ice Extent (1979–2023)',
+                    caption:
+                        'Aggregated regional mean sea ice extent drops sharply after 2000 (from ~900,000 km² in 1979 to ~720,000–760,000 km² post-2015) alongside noticeable interannual swings.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/applied-bayesian-data-analysis/regional-trends-facets.webp',
+                    badge: '14 Arctic Regions',
+                    title: 'Regional Trajectories on Log Scale',
+                    caption:
+                        'Faceted trends show steep declines in the Barents and Kara Seas, relative stability in the Central Arctic and Canadian Archipelago, and high volatility in Bering and St. Lawrence.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/applied-bayesian-data-analysis/regional-correlation-matrix.webp',
+                    badge: 'Spatial Clustering',
+                    title: 'Pairwise Correlation Matrix Across Regions',
+                    caption:
+                        'Barents, Kara, Laptev, and East Siberian seas move closely together (r > 0.7), while Bering correlates weakly (r = 0.1 to 0.3) with most other regions.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/applied-bayesian-data-analysis/regional-boxplots.webp',
+                    badge: 'Hierarchical Motivation',
+                    title: 'Sea Ice Extent Distribution by Region',
+                    caption:
+                        'Large baseline spread across regions (Central Arctic above 3M km² versus Bering and St. Lawrence near the bottom) directly justified modeling Region as a hierarchical random effect.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/applied-bayesian-data-analysis/ppc-ar1-model.webp',
+                    badge: 'bayesplot · PPC',
+                    title: 'Posterior Predictive Check (AR(1) Model)',
+                    caption:
+                        'Simulated posterior predictive draws (y_rep) closely track the multimodal log-extent density across the 14 Arctic subregions.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/applied-bayesian-data-analysis/ar1-trace-plots.webp',
+                    badge: 'Stan HMC · Convergence',
+                    title: 'MCMC Trace Plots (AR(1) Model)',
+                    caption:
+                        'Both HMC chains mix cleanly across intercept, slope, regional SD, residual sigma, and ar[1] with R-hat = 1.00 and zero post-warmup divergences.',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Modeling temporal persistence made a decisive difference: adding an AR(1) residual structure (phi = 0.58, 95% CI [0.50, 0.66]) gained +73.3 ELPD units (SE = 27.6) over an independent-error hierarchical model.',
+                'Inferences held steady under prior tightening: refitting both models with narrower normal and exponential priors barely shifted posterior means or credible intervals and preserved the exact LOO ranking.',
+                'Two observations in the AR(1) model produced Pareto k > 0.7 (1.16 and 1.09) during LOO cross-validation. While unlikely to overturn a 2.65-SE margin, moment matching or partial reloo is the right way to refine influential points.',
+                'Key modeling extensions identified during course review: centering Year around 2000 for interpretable intercepts, adding region-specific random slopes (1 + Year_c | Region) to estimate distinct regional decline rates, and modeling monthly seasonal curves with splines or Gaussian processes.',
+            ],
+        },
     },
     {
         id: 'simulation-based-inference',

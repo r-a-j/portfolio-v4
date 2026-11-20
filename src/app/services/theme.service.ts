@@ -33,7 +33,7 @@ const LAST_DARK_KEY = 'rp-last-dark-theme';
 export const THEMES: ThemeOption[] = [
   {
     id: 'charcoal-brass',
-    name: '1. Charcoal & Brass',
+    name: 'Charcoal & Brass',
     shortName: 'Brass',
     mode: 'dark',
     description: 'Warm charcoal with muted brass accent',
@@ -43,7 +43,7 @@ export const THEMES: ThemeOption[] = [
   },
   {
     id: 'monochrome',
-    name: '2. Monochrome',
+    name: 'Monochrome',
     shortName: 'Mono',
     mode: 'dark',
     description: 'Neutral obsidian and silver, zero color noise',
@@ -53,7 +53,7 @@ export const THEMES: ThemeOption[] = [
   },
   {
     id: 'paper-ink',
-    name: '3. Paper & Ink',
+    name: 'Paper & Ink',
     shortName: 'Paper',
     mode: 'light',
     description: 'Warm editorial paper with Prussian blue ink',
@@ -63,7 +63,7 @@ export const THEMES: ThemeOption[] = [
   },
   {
     id: 'charcoal-sage',
-    name: '4. Charcoal & Sage',
+    name: 'Charcoal & Sage',
     shortName: 'Sage',
     mode: 'dark',
     description: 'Graphite dark surface with calm sage accent',

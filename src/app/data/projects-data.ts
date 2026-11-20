@@ -200,31 +200,31 @@ export const PROJECTS: ProjectDetails[] = [
                 'Designed with a strict split between local personal state and stateless cloud APIs: your watchlists stay on-device while live search, streaming lookups, and Gemini inference run through a hardened serverless gateway.',
             architecture: [
                 {
-                    layer: 'Layer 01 • Client & Native Bridge',
+                    layer: 'Client & Android',
                     title: 'Angular + Ionic App & Capacitor Plugins',
                     description:
                         'Standalone Angular frontend with reactive state, gesture triage, haptics, Android Share Intent ingestion, and Google Play Core in-app update bindings.',
                     technologies: ['Angular', 'Ionic', 'Capacitor', 'Android Java/Kotlin'],
                 },
                 {
-                    layer: 'Layer 02 • Local Persistence',
+                    layer: 'Local Storage',
                     title: 'On-Device RxDB Library Store',
                     description:
-                        'RxDB collections persisted in IndexedDB provide instant filtering and sorting over saved watchlists and watched history, plus portable JSON import/export.',
+                        'RxDB collections persisted in IndexedDB provide fast filtering and sorting over saved watchlists and watched history, plus portable JSON import/export.',
                     technologies: ['RxDB', 'IndexedDB', 'RxJS', 'JSON Backup'],
                 },
                 {
-                    layer: 'Layer 03 • Stateless API Gateway',
-                    title: 'Authenticated AI & Metadata Proxy',
+                    layer: 'API Proxy',
+                    title: 'Stateless AI & Metadata API',
                     description:
-                        'Stateless serverless proxy handling origin allowlisting, client authentication, rate limiting, TMDB/OTT queries, and Gemini extraction without storing user data.',
+                        'Stateless serverless proxy handling origin allowlisting, client authentication, rate limiting, TMDB/OTT lookups, and Gemini extraction without storing user data.',
                     technologies: ['Serverless API', 'Google Gemini', 'TMDB', 'Rate Limiting'],
                 },
                 {
-                    layer: 'Layer 04 • Delivery & Docs',
+                    layer: 'Build & Release',
                     title: 'Signed Play Bundles & Public User Guide',
                     description:
-                        'CI-gated builds with lint and type checks, Play App Signing for Android `.aab` releases, live Vercel web hosting, and a standalone user documentation portal.',
+                        'CI checks with linting and typechecking, Play App Signing for Android `.aab` releases, live Vercel web hosting, and a standalone user documentation site.',
                     technologies: ['Play App Signing', 'CI/CD', 'Vercel', 'Docusaurus'],
                 },
             ],

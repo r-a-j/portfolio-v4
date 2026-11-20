@@ -20,9 +20,9 @@ export class NavbarComponent {
 
   readonly navItems = [
     { label: 'Home', route: '/home' },
-    { label: 'Work', route: '/projects' },
+    { label: 'Projects', route: '/projects' },
     { label: 'Experience', route: '/experience' },
-    { label: 'Capabilities', route: '/skills' },
+    { label: 'Skills', route: '/skills' },
     { label: 'About', route: '/about' },
     { label: 'Contact', route: '/contact' },
   ];

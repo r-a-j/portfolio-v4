@@ -1,77 +1,95 @@
-<section id="capabilities" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
+<section id="skills" class="py-16 px-6 bg-canvas text-slate-100 border-b border-white/[0.06]">
   <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>
         <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-          Technical Capabilities
+          Tech Stack
         </span>
         <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-          Engineering &amp; ML Stack
+          Skills &amp; Tools
         </h2>
       </div>
       <p class="m-0 text-sm text-slate-400 max-w-md leading-relaxed">
-        Focused on tools used in shipped production pipelines, published coursework, and live apps — no filler or arbitrary percentage bars.
+        Technologies I use regularly across computer vision, statistical modeling, full-stack apps, and deployment pipelines.
       </p>
     </div>
 
-    <!-- 2x2 Capability Pillars Matrix -->
+    <!-- 2x2 Skill Groups Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-      @for (pillar of pillars; track pillar.index) {
-        <article class="pillar-card">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <span class="pillar-icon" aria-hidden="true">
-                <i [class]="pillar.icon"></i>
-              </span>
-              <div>
-                <span class="text-[0.68rem] font-mono-meta uppercase tracking-[0.14em] text-cinema font-semibold">
-                  Pillar {{ pillar.index }}
-                </span>
-                <h3 class="m-0 text-lg font-bold text-slate-50 leading-snug">
-                  {{ pillar.title }}
-                </h3>
-              </div>
-            </div>
+      @for (group of groups; track group.title) {
+        <article class="skill-group-card">
+          <div class="flex items-center gap-3">
+            <span class="group-icon" aria-hidden="true">
+              <i [class]="group.groupIcon"></i>
+            </span>
+            <h3 class="m-0 text-lg font-bold text-slate-50 leading-snug">
+              {{ group.title }}
+            </h3>
           </div>
 
           <p class="m-0 text-sm leading-relaxed text-slate-400">
-            {{ pillar.summary }}
+            {{ group.summary }}
           </p>
 
-          <div class="flex flex-wrap gap-1.5">
-            @for (tech of pillar.technologies; track tech) {
-              <span class="stack-pill">{{ tech }}</span>
+          <div class="flex flex-wrap gap-2">
+            @for (skill of group.skills; track skill.name) {
+              <span class="skill-chip">
+                @if (skill.icon) {
+                  <img
+                    [src]="skill.icon"
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    class="skill-chip__img"
+                    [class.skill-chip__img--invert]="skill.invert"
+                  />
+                } @else if (skill.faIcon) {
+                  <i [class]="skill.faIcon + ' skill-chip__fa'" aria-hidden="true"></i>
+                }
+                <span>{{ skill.name }}</span>
+              </span>
             }
           </div>
 
-          <div class="pillar-proof">
-            <span class="text-[0.68rem] font-mono-meta uppercase tracking-wider text-slate-500 block mb-1">
-              Applied In
+          <div class="group-proof">
+            <span class="text-[0.7rem] font-mono-meta uppercase tracking-wider text-slate-500 block mb-1">
+              Used in
             </span>
             <p class="m-0 text-xs leading-relaxed text-slate-300">
-              {{ pillar.appliedIn }}
+              {{ group.usedIn }}
             </p>
           </div>
         </article>
       }
     </div>
 
-    <!-- Core Languages Bar -->
+    <!-- Programming Languages Strip -->
     <div class="lang-bar">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/[0.08]">
-        <span class="text-xs font-mono-meta uppercase tracking-[0.14em] text-slate-400">
+        <span class="text-xs font-mono-meta uppercase tracking-[0.14em] text-slate-300 font-semibold">
           Programming Languages
         </span>
         <span class="text-xs font-mono-meta text-slate-500">
-          Daily &amp; Production Working Languages
+          Primary working languages
         </span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4">
         @for (lang of languages; track lang.name) {
           <div class="lang-item">
-            <span class="text-sm font-mono-meta font-semibold text-slate-100">{{ lang.name }}</span>
+            <div class="flex items-center gap-2.5">
+              @if (lang.icon) {
+                <img
+                  [src]="lang.icon"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  class="w-4 h-4 object-contain shrink-0"
+                />
+              }
+              <span class="text-sm font-mono-meta font-semibold text-slate-100">{{ lang.name }}</span>
+            </div>
             <span class="text-xs text-slate-400 leading-snug">{{ lang.context }}</span>
           </div>
         }

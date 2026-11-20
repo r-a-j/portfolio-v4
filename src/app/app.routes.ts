@@ -26,19 +26,19 @@ export const routes: Routes = [
     },
     {
         path: 'projects',
-        title: 'Selected Work & Projects — Raj Pawar',
+        title: 'Projects — Raj Pawar',
         loadComponent: () =>
             import('./components/projects/projects.component').then((c) => c.ProjectsComponent)
     },
     {
         path: 'project-details/:id',
-        title: 'Project Case Study — Raj Pawar',
+        title: 'Project — Raj Pawar',
         loadComponent: () =>
             import('./components/project-details/project-details.component').then((c) => c.ProjectDetailsComponent)
     },
     {
         path: 'skills',
-        title: 'Capabilities & Stack — Raj Pawar',
+        title: 'Skills — Raj Pawar',
         loadComponent: () =>
             import('./components/skills/skills.component').then((c) => c.SkillsComponent)
     },

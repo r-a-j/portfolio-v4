@@ -3,21 +3,18 @@
     <!-- Section Header -->
     <div>
       <span class="inline-block text-xs font-mono-meta uppercase tracking-[0.14em] text-cinema mb-2">
-        Background &amp; Credentials
+        About Me
       </span>
       <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
         {{ aboutContent.heading }}
       </h2>
     </div>
 
-    <!-- 2-Column Editorial Bio + Credentials -->
+    <!-- 2-Column Bio & Credentials -->
     <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.95fr)] gap-8 items-start">
-      <!-- Left: Executive Summary & Bio -->
+      <!-- Left: Intro & Bio -->
       <div class="flex flex-col gap-6">
         <div class="bg-surface border border-white/[0.09] p-6 rounded-2xl">
-          <div class="text-[0.7rem] font-mono-meta uppercase tracking-[0.14em] text-slate-400 mb-2.5">
-            Summary
-          </div>
           <p class="m-0 text-base sm:text-[1.02rem] leading-relaxed text-slate-100 font-medium">
             {{ aboutContent.tldr }}
           </p>

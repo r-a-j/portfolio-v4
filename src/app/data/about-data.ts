@@ -16,21 +16,21 @@ export const ABOUT_CONTENT = {
     ],
     credentials: [
         {
-            eyebrow: 'Graduate Studies',
+            eyebrow: 'Education',
             title: 'M.Sc. Data Science',
             organization: 'TU Dortmund University',
             detail: 'Focus on Bayesian hierarchical modeling, simulation-based inference (SBI), MCMC, and industrial computer vision.',
             icon: 'fa-solid fa-graduation-cap',
         },
         {
-            eyebrow: 'University Teaching',
+            eyebrow: 'Guest Lecture',
             title: 'Invited Guest Lecturer',
             organization: 'Industrial Data Science 1 (M.Sc.), TU Dortmund',
             detail: 'Co-delivered a graduate guest lecture on taking computer vision models from notebooks into industrial production.',
             icon: 'fa-solid fa-chalkboard-user',
         },
         {
-            eyebrow: 'Industry Consulting',
+            eyebrow: 'Technical Proposal',
             title: 'Automated Inspection Proposal',
             organization: 'Stoneridge (Tier-1 Automotive Supplier)',
             detail: 'Authored technical requirements and automation proposal for Keyence microscope cleanliness inspection.',

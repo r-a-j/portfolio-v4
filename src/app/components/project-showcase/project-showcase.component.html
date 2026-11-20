@@ -127,7 +127,7 @@
         <div class="flex flex-col gap-5">
           <div>
             <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-              Interactive Web Build
+              Live Web App
             </span>
             <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
               {{ showcase().liveDemoTitle || 'Try It Live' }}
@@ -336,13 +336,13 @@
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        Features &amp; Implementation
+        Features
       </span>
       <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-        Core Features
+        What CineScope Does
       </h2>
       <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
-        End-to-end engineering combining Gemini AI extraction, local RxDB state, and native Android Capacitor plugins.
+        Gemini AI search and extraction, local RxDB library storage, and native Android plugins built with Capacitor.
       </p>
     </div>
 
@@ -366,14 +366,14 @@
     </div>
   </section>
 
-  <!-- High-Level Architecture & Stack -->
+  <!-- Architecture & Stack -->
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <span class="inline-block text-xs font-mono-meta font-semibold tracking-[0.14em] uppercase text-cinema mb-1.5">
-        System Design
+        Architecture
       </span>
       <h2 class="m-0 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
-        High-Level Architecture
+        How It's Built
       </h2>
       @if (showcase().architectureIntro) {
         <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-slate-400">
@@ -402,7 +402,7 @@
     </div>
 
     <div class="flex flex-wrap items-center justify-between gap-4 bg-surface border border-white/[0.08] rounded-2xl px-6 py-4">
-      <span class="text-xs font-mono-meta font-semibold uppercase tracking-wider text-slate-400">Core Technology Stack</span>
+      <span class="text-xs font-mono-meta font-semibold uppercase tracking-wider text-slate-400">Tech Stack</span>
       <div class="flex flex-wrap gap-2">
         @for (tech of project().techStack; track tech) {
           <span class="text-xs sm:text-sm font-mono-meta font-medium px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-slate-200">
@@ -424,7 +424,7 @@
           <i class="fa-solid fa-lock"></i>
         </div>
         <div>
-          <h3 class="m-0 text-base font-bold text-slate-100">Private Codebase &amp; Live Access</h3>
+          <h3 class="m-0 text-base font-bold text-slate-100">Source &amp; Access</h3>
           <p class="mt-1 mb-0 text-sm leading-relaxed text-slate-400">{{ showcase().availabilityNote }}</p>
         </div>
       </div>

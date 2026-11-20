@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CAPABILITY_PILLARS, CORE_LANGUAGES } from '../../data/skills-data';
-import { CapabilityPillar, CoreLanguage } from '../../shared/types/skill-category';
+import { CORE_LANGUAGES, SKILL_GROUPS } from '../../data/skills-data';
+import { CoreLanguage, SkillGroup } from '../../shared/types/skill-category';
 
 @Component({
   selector: 'app-skills',
@@ -10,6 +10,6 @@ import { CapabilityPillar, CoreLanguage } from '../../shared/types/skill-categor
   styleUrl: './skills.component.scss',
 })
 export class SkillsComponent {
-  readonly pillars: CapabilityPillar[] = CAPABILITY_PILLARS;
+  readonly groups: SkillGroup[] = SKILL_GROUPS;
   readonly languages: CoreLanguage[] = CORE_LANGUAGES;
 }

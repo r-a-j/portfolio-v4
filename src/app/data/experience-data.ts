@@ -150,8 +150,8 @@ export const EXPERIENCES: Experience[] = [
     role: 'Junior .NET Developer',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
-    company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
-    logoStyle: 'icon',
+    company_logo_url: 'experience/xcellenceit/Xcellence-IT-Logo.webp',
+    logoStyle: 'wide-light',
     summary:
       'Built and maintained ASP.NET Core e-commerce platforms, SVG manipulation services, Swagger REST APIs, and optimized SQL Server queries.',
     description: [
@@ -175,8 +175,8 @@ export const EXPERIENCES: Experience[] = [
     role: 'Software Developer Trainee',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
-    company_logo_url: 'experience/xcellenceit/xcellence-it_logo.png',
-    logoStyle: 'icon',
+    company_logo_url: 'experience/xcellenceit/Xcellence-IT-Logo.webp',
+    logoStyle: 'wide-light',
     summary:
       'Completed intensive training in ASP.NET Core, C# engineering standards, and nopCommerce plugin development.',
     description: [

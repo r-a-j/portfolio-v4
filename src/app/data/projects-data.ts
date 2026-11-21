@@ -1002,16 +1002,139 @@ export const PROJECTS: ProjectDetails[] = [
     },
     {
         id: 'eye-tracking-fixations',
-        title: 'Eye Tracking & Visual Saliency Analysis',
-        description: 'Statistical modeling of age-related gaze patterns and spatial fixation distributions on the Nemo Science Museum dataset.',
+        title: 'Eye-Tracking Fixation Dynamics & Detector Robustness',
+        description: 'Log-Normal mixed-effects modeling, kiosk UI anomaly auditing (DoB=2000), right-censoring analysis, and OFAT fixation-detector sensitivity across 183,627 NEMO eye-tracking fixations (7,250 visitors, ages 3-93).',
         thumbnail: 'projects/eye-tracking/eye-tracking_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Eye-Tracking-Fixations',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Eye-Tracking-Fixations/refs/heads/main/README.md',
-        techStack: ['Python', 'R', 'KDE Saliency', 'Hessels Classifier', 'pandas', 'SciPy', 'Matplotlib'],
-        rating: 4,
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Eye-Tracking-Fixations/main/README.md',
+        techStack: ['Python', 'Mixed-Effects (REML)', 'Cubic B-Splines', 'Hessels / I-VT', 'Signal Processing', 'SciPy', 'pandas', 'Matplotlib'],
+        rating: 5,
         category: 'Statistics',
         year: 2024,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Case Studies I (Applied Statistical Modeling)',
+            role: 'Team of 4 + Post-Review Python Overhaul · Prof. Paul Bürkner & Dr. Šimon Kucharský',
+            subtitle:
+                'Testing lifespan age hypotheses and within-trial fixation dynamics across 7,250 NEMO Science Museum visitors while separating true cognitive patterns from kiosk UI defaults, fixation-order survivorship bias, 10-second right-censoring, and detector thresholds.',
+            metrics: [
+                {
+                    value: '+14.5% Rise',
+                    label: 'Ambient-to-Focal Trend',
+                    detail: 'Over uncensored trial time (0.5 -> 7.0 s), median duration climbs from 199.2 ms to 228.2 ms before plateauing (LRT p = 9.2e-248).',
+                },
+                {
+                    value: 'No Age U-Curve',
+                    label: 'Lifespan Shift ~12 ms',
+                    detail: 'Continuous Age splines (ages 3-93) show zero late-life rebound (-0.30%/decade, p = 0.123), dwarfed by viewer baselines (ICC 4.0%).',
+                },
+                {
+                    value: '21.1% Spike',
+                    label: 'DoB = 2000 Audit',
+                    detail: 'Flagged 1,532 visitors defaulting to birth year 2000 (5x adjacent cohorts) and verified all models with and without them.',
+                },
+                {
+                    value: '12-Config OFAT',
+                    label: 'Real 60 Hz Trace Audit',
+                    detail: 'Re-parsed 1,000 real 60 Hz gaze traces varying one parameter at a time (Adaptive Hessels + independent I-VT 20-40 deg/s).',
+                },
+            ],
+            problem:
+                'Most eye-tracking studies rely on small, homogeneous university cohorts, leaving lifespan hypotheses (that fixation durations shorten during childhood and lengthen again in older adulthood) difficult to test cleanly. On large museum free-viewing datasets (Strauch et al., 2023; 10-second viewing at 60 Hz), naive analyses run into four traps at once: unflagged kiosk UI birth-year defaults (DoB = 2000), heavily right-skewed durations that violate Gaussian residual assumptions, survivorship bias when indexing time by fixation order, and hard right-censoring at the 10-second trial cutoff.',
+            ownership:
+                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner and Dr. Šimon Kucharský, Winter Term 2024/25) where I handled raw NEMO preprocessing, Hessels fixation extraction across 9,405 recordings, Python EDA, hyperparameter sweeps, and the individual technical report. Following faculty review comments on the submitted report, I rebuilt the entire analysis into a clean, MIT-licensed, unit-tested Python pipeline implementing an exact Woodbury REML/ML random-intercept LMM solver (verified to match lme4 to 5 digits), continuous cubic B-splines for Age and onset time, explicit censoring and DoB = 2000 audits, and a 12-configuration OFAT + independent I-VT detector benchmark on 1,000 real 60 Hz gaze traces.',
+            approachHeading: 'Data Audit, Log-Normal Spline LMM & OFAT Robustness',
+            approach: [
+                {
+                    label: '01 · Audit & Log-Normal LMM',
+                    title: 'DoB = 2000 Spike & Residual Diagnostics',
+                    description:
+                        'Audited 7,250 valid free-viewing visitors (183,627 fixations) and isolated 1,532 records stuck at kiosk default DoB = 2000 (Age 23). Replaced skewed raw-scale Gaussian models (residual skew 4.82, excess kurtosis 65.1, max 31.8 SD) with an exact REML/ML Log-Normal LMM cutting skew to 0.42 and max residual to 5.9 SD, and fixed the participant-level Kruskal-Wallis test.',
+                },
+                {
+                    label: '02 · Continuous Splines & Censoring',
+                    title: 'Elapsed Onset vs. Fixation Order',
+                    description:
+                        'Replaced fixation-order indexing (which drops artificially past Order 22 because only fast-saccading viewers reach 25-36 fixations in 10 s) with 5-df cubic B-splines over continuous trial onset time and continuous age, isolating the uncensored 0-8 s interior (>99% natural completions) from the 8-10 s right-censoring zone.',
+                },
+                {
+                    label: '03 · OFAT & I-VT Detector Audit',
+                    title: '1,000 Real 60 Hz Traces Re-Parsed',
+                    description:
+                        'Implemented clean MIT-licensed adaptive slow/fast velocity (Hessels et al., 2020) and fixed-threshold I-VT (Salvucci & Goldberg, 2000) detectors. Re-extracted fixations on 1,000 age-stratified 60 Hz traces across 12 one-factor-at-a-time settings (lambda, min_fix, min_amp, and I-VT 20-40 deg/s) and refit the LMM on every sweep.',
+                },
+            ],
+            resultsTable: {
+                title: 'Nested Log-Normal Mixed-Effects Model Sensitivity Across 5 Cohorts',
+                subtitle:
+                    'Exact ML Likelihood Ratio Tests and REML variance components for log(duration) ~ ns(onset, 5) + ns(age, 5) + (1 | ID).',
+                columns: ['Sensitivity Cohort', 'Fixations (n)', 'Visitors (G)', 'ICC / R²c', 'Onset Rise (0.5->7 s)', 'Onset LRT p', 'Age Slope (/10 yr)', 'Age Spline p'],
+                rows: [
+                    {
+                        cells: ['All Valid Free-Viewing (onset <= 8 s)', '156,598', '7,250', '4.0% / 4.7%', '+14.5% (199->228 ms)', '9.2e-248', '-0.30%', '0.123'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Excl. DoB = 2000 Default (onset <= 8 s)', '123,214', '5,718', '4.0% / 4.7%', '+14.8% (200->229 ms)', '7.0e-198', '-0.32%', '0.085'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Strict Valid = True & DoB != 2000', '98,234', '4,546', '4.0% / 4.7%', '+15.5% (200->231 ms)', '4.3e-164', '-0.51%', '0.024'],
+                    },
+                    {
+                        cells: ['Excl. Initial Cross Fixation (Order > 0)', '149,348', '7,247', '4.0% / 4.5%', '+11.4% (206->229 ms)', '2.7e-162', '-0.35%', '0.138'],
+                    },
+                    {
+                        cells: ['Full 0-10 s (Incl. Censored Tail)', '183,627', '7,250', '3.7% / 4.6%', '+17.7% (cutoff bias)', '< 1e-300', '-0.20%', '0.179'],
+                    },
+                ],
+                footnote:
+                    'OFAT detector audit on 1,000 stratified 60 Hz traces (results/ofat_robustness.csv): across all 12 Adaptive Hessels (lambda 2.0-3.0, min_fix 40-100 ms, min_amp 0.5-1.5 deg) and I-VT (20-40 deg/s) settings, the uncensored 0.5->7.0 s rise held consistently between +9.2% and +14.1% (all p <= 2.0e-28). Fixed-threshold I-VT induced a small -1.6% to -1.9%/decade age artifact from unadapted tracking noise that vanished under noise-adaptive Hessels thresholds (-0.40% to -0.53%/decade, p > 0.21).',
+            },
+            figuresHeading: 'Data Audit, Spline Trajectories & OFAT Detector Diagnostics',
+            figuresIntro:
+                'Generated directly by src/run_analysis.py on the NEMO Science Museum dataset (Strauch et al., 2023). Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/eye-tracking/data-audit-and-diagnostics.webp',
+                    badge: 'Audit & Q-Q Check',
+                    title: 'DoB = 2000 Default Spike & Raw vs. Log-Normal LMM Diagnostics',
+                    caption:
+                        'Top: 1,532 visitors default to DoB = 2000 (21.1% spike at Age 23), and raw durations are heavily right-skewed (median 200 ms vs. mean 257 ms). Bottom: Log transformation drops residual skewness from 4.82 to 0.42 and max outlier from 31.8 SD to 5.9 SD.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/age-lifespan-analysis.webp',
+                    badge: 'RQ1 · Lifespan Age',
+                    title: 'Continuous Age Splines vs. Between-Viewer Baseline Variability',
+                    caption:
+                        'Left: Continuous cubic B-splines across all three cohorts reject a U-shaped late-life rebound (total shift ~12 ms across ages 6-75). Right: Viewer-specific random intercepts (BLUP 10th-90th spread = 44 ms, raw spread > 100 ms) completely dwarf lifespan age.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/temporal-dynamics-and-censoring.webp',
+                    badge: 'RQ2 · Trial Time',
+                    title: 'Ambient-to-Focal Progression, 10 s Censoring & Order Survivorship Bias',
+                    caption:
+                        'Left: Over uncensored onset time (0-8 s), durations rise +14.5% and plateau; after 8 s, the 10 s trial cutoff truncates ongoing fixations (96.9% final in 9.5-10 s). Right: Fixation-order curves drop past Order 22 solely because active viewer count collapses to fast saccaders.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/ofat-robustness-and-spatial-gaze.webp',
+                    badge: '12-Config OFAT · Gaze Map',
+                    title: 'OFAT Detector Robustness (1,000 Real 60 Hz Traces) & 2D Gaze Density',
+                    caption:
+                        'Left: Varying one parameter at a time across Adaptive Hessels and independent I-VT (20-40 deg/s) shifts median duration by 17-33 ms while leaving the +9.2% to +14.1% ambient-to-focal rise invariant. Right: Log-density map of 178,186 in-screen fixations on the 1920x1080 stimulus.',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Separating continuous trial onset time (0-8 s uncensored interior) from fixation-order survivorship bias and 10-second trial-end right-censoring turned an apparent late-trial drop into the textbook ambient-to-focal progression (+14.5% median rise from 0.5 s to 7.0 s, then plateau).',
+                'Continuous non-linear age splines across 7,250 visitors (ages 3-93) show no late-life U-shaped increase in fixation duration; any childhood shortening is ~10-12 ms and explains < 0.05% of variance compared to individual viewer baselines (ICC 4.0%) and within-trial scene salience (~95%).',
+                'Auditing raw demographics caught 1,532 visitors (21.1%) stuck at kiosk default DoB = 2000, and switching from raw-duration LMM to Log-Normal LMM fixed severe skew (4.82 -> 0.42) and kurtosis (65.1 -> 0.42) violations.',
+                'True one-factor-at-a-time (OFAT) re-extraction on 1,000 real 60 Hz gaze traces showed why noise-adaptive velocity detectors (Hessels et al., 2020) outperform fixed-threshold I-VT in heterogeneous populations: I-VT fragmented noisier older-viewer recordings into a spurious -1.9%/decade age slope that disappeared under adaptive thresholding.',
+            ],
+        },
     },
     {
         id: 'world-value-survey',

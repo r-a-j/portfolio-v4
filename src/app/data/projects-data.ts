@@ -840,6 +840,150 @@ export const PROJECTS: ProjectDetails[] = [
         },
     },
     {
+        id: 'georeferenced-microdata-anonymization',
+        title: 'Anonymization of Georeferenced Microdata',
+        description: 'Spatial k-anonymity analysis and Python benchmark of Verified Neighbor geomasking (Richter 2018) vs. Random Perturbation and Donut Geomasking using cKDTree indexing, Ripley L(r)-r, and Kulldorff Poisson cluster scans.',
+        thumbnail: 'projects/georeferenced-microdata-anonymization/georeferenced-microdata-anonymization_thumb.webp',
+        githubLink: 'https://github.com/r-a-j/georeferenced-microdata-anonymization',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/georeferenced-microdata-anonymization/main/README.md',
+        techStack: ['Python', 'SciPy cKDTree', 'Spatial Privacy', 'Geomasking', 'Ripley K/L', 'Kulldorff Scan', 'NumPy', 'Matplotlib'],
+        rating: 5,
+        category: 'Geospatial & Privacy',
+        year: 2024,
+        language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · M.Sc. Seminar (Statistical Disclosure Control)',
+            role: 'Individual Seminar Paper, Talk & Python Benchmark · Prof. Dr. Rainer Lenz',
+            subtitle:
+                'Evaluating how to anonymize individual-level location data against reverse-geocoding attacks without destroying sub-kilometer spatial patterns, environmental exposure links, or disease hotspot detection.',
+            metrics: [
+                {
+                    value: '100% k-Safe',
+                    label: 'Worst-Case Privacy Floor',
+                    detail: 'Verified Neighbor guaranteed target k for 100% of subjects (and 100% valid residential placement) vs. 86.9% for fixed-radius perturbation (min k = 21).',
+                },
+                {
+                    value: '11.3 m RMSE',
+                    label: 'Sub-1 km Pattern Fidelity',
+                    detail: 'Besag L(r)-r RMSE below 1 km dropped from 230.7 m (Random Perturbation) and 230.2 m (Donut) to 11.3 m (VN k=50) and 15.9 m (VN Env k=100).',
+                },
+                {
+                    value: '250 m vs 1.1 km',
+                    label: 'Lower Displacement',
+                    detail: 'Mean surrogate displacement dropped from 602.8 m (Random) and 1,125.6 m (Donut) down to 250.2 m (VN k=50) and 350.2 m (VN k=100).',
+                },
+                {
+                    value: '72,000 Runs',
+                    label: '50-Replicate Spatial Benchmark',
+                    detail: '12,000 property parcels, 144 census block groups, 160 subjects, 9 masking configs x 50 Monte Carlo runs, backed by unit tests.',
+                },
+            ],
+            problem:
+                'Publishing individual-level geospatial records (health registries, mobility logs, or environmental exposure studies) poses an acute re-identification threat through reverse geocoding. Coarse spatial aggregation hides addresses but destroys local distance analysis and hotspot detection. Meanwhile, standard fixed-radius random perturbation ignores uneven housing density: rural subjects fall far below target k-anonymity while urban subjects are over-displaced into parks, lakes, or commercial parcels.',
+            ownership:
+                'Completed individually for Prof. Dr. Rainer Lenz\'s M.Sc. Seminar on Anonymization of Georeferenced Microdata at TU Dortmund (Winter Term 2023/24): authored the 12-page technical report and 40-slide seminar presentation critically evaluating Wayne Richter\'s (2018) Verified Neighbor geomasking framework. To demonstrate hands-on geospatial engineering alongside the seminar research, I also built an open-source, unit-tested Python benchmark implementing all three geomasking algorithms (cKDTree Verified Neighbor, uniform-area Random Perturbation, and Hampton et al. Donut Geomasking) plus Hotelling T², Rayleigh circular tests, Besag L(r)-r, and Kulldorff discrete Poisson spatial scans.',
+            approachHeading: 'Seminar Analysis & Reproducible Geospatial Benchmark',
+            approach: [
+                {
+                    label: '01 · Parcel Landscape & Priors',
+                    title: 'Heterogeneous Urban-to-Rural Model',
+                    description:
+                        'Simulated a 12 km x 12 km projected coordinate region (144 block groups, 12,000 parcels: 9,666 residential, 2,334 non-residential, plus an uninhabited lake void and 3 water-supply districts) with 160 subjects including two embedded spatial clusters (35 primary + 25 secondary), mirroring Richter\'s Erie County experimental design.',
+                },
+                {
+                    label: '02 · Spatial Masking Engine',
+                    title: 'cKDTree Verified Neighbor vs. Baselines',
+                    description:
+                        'Implemented exact area-uniform Random Perturbation (r = 905 m, 50 m exclusion), density-adaptive Donut Geomasking (Hampton et al., k_min = 100), and Verified Neighbor using SciPy cKDTree spatial indexing over residential parcels with optional environmental-zone matching and a strict 50 m exclusion buffer.',
+                },
+                {
+                    label: '03 · Privacy & Utility Audit',
+                    title: '50 Replicates, Ripley L(r) & Kulldorff Scan',
+                    description:
+                        'Audited all 9 masking configurations across 50 Monte Carlo replicates (72,000 masked realizations): empirical worst-case k-anonymity, Hotelling T² mean-center shift, Rayleigh directional bias, Besag L(r)-r spatial pattern RMSE, water-zone preservation, and Kulldorff discrete Poisson hotspot scan recovery.',
+                },
+            ],
+            resultsTable: {
+                title: '50-Replicate Spatial Privacy vs. Utility Benchmark (160 Subjects, 12,000 Parcels)',
+                subtitle:
+                    'Reproduced in Python (src/run_benchmark.py, seed = 42), mirroring the trade-offs documented in Richter (2018) on Erie County, NY.',
+                columns: ['Geomasking Method', 'Achieve k (%)', 'Min / Max k', 'Valid Res. (%)', 'Same Env (%)', 'Mean Disp (m)', 'Sub-1 km L(r) RMSE', 'Cluster In / Out (of 9)'],
+                rows: [
+                    {
+                        cells: ['Random Perturbation (r = 905 m)', '86.9%', '21 / 1,332', '52.4%', '91.8%', '602.8 m', '230.7 m', '5.86 / 3.20'],
+                    },
+                    {
+                        cells: ['Donut Geomasking (k_min = 100, Env)', '96.2%', '35 / 3,486', '52.1%', '100.0%', '1,125.6 m', '230.2 m', '5.16 / 7.42'],
+                    },
+                    {
+                        cells: ['Verified Neighbor (All, k = 50)', '100.0%', '50 / 50', '100.0%', '94.4%', '250.2 m', '11.3 m', '5.86 / 1.30'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Verified Neighbor (All, k = 100)', '100.0%', '100 / 100', '100.0%', '94.1%', '350.2 m', '22.0 m', '4.56 / 1.80'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Verified Neighbor (Env, k = 50)', '100.0%', '50 / 50', '100.0%', '100.0%', '300.4 m', '11.6 m', '5.40 / 1.36'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Verified Neighbor (Env, k = 100)', '100.0%', '100 / 100', '100.0%', '100.0%', '446.0 m', '15.9 m', '5.22 / 2.02'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Verified Neighbor (Env, k = 200)', '100.0%', '200 / 200', '100.0%', '100.0%', '661.7 m', '46.2 m', '4.86 / 2.46'],
+                    },
+                ],
+                footnote:
+                    'Benchmark outcomes closely mirror Richter\'s (2018) Erie County results analyzed in the seminar report: RP mean displacement 605 m with rural k-anonymity failures, Donut mean 1,157 m with diffuse SaTScan clusters (17.2 outside block groups), and Verified Neighbor minimizing displacement (169-473 m) while keeping outside cluster spillover to 0.5-1.6 block groups.',
+            },
+            figuresHeading: 'Spatial Masking Diagnostics & Cluster Scans',
+            figuresIntro:
+                'Original figures generated directly by src/run_benchmark.py in the accompanying Python repository. Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/verified-neighbor-pipeline.webp',
+                    badge: 'Algorithm Walkthrough',
+                    title: 'Verified Neighbor Winnowing & Rural Edge Comparison',
+                    caption:
+                        'Left: Filtering to same-zone residential parcels outside a 50 m exclusion ring yields an exact k = 50 pool within 216 m. Right: On a rural fringe, fixed 905 m RP catches only 26 residences while adaptive VN expands smoothly to guarantee k = 100.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/spatial-methods-comparison.webp',
+                    badge: 'Urban-to-Rural Map',
+                    title: 'Spatial Footprint of Masked Surrogates (4 Methods)',
+                    caption:
+                        'Random Perturbation and Donut Geomasking scatter ~48% of surrogates off residential parcels (including commercial strips and the lake void), whereas Verified Neighbor stays 100% on real residences and honors the water boundary under Env matching.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/privacy-vs-displacement.webp',
+                    badge: 'k-Anonymity & CDF',
+                    title: 'Realized Spatial k-Anonymity & Net Displacement CDF',
+                    caption:
+                        'Rank-ordered pool sizes expose RP\'s rural vulnerability (21/160 subjects below k = 100) and Donut\'s urban overshoot (up to k = 3,486), while the net-displacement CDF confirms substantially smaller shift for Verified Neighbor.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/ripley-and-cluster-utility.webp',
+                    badge: 'Spatial Utility · Scan',
+                    title: 'Besag L(r)-r Spatial Pattern Fidelity & Kulldorff Cluster Scan',
+                    caption:
+                        'Verified Neighbor tracks unmasked L(r)-r closely across 150-3,000 m and locks onto the red ground-truth primary cluster across 50 Poisson scan runs, while Random Perturbation and Donut Geomasking blur the hotspot outward.',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Controlling worst-case rather than average disclosure risk is the core advantage of parcel-based Verified Neighbor masking: every subject gets a guaranteed pool of k plausible residences, or is explicitly flagged when sparse geography cannot support k.',
+                'Verified Neighbor cuts sub-kilometer spatial pattern error (Besag L(r)-r RMSE) by more than 10x relative to fixed-radius Random Perturbation and Donut Geomasking while preventing impossible surrogate coordinates in lakes or commercial corridors.',
+                'Matching environmental variables (such as water supply districts) preserves 100% exposure accuracy but creates an unavoidable 3-way trade-off: sparse fringe subjects require longer search radii (up to 7 km at k = 100), increasing local directional shift (Rayleigh test 40-51%).',
+                'Practical deployment caveat highlighted in the seminar evaluation: Verified Neighbor requires up-to-date residential parcel centroid registries (e.g., cadastre or OpenStreetMap building footprints) and must size k jointly with any non-spatial quasi-identifiers released alongside coordinates.',
+            ],
+        },
+    },
+    {
         id: 'kosh',
         title: 'Kosh (कोश)',
         description: 'Early-stage prototype for a private, offline-first Android knowledge assistant running local LLMs on-device via Google LiteRT.',

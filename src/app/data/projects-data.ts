@@ -1146,16 +1146,143 @@ export const PROJECTS: ProjectDetails[] = [
     },
     {
         id: 'world-value-survey',
-        title: 'World Values Survey Analysis',
-        description: 'Cross-national study on institutional trust using ordinal logistic regression, mixed-effects models, and clustering across 60+ countries.',
+        title: 'World Values Survey: Institutional Trust Analysis',
+        description: 'Cross-national (66 countries, 97,220 respondents) and multi-decade (1995-2022) study of institutional trust using exact Cumulative Link Ordered Logit, macro governance links, and 4-class Latent Class Analysis.',
         thumbnail: 'projects/world-value-survey/world-value-survey_thumb.webp',
         githubLink: 'https://github.com/r-a-j/World-Value-Survey',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/World-Value-Survey/refs/heads/main/README.md',
-        techStack: ['Python', 'R', 'Ordinal Regression', 'K-Means', 'lme4', 'scikit-learn', 'pandas'],
-        rating: 4,
-        category: 'Machine Learning',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/World-Value-Survey/main/README.md',
+        techStack: ['Python', 'Ordered Logit', 'Latent Class Analysis', 'EM Algorithm', 'SciPy', 'NumPy', 'pandas', 'Matplotlib'],
+        rating: 5,
+        category: 'Statistics',
         year: 2025,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Case Studies II (Applied Statistical Modeling)',
+            role: 'Team of 4 + Post-Review Python Overhaul · Prof. Paul Bürkner & Dr. Šimon Kucharský',
+            subtitle:
+                'Modeling public trust in government and state institutions across 66 Wave 7 nations (97,220 respondents) and 27 years of WVS time series (1995-2022) with exact Cumulative Link Ordered Logit, external governance indices, and model-based Latent Class Analysis.',
+            metrics: [
+                {
+                    value: 'r = -0.53',
+                    label: 'Critical Citizens Paradox',
+                    detail: 'Across 61 Wave 7 nations, government trust falls with V-Dem Press Freedom (p = 1.2e-5), while Police trust rises with CPI (r = +0.50, p = 4.8e-5).',
+                },
+                {
+                    value: 'OR = 0.35',
+                    label: '2017 US Press Polarization',
+                    detail: 'Strictly filtered USA Wave 7 Ordered Logit (n = 2,396, R² = 0.248, VIF 1.03-1.99): Press trust strongly lowers 2017 US executive trust (p = 3.9e-59).',
+                },
+                {
+                    value: '1995-2022',
+                    label: 'Divergent Trust Trends',
+                    detail: 'USA Armed Forces stay 81-85% while Parties fall 19.9% -> 10.4% (LRT chi2 = 567.7); Germany rises 20% -> 43% while UK drops 32% -> 21%.',
+                },
+                {
+                    value: '4-Class LCA',
+                    label: 'Entropy = 0.844 (n = 12.6k)',
+                    detail: 'Multi-start EM categorical mixture replaces K-means, separating Rule-of-Law Pragmatists (44.7%), Moderate (23.6%), Strong (12.9%), and Distrustors (18.7%).',
+                },
+            ],
+            problem:
+                'Cross-national survey data on institutional trust is inherently discrete and ordered (4-level confidence scales), yet applied analyses routinely distort it by collapsing ordinal categories into binary indicators, treating country IDs as numeric slopes, running Euclidean K-means on discrete items, or misreading reversed WVS coding (where raw 1 means "A great deal" and 4 means "None at all"). Separately, looking only at within-country demographics misses why citizens in open democracies report lower executive trust than citizens in less free regimes.',
+            ownership:
+                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner, Dr. Šimon Kucharský, and Svenja Jedhoff, Winter Term 2024/25) covering USA determinants, G8 comparisons, longitudinal trends, and citizen clustering. After reviewing both written presentation notes, recorded live faculty feedback, and detailed report margin comments, I rebuilt the entire repository into a clean, unit-tested Python statistical package in pure NumPy/SciPy implementing exact Cumulative Link Ordered Logit (analytic gradient, exact Fisher Hessian, 3-cutpoint Proportional Odds checks, and valid VIF >= 1.0), 66-country external governance integration (World Bank, Transparency International, Freedom House, V-Dem), covariate-adjusted longitudinal probability trajectories, and multi-start EM Latent Class Analysis.',
+            approachHeading: 'Ordinal Modeling, Macro Linkages & Latent Structure',
+            approach: [
+                {
+                    label: '01 · Exact Ordered Logit & Audit',
+                    title: 'Ascending Scale, Valid VIF & PO Check',
+                    description:
+                        'Reverse-coded all WVS confidence items consistently to 1 = None at all .. 4 = A great deal so positive log-odds always indicate higher trust. Strictly filtered USA Wave 7 (n = 2,396 complete / 2,596 total, fixing an earlier global-sample leak), anchored Education at Middle to keep every VIF in [1.03, 1.99], and checked Proportional Odds across all three cumulative cutpoints (Y >= 2, Y >= 3, Y = 4).',
+                },
+                {
+                    label: '02 · Joint G8 Model & Global Macro',
+                    title: 'Categorical Dummies + 66-Nation Indices',
+                    description:
+                        'Documented exact Wave 7 G8 coverage (6 countries, n = 13,914; France and Italy last participated in Wave 5) and replaced separate-country AIC comparisons and continuous country coding with one pooled Ordered Logit using categorical Country fixed effects (Germany reference) and formal Country x Predictor LRTs. Linked 61-62 Wave 7 countries to cleaned World Bank GDP PPP, Transparency International CPI, Freedom House, and V-Dem Press Freedom indices.',
+                },
+                {
+                    label: '03 · Multi-Decade Trends & EM LCA',
+                    title: 'Delta-Method P(Y >= 3) & 4 Citizen Archetypes',
+                    description:
+                        'Modeled 1995-2022 WVS Time Series waves with explicit wave-year effects and delta-method 95% CIs for predicted P(High Trust >= 3) at fixed Age 45 / Income 5, fixing both raw fitted(clmm) probability distortion and sign inversion on Armed Forces. Replaced Euclidean K-means with multi-start EM Latent Class Analysis (K = 2..6) across 8 discrete 4-level institutional items on 12,567 G8 respondents.',
+                },
+            ],
+            resultsTable: {
+                title: 'Wave 7 G8 Institutional Trust Profile, Macro Governance & LCA Archetype Shares',
+                subtitle:
+                    'Official WVS Wave 7 (v6.0): 6 G8 participating countries (France & Italy absent in Wave 7), macro indicators (n = 61-62 nations), and K = 4 LCA posterior shares (n = 12,567, Entropy = 0.844).',
+                columns: ['G8 Nation (Year)', 'Gov. High Trust', 'Police / Courts High', 'V-Dem Press / CPI', 'C1 Distrustors', 'C2 Pragmatists', 'C3 Moderate / C4 Strong'],
+                rows: [
+                    {
+                        cells: ['Germany (2018, n=1,484)', '45.5% (12.1% None)', '86.8% / 74.9%', '0.96 / 80', '11.3%', '41.9%', '32.0% / 14.8%'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Canada (2020, n=4,018)', '48.3% (13.7% None)', '69.4% / 61.1%', '0.95 / 77', '14.2%', '40.3%', '32.3% / 13.2%'],
+                    },
+                    {
+                        cells: ['Japan (2019, n=1,243)', '43.4% (10.9% None)', '81.7% / 85.6%', '0.85 / 73', '11.8%', '48.1%', '28.4% / 11.7%'],
+                    },
+                    {
+                        cells: ['Russia (2017, n=1,745)', '54.8% (16.7% None)', '52.1% / 47.9%', '0.27 / 28', '26.3%', '32.0%', '24.7% / 17.0%'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['United States (2017, n=2,579)', '31.0% (30.7% None)', '69.0% / 57.6%', '0.89 / 69', '23.4%', '54.9%', '10.7% / 11.0%'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['United Kingdom (2022, n=2,574)', '22.8% (30.1% None)', '68.1% / 67.2%', '0.96 / 77', '24.2%', '49.1%', '15.0% / 11.6%'],
+                    },
+                ],
+                footnote:
+                    'Pooled 6-G8 Ordered Logit (n = 11,371 complete): Country FE LRT chi2(5) = 647.2 (p = 1.3e-137) and Country x Predictor Interaction LRT chi2(25) = 595.0 (p = 1.3e-109). Relative to Germany (OR = 1.0), fully adjusted government-trust odds are 1.94x Russia, 1.59x Canada, 1.00x Japan, 0.75x USA, and 0.39x UK. Global 61-country correlations: Government Trust vs. V-Dem Press Freedom r = -0.53 (p = 1.15e-5), Freedom House r = -0.40 (p = 0.0013), GDP PPP r = +0.03 (p = 0.83); Police Trust vs. CPI r = +0.50 (p = 4.79e-5), GDP PPP r = +0.40 (p = 0.0013).',
+            },
+            figuresHeading: 'Cross-National, Ordinal Regression, Longitudinal & LCA Diagnostics',
+            figuresIntro:
+                'Publication-grade figures generated directly by src/run_wvs_analysis.py from official WVS Wave 7 (v6.0) and Time Series (v5.0) releases. Click any figure to inspect full resolution.',
+            figures: [
+                {
+                    src: 'projects/world-value-survey/g8-trust-and-macro-paradox.webp',
+                    badge: '66 Nations · Macro Link',
+                    title: 'G8 4-Level Government Trust & Global Critical Citizens Paradox',
+                    caption:
+                        'Left: Properly ordered 4-level Government Trust across the 6 G8 Wave 7 nations (30%+ "None at all" in USA and UK vs. 11-12% in Japan and Germany). Right: Across 61 nations, Government Trust falls with V-Dem Press Freedom (r = -0.53) while rule-of-law Police Trust rises with anti-corruption CPI (r = +0.50).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/usa-and-g8-ordered-logit.webp',
+                    badge: 'Ordered Logit · PO Audit',
+                    title: 'USA Wave 7 Odds Ratios (+ Cutpoint Check) & Joint G8 Country Effects',
+                    caption:
+                        'Left: Strictly USA Ordered Logit (n = 2,396, R² = 0.248) with 3-cutpoint Proportional Odds markers highlights sharp 2017 Press-vs-Government polarization (OR = 0.35, p = 3.9e-59). Right: Pooled 6-G8 categorical Country ORs vs. Germany (Ref = 1.0) and nested LRTs.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/longitudinal-trust-trends.webp',
+                    badge: '1995-2022 · 95% CIs',
+                    title: 'Multi-Decade USA Institutional Divergence & G8 Government Evolution',
+                    caption:
+                        'Left: USA covariate-adjusted P(High Trust >= 3) stays 81-85% for Armed Forces and 67-73% for Police while Parliament (35% -> 14.7%) and Parties (19.9% -> 10.4%) collapse. Right: Germany (20% -> 43%), Canada, Japan, and Russia rise while USA and UK decline.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/lca-citizen-archetypes.webp',
+                    badge: '4-Class EM LCA',
+                    title: 'Latent Class Citizen Archetypes & Country Composition Across the G8',
+                    caption:
+                        'Left: Conditional P(High Trust >= 3) and P("A great deal") in brackets cleanly separate Moderate ("Quite a lot") from Strong ("A great deal") trustors (Entropy = 0.844). Right: USA/UK cluster in Rule-of-Law Pragmatists (49-55%), Germany/Canada/Japan lead Moderate Trustors, and Russia splits bimodally.',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Splitting institutional trust into partisan/executive vs. rule-of-law domains resolves the global macro paradox: free press and democratic accountability encourage vocal executive skepticism (r = -0.53 with government trust), while clean governance strongly builds confidence in Police (r = +0.50) and Courts (r = +0.36).',
+                'Fixing USA cohort filtering, reverse-coding, and sparse education reference categories revealed real 2017 US political polarization: trusting The Press cut government-trust odds nearly threefold (OR = 0.35, p = 3.9e-59) while favoring a Strong Leader boosted them (OR = 1.40, interaction OR = 2.16 vs. Germany).',
+                'Covariate-adjusted longitudinal probabilities (1995-2022) refuted any uniform "collapse of trust": US military and police trust held steady over 22 years while partisan branches eroded, and Germany, Canada, and Japan posted net gains in government trust while the USA and UK fell.',
+                'Replacing Euclidean K-means with 4-class EM Latent Class Analysis directly proved why preserving all four ordinal levels matters: collapsing "Quite a lot" and "A great deal" would have erased the divide between measured democratic trustors (Germany/Canada/Japan) and high-intensity polarized trustors (Russia).',
+            ],
+        },
     },
     {
         id: 'social-scope',

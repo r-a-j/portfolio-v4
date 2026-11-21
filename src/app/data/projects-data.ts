@@ -1693,14 +1693,147 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'descriptive-analysis',
         title: 'Descriptive Demographic Analysis',
-        description: 'Exploratory data analysis of global life expectancy and child mortality trends across 2002–2022 census data.',
+        description: 'Exploratory demographic analysis of life expectancy and infant mortality across 227 countries (2001 vs. 2021 U.S. Census IDB), featuring sex longevity gaps, 21-subregion variance decomposition (η² = 64.8%), and 20-year convergence.',
         thumbnail: 'projects/descriptive-analysis/descriptive-analysis_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Descriptive-Analysis',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Descriptive-Analysis/refs/heads/master/readme.md',
-        techStack: ['Python', 'EDA', 'pandas', 'seaborn', 'Matplotlib'],
-        rating: 3,
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Descriptive-Analysis/master/README.md',
+        techStack: ['Python', 'EDA', 'Variance Decomposition', 'Convergence Analysis', 'pandas', 'SciPy', 'NumPy', 'Matplotlib'],
+        rating: 5,
         category: 'Analytics',
-        year: 2023,
+        year: 2022,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Introductory Case Studies (Report 1)',
+            role: 'Individual Report · Prof. Dr. Jörg Rahnenführer & Dr. Franziska Kappenberg',
+            subtitle:
+                'Quantifying global distributions, sex longevity gaps, bivariate mortality coupling, 21-subregion homogeneity versus heterogeneity, and 20-year catch-up convergence across 227 countries in the U.S. Census Bureau International Data Base (2001 vs. 2021).',
+            metrics: [
+                {
+                    value: '227 Nations',
+                    label: '2021 Global Scope',
+                    detail: 'Complete 2021 coverage across 5 regions & 21 subregions (median LE 75.6 yr, IMR 12.6/1,000); 221 matched pairs for 2001-2021.',
+                },
+                {
+                    value: 'r = -0.905',
+                    label: 'IMR vs. Life Expectancy',
+                    detail: 'Tight convex inverse coupling (Spearman rho = -0.893; Female r = -0.913 vs. Male r = -0.883; Male-Female LE r = +0.971).',
+                },
+                {
+                    value: 'η² = 64.8%',
+                    label: 'Between-Subregion Share',
+                    detail: 'Nearly two-thirds of global variance in both LE (64.8%) and IMR (64.2%) lies between the 21 subregions rather than within.',
+                },
+                {
+                    value: '-28.2% SD',
+                    label: '20-Year Convergence',
+                    detail: '218/221 countries gained longevity (mean +5.78 yr; beta-convergence r = -0.842); IMR dispersion fell -42.5% (r = -0.936).',
+                },
+            ],
+            problem:
+                'Cross-national demographic indicators are strongly skewed (infant mortality skewness = +1.56 pulls the mean 61% above the median) and hierarchically nested across 5 regions and 21 subregions. Summarizing global health with unstratified averages hides both massive geographic clustering and stark within-subregion divides, while unexamined missing baseline records (6 countries missing in 2001) can bias 20-year comparisons.',
+            ownership:
+                'Completed as an individual report for Introductory Case Studies (Winter Semester 2022/23, Department of Statistics, TU Dortmund University). Built the reproducible Python analytics pipeline covering robust and parametric distributional summaries, dual Pearson/Spearman correlation matrices, exact sum-of-squares variance decomposition across all 21 subregions, explicit 2001 missingness auditing, paired 2001-to-2021 sigma- and beta-convergence metrics, and unit tests.',
+            approachHeading: 'Robust EDA, Subregion Decomposition & 20-Year Convergence',
+            approach: [
+                {
+                    label: '01 · Distributions & Sex Gap',
+                    title: 'Skewness-Aware Summaries (2021)',
+                    description:
+                        'Paired mean/SD with median/IQR across all 227 nations to handle left-skewed life expectancy (-0.73) and right-skewed infant mortality (+1.56). Quantified the Female-minus-Male gap (+5.11 yr mean; females outlive males in 226/227 nations, peaking at +11.4 yr in Russia with Montserrat -2.1 yr as sole reversal).',
+                },
+                {
+                    label: '02 · Correlation & Subregion Variance',
+                    title: 'Exact 21-Subregion Homogeneity Audit',
+                    description:
+                        'Paired Pearson r (-0.905) with Spearman rho (-0.893) to capture the non-linear convex drop in IMR vs. LE. Decomposed total variance into between-subregion (η² = 64.8% LE, 64.2% IMR) vs. within-subregion shares, contrasting ultra-tight Western Europe (LE IQR 0.8 yr, IMR IQR 0.2) against heterogeneous Eastern Asia (LE IQR 7.5 yr) and South-Eastern Asia (IMR IQR 23.3, exceeding global IQR).',
+                },
+                {
+                    label: '03 · Paired 20-Year Trajectories',
+                    title: 'Catch-Up Convergence & 2021 Shocks',
+                    description:
+                        'Explicitly isolated the 6 countries missing 2001 records (Libya, Puerto Rico, South Sudan, Sudan, Syria, United States) to track 221 matched pairs. Documented massive Sub-Saharan catch-up (Zambia +20.0 yr, Uganda +18.9 yr, Zimbabwe +18.5 yr; Rwanda IMR -72.6) alongside the only 3 longevity declines (Mexico -2.2 yr, Peru -1.9 yr, Venezuela -0.2 yr).',
+                },
+            ],
+            resultsTable: {
+                title: '20-Year Demographic Shift & Global Convergence Summary (2001 vs. 2021)',
+                subtitle:
+                    'Matched-country longitudinal analysis (n = 221 pairs excluding 6 nations missing 2001 IDB baselines) plus 2021 between-subregion variance shares (n = 227).',
+                columns: ['Indicator', '2001 Median', '2021 Median', 'Mean 20-Yr Delta', 'Global SD Shift', 'Improved', 'Beta-Conv. r'],
+                rows: [
+                    {
+                        cells: ['Life Expectancy, Both (yr)', '71.54', '75.56', '+5.78 yr', '9.58 -> 6.88 (-28.2%)', '218 / 221 (98.6%)', '-0.842'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Life Expectancy, Males (yr)', '68.78', '72.99', '+5.58 yr', '9.18 -> 6.71 (-26.9%)', '218 / 221 (98.6%)', '-0.814'],
+                    },
+                    {
+                        cells: ['Life Expectancy, Females (yr)', '74.06', '78.36', '+5.97 yr', '10.14 -> 7.17 (-29.3%)', '218 / 221 (98.6%)', '-0.859'],
+                    },
+                    {
+                        cells: ['Infant Mortality (per 1,000)', '20.74', '12.58', '-14.85', '33.20 -> 19.10 (-42.5%)', '215 / 221 (97.3%)', '-0.936'],
+                        highlight: true,
+                    },
+                ],
+            },
+            figures: [
+                {
+                    src: 'projects/descriptive-analysis/distributions-2021-le-sex-gap.webp',
+                    badge: 'Task 1 · Sex Gap',
+                    title: '2021 Life Expectancy Distributions by Sex (n = 227)',
+                    caption:
+                        'Both sexes follow left-skewed distributions with a +5.4 yr median female advantage (226/227 countries; widest in Russia +11.4 yr, sole reversal in Montserrat -2.1 yr).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/descriptive-analysis/infant-mortality-distribution-2021.webp',
+                    badge: 'Task 1 · Skewness',
+                    title: '2021 Infant Mortality Rate Distribution (Skew = +1.56)',
+                    caption:
+                        'An extreme right tail (Afghanistan 106.8, Somalia 88.0, CAR 84.2 vs. Slovenia 1.5) pulls the global mean (20.25) 61% above the median (12.58 per 1,000).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/descriptive-analysis/le-vs-imr-correlation-2021.webp',
+                    badge: 'Task 2 · Correlation',
+                    title: 'Infant Mortality vs. Life Expectancy Convex Coupling (2021)',
+                    caption:
+                        'Strong inverse correlation (Pearson r = -0.905, Spearman rho = -0.893) shows steep early longevity gains as IMR falls toward 10, followed by adult-health dispersion below IMR 10.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/descriptive-analysis/subregion-imr-dispersion-2021.webp',
+                    badge: 'Task 3 · IMR Spread',
+                    title: '21-Subregion Median IMR vs. Within-Subregion IQR (2021)',
+                    caption:
+                        'Between-subregion variance explains 64.2% of IMR spread: Western and Northern Europe cluster tightly (IQR 0.2-1.4), while South-Eastern Asia (IQR 23.3) exceeds the entire global IQR.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/descriptive-analysis/subregion-homogeneity-2021.webp',
+                    badge: 'Task 3 · 21 Subregions',
+                    title: 'All 21 Subregions Ranked by 2021 Median Life Expectancy (η² = 64.8%)',
+                    caption:
+                        'Subregion medians span 20.9 years from Middle Africa (61.7 yr) to Australia/NZ (82.6 yr) and Western Europe (82.4 yr), with narrow internal spread in Europe/Oceania vs. wide Eastern Asia (IQR 7.5 yr) and Western Africa (7.2 yr).',
+                    surface: 'light',
+                    wide: true,
+                },
+                {
+                    src: 'projects/descriptive-analysis/convergence-2001-2021.webp',
+                    badge: 'Task 4 · 2001 -> 2021',
+                    title: '20-Year Global Longevity Beta-Convergence (n = 221 Matched Nations)',
+                    caption:
+                        'Countries with the lowest 2001 baselines posted the sharpest gains (Zambia +20.0 yr, Uganda +18.9 yr, Zimbabwe +18.5 yr; r = -0.842), cutting global SD by 28.2% with only 3 declines (Mexico, Peru, Venezuela).',
+                    surface: 'light',
+                    wide: true,
+                },
+            ],
+            takeaways: [
+                'Heavy distributional skew makes robust location and spread indispensable: 2021 infant mortality skewness (+1.56) pulls the global mean (20.25) 61% above the median (12.58 per 1,000), while life expectancy spans 36.15 years from Afghanistan (53.25 yr) to Monaco (89.40 yr).',
+                'Females outlive males in 226 of 227 nations (+5.11 yr mean gap), with post-Soviet Eastern Europe showing the steepest male mortality penalty (Russia +11.44 yr, Belarus +11.14 yr, Lithuania +11.06 yr).',
+                'Exact sum-of-squares variance decomposition shows 64.8% of life expectancy variance and 64.2% of infant mortality variance lie between the 21 subregions (vs. 51-52% across 5 broad regions), while flagging wide internal heterogeneity inside Eastern Asia (LE IQR 7.5 yr) and South-Eastern Asia (IMR IQR 23.3).',
+                'Across all 221 countries matched between 2001 and 2021 (after auditing 6 missing 2001 baselines), global health converged sharply: life expectancy SD dropped 28.2% (r = -0.842) and infant mortality SD fell 42.5% (r = -0.936), driven by +18-20 yr gains in Zambia, Uganda, and Zimbabwe, with only Mexico, Peru, and Venezuela declining in 2021.',
+            ],
+        },
     },
 ];

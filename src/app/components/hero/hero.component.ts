@@ -38,8 +38,8 @@ export class HeroComponent implements OnDestroy {
     },
     {
       value: '< 60 sec',
-      label: 'On-Site Particle Analysis',
-      detail: 'U²-Net & OpenCV pipelines for VDA 19.1 inspection',
+      label: 'Automated Visual Inspection',
+      detail: 'On-site U²-Net & OpenCV analysis replacing slow lab review',
     },
     {
       value: '~10×',

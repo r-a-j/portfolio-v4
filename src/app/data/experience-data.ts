@@ -9,36 +9,39 @@ export const EXPERIENCES: Experience[] = [
     company_logo_url: 'experience/partikelart/PartikelART-Logo.svg',
     logoStyle: 'wide-light',
     summary:
-      'Computer vision pipelines for VDA 19.1 particle inspection, SAM 2.1 active-learning annotation (~10× speedup), and full-stack Nx monorepo (Ionic/Angular + NestJS).',
+      'Core ML and software engineer turning slow lab microscopy into automated on-site visual inspection in under 60 seconds: built PyTorch segmentation models (U²-Net), a SAM 2.1 active-learning data platform (~10× faster dataset creation), and full-stack mobile/web apps in an Nx monorepo (Ionic/Angular + NestJS).',
     description: [
       {
-        category: 'Computer Vision',
+        category: 'Computer Vision & Production ML',
         items: [
-          { text: 'Built real-time VDA 19.1 / ISO 16232 inspection pipeline in OpenCV/TypeScript computing Feret Max/Min calipers, incircle diameter, and cross-polarization gloss for metal vs. non-metal classification, supporting automated on-site particle analysis in under 60 seconds.' },
-          { text: 'Implemented Zhang-Suen topological thinning with precomputed 256-entry static LUTs to extract true unrolled centerline lengths of curved fibers.' },
-          { text: 'Engineered post-inference HSV saturation and inverted value channel injection to recover faint translucent fibers and dark carbon dust missed by neural networks.' }
+          { text: 'Developed, adapted, and optimized PyTorch U²-Net segmentation models for detecting, classifying (metallic, non-metallic, fibers), and measuring microscopic contamination directly on production-floor images, supporting automated on-site analysis in under 60 seconds.' },
+          { text: 'Engineered a real-time OpenCV/TypeScript image-analysis pipeline measuring object size, shape, and surface reflectivity (Feret max/min calipers, maximum inscribed circle, and cross-polarization gloss) to automate industrial cleanliness compliance (VDA 19.1 / ISO 16232) without manual lab review.' },
+          { text: 'Solved hard visual edge cases: extracted true unrolled lengths of curved fibers via Zhang-Suen skeleton thinning (accelerated with precomputed 256-entry lookup tables) and added HSV/value-channel post-processing to recover faint translucent fibers and dark carbon particles missed by neural models.' },
+          { text: 'Built repeatable model evaluation, error-analysis, and documentation workflows to verify precision, recall, and measurement accuracy across releases.' }
         ]
       },
       {
-        category: 'Active Learning & Data Pipeline',
+        category: 'Active Learning, Data Engine & MLOps',
         items: [
-          { text: 'Built custom Label Studio ML backend (ParSeGNet2 U²-Net) with Douglas-Peucker polygon simplification and SAM 2.1 integration, accelerating training dataset generation by ~10×.' },
-          { text: 'Automated continuous data synchronization between Azure Blob Storage, Label Studio, and training pipelines for human-in-the-loop retraining.' }
+          { text: 'Independently designed and built an active-learning annotation backend in Label Studio integrating U²-Net pre-labeling, Meta\'s Segment Anything Model (SAM 2.1), and Douglas-Peucker polygon simplification, accelerating training dataset creation by roughly 10×.' },
+          { text: 'Automated data synchronization between Azure Blob Storage, Label Studio, and PyTorch training pipelines so newly reviewed edge cases flowed directly into human-in-the-loop retraining.' },
+          { text: 'Built structured GPU training and side-by-side benchmarking workflows across segmentation architectures (U²-Net and FPN-style models) for reproducible experimentation.' }
         ]
       },
       {
-        category: 'Full-Stack Architecture & Performance',
+        category: 'Full-Stack Product & Performance',
         items: [
-          { text: 'Maintained Nx monorepo unifying the Ionic/Angular cross-platform mobile app, customer web portal, and NestJS API.' },
-          { text: 'Eliminated redundant sorting and re-evaluations in the particle inspection view, resolving UI lag on images with 3,000+ particles.' }
+          { text: 'Developed and maintained production features across a shared Nx monorepo unifying the Ionic/Angular cross-platform mobile inspection app, customer web portal, and NestJS backend API.' },
+          { text: 'Profiled and eliminated redundant sorting and change-detection work in the interactive inspection view, removing UI lag when rendering and filtering scenes with 3,000+ detected objects.' },
+          { text: 'Contributed to mobile camera/hardware capture integration (Capacitor) and end-to-end data flows connecting on-site imaging devices to cloud storage and inspection reporting.' }
         ]
       },
       {
-        category: 'Awards, Consulting & Teaching',
+        category: 'Impact, Startup Growth & Teaching',
         items: [
-          { text: 'Won 1st Place (Wilo-Foundation) and the TU capital VC Seed Sonderpreis at the TU Start-up Award 2025 for our mobile technical cleanliness inspection system.' },
-          { text: 'Authored automated Keyence microscope inspection proposal and technical requirements for Tier-1 automotive supplier Stoneridge.' },
-          { text: 'Co-delivered invited guest lecture for the Industrial Data Science 1 Master\'s course at TU Dortmund on deploying CV models in production.' }
+          { text: 'Hired directly after presenting my TU Dortmund Industrial Data Science 2 proof of concept to the founder; went on to serve as a core AI and software contributor as PartikelART won 1st Place (Wilo-Foundation) and the TU capital VC Seed Special Prize at the TU Start-up Award 2025.' },
+          { text: 'Translated industrial customer workflows into clear engineering specifications, authoring an automated microscope inspection proposal and technical requirements for a Tier-1 automotive supplier (Stoneridge / Keyence workflow).' },
+          { text: 'Co-delivered an invited guest lecture for the M.Sc. Industrial Data Science 1 course at TU Dortmund on moving computer vision models from research notebooks into production software.' }
         ]
       }
     ],
@@ -63,7 +66,7 @@ export const EXPERIENCES: Experience[] = [
       },
       {
         url: 'recognition/partikelart-lightbox-app.webp',
-        caption: 'PartikelART LightBox hardware running live mobile particle analysis (Feret max/min, MaxInkreis)',
+        caption: 'PartikelART LightBox hardware running live mobile inspection (automated object sizing and shape metrics)',
       },
       {
         url: 'recognition/tu-award-trophy.webp',

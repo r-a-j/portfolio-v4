@@ -842,120 +842,123 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'georeferenced-microdata-anonymization',
         title: 'Anonymization of Georeferenced Microdata',
-        description: 'Spatial k-anonymity analysis and Python benchmark of Verified Neighbor geomasking (Richter 2018) vs. Random Perturbation and Donut Geomasking using cKDTree indexing, Ripley L(r)-r, and Kulldorff Poisson cluster scans.',
+        description: 'Spatial k-anonymity benchmark of Verified Neighbor geomasking (Richter 2018) vs. Random Perturbation and Donut Geomasking on 125,612 real OpenStreetMap Dortmund buildings (EPSG:25832), cross-validated on Erie County, NY.',
         thumbnail: 'projects/georeferenced-microdata-anonymization/georeferenced-microdata-anonymization_thumb.webp',
         githubLink: 'https://github.com/r-a-j/georeferenced-microdata-anonymization',
         githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/georeferenced-microdata-anonymization/main/README.md',
-        techStack: ['Python', 'SciPy cKDTree', 'Spatial Privacy', 'Geomasking', 'Ripley K/L', 'Kulldorff Scan', 'NumPy', 'Matplotlib'],
+        techStack: ['Python', 'OpenStreetMap', 'EPSG:25832 (UTM)', 'SciPy cKDTree', 'Spatial Privacy', 'Ripley K/L', 'Kulldorff Scan', 'NumPy', 'Matplotlib'],
         rating: 5,
         category: 'Geospatial & Privacy',
         year: 2024,
         language: 'Python',
         caseStudy: {
             context: 'TU Dortmund · M.Sc. Seminar (Statistical Disclosure Control)',
-            role: 'Individual Seminar Paper, Talk & Python Benchmark · Prof. Dr. Rainer Lenz',
+            role: 'Individual Seminar Paper, Talk & Real-OSM Python Benchmark · Prof. Dr. Rainer Lenz',
             subtitle:
-                'Evaluating how to anonymize individual-level location data against reverse-geocoding attacks without destroying sub-kilometer spatial patterns, environmental exposure links, or disease hotspot detection.',
+                'Evaluating how to anonymize individual-level location records against reverse-geocoding attacks on real OpenStreetMap building footprints (Dortmund, Germany + Erie County, NY) without destroying local spatial patterns or disease hotspot detection.',
             metrics: [
                 {
                     value: '100% k-Safe',
                     label: 'Worst-Case Privacy Floor',
-                    detail: 'Verified Neighbor guaranteed target k for 100% of subjects (and 100% valid residential placement) vs. 86.9% for fixed-radius perturbation (min k = 21).',
+                    detail: 'Verified Neighbor guaranteed exact target k and 100% verified residential OSM placement in Dortmund vs. 40.1-46.6% valid residential placement and min k = 10 for fixed-radius RP.',
                 },
                 {
-                    value: '11.3 m RMSE',
+                    value: '12.4 m RMSE',
                     label: 'Sub-1 km Pattern Fidelity',
-                    detail: 'Besag L(r)-r RMSE below 1 km dropped from 230.7 m (Random Perturbation) and 230.2 m (Donut) to 11.3 m (VN k=50) and 15.9 m (VN Env k=100).',
+                    detail: 'Besag L(r)-r RMSE below 1 km on Dortmund dropped from 274.3 m (RP 905 m) and 174.9 m (Donut) down to 12.4 m (VN Env k=50) and 21.7 m (VN Env k=100).',
                 },
                 {
-                    value: '250 m vs 1.1 km',
-                    label: 'Lower Displacement',
-                    detail: 'Mean surrogate displacement dropped from 602.8 m (Random) and 1,125.6 m (Donut) down to 250.2 m (VN k=50) and 350.2 m (VN k=100).',
+                    value: '0.808 Jaccard',
+                    label: 'Hotspot Scan Recovery',
+                    detail: 'Kulldorff Poisson scan recovered 2.76/3 true Dortmund tiles (0.88 outside) under VN Env k=100 vs. 0.339 Jaccard (4.92 outside) for RP 905 m.',
                 },
                 {
-                    value: '72,000 Runs',
-                    label: '50-Replicate Spatial Benchmark',
-                    detail: '12,000 property parcels, 144 census block groups, 160 subjects, 9 masking configs x 50 Monte Carlo runs, backed by unit tests.',
+                    value: '179k Buildings',
+                    label: 'Real OSM Dual-City Audit',
+                    detail: '125,612 real Dortmund OSM buildings (EPSG:25832) primary benchmark + 53,394 Erie County, NY buildings (EPSG:26918) cross-validation (80,000 runs per city).',
                 },
             ],
             problem:
-                'Publishing individual-level geospatial records (health registries, mobility logs, or environmental exposure studies) poses an acute re-identification threat through reverse geocoding. Coarse spatial aggregation hides addresses but destroys local distance analysis and hotspot detection. Meanwhile, standard fixed-radius random perturbation ignores uneven housing density: rural subjects fall far below target k-anonymity while urban subjects are over-displaced into parks, lakes, or commercial parcels.',
+                'Publishing individual-level geospatial records (health registries, mobility logs, or environmental exposure tables) creates a direct reverse-geocoding threat. Coarse postcode aggregation hides addresses but destroys local distance analysis and hotspot detection. Meanwhile, fixed-radius random perturbation cannot adapt to real urban morphology: on compact Dortmund, a 905 m radius over-masks central neighborhoods up to k = 2,570 and scatters ~60% of masked points onto garages, parks, Phoenix-See, or commercial land, while tightening the radius to 500 m drops sparse outskirt privacy down to k = 10.',
             ownership:
-                'Completed individually for Prof. Dr. Rainer Lenz\'s M.Sc. Seminar on Anonymization of Georeferenced Microdata at TU Dortmund (Winter Term 2023/24): authored the 12-page technical report and 40-slide seminar presentation critically evaluating Wayne Richter\'s (2018) Verified Neighbor geomasking framework. To demonstrate hands-on geospatial engineering alongside the seminar research, I also built an open-source, unit-tested Python benchmark implementing all three geomasking algorithms (cKDTree Verified Neighbor, uniform-area Random Perturbation, and Hampton et al. Donut Geomasking) plus Hotelling T², Rayleigh circular tests, Besag L(r)-r, and Kulldorff discrete Poisson spatial scans.',
-            approachHeading: 'Seminar Analysis & Reproducible Geospatial Benchmark',
+                'Completed individually for Prof. Dr. Rainer Lenz\'s M.Sc. Seminar on Anonymization of Georeferenced Microdata at TU Dortmund (Winter Term 2023/24): authored the 12-page technical report and 40-slide presentation analyzing Wayne Richter\'s (2018) Verified Neighbor geomasking framework. To back the seminar analysis with real geospatial engineering, I built an open-source, unit-tested Python pipeline that fetches real OpenStreetMap building footprints via Overpass, projects WGS84 to metric UTM (EPSG:25832 & EPSG:26918) in pure NumPy, and benchmarks cKDTree Verified Neighbor against Random Perturbation and Donut Geomasking using Hotelling T², Rayleigh tests, Besag L(r)-r, and Kulldorff Poisson spatial scans.',
+            approachHeading: 'Real-OSM Pipeline, Geomasking Engine & Spatial Audit',
             approach: [
                 {
-                    label: '01 · Parcel Landscape & Priors',
-                    title: 'Heterogeneous Urban-to-Rural Model',
+                    label: '01 · Real OSM & UTM Projection',
+                    title: 'Dortmund (125k) + Erie County (53k)',
                     description:
-                        'Simulated a 12 km x 12 km projected coordinate region (144 block groups, 12,000 parcels: 9,666 residential, 2,334 non-residential, plus an uninhabited lake void and 3 water-supply districts) with 160 subjects including two embedded spatial clusters (35 primary + 25 secondary), mirroring Richter\'s Erie County experimental design.',
+                        'Fetched public OpenStreetMap building centroids via Overpass and projected them to exact metric UTM (EPSG:25832 for Dortmund, EPSG:26918 for Erie County) using 4th-order transverse Mercator series in pure NumPy. Handled real German ALKIS vs. US NYS GIS building-tag differences to isolate 58,462 verified residential buildings in Dortmund and 50,252 in Erie County, sampling 160 residential centroids per city (100 uniform-null background + 35 primary + 25 secondary cluster; zero personal data).',
                 },
                 {
                     label: '02 · Spatial Masking Engine',
                     title: 'cKDTree Verified Neighbor vs. Baselines',
                     description:
-                        'Implemented exact area-uniform Random Perturbation (r = 905 m, 50 m exclusion), density-adaptive Donut Geomasking (Hampton et al., k_min = 100), and Verified Neighbor using SciPy cKDTree spatial indexing over residential parcels with optional environmental-zone matching and a strict 50 m exclusion buffer.',
+                        'Benchmarked Verified Neighbor (SciPy cKDTree over verified residences with a strict 50 m exclusion ring and optional environmental service-zone matching, k = 50 to 350) against uniform-area Random Perturbation (r = 500 m European scale and r = 905 m Richter baseline) and density-adaptive Donut Geomasking (Hampton et al., k_min = 100).',
                 },
                 {
                     label: '03 · Privacy & Utility Audit',
                     title: '50 Replicates, Ripley L(r) & Kulldorff Scan',
                     description:
-                        'Audited all 9 masking configurations across 50 Monte Carlo replicates (72,000 masked realizations): empirical worst-case k-anonymity, Hotelling T² mean-center shift, Rayleigh directional bias, Besag L(r)-r spatial pattern RMSE, water-zone preservation, and Kulldorff discrete Poisson hotspot scan recovery.',
+                        'Audited 10 masking configurations x 50 Monte Carlo runs per region (80,000 masked realizations per city): worst-case realized k, <= 25 m residential placement validity, Hotelling T² mean-center shift, Rayleigh circular directional bias, Besag L(r)-r pattern RMSE, and Kulldorff discrete Poisson cluster Jaccard recovery.',
                 },
             ],
             resultsTable: {
-                title: '50-Replicate Spatial Privacy vs. Utility Benchmark (160 Subjects, 12,000 Parcels)',
+                title: 'Dortmund, Germany: 50-Replicate Spatial Privacy vs. Utility Benchmark (125,612 Real OSM Buildings)',
                 subtitle:
-                    'Reproduced in Python (src/run_benchmark.py, seed = 42), mirroring the trade-offs documented in Richter (2018) on Erie County, NY.',
-                columns: ['Geomasking Method', 'Achieve k (%)', 'Min / Max k', 'Valid Res. (%)', 'Same Env (%)', 'Mean Disp (m)', 'Sub-1 km L(r) RMSE', 'Cluster In / Out (of 9)'],
+                    'Projected to EPSG:25832 (UTM 32N; 58,462 residential, 67,150 non-residential, 12 x 12 metric grid, 160 subjects, seed = 42).',
+                columns: ['Geomasking Method', 'Achieve k (%)', 'Min / Max k', 'Valid Res. (%)', 'Same Env (%)', 'Mean Disp (m)', 'Sub-1 km L(r) RMSE', 'Cluster Jaccard'],
                 rows: [
                     {
-                        cells: ['Random Perturbation (r = 905 m)', '86.9%', '21 / 1,332', '52.4%', '91.8%', '602.8 m', '230.7 m', '5.86 / 3.20'],
+                        cells: ['Random Perturbation (r = 500 m)', '98.8%', '10 / 1,101', '46.6%', '96.3%', '336.2 m', '130.1 m', '0.385 (2.52 / 4.44)'],
                     },
                     {
-                        cells: ['Donut Geomasking (k_min = 100, Env)', '96.2%', '35 / 3,486', '52.1%', '100.0%', '1,125.6 m', '230.2 m', '5.16 / 7.42'],
+                        cells: ['Random Perturbation (r = 905 m)', '99.4%', '57 / 2,570', '40.1%', '88.1%', '600.7 m', '274.3 m', '0.339 (2.36 / 4.92)'],
                     },
                     {
-                        cells: ['Verified Neighbor (All, k = 50)', '100.0%', '50 / 50', '100.0%', '94.4%', '250.2 m', '11.3 m', '5.86 / 1.30'],
+                        cells: ['Donut Geomasking (k_min = 100, Env)', '99.4%', '95 / 4,227', '45.3%', '100.0%', '558.3 m', '174.9 m', '0.355 (2.28 / 4.52)'],
+                    },
+                    {
+                        cells: ['Verified Neighbor (All, k = 50)', '100.0%', '50 / 50', '100.0%', '98.4%', '105.9 m', '13.8 m', '0.645 (2.54 / 1.62)'],
                         highlight: true,
                     },
                     {
-                        cells: ['Verified Neighbor (All, k = 100)', '100.0%', '100 / 100', '100.0%', '94.1%', '350.2 m', '22.0 m', '4.56 / 1.80'],
+                        cells: ['Verified Neighbor (All, k = 100)', '100.0%', '100 / 100', '100.0%', '98.3%', '143.7 m', '27.1 m', '0.627 (2.48 / 1.76)'],
                         highlight: true,
                     },
                     {
-                        cells: ['Verified Neighbor (Env, k = 50)', '100.0%', '50 / 50', '100.0%', '100.0%', '300.4 m', '11.6 m', '5.40 / 1.36'],
+                        cells: ['Verified Neighbor (Env, k = 50)', '100.0%', '50 / 50', '100.0%', '100.0%', '109.7 m', '12.4 m', '0.768 (2.70 / 1.06)'],
                         highlight: true,
                     },
                     {
-                        cells: ['Verified Neighbor (Env, k = 100)', '100.0%', '100 / 100', '100.0%', '100.0%', '446.0 m', '15.9 m', '5.22 / 2.02'],
+                        cells: ['Verified Neighbor (Env, k = 100)', '100.0%', '100 / 100', '100.0%', '100.0%', '154.5 m', '21.7 m', '0.808 (2.76 / 0.88)'],
                         highlight: true,
                     },
                     {
-                        cells: ['Verified Neighbor (Env, k = 200)', '100.0%', '200 / 200', '100.0%', '100.0%', '661.7 m', '46.2 m', '4.86 / 2.46'],
+                        cells: ['Verified Neighbor (Env, k = 200)', '100.0%', '200 / 200', '100.0%', '100.0%', '224.0 m', '32.4 m', '0.704 (2.68 / 1.64)'],
                     },
                 ],
                 footnote:
-                    'Benchmark outcomes closely mirror Richter\'s (2018) Erie County results analyzed in the seminar report: RP mean displacement 605 m with rural k-anonymity failures, Donut mean 1,157 m with diffuse SaTScan clusters (17.2 outside block groups), and Verified Neighbor minimizing displacement (169-473 m) while keeping outside cluster spillover to 0.5-1.6 block groups.',
+                    'Cluster column shows mean Jaccard (true in / false outside of 3 ground-truth Dortmund tiles). Cross-region validation on Erie County, NY (EPSG:26918, 53,394 real OSM buildings, mirroring Richter 2018) confirmed the same pattern: RP 905 m left 11/160 subjects below k = 100 (min k = 40, 36.5% valid res., 409.3 m sub-1 km RMSE) and Donut smeared the 9-tile cluster across 10.22 outside tiles (Jaccard 0.246), whereas Verified Neighbor (All, k = 50) achieved 100% exact k, 149.3 m mean displacement, 33.9 m sub-1 km RMSE, and 0.916 cluster Jaccard (0.06 outside). Full Erie County CSV and plots are stored in the repository.',
             },
-            figuresHeading: 'Spatial Masking Diagnostics & Cluster Scans',
+            figuresHeading: 'Dortmund OpenStreetMap Diagnostics & Cluster Scans',
             figuresIntro:
-                'Original figures generated directly by src/run_benchmark.py in the accompanying Python repository. Click any figure to inspect full resolution.',
+                'Generated directly by src/run_benchmark.py on 125,612 real Dortmund OSM buildings (EPSG:25832; map data (c) OpenStreetMap contributors, ODbL 1.0). Click any figure to inspect full resolution.',
             figures: [
                 {
                     src: 'projects/georeferenced-microdata-anonymization/verified-neighbor-pipeline.webp',
-                    badge: 'Algorithm Walkthrough',
-                    title: 'Verified Neighbor Winnowing & Rural Edge Comparison',
+                    badge: 'Dortmund OSM · Walkthrough',
+                    title: 'Verified Neighbor Winnowing & Sparse Outskirt Comparison',
                     caption:
-                        'Left: Filtering to same-zone residential parcels outside a 50 m exclusion ring yields an exact k = 50 pool within 216 m. Right: On a rural fringe, fixed 905 m RP catches only 26 residences while adaptive VN expands smoothly to guarantee k = 100.',
+                        'Left: Filtering real Dortmund OSM buildings along the east-west corridor outside a 50 m buffer isolates an exact k = 50 same-zone pool within 311 m. Right: On Dortmund\'s sparse southern outskirts, fixed 905 m RP captures only 54 residences while adaptive VN expands smoothly to 1,044 m to guarantee k = 100.',
                     surface: 'light',
                 },
                 {
                     src: 'projects/georeferenced-microdata-anonymization/spatial-methods-comparison.webp',
-                    badge: 'Urban-to-Rural Map',
-                    title: 'Spatial Footprint of Masked Surrogates (4 Methods)',
+                    badge: '125,612 OSM Buildings',
+                    title: 'City-Scale Spatial Footprints Across Dortmund (4 Methods)',
                     caption:
-                        'Random Perturbation and Donut Geomasking scatter ~48% of surrogates off residential parcels (including commercial strips and the lake void), whereas Verified Neighbor stays 100% on real residences and honors the water boundary under Env matching.',
+                        'Random Perturbation (40.1% valid residential) and Donut Geomasking (45.3%) scatter surrogates across Phoenix-See, parks, garages, and industrial belts, while Verified Neighbor stays 100% on real residential OSM buildings and honors the service boundary under Env matching.',
                     surface: 'light',
                 },
                 {
@@ -963,23 +966,23 @@ export const PROJECTS: ProjectDetails[] = [
                     badge: 'k-Anonymity & CDF',
                     title: 'Realized Spatial k-Anonymity & Net Displacement CDF',
                     caption:
-                        'Rank-ordered pool sizes expose RP\'s rural vulnerability (21/160 subjects below k = 100) and Donut\'s urban overshoot (up to k = 3,486), while the net-displacement CDF confirms substantially smaller shift for Verified Neighbor.',
+                        'Rank-ordered pool sizes expose the fixed-radius dilemma: RP 905 m over-masks inner Dortmund up to k = 2,570 while still dropping to k = 57 on outskirts, and RP 500 m falls to k = 10. Verified Neighbor holds exact target k with far smaller net displacement.',
                     surface: 'light',
                 },
                 {
                     src: 'projects/georeferenced-microdata-anonymization/ripley-and-cluster-utility.webp',
-                    badge: 'Spatial Utility · Scan',
-                    title: 'Besag L(r)-r Spatial Pattern Fidelity & Kulldorff Cluster Scan',
+                    badge: 'L(r)-r & Kulldorff Scan',
+                    title: 'Besag L(r)-r Pattern Fidelity & Kulldorff Poisson Scan',
                     caption:
-                        'Verified Neighbor tracks unmasked L(r)-r closely across 150-3,000 m and locks onto the red ground-truth primary cluster across 50 Poisson scan runs, while Random Perturbation and Donut Geomasking blur the hotspot outward.',
+                        'Verified Neighbor tracks unmasked Dortmund L(r)-r within 12.4-21.7 m below 1 km and locks onto all 3 red ground-truth Hoerde/Phoenix-See South tiles (Jaccard 0.808), while RP 905 m and Donut blur the hotspot outward.',
                     surface: 'light',
                 },
             ],
             takeaways: [
-                'Controlling worst-case rather than average disclosure risk is the core advantage of parcel-based Verified Neighbor masking: every subject gets a guaranteed pool of k plausible residences, or is explicitly flagged when sparse geography cannot support k.',
-                'Verified Neighbor cuts sub-kilometer spatial pattern error (Besag L(r)-r RMSE) by more than 10x relative to fixed-radius Random Perturbation and Donut Geomasking while preventing impossible surrogate coordinates in lakes or commercial corridors.',
-                'Matching environmental variables (such as water supply districts) preserves 100% exposure accuracy but creates an unavoidable 3-way trade-off: sparse fringe subjects require longer search radii (up to 7 km at k = 100), increasing local directional shift (Rayleigh test 40-51%).',
-                'Practical deployment caveat highlighted in the seminar evaluation: Verified Neighbor requires up-to-date residential parcel centroid registries (e.g., cadastre or OpenStreetMap building footprints) and must size k jointly with any non-spatial quasi-identifiers released alongside coordinates.',
+                'Running on two real OSM cities exposes why hand-tuned fixed radii fail in production: Richter\'s 905 m Erie County radius massively over-masks compact Dortmund (up to k = 2,570) while still dipping below k = 100 on outskirts, and tightening to 500 m drops worst-case privacy to k = 10 in Dortmund and leaves 21.2% of Erie County subjects below k = 100.',
+                'Verified Neighbor eliminates impossible coordinates (zero points in lakes, parks, garages, or industrial zones), cuts mean displacement by 4x to 5.6x in Dortmund (105.9-154.5 m vs. 600.7 m RP 905 m), reduces sub-kilometer L(r)-r RMSE by up to 20x, and lifts Kulldorff cluster Jaccard from 0.339 to 0.808 (and 0.916 on Erie County).',
+                'Real street networks naturally introduce directional pull at parks, rail corridors, and city edges: Hotelling T² (61.9%-71.9%) and Rayleigh (65.6%-72.5%) rates on Dortmund OSM match Richter\'s original Erie County empirical findings (43%-74% and 43%-69%), while strict environmental zone matching pushes rural search jumps up to 4.4 km.',
+                'Practical deployment requires maintaining current residential address registries (e.g., German ALKIS cadastre or verified OSM building footprints), adapting OSM tag parsers across regions, and sizing k jointly with any non-spatial quasi-identifiers released alongside coordinates.',
             ],
         },
     },

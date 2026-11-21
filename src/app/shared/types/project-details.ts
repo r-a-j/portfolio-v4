@@ -43,7 +43,7 @@ export interface ProjectShowcaseArchitectureLayer {
 export interface ProjectShowcase {
     tagline: string;
     versionBadge?: string;
-    accentColor?: 'crimson' | 'indigo';
+    accentColor?: 'crimson' | 'indigo' | 'amber';
     distributionBadge?: string;
     distributionIcon?: string;
     brandIcon?: string;

@@ -129,7 +129,7 @@
               @if (project.statusBadge) {
                 <span
                   class="project-card__status"
-                  [class.project-card__status--wip]="project.statusBadge === 'In Development'"
+                  [class.project-card__status--wip]="project.statusBadge === 'In Development' || project.statusBadge.startsWith('Coming Soon')"
                 >
                   {{ project.statusBadge }}
                 </span>

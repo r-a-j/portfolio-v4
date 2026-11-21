@@ -47,6 +47,24 @@
       );
     }
   }
+
+  &--amber {
+    background: #0c0b09;
+    border-color: rgba(229, 193, 123, 0.3);
+
+    .showcase-hero__backdrop {
+      opacity: 0.48;
+    }
+
+    .showcase-hero__scrim {
+      background: linear-gradient(
+        135deg,
+        rgba(12, 11, 9, 0.94) 0%,
+        rgba(24, 20, 14, 0.76) 52%,
+        rgba(12, 11, 9, 0.9) 100%
+      );
+    }
+  }
 }
 
 .brand-icon--crimson {
@@ -58,12 +76,21 @@
   border-color: rgba(129, 140, 248, 0.38);
 }
 
+.brand-icon--amber {
+  box-shadow: 0 12px 32px rgba(229, 193, 123, 0.32);
+  border-color: rgba(229, 193, 123, 0.42);
+}
+
 .wordmark--crimson {
   filter: drop-shadow(0 4px 18px rgba(202, 8, 18, 0.35));
 }
 
 .wordmark--indigo {
   filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.45));
+}
+
+.wordmark--amber {
+  filter: drop-shadow(0 4px 20px rgba(229, 193, 123, 0.35));
 }
 
 .surface-card {
@@ -124,6 +151,16 @@
 
     .pill__dot {
       background: #818cf8;
+    }
+  }
+
+  &--amber {
+    background: rgba(229, 193, 123, 0.16);
+    border: 1px solid rgba(229, 193, 123, 0.48);
+    color: #f6e3b8;
+
+    .pill__dot {
+      background: #e5c17b;
     }
   }
 

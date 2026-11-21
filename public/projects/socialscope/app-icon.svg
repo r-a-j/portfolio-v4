@@ -1,0 +1,30 @@
+<svg width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="ssBg" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#221D15"/>
+      <stop offset="58%" stop-color="#11100D"/>
+      <stop offset="100%" stop-color="#090807"/>
+    </radialGradient>
+    <linearGradient id="ssGold" x1="56" y1="56" x2="232" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F6E2B3"/>
+      <stop offset="48%" stop-color="#E5C17B"/>
+      <stop offset="100%" stop-color="#B8873D"/>
+    </linearGradient>
+    <linearGradient id="ssSubtle" x1="76" y1="76" x2="212" y2="212" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E5C17B" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#E5C17B" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect width="288" height="288" fill="url(#ssBg)"/>
+  <!-- Outer precision viewfinder corners -->
+  <path d="M54 96V66C54 59.373 59.373 54 66 54H96" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M192 54H222C228.627 54 234 59.373 234 66V96" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M234 192V222C234 228.627 228.627 234 222 234H192" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M96 234H66C59.373 234 54 228.627 54 222V192" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
+  <!-- Inner subtle optical ring -->
+  <circle cx="144" cy="144" r="64" stroke="url(#ssSubtle)" stroke-width="3"/>
+  <!-- Sculpted prism diamond + studio aperture -->
+  <path d="M144 84L204 144L144 204L84 144L144 84Z" stroke="url(#ssGold)" stroke-width="8.5" stroke-linejoin="round"/>
+  <circle cx="144" cy="144" r="21" fill="url(#ssGold)"/>
+  <circle cx="144" cy="144" r="9" fill="#0C0B09"/>
+</svg>

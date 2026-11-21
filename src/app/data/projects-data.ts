@@ -635,6 +635,159 @@ export const PROJECTS: ProjectDetails[] = [
         },
     },
     {
+        id: 'social-scope',
+        title: 'Social Scope',
+        description: 'Commercial AI commerce and visual ad studio in private development: converts official Instagram Business posts and reference ad screenshots into schema-validated Amazon, Shopify, eBay, and Etsy listings with human-in-the-loop review and on-device ONNX safety screening.',
+        thumbnail: 'projects/socialscope/socialscope_thumb.webp',
+        statusBadge: 'Coming Soon • Private Build',
+        techStack: ['Angular', 'Ionic', 'Capacitor', 'Python', 'FastAPI', 'Google Gemini', 'ONNX Runtime', 'ComfyUI', 'Amazon SP-API', 'Shopify'],
+        rating: 5,
+        category: 'Web App',
+        year: 2026,
+        language: 'TypeScript',
+        showcase: {
+            tagline: 'Social-to-Marketplace AI Catalog Engine & Headless Ad Photography Studio (Web, Android & Future iOS)',
+            versionBadge: 'v2.0 · In Active Build',
+            accentColor: 'amber',
+            distributionBadge: 'Private Commercial Product',
+            distributionIcon: 'fa-solid fa-lock',
+            brandIcon: 'projects/socialscope/app-icon.svg',
+            wordmark: 'projects/socialscope/wordmark.svg',
+            heroBanner: 'projects/socialscope/visuals/studio-hero.webp',
+            overview:
+                'Built for independent brands and e-commerce sellers who launch products on social media first and spend hours rebuilding catalogs manually. Social Scope replaces brittle third-party scrapers with official Meta Graph API ingestion, extracts one canonical product record validated against Amazon, Shopify, eBay, and Etsy schemas, resolves missing mandatory fields through a confidence-scored human-in-the-loop workbench, and pairs it with a headless ad-style studio gated by an on-device ONNX safety classifier.',
+            metrics: [
+                {
+                    value: '4 Channels',
+                    label: 'Multi-Marketplace Engine',
+                    detail: 'Pluggable schema adapters targeting Amazon SP-API, Shopify Admin GraphQL, eBay Inventory API, and Etsy Open API v3.',
+                    icon: 'fa-solid fa-store',
+                },
+                {
+                    value: 'On-Device',
+                    label: 'Local ONNX Safety Shield',
+                    detail: 'MobileNetV2 NSFW Web Worker (onnxruntime-web WASM-SIMD) screens every upload locally before any byte reaches cloud AI.',
+                    icon: 'fa-solid fa-shield-halved',
+                },
+                {
+                    value: 'Dual Engine',
+                    label: 'Gemini + Headless ComfyUI',
+                    detail: 'Serverless Gemini Image rendering via Vercel Python FastAPI BFF plus pluggable headless ComfyUI GPU workflows.',
+                    icon: 'fa-solid fa-wand-magic-sparkles',
+                },
+                {
+                    value: 'Web + Mobile',
+                    label: 'Cross-Platform Foundation',
+                    detail: 'Angular 21, Ionic 8, and Capacitor 8 codebase targeting live Web and Android first, structured cleanly for future iOS.',
+                    icon: 'fa-solid fa-mobile-screen-button',
+                },
+            ],
+            screenshots: [],
+            spotlightHeading: 'Under the Hood: Two Core Pipelines',
+            spotlightIntro:
+                'Social Scope is currently in private development as a commercial SaaS and mobile studio. Below is the exact architecture being engineered under the hood.',
+            spotlights: [
+                {
+                    src: 'projects/socialscope/visuals/ad-style-engine.webp',
+                    eyebrow: 'Pre-Flight Safety + Headless Rendering',
+                    title: 'Ad-Style Transfer & Marketplace Photography Studio',
+                    description:
+                        'Upload a raw product photograph alongside an optional reference ad screenshot. A local ONNX Web Worker screens every image on-device before routing to either serverless Gemini Image rendering or pre-configured headless ComfyUI workflows (BiRefNet, quantized Flux, IC-Light) to output compliant #FFFFFF hero shots and campaign creatives.',
+                },
+                {
+                    src: 'projects/socialscope/visuals/marketplace-pipeline.webp',
+                    eyebrow: 'Official APIs + Human-in-the-Loop',
+                    title: 'One Social Post to Four Schema-Validated Listings',
+                    description:
+                        'Official Meta Instagram Graph API webhooks and media sync feed Gemini structured extraction into a single Canonical Product Model. Category adapters score every required attribute (Verified, Needs Review, or Missing Required) with one-click AI suggestions so sellers resolve gaps in seconds before exporting or publishing.',
+                },
+            ],
+            highlightsHeading: 'What Is Being Built Under the Hood',
+            highlightsIntro:
+                'Zero scraping dependencies, strict per-marketplace schema validation, local safety screening, and headless studio photography.',
+            highlights: [
+                {
+                    title: 'Official Meta Graph API Intake (Zero Scraping)',
+                    description:
+                        'Completely replaces risky third-party scraping tools with authorized Instagram Business/Creator Graph API sync, constant-time HMAC-SHA256 webhook verification, and direct photo/screenshot capture.',
+                    icon: 'fa-brands fa-instagram',
+                    tags: ['Meta Graph API', 'HMAC-SHA256', 'Zero Scraping'],
+                },
+                {
+                    title: 'Multi-Marketplace Schema & Gap Resolver',
+                    description:
+                        'Validates one canonical product draft across Amazon SP-API Product Type JSON Schemas, Shopify productSet, eBay Item Specifics, and Etsy taxonomy rules, highlighting missing required fields with clickable AI suggestions.',
+                    icon: 'fa-solid fa-list-check',
+                    tags: ['Amazon SP-API', 'Shopify', 'eBay', 'Etsy'],
+                },
+                {
+                    title: 'On-Device ONNX Pre-Flight Safety Gate',
+                    description:
+                        'Runs a quantized MobileNetV2 safety classifier inside a dedicated Web Worker with reusable 224x224 buffers to block unsafe uploads locally before any network request hits cloud APIs or GPU workers.',
+                    icon: 'fa-solid fa-user-shield',
+                    tags: ['onnxruntime-web', 'WASM-SIMD', 'Web Worker'],
+                },
+                {
+                    title: 'Headless Ad-Style Transfer & Hero Studio',
+                    description:
+                        'Combines raw product shots with reference ad screenshots to produce pure-white #FFFFFF marketplace hero images (with automated compliance checks) and cohesive social ad creatives without exposing complex node UIs.',
+                    icon: 'fa-solid fa-camera-retro',
+                    tags: ['Gemini Image', 'ComfyUI API', 'White-BG Check'],
+                },
+                {
+                    title: 'Offline-First Cross-Platform Client',
+                    description:
+                        'Built on Angular 21, Ionic 8, Capacitor 8, and Dexie IndexedDB so drafts, review states, and client-side image compression run smoothly across Web, Android, and future iOS releases.',
+                    icon: 'fa-solid fa-layer-group',
+                    tags: ['Angular 21', 'Ionic 8', 'Capacitor 8', 'Dexie'],
+                },
+                {
+                    title: 'Hardened Vercel Python FastAPI BFF',
+                    description:
+                        'Stateless Python 3.13 FastAPI backend-for-frontend orchestrating Gemini structured outputs, SSRF-safe media checks, magic-byte upload validation, and swappable GPU worker endpoints.',
+                    icon: 'fa-solid fa-server',
+                    tags: ['Python 3.13', 'FastAPI', 'Pydantic v2', 'Vercel BFF'],
+                },
+            ],
+            architectureIntro:
+                'Architected as a clean monorepo separating the cross-platform client, stateless Python BFF, pluggable marketplace adapters, and optional headless GPU workers.',
+            architecture: [
+                {
+                    layer: 'Cross-Platform Client',
+                    title: 'Angular 21 + Ionic 8 + Capacitor 8 Studio',
+                    description:
+                        'Responsive desktop workspace and native mobile companion sharing one signal-driven codebase, offline-first Dexie draft storage, client-side image normalization, and dedicated Web Worker safety screening.',
+                    technologies: ['Angular 21', 'Ionic 8', 'Capacitor 8', 'Dexie', 'ONNX Web Worker'],
+                },
+                {
+                    layer: 'Serverless BFF',
+                    title: 'Vercel Python 3.13 FastAPI Orchestrator',
+                    description:
+                        'Stateless API layer handling official Meta webhooks, Gemini multimodal extraction via google-genai, magic-byte and text safety validation, and unified routing across visual backends.',
+                    technologies: ['Python 3.13', 'FastAPI', 'Pydantic v2', 'google-genai', 'Vercel'],
+                },
+                {
+                    layer: 'Marketplace Engine',
+                    title: 'Canonical Catalog & 4 Schema Adapters',
+                    description:
+                        'Maps extracted attributes to platform-specific JSON schemas, character/tag limits, EU GPSR compliance checks, SP-API dry-run payloads, and ready-to-upload CSV/JSON bundles.',
+                    technologies: ['Amazon SP-API', 'Shopify GraphQL', 'eBay Inventory', 'Etsy v3'],
+                },
+                {
+                    layer: 'Visual Backends',
+                    title: 'Gemini Cloud Image & Headless ComfyUI Worker',
+                    description:
+                        'Runs serverless cloud rendering by default and plugs cleanly into pre-configured headless ComfyUI API workflows (BiRefNet, quantized Flux, IC-Light) on local or scale-to-zero cloud GPUs.',
+                    technologies: ['Gemini Image', 'ComfyUI API', 'BiRefNet', 'Flux GGUF', 'IC-Light'],
+                },
+            ],
+            availabilityHeading: 'Private Development • Launching Soon',
+            availabilityIcon: 'fa-solid fa-rocket',
+            availabilityNote:
+                'Social Scope has transitioned into private commercial development and its source repository is now closed. Brand identity, pricing tiers, and early access details will be announced ahead of public launch.',
+        },
+    },
+    {
         id: 'applied-bayesian-data-analysis',
         title: 'Bayesian Hierarchical Modeling of Arctic Sea Ice',
         description: 'Spatio-temporal Bayesian modeling of NSIDC Arctic sea ice extent across 14 regions (1979–2023), comparing No-AR and AR(1) hierarchical models in Stan/brms with LOO-CV and prior sensitivity checks.',
@@ -1601,19 +1754,6 @@ export const PROJECTS: ProjectDetails[] = [
                 'Model-based 4-class EM Latent Class Analysis demonstrates why keeping all four ordinal levels matters: collapsing "Quite a lot" and "A great deal" into a binary indicator would erase the clear divide between measured democratic trustors (Germany/Canada/Japan) and high-intensity polarized trustors (Russia).',
             ],
         },
-    },
-    {
-        id: 'social-scope',
-        title: 'Social Scope',
-        description: 'Image generation web application leveraging diffusion models and ComfyUI with an Angular frontend.',
-        thumbnail: 'projects/socialscope/socialscope_thumb.webp',
-        githubLink: 'https://github.com/r-a-j/socialscope',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/socialscope/refs/heads/main/README.md',
-        techStack: ['Angular', 'Python', 'Flask', 'OpenAI API', 'ComfyUI', 'Diffusers'],
-        rating: 4,
-        category: 'Web App',
-        year: 2024,
-        language: 'TypeScript',
     },
     {
         id: 'regression-analysis',

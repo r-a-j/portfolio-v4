@@ -1,0 +1,23 @@
+<svg width="376" height="48" viewBox="0 0 376 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ssWordGrad" x1="0" y1="0" x2="350" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="68%" stop-color="#F2E7D3"/>
+      <stop offset="100%" stop-color="#E5C17B"/>
+    </linearGradient>
+    <linearGradient id="ssDotGold" x1="354" y1="28" x2="372" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F6E2B3"/>
+      <stop offset="100%" stop-color="#B8873D"/>
+    </linearGradient>
+  </defs>
+  <text
+    x="2"
+    y="37"
+    fill="url(#ssWordGrad)"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="35"
+    font-weight="700"
+    letter-spacing="4.2"
+  >SOCIAL SCOPE</text>
+  <circle cx="362" cy="33" r="5" fill="url(#ssDotGold)"/>
+</svg>

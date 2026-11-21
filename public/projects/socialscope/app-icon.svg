@@ -5,26 +5,36 @@
       <stop offset="58%" stop-color="#11100D"/>
       <stop offset="100%" stop-color="#090807"/>
     </radialGradient>
-    <linearGradient id="ssGold" x1="56" y1="56" x2="232" y2="232" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#F6E2B3"/>
-      <stop offset="48%" stop-color="#E5C17B"/>
+    <linearGradient id="ssGold" x1="52" y1="52" x2="236" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F7E5BA"/>
+      <stop offset="50%" stop-color="#E5C17B"/>
       <stop offset="100%" stop-color="#B8873D"/>
     </linearGradient>
-    <linearGradient id="ssSubtle" x1="76" y1="76" x2="212" y2="212" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#E5C17B" stop-opacity="0.32"/>
+    <linearGradient id="ssRing" x1="76" y1="76" x2="212" y2="212" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E5C17B" stop-opacity="0.28"/>
       <stop offset="100%" stop-color="#E5C17B" stop-opacity="0.06"/>
     </linearGradient>
   </defs>
   <rect width="288" height="288" fill="url(#ssBg)"/>
-  <!-- Outer precision viewfinder corners -->
-  <path d="M54 96V66C54 59.373 59.373 54 66 54H96" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
-  <path d="M192 54H222C228.627 54 234 59.373 234 66V96" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
-  <path d="M234 192V222C234 228.627 228.627 234 222 234H192" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
-  <path d="M96 234H66C59.373 234 54 228.627 54 222V192" stroke="url(#ssGold)" stroke-width="8" stroke-linecap="round"/>
-  <!-- Inner subtle optical ring -->
-  <circle cx="144" cy="144" r="64" stroke="url(#ssSubtle)" stroke-width="3"/>
-  <!-- Sculpted prism diamond + studio aperture -->
-  <path d="M144 84L204 144L144 204L84 144L144 84Z" stroke="url(#ssGold)" stroke-width="8.5" stroke-linejoin="round"/>
-  <circle cx="144" cy="144" r="21" fill="url(#ssGold)"/>
-  <circle cx="144" cy="144" r="9" fill="#0C0B09"/>
+  <!-- Camera Viewfinder Corners ("Click / Capture a Picture") -->
+  <path d="M52 94V64C52 57.373 57.373 52 64 52H94" stroke="url(#ssGold)" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M194 52H224C230.627 52 236 57.373 236 64V94" stroke="url(#ssGold)" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M236 194V224C236 230.627 230.627 236 224 236H194" stroke="url(#ssGold)" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M94 236H64C57.373 236 52 230.627 52 224V194" stroke="url(#ssGold)" stroke-width="8.5" stroke-linecap="round"/>
+  <!-- Subtle optical lens ring -->
+  <circle cx="144" cy="144" r="68" stroke="url(#ssRing)" stroke-width="3"/>
+  <!-- Sculpted Commerce Price Tag angled at 45 deg ("Instant Marketplace Listing") -->
+  <path
+    d="M101 94H144C147.8 94 151.4 95.5 154.1 98.2L201.8 145.9C207.4 151.5 207.4 160.5 201.8 166.1L166.1 201.8C160.5 207.4 151.5 207.4 145.9 201.8L98.2 154.1C95.5 151.4 94 147.8 94 144V101C94 97.1 97.1 94 101 94Z"
+    stroke="url(#ssGold)"
+    stroke-width="8.5"
+    stroke-linejoin="round"
+    fill="#191611"
+  />
+  <!-- Price tag eyelet ring (doubles as camera lens core) -->
+  <circle cx="122" cy="122" r="11" fill="url(#ssGold)"/>
+  <circle cx="122" cy="122" r="4.5" fill="#0C0B09"/>
+  <!-- Clean subtle interior price-tag shimmer stroke -->
+  <path d="M142 156L164 134" stroke="url(#ssGold)" stroke-width="6.5" stroke-linecap="round" stroke-opacity="0.72"/>
+  <path d="M155 170L174 151" stroke="url(#ssGold)" stroke-width="6.5" stroke-linecap="round" stroke-opacity="0.45"/>
 </svg>

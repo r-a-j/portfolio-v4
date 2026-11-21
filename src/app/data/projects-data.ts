@@ -1091,10 +1091,18 @@ export const PROJECTS: ProjectDetails[] = [
                 footnote:
                     'OFAT detector audit on 1,000 stratified 60 Hz traces (results/ofat_robustness.csv): across all 12 Adaptive Hessels (lambda 2.0-3.0, min_fix 40-100 ms, min_amp 0.5-1.5 deg) and I-VT (20-40 deg/s) settings, the uncensored 0.5->7.0 s rise held consistently between +9.2% and +14.1% (all p <= 2.0e-28). Fixed-threshold I-VT induced a small -1.6% to -1.9%/decade age artifact from unadapted tracking noise that vanished under noise-adaptive Hessels thresholds (-0.40% to -0.53%/decade, p > 0.21).',
             },
-            figuresHeading: 'Data Audit, Spline Trajectories & OFAT Detector Diagnostics',
+            figuresHeading: 'Experimental Stimulus, Data Audit & OFAT Diagnostics',
             figuresIntro:
-                'Generated directly by src/run_analysis.py on the NEMO Science Museum dataset (Strauch et al., 2023). Click any figure to inspect full resolution.',
+                'Original NEMO stimulus (Strauch et al., 2023) and diagnostic plots generated directly by src/run_analysis.py. Click any figure to inspect full resolution.',
             figures: [
+                {
+                    src: 'projects/eye-tracking/stimulus-and-gaze-overlay.webp',
+                    badge: 'Experiment Stimulus',
+                    title: 'Original 10-Second Free-Viewing Stimulus & Empirical Gaze Overlay',
+                    caption:
+                        'Left: The feature-rich 1920x1080 composite scene shown to 7,250 NEMO Science Museum visitors for 10 seconds without instructions. Right: Gaussian-smoothed density of 178,186 in-screen fixations aligned pixel-exact to focal humans, faces, and animals.',
+                    surface: 'light',
+                },
                 {
                     src: 'projects/eye-tracking/data-audit-and-diagnostics.webp',
                     badge: 'Audit & Q-Q Check',
@@ -1122,9 +1130,9 @@ export const PROJECTS: ProjectDetails[] = [
                 {
                     src: 'projects/eye-tracking/ofat-robustness-and-spatial-gaze.webp',
                     badge: '12-Config OFAT · Gaze Map',
-                    title: 'OFAT Detector Robustness (1,000 Real 60 Hz Traces) & 2D Gaze Density',
+                    title: 'OFAT Detector Robustness (1,000 Real 60 Hz Traces) & Stimulus Overlay',
                     caption:
-                        'Left: Varying one parameter at a time across Adaptive Hessels and independent I-VT (20-40 deg/s) shifts median duration by 17-33 ms while leaving the +9.2% to +14.1% ambient-to-focal rise invariant. Right: Log-density map of 178,186 in-screen fixations on the 1920x1080 stimulus.',
+                        'Left: Varying one parameter at a time across Adaptive Hessels and independent I-VT (20-40 deg/s) shifts median duration by 17-33 ms while leaving the +9.2% to +14.1% ambient-to-focal rise invariant. Right: Pixel-aligned fixation overlay on the 1920x1080 NEMO stimulus.',
                     surface: 'light',
                 },
             ],

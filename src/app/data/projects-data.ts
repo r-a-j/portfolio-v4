@@ -1403,15 +1403,142 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'regression-analysis',
         title: 'Multiple Linear Regression Analysis',
-        description: 'Predictive modeling on anthropometric body measurements with multicollinearity diagnostics (VIF) and AIC/BIC model selection.',
+        description: 'Anthropometric stature modeling (n = 424 adults) via exact QR OLS, exhaustive 2,047-subset AIC/BIC selection, exact PRESS LOOCV, VIF collinearity analysis, and HC3 robust residual diagnostics.',
         thumbnail: 'projects/regression-analysis/regression-analysis_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Regression-Analysis',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Regression-Analysis/refs/heads/main/README.md',
-        techStack: ['Python', 'R', 'Linear Regression', 'VIF', 'AIC/BIC', 'pandas', 'Matplotlib'],
-        rating: 4,
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Regression-Analysis/main/README.md',
+        techStack: ['Python', 'Linear Regression', 'Best Subset Selection', 'HC3 Robust SE', 'VIF', 'SciPy', 'NumPy', 'Matplotlib'],
+        rating: 5,
         category: 'Statistics',
         year: 2023,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Introductory Case Studies (Report 3)',
+            role: 'Individual Report · Prof. Dr. Jörg Rahnenführer & Dr. Franziska Kappenberg',
+            subtitle:
+                'Modeling adult human height from 11 anthropometric body measurements (n = 424) using exact QR OLS, exhaustive evaluation of all 2,047 predictor subsets, collinearity-aware volume interpretation, and HC3 heteroscedasticity-robust inference.',
+            metrics: [
+                {
+                    value: 'R² = 0.797',
+                    label: 'Final BIC Model (k = 6)',
+                    detail: 'Explains 79.7% of adult height variance (Adj. R² = 0.794, RSE = 4.26 cm) using Sex, Weight, Belly, Biceps, Thigh, and Calf.',
+                },
+                {
+                    value: '2,047',
+                    label: 'Exhaustive Subsets Audited',
+                    detail: 'Evaluated all 2^11 - 1 non-empty OLS models across BIC, AIC, Mallows Cp, Adjusted R², exact PRESS LOOCV, and 10-fold CV.',
+                },
+                {
+                    value: '4.31 cm',
+                    label: 'Exact LOOCV PRESS RMSE',
+                    detail: 'Parsimonious k = 6 BIC model beats the full 11-predictor model out of sample (4.31 cm vs. 4.33 cm; 10-fold CV = 4.32 cm).',
+                },
+                {
+                    value: 'W = 0.995',
+                    label: 'Gaussian & HC3 Verified',
+                    detail: 'Shapiro-Wilk p = 0.179 and max Cook D = 0.075 confirm normality and zero distortion; all 6 terms stay p <= 3.6e-5 under HC3 SEs.',
+                },
+            ],
+            problem:
+                'Predicting human height from correlated body circumferences and body mass presents a classic multicollinearity and interpretability challenge: Weight correlates at r = 0.87-0.91 with Chest, Belly, and Biceps. Including every available measurement inflates variance (max VIF = 17.88) and slightly hurts out-of-sample accuracy, while unexamined sign flips on circumferences can easily be misread without tying the conditional slopes back to 3D body geometry.',
+            ownership:
+                'Completed as an individual report for Introductory Case Studies (Winter Semester 2022/23, Department of Statistics, TU Dortmund University). Implemented the exact QR OLS engine in pure NumPy/SciPy matching R stats::lm()/AIC()/BIC() conventions, exhaustive 2,047-model best subset search, analytic PRESS LOOCV and 10-fold cross-validation, exact VIF computation, Koenker Breusch-Pagan testing, MacKinnon-White HC3 robust standard errors, Shapiro-Wilk normality checks, and unit tests.',
+            approachHeading: 'Exact Subset Search, Collinearity & Diagnostic Rigor',
+            approach: [
+                {
+                    label: '01 · QR OLS & Correlation Structure',
+                    title: 'Mapping Anthropometric Coupling',
+                    description:
+                        'Audited all 424 adults (193 males averaging 177.8 cm; 231 females averaging 165.1 cm; 0.1 cm / 0.1 kg precision) and quantified pairwise correlations. Weight (r = 0.73), Wrist (r = 0.69), and Sex (r = 0.68) carry the strongest marginal height signal, whereas Age (r = 0.06 across ages 18-40) adds no linear information.',
+                },
+                {
+                    label: '02 · Exhaustive Best Subset Selection',
+                    title: 'BIC Parsimony vs. AIC & Full Models',
+                    description:
+                        'Scored every non-empty combination among all 2,047 subsets via exact QR factorization. BIC selects a clean 6-predictor model (BIC = 2474.51, LOOCV = 4.312 cm, max VIF = 12.64). Adding Chest and Wrist for the AIC optimum (k = 8) trims LOOCV error by only 0.016 cm while lifting max VIF to 15.51; keeping all 11 variables degrades LOOCV to 4.328 cm.',
+                },
+                {
+                    label: '03 · Residual Audit & HC3 Verification',
+                    title: 'Handling Mild Heteroscedasticity Honestly',
+                    description:
+                        'Checked standardized residuals against fitted height, normal quantiles, leverage (max 0.087), and Cook distance (max 0.075). Because Koenker Breusch-Pagan flagged mild variance growth (LM = 26.41, df = 6, p = 0.0002), all 6 parameter tests and confidence intervals were cross-checked with MacKinnon-White HC3 robust SEs.',
+                },
+            ],
+            resultsTable: {
+                title: 'Exhaustive Best Subset Comparison on Adult Height (n = 424)',
+                subtitle:
+                    'Exact QR OLS results matching R stats::lm(), AIC(), and BIC() conventions with analytic PRESS LOOCV and 10-fold CV.',
+                columns: ['Model', 'k', 'R² / Adj. R²', 'RSE (cm)', 'LOOCV / 10-Fold CV', 'AIC / BIC', 'Max VIF'],
+                rows: [
+                    {
+                        cells: ['Full Model (All Predictors)', '11', '0.8009 / 0.7956', '4.25', '4.33 / 4.34 cm', '2443.9 / 2496.5', '17.88'],
+                    },
+                    {
+                        cells: ['Best AIC (+ Chest, Wrist)', '8', '0.8004 / 0.7966', '4.24', '4.30 / 4.30 cm', '2438.8 / 2479.3', '15.51'],
+                    },
+                    {
+                        cells: ['Best BIC (Final Model)', '6', '0.7970 / 0.7941', '4.26', '4.31 / 4.32 cm', '2442.1 / 2474.5', '12.64'],
+                        highlight: true,
+                    },
+                ],
+            },
+            figures: [
+                {
+                    src: 'projects/regression-analysis/correlation-heatmap.webp',
+                    badge: 'Exploratory Audit',
+                    title: 'Pairwise Correlation Matrix (Height & 11 Covariates)',
+                    caption:
+                        'Tight coupling between Weight, Chest, Belly, and Biceps (r = 0.87-0.91) explains severe VIF inflation in the full 11-predictor model, while Age shows near-zero correlation (r = 0.06).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/regression-analysis/best-subset-selection.webp',
+                    badge: '2,047 Models',
+                    title: 'Exhaustive Best Subset Selection (BIC vs. AIC & LOOCV)',
+                    caption:
+                        'Information criteria and exact LOOCV PRESS RMSE drop steeply through k = 6 (BIC optimum: Sex, Weight, Belly, Biceps, Thigh, Calf), then flatten with negligible gain at k = 8 (AIC).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/regression-analysis/bic-coefficients-forest.webp',
+                    badge: 'HC3 95% CIs · VIF',
+                    title: 'BIC Model Standardized Effects & Volume Suppression',
+                    caption:
+                        'Holding Weight constant (+1.42 cm/kg, VIF 12.6), all four body circumferences flip strongly negative (Belly -0.73, Biceps -1.11, Thigh -0.60, Calf -0.53 cm/cm) under 3D volume geometry.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/regression-analysis/actual-vs-predicted-height.webp',
+                    badge: 'Predictive Fit',
+                    title: 'Observed vs. Predicted Adult Height by Sex (n = 424)',
+                    caption:
+                        'The 6-predictor BIC model tracks adult stature cleanly across female (mean 165.1 cm) and male (mean 177.8 cm) cohorts with R² = 0.797 and ±8.4 cm 95% residual spread.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/regression-analysis/residuals-vs-fitted.webp',
+                    badge: 'Variance Audit',
+                    title: 'Standardized Residuals vs. Fitted Values & Breusch-Pagan',
+                    caption:
+                        'The flat decile smoother confirms mean-function linearity; mild variance widening flagged by Breusch-Pagan (LM = 26.41, p = 0.0002) is addressed with HC3 robust SEs.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/regression-analysis/residual-qq-plot.webp',
+                    badge: 'Normality & Influence',
+                    title: 'Normal Q-Q Plot & Cook Distance Influence Check',
+                    caption:
+                        'Standardized residuals remain tightly inside the 95% Gaussian envelope (Shapiro-Wilk W = 0.9949, p = 0.179) with low maximum Cook distance (0.0752 << 0.5).',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Physical volume suppression explains the dramatic sign reversal: Belly, Biceps, Thigh, and Calf correlate positively with Height marginally (r = 0.14-0.59) but turn strongly negative once Weight is held fixed because packing fixed body mass into wider cross-sections requires a shorter stature.',
+                'Exhaustive evaluation of all 2,047 subsets shows diminishing returns past k = 6: the BIC-optimal model matches out-of-sample LOOCV accuracy (4.31 cm) while trimming 5 redundant predictors and reducing max VIF from 17.88 to 12.64.',
+                'The final BIC equation (Height = 213.72 + 6.61*Male + 1.42*Weight - 0.73*Belly - 1.11*Biceps - 0.60*Thigh - 0.53*Calf) preserves a +6.61 cm conditional male height offset even after adjusting for mass and four circumferences.',
+                'Formal diagnostic testing caught mild heteroscedasticity (Breusch-Pagan LM = 26.41, p = 0.0002) despite clean normality (Shapiro-Wilk p = 0.179) and zero influential points (max Cook D = 0.075); verifying inference with MacKinnon-White HC3 robust SEs confirmed every predictor remains highly significant (p <= 3.6e-5).',
+            ],
+        },
     },
     {
         id: 'comparison-multiple-distributions',

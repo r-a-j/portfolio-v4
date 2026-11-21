@@ -179,18 +179,20 @@
           <button
             type="button"
             class="cs-figure-card"
+            [class.md:col-span-2]="fig.wide"
             (click)="openLightbox(i)"
             [attr.aria-label]="'Inspect ' + fig.title + ' full screen'"
           >
             <div
               class="cs-figure-stage"
               [class.cs-figure-stage--light]="fig.surface === 'light'"
+              [class.cs-figure-stage--wide]="fig.wide"
             >
               <img
                 [src]="fig.src"
                 [alt]="fig.title"
                 loading="lazy"
-                class="w-full h-full object-contain"
+                [class]="fig.wide ? 'w-full h-auto max-h-[560px] object-contain mx-auto block' : 'w-full h-full object-contain'"
               />
               <span class="cs-figure-zoom" aria-hidden="true">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -315,17 +317,33 @@
     [attr.aria-label]="activeFig.title"
     (click)="closeLightbox()"
   >
-    <div class="relative w-full max-w-5xl flex flex-col items-center gap-4" (click)="$event.stopPropagation()">
-      <button
-        type="button"
-        class="cs-lightbox__close"
-        (click)="closeLightbox()"
-        aria-label="Close figure preview"
-      >
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
+    <div class="relative w-full max-w-[95vw] flex flex-col items-center gap-3" (click)="$event.stopPropagation()">
+      <div class="cs-lightbox__controls">
+        <button
+          type="button"
+          class="cs-lightbox__zoom-btn"
+          (click)="toggleLightboxZoom($event)"
+          [attr.aria-label]="isLightboxZoomed ? 'Reset zoom' : 'Zoom in figure'"
+        >
+          <i
+            class="fa-solid"
+            [class.fa-magnifying-glass-minus]="isLightboxZoomed"
+            [class.fa-magnifying-glass-plus]="!isLightboxZoomed"
+            aria-hidden="true"
+          ></i>
+          <span>{{ isLightboxZoomed ? 'Fit' : 'Zoom' }}</span>
+        </button>
+        <button
+          type="button"
+          class="cs-lightbox__close"
+          (click)="closeLightbox()"
+          aria-label="Close figure preview"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
 
-      <div class="w-full flex items-center justify-center gap-3 sm:gap-5 pt-10">
+      <div class="w-full flex items-center justify-center gap-2 sm:gap-4 pt-11">
         @if ((caseStudy.figures?.length ?? 0) > 1) {
           <button
             type="button"
@@ -340,11 +358,15 @@
         <div
           class="cs-lightbox__frame"
           [class.cs-lightbox__frame--light]="activeFig.surface === 'light'"
+          [class.cs-lightbox__frame--zoomed]="isLightboxZoomed"
+          (click)="toggleLightboxZoom($event)"
         >
           <img
             [src]="activeFig.src"
             [alt]="activeFig.title"
-            class="max-h-[72vh] max-w-full w-auto h-auto object-contain block"
+            [class]="isLightboxZoomed
+              ? 'w-[155vw] sm:w-[1400px] max-w-none h-auto block cursor-zoom-out'
+              : 'max-h-[80vh] max-w-[84vw] w-auto h-auto object-contain block cursor-zoom-in'"
           />
         </div>
 
@@ -360,12 +382,12 @@
         }
       </div>
 
-      <div class="text-center max-w-2xl px-4">
+      <div class="text-center max-w-3xl px-4">
         <p class="text-base font-bold text-white m-0">{{ activeFig.title }}</p>
         <p class="text-sm text-slate-300 m-0 mt-1">{{ activeFig.caption }}</p>
         @if ((caseStudy.figures?.length ?? 0) > 1) {
-          <p class="font-mono text-xs text-slate-400 m-0 mt-2">
-            {{ activeFigureIndex + 1 }} / {{ caseStudy.figures?.length }}
+          <p class="font-mono text-xs text-slate-400 m-0 mt-1.5">
+            {{ activeFigureIndex + 1 }} / {{ caseStudy.figures?.length }} · Click image to {{ isLightboxZoomed ? 'fit screen' : 'zoom in' }}
           </p>
         }
       </div>

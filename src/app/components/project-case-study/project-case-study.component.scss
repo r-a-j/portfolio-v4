@@ -151,14 +151,22 @@
 .cs-figure-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   background: #0d0d0e;
   border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
 
   &--light {
     background: #ffffff;
-    padding: 0.75rem;
+    padding: 0.35rem;
+  }
+
+  &--wide {
+    aspect-ratio: auto;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -208,7 +216,42 @@
 
     &--light {
       background: #ffffff;
-      padding: 0.75rem;
+      padding: 0.5rem;
+    }
+
+    &--zoomed {
+      max-width: 86vw;
+      max-height: 82vh;
+      overflow: auto;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+  }
+
+  &__zoom-btn {
+    height: 40px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(20, 20, 20, 0.92);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.16);
     }
   }
 
@@ -229,9 +272,6 @@
   }
 
   &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
     width: 40px;
     height: 40px;
   }

@@ -33,12 +33,14 @@ export class ProjectCaseStudyComponent implements OnChanges {
   @Output() requestReadme = new EventEmitter<void>();
 
   activeFigureIndex: number | null = null;
+  isLightboxZoomed = false;
   showReadme = false;
   showPdfModal = false;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['project']) {
       this.activeFigureIndex = null;
+      this.isLightboxZoomed = false;
       this.showPdfModal = false;
       this.showReadme = false;
     }
@@ -46,16 +48,24 @@ export class ProjectCaseStudyComponent implements OnChanges {
 
   openLightbox(index: number): void {
     this.activeFigureIndex = index;
+    this.isLightboxZoomed = false;
   }
 
   closeLightbox(): void {
     this.activeFigureIndex = null;
+    this.isLightboxZoomed = false;
+  }
+
+  toggleLightboxZoom(event?: Event): void {
+    event?.stopPropagation();
+    this.isLightboxZoomed = !this.isLightboxZoomed;
   }
 
   stepLightbox(delta: number, event?: Event): void {
     event?.stopPropagation();
     const figures = this.caseStudy.figures ?? [];
     if (this.activeFigureIndex === null || figures.length === 0) return;
+    this.isLightboxZoomed = false;
     this.activeFigureIndex =
       (this.activeFigureIndex + delta + figures.length) % figures.length;
   }

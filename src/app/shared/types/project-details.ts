@@ -94,6 +94,7 @@ export interface ProjectCaseStudyFigure {
     caption: string;
     badge?: string;
     surface?: 'dark' | 'light';
+    wide?: boolean;
 }
 
 export interface ProjectCaseStudySectionItem {

@@ -673,6 +673,7 @@ export const PROJECTS: ProjectDetails[] = [
                     caption:
                         'Contraction cleanly splits identifiable parameters (parameters_2..5 pinned at 1.0) from passive parameters (parameters_0..1 near 0), where centered z-scores show honest uncertainty rather than overconfidence.',
                     surface: 'light',
+                    wide: true,
                 },
                 {
                     src: 'projects/simulation-based-inference/calibration-ecdf.webp',
@@ -681,6 +682,7 @@ export const PROJECTS: ProjectDetails[] = [
                     caption:
                         'V_th (parameters_3) and t_ref (parameters_5) sit inside the 95% uniformity bands, while subtle rank shifts show up on E_L (parameters_2) and V_res (parameters_4) near the clipped -80 mV prior boundary.',
                     surface: 'light',
+                    wide: true,
                 },
                 {
                     src: 'projects/simulation-based-inference/loss-trajectory.webp',
@@ -689,6 +691,7 @@ export const PROJECTS: ProjectDetails[] = [
                     caption:
                         'Validation loss tracks training loss smoothly from 3.08 down to -8.14 (epoch 95) under ReduceLROnPlateau scheduling without overfitting.',
                     surface: 'light',
+                    wide: true,
                 },
                 {
                     src: 'projects/simulation-based-inference/sensitivity-min-med-max.webp',
@@ -697,6 +700,7 @@ export const PROJECTS: ProjectDetails[] = [
                     caption:
                         'Overlaying extreme and median prior draws shows why threshold, reset, and refractory changes visibly reshape spike trains while passive membrane changes are much subtler.',
                     surface: 'light',
+                    wide: true,
                 },
             ],
             takeaways: [
@@ -946,35 +950,60 @@ export const PROJECTS: ProjectDetails[] = [
                 'Generated directly by src/run_benchmark.py on 125,612 real Dortmund OSM buildings (EPSG:25832; map data (c) OpenStreetMap contributors, ODbL 1.0). Click any figure to inspect full resolution.',
             figures: [
                 {
-                    src: 'projects/georeferenced-microdata-anonymization/verified-neighbor-pipeline.webp',
-                    badge: 'Dortmund OSM · Walkthrough',
-                    title: 'Verified Neighbor Winnowing & Sparse Outskirt Comparison',
-                    caption:
-                        'Left: Filtering real Dortmund OSM buildings along the east-west corridor outside a 50 m buffer isolates an exact k = 50 same-zone pool within 311 m. Right: On Dortmund\'s sparse southern outskirts, fixed 905 m RP captures only 54 residences while adaptive VN expands smoothly to 1,044 m to guarantee k = 100.',
-                    surface: 'light',
-                },
-                {
                     src: 'projects/georeferenced-microdata-anonymization/spatial-methods-comparison.webp',
                     badge: '125,612 OSM Buildings',
                     title: 'City-Scale Spatial Footprints Across Dortmund (4 Methods)',
                     caption:
                         'Random Perturbation (40.1% valid residential) and Donut Geomasking (45.3%) scatter surrogates across Phoenix-See, parks, garages, and industrial belts, while Verified Neighbor stays 100% on real residential OSM buildings and honors the service boundary under Env matching.',
                     surface: 'light',
+                    wide: true,
                 },
                 {
-                    src: 'projects/georeferenced-microdata-anonymization/privacy-vs-displacement.webp',
-                    badge: 'k-Anonymity & CDF',
-                    title: 'Realized Spatial k-Anonymity & Net Displacement CDF',
+                    src: 'projects/georeferenced-microdata-anonymization/vn-winnowing-dortmund.webp',
+                    badge: 'Dortmund OSM · Env k=50',
+                    title: 'Verified Neighbor Step-by-Step Winnowing',
                     caption:
-                        'Rank-ordered pool sizes expose the fixed-radius dilemma: RP 905 m over-masks inner Dortmund up to k = 2,570 while still dropping to k = 57 on outskirts, and RP 500 m falls to k = 10. Verified Neighbor holds exact target k with far smaller net displacement.',
+                        'Filtering real Dortmund OSM buildings along the east-west corridor outside a 50 m exclusion ring isolates an exact k = 50 same-zone residential pool within 311 m.',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/georeferenced-microdata-anonymization/ripley-and-cluster-utility.webp',
-                    badge: 'L(r)-r & Kulldorff Scan',
-                    title: 'Besag L(r)-r Pattern Fidelity & Kulldorff Poisson Scan',
+                    src: 'projects/georeferenced-microdata-anonymization/sparse-outskirt-comparison.webp',
+                    badge: 'Sparse Outskirts · k=100',
+                    title: 'Fixed 905 m RP vs. Adaptive Verified Neighbor',
                     caption:
-                        'Verified Neighbor tracks unmasked Dortmund L(r)-r within 12.4-21.7 m below 1 km and locks onto all 3 red ground-truth Hoerde/Phoenix-See South tiles (Jaccard 0.808), while RP 905 m and Donut blur the hotspot outward.',
+                        'On Dortmund\'s sparse southern outskirts, fixed 905 m Random Perturbation captures only 54 residences, whereas adaptive Verified Neighbor expands smoothly to 1,044 m to guarantee k = 100.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/realized-k-anonymity.webp',
+                    badge: 'Worst-Case Privacy Floor',
+                    title: 'Realized Spatial k-Anonymity Across 160 Subjects',
+                    caption:
+                        'Rank-ordered surrogate pools expose the fixed-radius dilemma: RP 905 m over-masks inner Dortmund up to k = 2,570 while dropping to k = 57 on outskirts, and RP 500 m dips to k = 10.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/net-displacement-cdf.webp',
+                    badge: '50 Replicates · Spatial Bias',
+                    title: 'Net Mean-Center Displacement CDF',
+                    caption:
+                        'Verified Neighbor holds far smaller net spatial displacement across 50 replicates (mean 105.9-154.5 m) than fixed-radius RP 905 m (600.7 m) or Donut Geomasking (558.3 m).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/besag-l-pattern-fidelity.webp',
+                    badge: 'Ripley / Besag L(r)-r',
+                    title: 'Spatial Point-Pattern Fidelity on Dortmund',
+                    caption:
+                        'Verified Neighbor tracks unmasked Dortmund L(r)-r within 12.4-21.7 m below 1 km, while RP 905 m (274.3 m RMSE) and Donut (174.9 m RMSE) severely flatten local clustering.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/georeferenced-microdata-anonymization/kulldorff-cluster-recovery.webp',
+                    badge: 'Kulldorff Poisson Scan',
+                    title: 'Primary Hotspot Cluster Recovery Across 50 Runs',
+                    caption:
+                        'Verified Neighbor (Env, k = 100) locks cleanly onto the 3 red ground-truth Hoerde/Phoenix-See South tiles (Jaccard 0.808), while RP 905 m (0.339) and Donut (0.355) blur the hotspot outward.',
                     surface: 'light',
                 },
             ],
@@ -1096,44 +1125,77 @@ export const PROJECTS: ProjectDetails[] = [
                 'Original NEMO stimulus (Strauch et al., 2023) and diagnostic plots generated directly by src/run_analysis.py. Click any figure to inspect full resolution.',
             figures: [
                 {
-                    src: 'projects/eye-tracking/stimulus-and-gaze-overlay.webp',
+                    src: 'projects/eye-tracking/stimulus-original.webp',
                     badge: 'Experiment Stimulus',
-                    title: 'Original 10-Second Free-Viewing Stimulus & Empirical Gaze Overlay',
+                    title: 'Original 10-Second Free-Viewing Stimulus (1920x1080)',
                     caption:
-                        'Left: The feature-rich 1920x1080 composite scene shown to 7,250 NEMO Science Museum visitors for 10 seconds without instructions. Right: Gaussian-smoothed density of 178,186 in-screen fixations aligned pixel-exact to focal humans, faces, and animals.',
+                        'The feature-rich composite scene shown to 7,250 NEMO Science Museum visitors for 10 seconds at 60 Hz without task instructions (Strauch et al., 2023).',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/eye-tracking/data-audit-and-diagnostics.webp',
-                    badge: 'Audit & Q-Q Check',
-                    title: 'DoB = 2000 Default Spike & Raw vs. Log-Normal LMM Diagnostics',
+                    src: 'projects/eye-tracking/stimulus-gaze-overlay.webp',
+                    badge: '178,186 Fixations',
+                    title: 'Empirical Fixation Density Overlay on Stimulus',
                     caption:
-                        'Top: 1,532 visitors default to DoB = 2000 (21.1% spike at Age 23), and raw durations are heavily right-skewed (median 200 ms vs. mean 257 ms). Bottom: Log transformation drops residual skewness from 4.82 to 0.42 and max outlier from 31.8 SD to 5.9 SD.',
+                        'Gaussian-smoothed density of 178,186 in-screen fixations across 7,250 visitors aligned pixel-exact to focal humans, faces, and animals.',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/eye-tracking/age-lifespan-analysis.webp',
+                    src: 'projects/eye-tracking/dob-2000-spike.webp',
+                    badge: 'Data Quality Audit',
+                    title: 'Participant Age Audit: Kiosk DoB = 2000 Default Spike',
+                    caption:
+                        '1,532 museum visitors (21.1%) cluster at Age 23 (DoB = 2000), ~5x neighboring cohorts, flagging a kiosk birth-year UI default audited across every model.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/lmm-residual-qq.webp',
+                    badge: 'Model Diagnostics',
+                    title: 'Standardized Residual Q-Q: Raw vs. Log-Normal LMM',
+                    caption:
+                        'Modeling log(duration) cuts standardized residual skewness from 4.82 to 0.39, excess kurtosis from 65.1 to 0.38, and max outlier from 31.8 SD to 5.8 SD.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/age-lifespan-splines.webp',
                     badge: 'RQ1 · Lifespan Age',
-                    title: 'Continuous Age Splines vs. Between-Viewer Baseline Variability',
+                    title: 'Continuous Lifespan Age Splines Across 3 Cohorts',
                     caption:
-                        'Left: Continuous cubic B-splines across all three cohorts reject a U-shaped late-life rebound (total shift ~12 ms across ages 6-75). Right: Viewer-specific random intercepts (BLUP 10th-90th spread = 44 ms, raw spread > 100 ms) completely dwarf lifespan age.',
+                        'Cubic B-splines (ages 3-93) reject a U-shaped late-life rebound across all sensitivity cohorts, shifting by only ~12 ms across 70 years (-0.30%/decade, p = 0.123).',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/eye-tracking/temporal-dynamics-and-censoring.webp',
+                    src: 'projects/eye-tracking/viewer-baseline-blups.webp',
+                    badge: 'Random Intercepts · ICC 4.0%',
+                    title: 'Between-Viewer Baseline Variability (7,250 BLUPs)',
+                    caption:
+                        'Individual viewer baseline medians span 44 ms across the 10th-90th BLUP percentiles (196-240 ms), completely dwarfing the entire 70-year lifespan age band (208-220 ms).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/trial-onset-and-censoring.webp',
                     badge: 'RQ2 · Trial Time',
-                    title: 'Ambient-to-Focal Progression, 10 s Censoring & Order Survivorship Bias',
+                    title: 'Elapsed Trial Time (0-10 s) & 10-Second Right-Censoring',
                     caption:
-                        'Left: Over uncensored onset time (0-8 s), durations rise +14.5% and plateau; after 8 s, the 10 s trial cutoff truncates ongoing fixations (96.9% final in 9.5-10 s). Right: Fixation-order curves drop past Order 22 solely because active viewer count collapses to fast saccaders.',
+                        'Over the uncensored 0-8 s interior, durations rise +14.5% (199 -> 228 ms) and plateau before the 10 s trial cutoff truncates ongoing fixations (96.9% final in 9.5-10 s).',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/eye-tracking/ofat-robustness-and-spatial-gaze.webp',
-                    badge: '12-Config OFAT · Gaze Map',
-                    title: 'OFAT Detector Robustness (1,000 Real 60 Hz Traces) & Stimulus Overlay',
+                    src: 'projects/eye-tracking/order-survivorship-bias.webp',
+                    badge: 'Measurement Artifact',
+                    title: 'Why Fixation Order Misleads (Survivorship Bias)',
                     caption:
-                        'Left: Varying one parameter at a time across Adaptive Hessels and independent I-VT (20-40 deg/s) shifts median duration by 17-33 ms while leaving the +9.2% to +14.1% ambient-to-focal rise invariant. Right: Pixel-aligned fixation overlay on the 1920x1080 NEMO stimulus.',
+                        'Fixation-order curves drop artificially past Order 22 solely because active viewer share collapses to fast-saccading participants who fit 25-36 fixations into 10 seconds.',
                     surface: 'light',
+                },
+                {
+                    src: 'projects/eye-tracking/ofat-detector-robustness.webp',
+                    badge: '12-Config OFAT · 1,000 Traces',
+                    title: '12-Configuration OFAT & I-VT Detector Robustness',
+                    caption:
+                        'Varying one parameter at a time across Adaptive Hessels and independent I-VT (20-40 deg/s) shifts median duration by 17-33 ms while leaving the +9.2% to +14.1% ambient-to-focal rise invariant.',
+                    surface: 'light',
+                    wide: true,
                 },
             ],
             takeaways: [
@@ -1244,35 +1306,76 @@ export const PROJECTS: ProjectDetails[] = [
                 'Publication-grade figures generated directly by src/run_wvs_analysis.py from official WVS Wave 7 (v6.0) and Time Series (v5.0) releases. Click any figure to inspect full resolution.',
             figures: [
                 {
-                    src: 'projects/world-value-survey/g8-trust-and-macro-paradox.webp',
-                    badge: '66 Nations · Macro Link',
-                    title: 'G8 4-Level Government Trust & Global Critical Citizens Paradox',
+                    src: 'projects/world-value-survey/g8-gov-trust-distribution.webp',
+                    badge: 'Wave 7 · 6 G8 Nations',
+                    title: 'Government Trust Distribution Across 6 G8 Wave 7 Nations',
                     caption:
-                        'Left: Properly ordered 4-level Government Trust across the 6 G8 Wave 7 nations (30%+ "None at all" in USA and UK vs. 11-12% in Japan and Germany). Right: Across 61 nations, Government Trust falls with V-Dem Press Freedom (r = -0.53) while rule-of-law Police Trust rises with anti-corruption CPI (r = +0.50).',
+                        'Ordered 4-level Government Trust on the ascending scale (None at all -> A great deal): Russia (54.8%), Canada (48.3%), Germany (45.5%), and Japan (43.4%) lead the USA (31.0%) and UK (22.8%), where >30% report "None at all".',
+                    surface: 'light',
+                    wide: true,
+                },
+                {
+                    src: 'projects/world-value-survey/global-press-freedom-paradox.webp',
+                    badge: '61 Nations · Critical Citizens',
+                    title: 'V-Dem Press Freedom vs. Government Trust (r = -0.53)',
+                    caption:
+                        'Across 61 Wave 7 countries, higher press and expression freedom correlates negatively with sitting-government trust (p = 1.15e-05), reflecting open democratic scrutiny.',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/world-value-survey/usa-and-g8-ordered-logit.webp',
-                    badge: 'Ordered Logit · PO Audit',
-                    title: 'USA Wave 7 Odds Ratios (+ Cutpoint Check) & Joint G8 Country Effects',
+                    src: 'projects/world-value-survey/global-cpi-police-trust.webp',
+                    badge: '61 Nations · Rule of Law',
+                    title: 'Anti-Corruption (CPI) vs. Police Trust (r = +0.50)',
                     caption:
-                        'Left: Strictly USA Ordered Logit (n = 2,396, R² = 0.248) with 3-cutpoint Proportional Odds markers highlights sharp 2017 Press-vs-Government polarization (OR = 0.35, p = 3.9e-59). Right: Pooled 6-G8 categorical Country ORs vs. Germany (Ref = 1.0) and nested LRTs.',
+                        'In direct contrast to executive trust, confidence in rule-of-law Police rises strongly with Transparency International CPI (p = 4.79e-05; Germany 86.8%, Japan 81.7% vs. Russia 52.1%).',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/world-value-survey/longitudinal-trust-trends.webp',
-                    badge: '1995-2022 · 95% CIs',
-                    title: 'Multi-Decade USA Institutional Divergence & G8 Government Evolution',
+                    src: 'projects/world-value-survey/usa-ordered-logit-forest.webp',
+                    badge: 'RQ1 · USA Ordered Logit',
+                    title: 'USA Wave 7 Odds Ratios & Proportional Odds Audit',
                     caption:
-                        'Left: USA covariate-adjusted P(High Trust >= 3) stays 81-85% for Armed Forces and 67-73% for Police while Parliament (35% -> 14.7%) and Parties (19.9% -> 10.4%) collapse. Right: Germany (20% -> 43%), Canada, Japan, and Russia rise while USA and UK decline.',
+                        'Strictly USA Ordered Logit (n = 2,396, R² = 0.248, VIF 1.03-1.99) with 3-cutpoint binary checks highlights sharp 2017 Press-vs-Government polarization (OR = 0.35, p = 3.9e-59).',
                     surface: 'light',
                 },
                 {
-                    src: 'projects/world-value-survey/lca-citizen-archetypes.webp',
-                    badge: '4-Class EM LCA',
-                    title: 'Latent Class Citizen Archetypes & Country Composition Across the G8',
+                    src: 'projects/world-value-survey/g8-country-fixed-effects.webp',
+                    badge: 'RQ2 · Pooled G8 Model',
+                    title: 'Joint 6-Country G8 Categorical Effects (Ref: Germany)',
                     caption:
-                        'Left: Conditional P(High Trust >= 3) and P("A great deal") in brackets cleanly separate Moderate ("Quite a lot") from Strong ("A great deal") trustors (Entropy = 0.844). Right: USA/UK cluster in Rule-of-Law Pragmatists (49-55%), Germany/Canada/Japan lead Moderate Trustors, and Russia splits bimodally.',
+                        'Pooled 6-G8 Ordered Logit (n = 11,371) contrasting demographic-adjusted vs. full institutional country ORs, backed by nested Country FE (chi2 = 647.2) and interaction (chi2 = 595.0) LRTs.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/usa-longitudinal-institutions.webp',
+                    badge: 'RQ3 · USA 1995-2017',
+                    title: 'USA Institutional Trust Trajectories (n = 8,819)',
+                    caption:
+                        'Covariate-adjusted P(High Trust >= 3) stays 81-85% for Armed Forces and 67-73% for Police while Parliament (35% -> 14.7%) and Political Parties (19.9% -> 10.4%) collapse.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/g8-longitudinal-government.webp',
+                    badge: 'RQ3 · G8 1995-2022',
+                    title: 'Cross-National G8 Government Trust Evolution',
+                    caption:
+                        'Predicted High Government Trust at Age 45 / Income 5 climbs in Germany (20% -> 43%), Canada, Japan, and Russia while declining in the USA (39% -> 26%) and UK (32% -> 21%).',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/lca-citizen-profiles.webp',
+                    badge: '4-Class EM LCA · Entropy 0.844',
+                    title: 'Latent Class Analysis (LCA) Conditional Trust Profiles',
+                    caption:
+                        'Conditional P(High >= 3) and P("A great deal") in brackets across 8 discrete items cleanly separate Moderate ("Quite a lot") from Strong ("A great deal") institutional trustors.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/world-value-survey/lca-country-archetype-mix.webp',
+                    badge: '4-Class EM LCA · G8 Mix',
+                    title: 'Citizen Archetype Composition Across 6 G8 Nations',
+                    caption:
+                        'USA (54.9%) and UK (49.1%) cluster in Rule-of-Law Pragmatists, Germany/Canada/Japan lead Moderate Trustors, and Russia splits bimodally between Distrustors (26.3%) and Strong Trustors (17.0%).',
                     surface: 'light',
                 },
             ],

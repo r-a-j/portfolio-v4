@@ -91,3 +91,10 @@
   background: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
 }
+
+@media (max-width: 640px) {
+  .skill-group-card,
+  .lang-bar {
+    padding: 1.15rem;
+  }
+}

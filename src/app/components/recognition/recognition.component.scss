@@ -234,3 +234,14 @@
     flex-shrink: 0;
   }
 }
+
+@media (max-width: 640px) {
+  .rec-lightbox {
+    padding: 0.85rem;
+
+    &__nav {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}

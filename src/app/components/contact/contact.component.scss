@@ -133,3 +133,10 @@
     cursor: not-allowed;
   }
 }
+
+@media (max-width: 640px) {
+  .info-card,
+  .contact-form {
+    padding: 1.15rem;
+  }
+}

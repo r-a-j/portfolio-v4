@@ -8,18 +8,18 @@
   >
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-header">
-        <div class="flex items-center gap-2.5">
-          <i class="fa-solid fa-file-pdf text-brand text-sm" aria-hidden="true"></i>
-          <h3 class="m-0 text-sm sm:text-base font-semibold text-ink">{{ modalTitle }}</h3>
+        <div class="flex items-center gap-2.5 min-w-0 flex-1">
+          <i class="fa-solid fa-file-pdf text-brand text-sm shrink-0" aria-hidden="true"></i>
+          <h3 class="m-0 text-sm sm:text-base font-semibold text-ink truncate">{{ modalTitle }}</h3>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="modal-header__actions">
           <a
             [href]="pdfUrl"
             download="Raj_Pawar_CV.pdf"
             class="modal-action modal-action--primary"
           >
             <i class="fa-solid fa-download text-xs" aria-hidden="true"></i>
-            Download PDF
+            <span>Download<span class="hidden sm:inline"> PDF</span></span>
           </a>
           <a
             [href]="pdfUrl"
@@ -28,7 +28,7 @@
             class="modal-action"
           >
             <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
-            Open Tab
+            <span>Open<span class="hidden sm:inline"> Tab</span></span>
           </a>
           <button
             type="button"

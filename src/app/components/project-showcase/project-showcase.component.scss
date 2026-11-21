@@ -264,6 +264,7 @@
 
 .sim-phone {
   width: 375px;
+  max-width: 100%;
   border-radius: 28px;
   overflow: hidden;
   background: #050608;
@@ -419,13 +420,21 @@
 }
 
 @media (max-width: 560px) {
+  .demo-panel {
+    padding: 1.25rem;
+  }
+
   .screen-card {
     width: 100%;
     max-width: 300px;
   }
 
+  .lightbox {
+    padding: 0.85rem;
+  }
+
   .lightbox__nav {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
 }

@@ -244,6 +244,10 @@
 }
 
 @media (max-width: 600px) {
+  .cs-lightbox {
+    padding: 0.75rem;
+  }
+
   .cs-lightbox__nav {
     width: 34px;
     height: 34px;

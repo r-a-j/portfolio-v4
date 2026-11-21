@@ -315,7 +315,20 @@
 }
 
 @media (max-width: 640px) {
+  .projects-section {
+    padding: 2rem 1rem 3.5rem;
+
+    &--home {
+      padding: 3rem 1rem;
+    }
+  }
+
+  .filter-bar {
+    padding: 0.85rem;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 1.15rem;
   }
 }

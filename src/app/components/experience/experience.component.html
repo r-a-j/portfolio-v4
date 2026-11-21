@@ -1,7 +1,7 @@
-<section id="experience" class="py-16 px-6 bg-canvas text-ink border-b border-hairline">
-  <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
+<section id="experience" class="py-12 sm:py-16 px-4 sm:px-6 bg-canvas text-ink border-b border-hairline">
+  <div class="max-w-[1200px] mx-auto flex flex-col gap-8 sm:gap-10">
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
       <h2 class="section-heading m-0 text-3xl sm:text-4xl">
         Experience
       </h2>
@@ -21,57 +21,64 @@
             [attr.aria-expanded]="isExpanded(exp.id)"
             (click)="toggle(exp.id)"
           >
-            <div class="flex flex-col sm:flex-row sm:items-start gap-4 min-w-0 flex-1">
-              <!-- Company Logo -->
-              <div
-                class="logo-box shrink-0"
-                [class.logo-box--wide-light]="exp.logoStyle === 'wide-light'"
-              >
-                <img
-                  [src]="exp.company_logo_url"
-                  [alt]="exp.company + ' logo'"
-                  class="logo-box__img"
-                />
-              </div>
-
-              <!-- Role, Company & Always-Visible 1-Line Summary -->
-              <div class="min-w-0 flex-1 text-left">
-                <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <h3 class="m-0 text-base sm:text-lg font-bold text-ink leading-snug">
-                    {{ exp.role }}
-                  </h3>
-                  @if (isFirst) {
-                    <span class="recent-badge">Most Recent</span>
-                  }
+            <div class="exp-header__main">
+              <!-- Top Identity Row (Logo + Role + Company) -->
+              <div class="exp-header__identity">
+                <div
+                  class="logo-box shrink-0"
+                  [class.logo-box--wide-light]="exp.logoStyle === 'wide-light'"
+                >
+                  <img
+                    [src]="exp.company_logo_url"
+                    [alt]="exp.company + ' logo'"
+                    class="logo-box__img"
+                  />
                 </div>
 
-                <div class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-                  @if (exp.company_url && exp.company_url !== '#') {
-                    <a
-                      [href]="exp.company_url"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="company-link"
-                      (click)="$event.stopPropagation()"
-                    >
-                      {{ exp.company }}
-                      <i class="fa-solid fa-arrow-up-right-from-square text-[0.62rem] opacity-70" aria-hidden="true"></i>
-                    </a>
-                  } @else {
-                    <span class="text-ink font-medium">{{ exp.company }}</span>
-                  }
-                  <span class="text-ink-muted" aria-hidden="true">·</span>
-                  <span class="text-xs font-mono-meta text-ink-muted">{{ exp.location }}</span>
-                </div>
+                <div class="min-w-0 flex-1 text-left">
+                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <h3 class="m-0 text-[0.98rem] sm:text-lg font-bold text-ink leading-snug">
+                      {{ exp.role }}
+                    </h3>
+                    @if (isFirst) {
+                      <span class="recent-badge">Most Recent</span>
+                    }
+                  </div>
 
-                <p class="mt-2 mb-0 text-sm leading-relaxed text-ink-secondary max-w-3xl">
-                  {{ exp.summary }}
-                </p>
+                  <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-2 gap-y-0.5 text-sm">
+                    @if (exp.company_url && exp.company_url !== '#') {
+                      <a
+                        [href]="exp.company_url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="company-link"
+                        (click)="$event.stopPropagation()"
+                      >
+                        <span>{{ exp.company }}</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[0.62rem] opacity-70 ml-1" aria-hidden="true"></i>
+                      </a>
+                    } @else {
+                      <span class="text-ink font-medium">{{ exp.company }}</span>
+                    }
+                    <span class="hidden sm:inline text-ink-muted" aria-hidden="true">·</span>
+                    <span class="text-xs font-mono-meta text-ink-muted">{{ exp.location }}</span>
+                  </div>
+
+                  <!-- Desktop summary stays aligned inside info column -->
+                  <p class="hidden sm:block mt-2 mb-0 text-sm leading-relaxed text-ink-secondary max-w-3xl">
+                    {{ exp.summary }}
+                  </p>
+                </div>
               </div>
+
+              <!-- Mobile full-width summary avoids narrow text next to logo -->
+              <p class="sm:hidden mt-3 mb-0 text-[0.86rem] leading-relaxed text-ink-secondary text-left">
+                {{ exp.summary }}
+              </p>
             </div>
 
             <!-- Date & Expand Toggle -->
-            <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2.5 shrink-0 pt-2 sm:pt-0">
+            <div class="exp-header__meta">
               <span class="date-pill">{{ exp.duration }}</span>
               <span class="toggle-chip" aria-hidden="true">
                 <span>{{ isExpanded(exp.id) ? 'Hide details' : 'Details' }}</span>

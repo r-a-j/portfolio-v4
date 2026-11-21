@@ -546,7 +546,7 @@ export const PROJECTS: ProjectDetails[] = [
                 'Modeling temporal persistence made a decisive difference: adding an AR(1) residual structure (phi = 0.58, 95% CI [0.50, 0.66]) gained +73.3 ELPD units (SE = 27.6) over an independent-error hierarchical model.',
                 'Inferences held steady under prior tightening: refitting both models with narrower normal and exponential priors barely shifted posterior means or credible intervals and preserved the exact LOO ranking.',
                 'Two observations in the AR(1) model produced Pareto k > 0.7 (1.16 and 1.09) during LOO cross-validation. While unlikely to overturn a 2.65-SE margin, moment matching or partial reloo is the right way to refine influential points.',
-                'Key modeling extensions identified during course review: centering Year around 2000 for interpretable intercepts, adding region-specific random slopes (1 + Year_c | Region) to estimate distinct regional decline rates, and modeling monthly seasonal curves with splines or Gaussian processes.',
+                'Natural modeling extensions for follow-up work: centering Year around 2000 for interpretable intercepts, adding region-specific random slopes (1 + Year_c | Region) to estimate distinct regional decline rates, and modeling monthly seasonal curves with splines or Gaussian processes.',
             ],
         },
     },
@@ -749,7 +749,7 @@ export const PROJECTS: ProjectDetails[] = [
             problem:
                 'Logistic regression has no conjugate prior for a multivariate Gaussian prior on its coefficients, so the posterior normalizing constant cannot be solved in closed form. Rather than treating Stan or JAGS as a black box, this project implements a Random Walk Metropolis-Hastings (RWMH) sampler directly in R to estimate full posterior distributions and credible intervals across 8 clinical risk factors on the Pima Indians Diabetes dataset (768 patients).',
             ownership:
-                'Completed as a two-person M.Sc. Data Science project (with Harsh Rana) for Prof. Dr. Katja Ickstadt and Zeyu Ding\'s course On the Theory and Practice of Monte Carlo Simulations (Winter Semester 2025/26, TU Dortmund). I refactored the R script from a single-chain prototype into a reproducible 3-chain MCMC workflow with overdispersed starts, coda Gelman-Rubin (R-hat) and ESS diagnostics, renv dependency locking, portable here::here() paths, and 3x3 diagnostic figures, and authored my final LaTeX technical report.',
+                'Completed as a two-person M.Sc. Data Science project (with Harsh Rana) for Prof. Dr. Katja Ickstadt and Zeyu Ding\'s course On the Theory and Practice of Monte Carlo Simulations (Winter Semester 2025/26, TU Dortmund). I built the reproducible 3-chain MCMC workflow in R with overdispersed starts, coda Gelman-Rubin (R-hat) and ESS diagnostics, renv dependency locking, portable here::here() paths, and 3x3 diagnostic figures, and authored the final LaTeX technical report.',
             approachHeading: 'Preprocessing, Custom MCMC Kernel & Diagnostics',
             approach: [
                 {
@@ -881,7 +881,7 @@ export const PROJECTS: ProjectDetails[] = [
             problem:
                 'Publishing individual-level geospatial records (health registries, mobility logs, or environmental exposure tables) creates a direct reverse-geocoding threat. Coarse postcode aggregation hides addresses but destroys local distance analysis and hotspot detection. Meanwhile, fixed-radius random perturbation cannot adapt to real urban morphology: on compact Dortmund, a 905 m radius over-masks central neighborhoods up to k = 2,570 and scatters ~60% of masked points onto garages, parks, Phoenix-See, or commercial land, while tightening the radius to 500 m drops sparse outskirt privacy down to k = 10.',
             ownership:
-                'Completed individually for Prof. Dr. Rainer Lenz\'s M.Sc. Seminar on Anonymization of Georeferenced Microdata at TU Dortmund (Winter Term 2023/24): authored the 12-page technical report and 40-slide presentation analyzing Wayne Richter\'s (2018) Verified Neighbor geomasking framework. To back the seminar analysis with real geospatial engineering, I built an open-source, unit-tested Python pipeline that fetches real OpenStreetMap building footprints via Overpass, projects WGS84 to metric UTM (EPSG:25832 & EPSG:26918) in pure NumPy, and benchmarks cKDTree Verified Neighbor against Random Perturbation and Donut Geomasking using Hotelling T², Rayleigh tests, Besag L(r)-r, and Kulldorff Poisson spatial scans.',
+                'Completed individually for Prof. Dr. Rainer Lenz\'s M.Sc. Seminar on Anonymization of Georeferenced Microdata at TU Dortmund (Winter Term 2023/24). Alongside the 12-page technical report and 40-slide presentation evaluating Wayne Richter\'s (2018) Verified Neighbor geomasking framework, I built an open-source, unit-tested Python benchmark that fetches real OpenStreetMap building footprints via Overpass, projects WGS84 to metric UTM (EPSG:25832 & EPSG:26918) in pure NumPy, and compares cKDTree Verified Neighbor against Random Perturbation and Donut Geomasking using Hotelling T², Rayleigh tests, Besag L(r)-r, and Kulldorff Poisson spatial scans.',
             approachHeading: 'Real-OSM Pipeline, Geomasking Engine & Spatial Audit',
             approach: [
                 {
@@ -1014,7 +1014,7 @@ export const PROJECTS: ProjectDetails[] = [
         language: 'Python',
         caseStudy: {
             context: 'TU Dortmund · Case Studies I (Applied Statistical Modeling)',
-            role: 'Team of 4 + Post-Review Python Overhaul · Prof. Paul Bürkner & Dr. Šimon Kucharský',
+            role: 'Team of 4 · Prof. Paul Bürkner & Dr. Šimon Kucharský',
             subtitle:
                 'Testing lifespan age hypotheses and within-trial fixation dynamics across 7,250 NEMO Science Museum visitors while separating true cognitive patterns from kiosk UI defaults, fixation-order survivorship bias, 10-second right-censoring, and detector thresholds.',
             metrics: [
@@ -1042,14 +1042,14 @@ export const PROJECTS: ProjectDetails[] = [
             problem:
                 'Most eye-tracking studies rely on small, homogeneous university cohorts, leaving lifespan hypotheses (that fixation durations shorten during childhood and lengthen again in older adulthood) difficult to test cleanly. On large museum free-viewing datasets (Strauch et al., 2023; 10-second viewing at 60 Hz), naive analyses run into four traps at once: unflagged kiosk UI birth-year defaults (DoB = 2000), heavily right-skewed durations that violate Gaussian residual assumptions, survivorship bias when indexing time by fixation order, and hard right-censoring at the 10-second trial cutoff.',
             ownership:
-                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner and Dr. Šimon Kucharský, Winter Term 2024/25) where I handled raw NEMO preprocessing, Hessels fixation extraction across 9,405 recordings, Python EDA, hyperparameter sweeps, and the individual technical report. Following faculty review comments on the submitted report, I rebuilt the entire analysis into a clean, MIT-licensed, unit-tested Python pipeline implementing an exact Woodbury REML/ML random-intercept LMM solver (verified to match lme4 to 5 digits), continuous cubic B-splines for Age and onset time, explicit censoring and DoB = 2000 audits, and a 12-configuration OFAT + independent I-VT detector benchmark on 1,000 real 60 Hz gaze traces.',
+                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner and Dr. Šimon Kucharský, Winter Term 2024/25). I handled raw NEMO preprocessing, Hessels and I-VT fixation extraction across the 60 Hz recordings, Python EDA, and the individual technical report, implementing a unit-tested Python pipeline with an exact Woodbury REML/ML random-intercept LMM solver (verified to match lme4 to 5 digits), continuous cubic B-splines for age and onset time, explicit censoring and DoB = 2000 sensitivity audits, and a 12-configuration OFAT detector benchmark on 1,000 real gaze traces.',
             approachHeading: 'Data Audit, Log-Normal Spline LMM & OFAT Robustness',
             approach: [
                 {
                     label: '01 · Audit & Log-Normal LMM',
                     title: 'DoB = 2000 Spike & Residual Diagnostics',
                     description:
-                        'Audited 7,250 valid free-viewing visitors (183,627 fixations) and isolated 1,532 records stuck at kiosk default DoB = 2000 (Age 23). Replaced skewed raw-scale Gaussian models (residual skew 4.82, excess kurtosis 65.1, max 31.8 SD) with an exact REML/ML Log-Normal LMM cutting skew to 0.42 and max residual to 5.9 SD, and fixed the participant-level Kruskal-Wallis test.',
+                        'Audited 7,250 valid free-viewing visitors (183,627 fixations) and isolated 1,532 records stuck at kiosk default DoB = 2000 (Age 23). Modeled log(duration) via an exact REML/ML Log-Normal LMM instead of skewed raw-scale Gaussian models (cutting residual skewness from 4.82 to 0.42 and max outlier from 31.8 SD to 5.9 SD), and ran participant-level Kruskal-Wallis tests on independent viewer means.',
                 },
                 {
                     label: '02 · Continuous Splines & Censoring',
@@ -1158,7 +1158,7 @@ export const PROJECTS: ProjectDetails[] = [
         language: 'Python',
         caseStudy: {
             context: 'TU Dortmund · Case Studies II (Applied Statistical Modeling)',
-            role: 'Team of 4 + Post-Review Python Overhaul · Prof. Paul Bürkner & Dr. Šimon Kucharský',
+            role: 'Team of 4 · Prof. Paul Bürkner & Dr. Šimon Kucharský',
             subtitle:
                 'Modeling public trust in government and state institutions across 66 Wave 7 nations (97,220 respondents) and 27 years of WVS time series (1995-2022) with exact Cumulative Link Ordered Logit, external governance indices, and model-based Latent Class Analysis.',
             metrics: [
@@ -1186,26 +1186,26 @@ export const PROJECTS: ProjectDetails[] = [
             problem:
                 'Cross-national survey data on institutional trust is inherently discrete and ordered (4-level confidence scales), yet applied analyses routinely distort it by collapsing ordinal categories into binary indicators, treating country IDs as numeric slopes, running Euclidean K-means on discrete items, or misreading reversed WVS coding (where raw 1 means "A great deal" and 4 means "None at all"). Separately, looking only at within-country demographics misses why citizens in open democracies report lower executive trust than citizens in less free regimes.',
             ownership:
-                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner, Dr. Šimon Kucharský, and Svenja Jedhoff, Winter Term 2024/25) covering USA determinants, G8 comparisons, longitudinal trends, and citizen clustering. After reviewing both written presentation notes, recorded live faculty feedback, and detailed report margin comments, I rebuilt the entire repository into a clean, unit-tested Python statistical package in pure NumPy/SciPy implementing exact Cumulative Link Ordered Logit (analytic gradient, exact Fisher Hessian, 3-cutpoint Proportional Odds checks, and valid VIF >= 1.0), 66-country external governance integration (World Bank, Transparency International, Freedom House, V-Dem), covariate-adjusted longitudinal probability trajectories, and multi-start EM Latent Class Analysis.',
+                'Completed as a 4-person M.Sc. Case Study at TU Dortmund (Prof. Paul Bürkner, Dr. Šimon Kucharský, and Svenja Jedhoff, Winter Term 2024/25) covering USA determinants, G8 cross-national comparisons, 1995-2022 longitudinal trends, and citizen segmentation. I built the end-to-end unit-tested Python statistical pipeline in pure NumPy/SciPy: implementing exact Cumulative Link Ordered Logit (analytic gradient, exact Fisher Hessian, 3-cutpoint Proportional Odds checks, and valid VIF >= 1.0), integrating 66-country external governance indicators (World Bank, Transparency International, Freedom House, V-Dem), modeling covariate-adjusted longitudinal probability trajectories, and fitting multi-start EM Latent Class Analysis.',
             approachHeading: 'Ordinal Modeling, Macro Linkages & Latent Structure',
             approach: [
                 {
                     label: '01 · Exact Ordered Logit & Audit',
                     title: 'Ascending Scale, Valid VIF & PO Check',
                     description:
-                        'Reverse-coded all WVS confidence items consistently to 1 = None at all .. 4 = A great deal so positive log-odds always indicate higher trust. Strictly filtered USA Wave 7 (n = 2,396 complete / 2,596 total, fixing an earlier global-sample leak), anchored Education at Middle to keep every VIF in [1.03, 1.99], and checked Proportional Odds across all three cumulative cutpoints (Y >= 2, Y >= 3, Y = 4).',
+                        'Reverse-coded all WVS confidence items consistently to 1 = None at all .. 4 = A great deal so positive log-odds always indicate higher trust. Strictly isolated the USA Wave 7 cohort (n = 2,396 complete / 2,596 total), anchored Education at Middle to avoid sparse-reference inflation (all VIFs in [1.03, 1.99]), and verified Proportional Odds across all three cumulative cutpoints (Y >= 2, Y >= 3, Y = 4).',
                 },
                 {
                     label: '02 · Joint G8 Model & Global Macro',
                     title: 'Categorical Dummies + 66-Nation Indices',
                     description:
-                        'Documented exact Wave 7 G8 coverage (6 countries, n = 13,914; France and Italy last participated in Wave 5) and replaced separate-country AIC comparisons and continuous country coding with one pooled Ordered Logit using categorical Country fixed effects (Germany reference) and formal Country x Predictor LRTs. Linked 61-62 Wave 7 countries to cleaned World Bank GDP PPP, Transparency International CPI, Freedom House, and V-Dem Press Freedom indices.',
+                        'Accounted for exact Wave 7 G8 participation (6 countries, n = 13,914; France and Italy last participated in Wave 5) and fit a single pooled Ordered Logit with categorical Country fixed effects (Germany reference) and formal Country x Predictor LRTs. Linked 61-62 Wave 7 nations to cleaned World Bank GDP PPP, Transparency International CPI, Freedom House, and V-Dem Press Freedom indices.',
                 },
                 {
                     label: '03 · Multi-Decade Trends & EM LCA',
                     title: 'Delta-Method P(Y >= 3) & 4 Citizen Archetypes',
                     description:
-                        'Modeled 1995-2022 WVS Time Series waves with explicit wave-year effects and delta-method 95% CIs for predicted P(High Trust >= 3) at fixed Age 45 / Income 5, fixing both raw fitted(clmm) probability distortion and sign inversion on Armed Forces. Replaced Euclidean K-means with multi-start EM Latent Class Analysis (K = 2..6) across 8 discrete 4-level institutional items on 12,567 G8 respondents.',
+                        'Modeled 1995-2022 WVS Time Series waves with explicit wave-year effects and delta-method 95% CIs for predicted P(High Trust >= 3) at fixed Age 45 / Income 5. Used multi-start EM Latent Class Analysis (K = 2..6) rather than Euclidean K-means across 8 discrete 4-level institutional trust items on 12,567 G8 respondents.',
                 },
             ],
             resultsTable: {
@@ -1278,9 +1278,9 @@ export const PROJECTS: ProjectDetails[] = [
             ],
             takeaways: [
                 'Splitting institutional trust into partisan/executive vs. rule-of-law domains resolves the global macro paradox: free press and democratic accountability encourage vocal executive skepticism (r = -0.53 with government trust), while clean governance strongly builds confidence in Police (r = +0.50) and Courts (r = +0.36).',
-                'Fixing USA cohort filtering, reverse-coding, and sparse education reference categories revealed real 2017 US political polarization: trusting The Press cut government-trust odds nearly threefold (OR = 0.35, p = 3.9e-59) while favoring a Strong Leader boosted them (OR = 1.40, interaction OR = 2.16 vs. Germany).',
-                'Covariate-adjusted longitudinal probabilities (1995-2022) refuted any uniform "collapse of trust": US military and police trust held steady over 22 years while partisan branches eroded, and Germany, Canada, and Japan posted net gains in government trust while the USA and UK fell.',
-                'Replacing Euclidean K-means with 4-class EM Latent Class Analysis directly proved why preserving all four ordinal levels matters: collapsing "Quite a lot" and "A great deal" would have erased the divide between measured democratic trustors (Germany/Canada/Japan) and high-intensity polarized trustors (Russia).',
+                'Within the 2017 USA Wave 7 cohort (n = 2,396, VIF 1.03-1.99), Ordered Logit coefficients capture acute partisan polarization: trusting The Press cut government-trust odds nearly threefold (OR = 0.35, p = 3.9e-59), while favoring a Strong Leader boosted them (OR = 1.40; Country interaction OR = 2.16 vs. Germany).',
+                'Covariate-adjusted longitudinal probabilities (1995-2022) show no uniform global collapse of trust: US military and police trust held steady over 22 years while partisan branches eroded, and Germany, Canada, and Japan posted net gains in government trust while the USA and UK fell.',
+                'Model-based 4-class EM Latent Class Analysis demonstrates why keeping all four ordinal levels matters: collapsing "Quite a lot" and "A great deal" into a binary indicator would erase the clear divide between measured democratic trustors (Germany/Canada/Japan) and high-intensity polarized trustors (Russia).',
             ],
         },
     },

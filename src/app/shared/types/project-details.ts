@@ -43,8 +43,12 @@ export interface ProjectShowcaseArchitectureLayer {
 export interface ProjectShowcase {
     tagline: string;
     versionBadge?: string;
+    accentColor?: 'crimson' | 'indigo';
+    distributionBadge?: string;
+    distributionIcon?: string;
     brandIcon?: string;
     wordmark?: string;
+    wordmarkSuffix?: string;
     heroBanner: string;
     heroPreviewScreenshot?: string;
     liveDemoUrl?: string;
@@ -53,13 +57,19 @@ export interface ProjectShowcase {
     liveDemoPrompts?: string[];
     overview: string;
     metrics: ProjectShowcaseMetric[];
+    screenshotsHeading?: string;
+    screenshotsIntro?: string;
     screenshots: ProjectShowcaseScreenshot[];
     spotlightHeading?: string;
     spotlightIntro?: string;
     spotlights?: ProjectShowcaseSpotlight[];
+    highlightsHeading?: string;
+    highlightsIntro?: string;
     highlights: ProjectShowcaseHighlight[];
     architectureIntro?: string;
     architecture: ProjectShowcaseArchitectureLayer[];
+    availabilityHeading?: string;
+    availabilityIcon?: string;
     availabilityNote?: string;
 }
 

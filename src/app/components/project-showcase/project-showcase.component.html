@@ -1,6 +1,6 @@
 <article class="flex flex-col gap-12 text-ink">
-  <!-- Hero Banner (Cinema dark card intentionally preserved for CineScope branding) -->
-  <section class="showcase-hero">
+  <!-- Hero Banner -->
+  <section class="showcase-hero" [class.showcase-hero--indigo]="showcase().accentColor === 'indigo'">
     <img
       [src]="showcase().heroBanner"
       alt=""
@@ -13,7 +13,7 @@
       <div class="flex flex-col gap-5">
         <div class="flex flex-wrap gap-2">
           @if (project().statusBadge) {
-            <span class="pill pill--live">
+            <span class="pill pill--live" [class.pill--indigo]="showcase().accentColor === 'indigo'">
               <span class="pill__dot" aria-hidden="true"></span>
               {{ project().statusBadge }}
             </span>
@@ -24,8 +24,8 @@
             </span>
           }
           <span class="pill pill--subtle">
-            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-            Closed-Source Product
+            <i [class]="showcase().distributionIcon || 'fa-solid fa-shield-halved'" aria-hidden="true"></i>
+            {{ showcase().distributionBadge || 'Closed-Source Product' }}
           </span>
         </div>
 
@@ -34,19 +34,31 @@
             <img
               [src]="showcase().brandIcon || project().thumbnail"
               [alt]="project().title + ' app icon'"
-              class="w-18 h-18 sm:w-20 sm:h-20 rounded-[20px] object-cover bg-black border border-white/20 shadow-[0_12px_32px_rgba(202,8,18,0.3)] shrink-0"
+              class="w-18 h-18 sm:w-20 sm:h-20 rounded-[20px] object-cover bg-black border border-white/20 shrink-0"
+              [class.brand-icon--indigo]="showcase().accentColor === 'indigo'"
+              [class.brand-icon--crimson]="showcase().accentColor !== 'indigo'"
             />
           }
           <div>
             @if (showcase().wordmark) {
-              <h1 class="m-0">
+              <h1 class="m-0 flex items-center gap-3 flex-wrap">
                 <span class="sr-only">{{ project().title }}</span>
                 <img
                   [src]="showcase().wordmark"
                   alt=""
                   aria-hidden="true"
-                  class="block h-10 sm:h-12 w-auto drop-shadow-[0_4px_18px_rgba(202,8,18,0.35)]"
+                  class="block h-10 sm:h-12 w-auto"
+                  [class.wordmark--indigo]="showcase().accentColor === 'indigo'"
+                  [class.wordmark--crimson]="showcase().accentColor !== 'indigo'"
                 />
+                @if (showcase().wordmarkSuffix) {
+                  <span
+                    aria-hidden="true"
+                    class="text-2xl sm:text-3xl font-bold tracking-tight text-indigo-200/95 leading-none"
+                  >
+                    {{ showcase().wordmarkSuffix }}
+                  </span>
+                }
               </h1>
             } @else {
               <h1 class="section-heading m-0 text-3xl sm:text-4xl leading-tight text-white">
@@ -240,10 +252,10 @@
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <h2 class="section-heading m-0 text-2xl sm:text-3xl">
-        Inside the App
+        {{ showcase().screenshotsHeading || 'Inside the App' }}
       </h2>
       <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
-        Screenshots captured from the Android release. Select any screen to inspect full-resolution detail.
+        {{ showcase().screenshotsIntro || 'Screenshots captured from the Android release. Select any screen to inspect full-resolution detail.' }}
       </p>
     </div>
 
@@ -325,10 +337,10 @@
   <section class="flex flex-col gap-6">
     <div class="text-center max-w-2xl mx-auto">
       <h2 class="section-heading m-0 text-2xl sm:text-3xl">
-        What CineScope Does
+        {{ showcase().highlightsHeading || ('What ' + project().title + ' Does') }}
       </h2>
       <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
-        Gemini AI search and extraction, local RxDB library storage, and native Android plugins built with Capacitor.
+        {{ showcase().highlightsIntro || 'Gemini AI search and extraction, local RxDB library storage, and native Android plugins built with Capacitor.' }}
       </p>
     </div>
 
@@ -400,10 +412,10 @@
     >
       <div class="flex items-start gap-4 max-w-2xl">
         <div class="icon-badge w-10 h-10 rounded-xl flex items-center justify-center shrink-0" aria-hidden="true">
-          <i class="fa-solid fa-lock"></i>
+          <i [class]="showcase().availabilityIcon || 'fa-solid fa-lock'"></i>
         </div>
         <div>
-          <h3 class="m-0 text-base font-bold text-ink">Source &amp; Access</h3>
+          <h3 class="m-0 text-base font-bold text-ink">{{ showcase().availabilityHeading || 'Source & Access' }}</h3>
           <p class="mt-1 mb-0 text-sm leading-relaxed text-ink-secondary">{{ showcase().availabilityNote }}</p>
         </div>
       </div>

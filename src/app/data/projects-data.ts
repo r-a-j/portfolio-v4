@@ -406,6 +406,235 @@ export const PROJECTS: ProjectDetails[] = [
         },
     },
     {
+        id: 'kosh',
+        title: 'Kosh (कोश)',
+        description: 'Offline-first Android AI knowledge vault running local LLMs on-device via Google LiteRT (NPU/GPU/CPU), backed by AES-256-GCM sealed vaults, BIP39 recovery, and local SQLite FTS4 document RAG.',
+        thumbnail: 'projects/kosh/kosh_thumb.webp',
+        statusBadge: 'Open Source • Android v2.0',
+        githubLink: 'https://github.com/r-a-j/kosh',
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/kosh/refs/heads/main/README.md',
+        externalLinks: [
+            {
+                label: 'View on GitHub',
+                url: 'https://github.com/r-a-j/kosh',
+                icon: 'fa-brands fa-github',
+                style: 'primary',
+            },
+            {
+                label: 'Architecture Docs',
+                url: 'https://github.com/r-a-j/kosh/blob/main/docs/architecture.md',
+                icon: 'fa-solid fa-diagram-project',
+                style: 'secondary',
+            },
+            {
+                label: 'Privacy Policy',
+                url: 'https://github.com/r-a-j/kosh/blob/main/PRIVACY_POLICY.md',
+                icon: 'fa-solid fa-shield-halved',
+                style: 'secondary',
+            },
+        ],
+        techStack: ['Android', 'Kotlin', 'Jetpack Compose', 'Google LiteRT', 'Qualcomm QNN NPU', 'SQLite FTS4', 'AES-256-GCM', 'BIP39'],
+        rating: 5,
+        category: 'Android',
+        year: 2026,
+        language: 'Kotlin',
+        showcase: {
+            tagline: 'Offline-First On-Device AI Vault & Local Second Brain for Android',
+            versionBadge: 'v2.0.0',
+            accentColor: 'indigo',
+            distributionBadge: 'Open-Source Android App',
+            distributionIcon: 'fa-brands fa-github',
+            brandIcon: 'projects/kosh/app-icon.svg',
+            wordmark: 'projects/kosh/wordmark.svg',
+            wordmarkSuffix: 'कोश',
+            heroBanner: 'projects/kosh/visuals/vault-hero.webp',
+            heroPreviewScreenshot: 'projects/kosh/screenshots/01-obsidian-vault.webp',
+            overview:
+                'Kosh (meaning Vault or Treasury in Sanskrit and Hindi) is a private, offline-first Android AI assistant built in native Kotlin and Jetpack Compose. It runs quantized LLMs directly on mobile NPU, GPU, and CPU silicon via Google LiteRT, pairing local PDF and Markdown retrieval with AES-256-GCM encrypted sealed vaults, biometric lock, and zero-telemetry backups.',
+            metrics: [
+                {
+                    value: 'LiteRT NPU/GPU',
+                    label: 'On-Device LLM Inference',
+                    detail: 'Runs quantized .litertlm models (Gemma-4-E2B, Qwen2.5, phi-4-mini) locally with a live HUD tracking decode speed (34.5 t/s GPU), load, and RAM.',
+                    icon: 'fa-solid fa-microchip',
+                },
+                {
+                    value: 'AES-256-GCM',
+                    label: 'Sealed Vaults & BIP39',
+                    detail: 'Per-session at-rest encryption via Android Keystore, PBKDF2 key derivation, explicit RAM key zeroing, and 12-word BIP39 recovery.',
+                    icon: 'fa-solid fa-vault',
+                },
+                {
+                    value: 'SQLite FTS4',
+                    label: 'Local Document RAG',
+                    detail: 'Extracts and chunks PDFs, Markdown, and text files on-device with stop-word fallback retrieval and clickable inline source citations.',
+                    icon: 'fa-solid fa-file-lines',
+                },
+                {
+                    value: 'Zero Cloud',
+                    label: 'No Accounts or Telemetry',
+                    detail: 'Zero analytics or mandatory servers. Supports RAM-only temporary sessions, FLAG_SECURE screenshot controls, and encrypted .kosh backups.',
+                    icon: 'fa-solid fa-user-shield',
+                },
+            ],
+            screenshotsHeading: 'Inside the Vault',
+            screenshotsIntro:
+                'Screens captured directly from Kosh v2.0 on Android across Obsidian, Aero Glass, and Sand themes. Select any screen to inspect full-resolution detail.',
+            screenshots: [
+                {
+                    src: 'projects/kosh/screenshots/01-obsidian-vault.webp',
+                    badge: 'Obsidian Theme',
+                    title: 'Personal Vault Dashboard',
+                    caption: 'OLED Obsidian home hub featuring the Personal Journal Vault, AES-GCM seal status, Secure Document Library, and color-tagged conversations.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/02-live-chat-hud.webp',
+                    badge: 'Live GPU HUD',
+                    title: 'On-Device Streaming & Telemetry',
+                    caption: 'Real-time token streaming from Gemma-4-E2B paired with the live Performance HUD (GPU backend, 34.5 t/s decode, 55% core load, 2.41 GB RAM).',
+                },
+                {
+                    src: 'projects/kosh/screenshots/03-temporary-session.webp',
+                    badge: 'RAM-Only',
+                    title: 'Temporary Incognito Session',
+                    caption: 'Ephemeral offline sessions held strictly in volatile RAM with Fast, Balanced, and Deep Think reasoning toggles that vanish on exit.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/04-model-hub.webp',
+                    badge: 'Model Hub',
+                    title: 'LiteRT Benchmark Catalog',
+                    caption: 'Browse curated on-device models (Gemma-4-E2B, Qwen2.5-1.5B, Gemma3-1B, Gemma-3n-E2B) with target silicon and prefill/decode matrix specs.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/05-find-fit-guide.webp',
+                    badge: 'Find Your Fit',
+                    title: 'RAM & Hardware Model Advisor',
+                    caption: 'Matches phone RAM tiers and assistant workloads (speed, coding/math, or low-RAM devices) to safe local weight downloads.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/06-settings-security.webp',
+                    badge: 'Security & Data',
+                    title: 'Vault Lock, Backup & HUD Controls',
+                    caption: 'Configure Obsidian, Aero, or Sand themes, toggle the Performance HUD, enable startup biometrics, manage FLAG_SECURE, and export .kosh vaults.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/07-aero-theme.webp',
+                    badge: 'Aero Glass',
+                    title: 'Teal Aurora Dark Theme',
+                    caption: 'Deep navy glassmorphic theme accented in Teal Aurora (#14B8A6) and Sky Blue for low-glare reading sessions.',
+                },
+                {
+                    src: 'projects/kosh/screenshots/08-sand-theme.webp',
+                    badge: 'Sand Warm',
+                    title: 'Minimalist Light Theme',
+                    caption: 'Warm parchment surface (#FAF9F6) with Clay Terracotta (#C2410C) accents designed for daytime journaling and long-form document review.',
+                },
+            ],
+            spotlightHeading: 'Local Neural Core & Cryptographic Vault Security',
+            spotlightIntro:
+                'Most AI assistants stream private journals, contracts, and code to external servers. Kosh keeps both neural inference and encrypted knowledge storage strictly inside your Android device.',
+            spotlights: [
+                {
+                    src: 'projects/kosh/visuals/neural-core-rag.webp',
+                    eyebrow: 'Google LiteRT + SQLite FTS4',
+                    title: 'Hardware-Accelerated Inference & Offline Document RAG',
+                    description:
+                        'Runs quantized .litertlm weights directly on Qualcomm Hexagon NPU, mobile GPU, or CPU while PDFBox-Android and SQLite FTS4 chunk, index, and cite local PDFs and notes with zero network calls.',
+                },
+                {
+                    src: 'projects/kosh/visuals/sealed-vault-security.webp',
+                    eyebrow: 'AES-256-GCM + Android Keystore',
+                    title: 'Sealed Vaults, BIP39 Recovery & Atomic .kosh Backups',
+                    description:
+                        'Lock individual threads or the entire app behind biometrics and PBKDF2-derived AES-256-GCM keys, erase active keys from RAM via DestroyableSecretKey, recover via 12-word BIP39 phrases, and verify backup AEAD tags atomically.',
+                },
+            ],
+            highlightsHeading: 'What Kosh Does',
+            highlightsIntro:
+                'On-device LiteRT inference, AES-256-GCM sealed vaults, offline SQLite FTS4 RAG, and a multi-theme Jetpack Compose interface.',
+            highlights: [
+                {
+                    title: 'Multi-Model LiteRT Hub & Tag Routing',
+                    description:
+                        'Import and verify multiple local LLM weights (.litertlm/.bin), switch between NPU, GPU, and CPU backends, and route chats with Fast, Balanced, and Deep Think modes.',
+                    icon: 'fa-solid fa-brain',
+                    tags: ['Google LiteRT', 'Qualcomm QNN', 'Model Hub'],
+                },
+                {
+                    title: 'Sealed Vaults, Biometrics & BIP39',
+                    description:
+                        'Encrypt individual chat sessions and attached documents at rest with AES-256-GCM, unlock via Android Biometrics, and recover keys offline using a 12-word BIP39 mnemonic.',
+                    icon: 'fa-solid fa-lock',
+                    tags: ['AES-256-GCM', 'PBKDF2', 'BIP39', 'Keystore'],
+                },
+                {
+                    title: 'Offline PDF & Note RAG With Citations',
+                    description:
+                        'Parse local PDF, Markdown, and TXT files via PDFBox-Android into SQLite FTS4 virtual tables with stop-word fallback and clickable inline source badges.',
+                    icon: 'fa-solid fa-book-bookmark',
+                    tags: ['SQLite FTS4', 'PDFBox', 'Inline Citations'],
+                },
+                {
+                    title: 'Rich Compose Renderer & Bundled KaTeX',
+                    description:
+                        'Streams structured responses with collapsible Thinking blocks, formatted Code cards, persistent SQLite checklists, offline KaTeX math typesetting, and chunked Android TTS.',
+                    icon: 'fa-solid fa-square-root-variable',
+                    tags: ['Jetpack Compose', 'Offline KaTeX', 'Android TTS'],
+                },
+                {
+                    title: 'Hybrid Web Search & Local Agent Skills',
+                    description:
+                        'Optional direct web search (OkHttp/Jsoup DOM extraction + OpenGraph previews) alongside a multi-turn ReAct AgentLoopExecutor with native Android and sandboxed JS skills.',
+                    icon: 'fa-solid fa-globe',
+                    tags: ['ReAct Loop', 'Jsoup / Coil', 'JS Sandbox'],
+                },
+                {
+                    title: 'Three Themes, Incognito & .kosh Backups',
+                    description:
+                        'Switch between Obsidian, Aero Glass, and Sand themes, run RAM-only temporary sessions, control FLAG_SECURE screenshots, and export password-encrypted .kosh archives.',
+                    icon: 'fa-solid fa-palette',
+                    tags: ['Obsidian / Aero / Sand', 'FLAG_SECURE', '.kosh Backup'],
+                },
+            ],
+            architectureIntro:
+                'Structured across 72 Kotlin files separating Domain use cases, isolated native JNI delegates, SQLite v8 storage, and declarative Jetpack Compose UI.',
+            architecture: [
+                {
+                    layer: 'UI & Rendering',
+                    title: 'Jetpack Compose MVI & Multi-Theme System',
+                    description:
+                        'Reactive StateFlow architecture driving custom Markdown, Thinking, Code, Checklist, and bundled offline KaTeX renderers with stabilized LazyColumn streaming and three native palettes.',
+                    technologies: ['Kotlin', 'Jetpack Compose', 'Material 3', 'Offline KaTeX'],
+                },
+                {
+                    layer: 'Neural Core',
+                    title: 'LiteRT & Qualcomm QNN Hexagon Delegate',
+                    description:
+                        'Agnostic AIProvider wrapping LiteRTModelProvider with JNI lifecycle synchronization, legacy jniLibs extraction for QNN NPU drivers, sliding-window context budgeting, and live telemetry HUD.',
+                    technologies: ['Google LiteRT', 'Qualcomm QNN', 'JNI Guards', 'Coroutines Flow'],
+                },
+                {
+                    layer: 'Storage & RAG',
+                    title: 'SQLite v8 Vault, FTS4 Index & PDF Pipeline',
+                    description:
+                        'Relational SQLite schema with foreign-key cascades, corruption self-healing backup handler, FTS4 triggers over PDFBox text chunks, relational color tags, and persistent message feedback.',
+                    technologies: ['SQLite v8', 'FTS4 Triggers', 'PDFBox-Android', 'Corruption Handler'],
+                },
+                {
+                    layer: 'Security & Agents',
+                    title: 'AES-256-GCM Cryptography & Skill Sandbox',
+                    description:
+                        'Per-session ciphertexts backed by Android Keystore, DestroyableSecretKey memory zeroing, atomic AEAD backup verification, BIP39 recovery, and bounded 5-turn ReAct tool execution.',
+                    technologies: ['AES-256-GCM', 'BIP39', 'BiometricPrompt', 'AgentLoopExecutor'],
+                },
+            ],
+            availabilityHeading: 'Open Source & Privacy Promise',
+            availabilityIcon: 'fa-solid fa-shield-halved',
+            availabilityNote:
+                'No telemetry, no analytics, and no mandatory cloud servers. Kosh v2.0 is open-source on GitHub with architectural documentation, NPU optimization guides, and a transparent zero-collection privacy policy.',
+        },
+    },
+    {
         id: 'applied-bayesian-data-analysis',
         title: 'Bayesian Hierarchical Modeling of Arctic Sea Ice',
         description: 'Spatio-temporal Bayesian modeling of NSIDC Arctic sea ice extent across 14 regions (1979–2023), comparing No-AR and AR(1) hierarchical models in Stan/brms with LOO-CV and prior sensitivity checks.',
@@ -1014,20 +1243,6 @@ export const PROJECTS: ProjectDetails[] = [
                 'Practical deployment requires maintaining current residential address registries (e.g., German ALKIS cadastre or verified OSM building footprints), adapting OSM tag parsers across regions, and sizing k jointly with any non-spatial quasi-identifiers released alongside coordinates.',
             ],
         },
-    },
-    {
-        id: 'kosh',
-        title: 'Kosh (कोश)',
-        description: 'Early-stage prototype for a private, offline-first Android knowledge assistant running local LLMs on-device via Google LiteRT.',
-        thumbnail: 'projects/kosh/kosh_thumb.png',
-        statusBadge: 'In Development',
-        githubLink: 'https://github.com/r-a-j/kosh',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/kosh/refs/heads/main/README.md',
-        techStack: ['Android', 'Kotlin', 'Jetpack Compose', 'LiteRT', 'SQLite FTS5', 'AES-256-GCM'],
-        rating: 4,
-        category: 'Android',
-        year: 2026,
-        language: 'Kotlin',
     },
     {
         id: 'eye-tracking-fixations',

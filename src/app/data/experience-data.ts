@@ -40,13 +40,13 @@ export const EXPERIENCES: Experience[] = [
         category: 'Impact, Startup Growth & Teaching',
         items: [
           { text: 'Hired directly after presenting my TU Dortmund Industrial Data Science 2 proof of concept to the founder; went on to serve as a core AI and software contributor as PartikelART won 1st Place (Wilo-Foundation) and the TU capital VC Seed Special Prize at the TU Start-up Award 2025.' },
-          { text: 'Translated industrial customer workflows into clear engineering specifications, authoring an automated microscope inspection proposal and technical requirements for a Tier-1 automotive supplier (Stoneridge / Keyence workflow).' },
+          { text: 'Delivered core ML, computer vision, and full-stack software capabilities for an industrial visual quality-inspection platform used in real automotive manufacturing, including by lead OEM client BMW.' },
           { text: 'Co-delivered an invited guest lecture for the M.Sc. Industrial Data Science 1 course at TU Dortmund on moving computer vision models from research notebooks into production software.' }
         ]
       }
     ],
     duration: 'Oct 2024 – Nov 2026',
-    location: 'Dortmund, Germany · Hybrid',
+    location: 'Dortmund, Germany · On-site',
     documents: [
       {
         label: 'Reference Letter (EN)',

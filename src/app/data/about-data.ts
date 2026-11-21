@@ -36,11 +36,11 @@ export const ABOUT_CONTENT = {
             icon: 'fa-solid fa-chalkboard-user',
         },
         {
-            eyebrow: 'Technical Proposal',
-            title: 'Automated Inspection Proposal',
-            organization: 'Stoneridge (Tier-1 Automotive Supplier)',
-            detail: 'Authored technical requirements and automation proposal for Keyence microscope cleanliness inspection.',
-            icon: 'fa-solid fa-industry',
+            eyebrow: 'Award & Industry Impact',
+            title: '1st Place, TU Start-up Award 2025',
+            organization: 'PartikelART Solution GmbH',
+            detail: 'Core ML and software engineer behind an automated visual inspection platform deployed in automotive manufacturing, including with lead OEM client BMW.',
+            icon: 'fa-solid fa-trophy',
         },
     ] as AboutCredential[],
     references: [

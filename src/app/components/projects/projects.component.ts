@@ -51,7 +51,7 @@ export class ProjectsComponent {
 
   readonly filteredProjects = computed(() => {
     if (this.featuredOnly()) {
-      return this.allProjects.slice(0, 3);
+      return this.allProjects.slice(0, 6);
     }
 
     const q = this.searchQuery().trim().toLowerCase();

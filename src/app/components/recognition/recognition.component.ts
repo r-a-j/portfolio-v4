@@ -27,10 +27,8 @@ export class RecognitionComponent {
 
   readonly pressCategories: ('All' | PressCategory)[] = [
     'All',
-    'Official & Awards',
-    'Press & Industry',
-    'Ecosystem',
-    'Video & Photos',
+    'Awards & Official',
+    'Product Press',
   ];
 
   readonly activeCategory = signal<'All' | PressCategory>('All');

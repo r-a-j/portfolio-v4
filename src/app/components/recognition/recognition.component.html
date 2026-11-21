@@ -151,7 +151,7 @@
             In the Media
           </span>
           <h3 class="font-display m-0 mt-1 text-xl font-medium text-ink">
-            Press, Interviews &amp; Videos ({{ allPress.length }})
+            Award Coverage &amp; Product Press ({{ allPress.length }})
           </h3>
         </div>
 
@@ -181,9 +181,6 @@
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2 text-[0.7rem] font-mono-meta uppercase tracking-wider text-ink-muted">
                 <span class="truncate">{{ item.source }}</span>
-                @if (item.category === 'Video & Photos') {
-                  <i class="fa-brands fa-youtube text-brand text-xs shrink-0" aria-hidden="true"></i>
-                }
               </div>
               <div class="text-sm font-semibold text-ink mt-1 leading-snug">
                 {{ item.title }}

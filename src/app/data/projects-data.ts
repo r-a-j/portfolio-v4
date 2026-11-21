@@ -1543,15 +1543,152 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'comparison-multiple-distributions',
         title: 'Statistical Comparison of Multiple Distributions',
-        description: 'Multi-group hypothesis testing of competitive swimming benchmarks using ANOVA, Kruskal-Wallis, and Holm-Bonferroni corrections.',
+        description: 'Multi-group hypothesis testing of Roma 2022 women 200m swimming semifinals using One-Way ANOVA, Welch ANOVA, Kruskal-Wallis, Holm-Bonferroni vs. Bonferroni FWER control, and exact 128-assignment deduplication sensitivity.',
         thumbnail: 'projects/comparing-multiple-distributions/comparing-multiple-distributions_thumb.webp',
         githubLink: 'https://github.com/r-a-j/Comparison-of-multiple-distributions',
-        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Comparison-of-multiple-distributions/refs/heads/main/README.md',
-        techStack: ['Python', 'ANOVA', 'Kruskal-Wallis', 'Holm-Bonferroni', 'SciPy', 'seaborn'],
-        rating: 3,
+        githubReadmeUrl: 'https://raw.githubusercontent.com/r-a-j/Comparison-of-multiple-distributions/main/README.md',
+        techStack: ['Python', 'ANOVA', 'Welch ANOVA', 'Kruskal-Wallis', 'Holm-Bonferroni', 'SciPy', 'NumPy', 'Matplotlib'],
+        rating: 5,
         category: 'Statistics',
-        year: 2023,
+        year: 2022,
         language: 'Python',
+        caseStudy: {
+            context: 'TU Dortmund · Introductory Case Studies (Report 2)',
+            role: 'Individual Report · Prof. Dr. Jörg Rahnenführer & Dr. Franziska Kappenberg',
+            subtitle:
+                'Comparing women 200m semifinal swimming times across five strokes at the 2022 European Aquatics Championships in Rome (n = 80 starts, 73 athletes), resolving dual-event cross-group dependence via single-event inference and an exact 2^7 = 128 deduplication audit.',
+            metrics: [
+                {
+                    value: 'F = 376.3',
+                    label: 'Global ANOVA (ω² = 0.958)',
+                    detail: 'Stroke accounts for 95.8% of 200m time variance (p = 3.1e-42; Welch F = 530.4, p = 6.4e-27; Kruskal-Wallis H = 56.0, p = 2.0e-11).',
+                },
+                {
+                    value: '26.96 s',
+                    label: 'Freestyle vs. Breaststroke',
+                    detail: 'Mean times span from Freestyle (119.36 s, n = 15) to Breaststroke (146.31 s, n = 14; Hedges g = 17.1), while Backstroke and Butterfly overlap.',
+                },
+                {
+                    value: 'Holm vs. Bonf',
+                    label: 'Butterfly vs. Medley Edge',
+                    detail: 'At +2.98 s (raw Student p = 0.0051, MWU p = 0.0084), Bonferroni fails (> 0.05) while step-down Holm rejects cleanly (p = 0.010 / 0.017).',
+                },
+                {
+                    value: '128 / 128',
+                    label: 'Exact Deduplication Audit',
+                    detail: 'Across all 2^7 = 128 independent n = 73 assignments, Holm rejects Butterfly vs. Medley in 95-100% vs. just 10-27% under Bonferroni.',
+                },
+            ],
+            problem:
+                'Official 200m semifinal tables from the 2022 European Aquatics Championships contain 80 starts across 5 strokes, but 7 athletes competed in two categories (6 pairing Individual Medley with a specialty stroke), violating the independence assumption of ANOVA and two-sample tests. Running all 10 unadjusted pairwise tests also inflates the Family-Wise Error Rate to 40.1%, while Butterfly displays 3.4x larger variance than Medley.',
+            ownership:
+                'Completed as an individual report for Introductory Case Studies (Winter Semester 2022/23, Department of Statistics, TU Dortmund University). Implemented the exact multi-group inference package in NumPy/SciPy covering assumption testing (per-group and residual Shapiro-Wilk, Brown-Forsythe Levene, Bartlett), Classical ANOVA, Welch ANOVA, Kruskal-Wallis, pairwise Student/Welch/Mann-Whitney contrasts with Bonferroni, Holm-Bonferroni, and Benjamini-Hochberg adjustments, plus exact 2^7 = 128 deduplication enumeration and unit tests.',
+            approachHeading: 'Independence Audit, Multi-Test Triangulation & FWER Power',
+            approach: [
+                {
+                    label: '01 · Independence & Assumptions',
+                    title: 'Single-Event Cohort & Unified Diagnostics',
+                    description:
+                        'Identified all 7 dual-event swimmers (14 starts) and established the permutation-invariant single-event cohort (n = 66) for unbiased primary inference. Verified normality across all 5 strokes (Shapiro-Wilk p in [0.086, 0.497]; pooled residual p = 0.129) and tested variance homogeneity (Brown-Forsythe Levene p = 0.274, Bartlett p = 0.141) while noting Butterfly wider dispersion (SD = 2.72 s vs. 1.47-1.85 s).',
+                },
+                {
+                    label: '02 · Global & Pairwise Inference',
+                    title: 'Parametric, Robust & Rank-Based Alignment',
+                    description:
+                        'Triangulated Classical One-Way ANOVA with Welch heteroscedastic ANOVA and Kruskal-Wallis, then ran all 10 pairwise contrasts via Student t, Welch t, and Mann-Whitney U with Hedges g effect sizes and 95% Welch CIs. Eight pairs separate overwhelmingly (p_bonf <= 0.0076) and Backstroke vs. Butterfly shows no difference (p = 0.742).',
+                },
+                {
+                    label: '03 · Exact 128-Assignment FWER Audit',
+                    title: 'Demonstrating Holm Step-Down Dominance',
+                    description:
+                        'Enumerated all 2^7 = 128 ways to keep one swim per dual-event athlete (n = 73) to test sensitivity to deduplication rules. On the decisive Butterfly vs. Medley pair, Bonferroni (x10) becomes unstable (rejecting in only 27.3% of Welch, 26.6% of Student, and 10.2% of MWU assignments), whereas step-down Holm-Bonferroni (x2) rejects cleanly in 100%, 100%, and 95.3% while maintaining identical strong FWER <= 5% control.',
+                },
+            ],
+            resultsTable: {
+                title: 'Global & Pivotal Pairwise Results on Roma 2022 Women 200m Semifinals',
+                subtitle:
+                    'Primary strictly independent single-event cohort (n = 66) alongside exact 2^7 = 128 one-per-swimmer sensitivity rates (n = 73, alpha = 0.05).',
+                columns: ['Comparison / Test', 'Effect / Stat', 'Raw p', 'Bonferroni p', 'Holm p', '128-Dedup Bonf / Holm'],
+                rows: [
+                    {
+                        cells: ['Global ANOVA (5 Strokes)', 'F(4, 61) = 376.3 (ω² = 0.958)', '3.10e-42', '-', '-', '100% / 100% (128/128)'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Global Welch / Kruskal-Wallis', 'F_W = 530.4 / H = 56.0', '6.4e-27 / 2.0e-11', '-', '-', '100% / 100% (128/128)'],
+                    },
+                    {
+                        cells: ['8 Separated Pairs (e.g. Med-Back)', '+3.28 to +26.96 s (g = 1.9-17.1)', '<= 1.25e-4', '<= 0.0012', '<= 0.0004', '100% / 100% (128/128)'],
+                    },
+                    {
+                        cells: ['Medley - Butterfly (Student t)', '+2.98 s (g = 1.27)', '0.0051', '0.0508 (NS)', '0.0102 (Sig)', '26.6% / 100.0%'],
+                        highlight: true,
+                    },
+                    {
+                        cells: ['Medley - Butterfly (Welch / MWU)', '+2.98 s (var ratio 3.4x)', '0.0032 / 0.0084', '0.0318 / 0.0840', '0.0064 / 0.0168', '27.3% / 100% | 10.2% / 95.3%'],
+                    },
+                    {
+                        cells: ['Butterfly - Backstroke (Null Pair)', '+0.30 s (g = 0.12)', '0.7424', '1.0000', '0.7424', '0.0% / 0.0% (0/128)'],
+                    },
+                ],
+            },
+            figures: [
+                {
+                    src: 'projects/comparing-multiple-distributions/stroke-distributions.webp',
+                    badge: 'Stroke Distributions',
+                    title: 'Women 200m Semifinal Times Across Five Strokes (Roma 2022)',
+                    caption:
+                        'Single-event athletes (n = 66, filled) and dual-event entries (14 swims from 7 athletes, diamonds) reveal a 27 s spread from Freestyle to Breaststroke and widest variance in Butterfly.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/comparing-multiple-distributions/dual-swimmer-profiles.webp',
+                    badge: 'Independence Audit',
+                    title: '7 Dual-Event Semifinalists Across Paired Categories',
+                    caption:
+                        'Six of the seven dual-entry swimmers paired 200m Individual Medley with a specialty stroke (Backstroke, Butterfly, Breaststroke, or Freestyle), directly linking those groups in raw data.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/comparing-multiple-distributions/normality-and-variance-qq.webp',
+                    badge: 'Assumption Audit',
+                    title: 'Unified Normal Q-Q & Homoscedasticity Audit (n = 66)',
+                    caption:
+                        'Within-stroke standardized residuals stay cleanly inside the 95% Gaussian envelope (all 5 Shapiro-Wilk p >= 0.086; Levene p = 0.274; Bartlett p = 0.141) despite a 3.4x Butterfly-to-Medley variance ratio.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/comparing-multiple-distributions/pairwise-differences-ci.webp',
+                    badge: '10 Pairwise Contrasts',
+                    title: 'Pairwise Mean Differences, 95% Welch CIs & Hedges g',
+                    caption:
+                        'Eight stroke pairs separate decisively (g = 1.9 to 17.1), Backstroke vs. Butterfly overlaps zero (+0.30 s, p = 0.74), and Medley vs. Butterfly (+2.98 s) sits directly on the multiple-testing boundary.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/comparing-multiple-distributions/multiple-testing-comparison.webp',
+                    badge: 'FWER Control',
+                    title: 'Unadjusted vs. Holm-Bonferroni vs. Bonferroni on Closest Pairs',
+                    caption:
+                        'With 8 dominant contrasts already rejected, Holm step-down tests Butterfly vs. Medley at multiplier x2 (p = 0.010 Student, 0.017 MWU), whereas rigid Bonferroni (x10) pushes both past alpha = 0.05.',
+                    surface: 'light',
+                },
+                {
+                    src: 'projects/comparing-multiple-distributions/deduplication-sensitivity-128.webp',
+                    badge: 'Exact 2^7 = 128 Audit',
+                    title: 'Sensitivity Across All 128 One-Per-Swimmer Deduplications',
+                    caption:
+                        'Enumerating every possible n = 73 independent assignment shows single-step Bonferroni flips decisions by row-selection order (10-27% reject), while Holm stays consistent (95-100% reject).',
+                    surface: 'light',
+                },
+            ],
+            takeaways: [
+                'Swimming discipline explains 95.8% of 200m semifinal time variance (ANOVA F = 376.3, p = 3.1e-42; Welch F = 530.4; Kruskal-Wallis H = 56.0), spanning 26.96 s from Freestyle (119.36 s) to Breaststroke (146.31 s).',
+                'Seven dual-event semifinalists (6 pairing Individual Medley with a specialty stroke) break cross-group independence; combining an unbiased single-event primary sample (n = 66) with exact enumeration of all 2^7 = 128 one-per-swimmer (n = 73) assignments removes arbitrary row-order bias.',
+                'Butterfly vs. Medley (+2.98 s, g = 1.27) provides a textbook real-data contrast between Bonferroni and Holm-Bonferroni: both guarantee strong FWER <= 0.05, yet Holm step-down multiplier (x2 after 8 huge rejections) preserves detection power where Bonferroni (x10) fails on Student t (0.0508) and Mann-Whitney U (0.0840).',
+                'Backstroke (131.38 s) and Butterfly (131.68 s) are statistically indistinguishable (+0.30 s, p = 0.742) across every test and all 128 deduplication assignments, though Butterfly shows 3.4x higher time variance across semifinalists.',
+            ],
+        },
     },
     {
         id: 'descriptive-analysis',

@@ -22,31 +22,86 @@ export interface ReferenceDocument {
   modalTitle: string;
 }
 
-export const OFFICIAL_REFERENCE = {
-  company: 'PartikelART Solution GmbH',
-  author: 'Dr.-Ing. R. Zwinkau',
-  authorRole: 'Managing Director',
-  date: 'November 2026',
-  period: '1 Oct 2024 – 15 Nov 2026',
-  quote:
-    'Through his outstanding technical contributions, Mr. Pawar played a key role in advancing our core AI technology. His model optimizations were instrumental in supporting our goal of automated on-site particle analysis in under 60 seconds. His work on active learning and automated annotation accelerated the generation of training data by approximately a factor of ten.',
-  closingQuote:
-    'We recommend him without reservation for further roles in artificial intelligence, computer vision, machine learning and software engineering.',
-  documents: [
-    {
-      label: 'Read Reference Letter (EN)',
-      language: 'English PDF',
-      pdfUrl: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
-      modalTitle: 'Recommendation Letter: PartikelART Solution GmbH (EN)',
-    },
-    {
-      label: 'Arbeitszeugnis ansehen (DE)',
-      language: 'German PDF',
-      pdfUrl: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
-      modalTitle: 'Arbeitszeugnis: PartikelART Solution GmbH (DE)',
-    },
-  ] as ReferenceDocument[],
-};
+export interface EmployerReference {
+  id: string;
+  tabLabel: string;
+  tabYear: string;
+  badgeLabel: string;
+  signedMeta: string;
+  company: string;
+  author: string;
+  authorRole: string;
+  date: string;
+  period: string;
+  quote: string;
+  closingQuote: string;
+  documents: ReferenceDocument[];
+}
+
+export const EMPLOYER_REFERENCES: EmployerReference[] = [
+  {
+    id: 'partikelart',
+    tabLabel: 'PartikelART',
+    tabYear: '2026',
+    badgeLabel: 'Official Arbeitszeugnis',
+    signedMeta: 'Signed PDF (EN & DE)',
+    company: 'PartikelART Solution GmbH',
+    author: 'Dr.-Ing. R. Zwinkau',
+    authorRole: 'Managing Director',
+    date: 'November 2026',
+    period: '1 Oct 2024 – 15 Nov 2026',
+    quote:
+      'Through his outstanding technical contributions, Mr. Pawar played a key role in advancing our core AI technology. His model optimizations were instrumental in supporting our goal of automated on-site particle analysis in under 60 seconds. His work on active learning and automated annotation accelerated the generation of training data by approximately a factor of ten.',
+    closingQuote:
+      'We recommend him without reservation for further roles in artificial intelligence, computer vision, machine learning and software engineering.',
+    documents: [
+      {
+        label: 'Read Reference Letter (EN)',
+        language: 'English PDF',
+        pdfUrl: 'docs/Arbeitszeugnis_PartikelART_EN.pdf',
+        modalTitle: 'Recommendation Letter: PartikelART Solution GmbH (EN)',
+      },
+      {
+        label: 'Arbeitszeugnis ansehen (DE)',
+        language: 'German PDF',
+        pdfUrl: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
+        modalTitle: 'Arbeitszeugnis: PartikelART Solution GmbH (DE)',
+      },
+    ],
+  },
+  {
+    id: 'xcellence-it',
+    tabLabel: 'Xcellence-IT',
+    tabYear: '2020',
+    badgeLabel: 'CEO Reference & Certificate',
+    signedMeta: 'Signed & Stamped PDFs',
+    company: 'Xcellence-IT',
+    author: 'Krunal J. Jariwala',
+    authorRole: 'Chief Executive Officer',
+    date: 'Sep & Dec 2020',
+    period: '3 Jan 2019 – 15 Dec 2020',
+    quote:
+      'Raj is extremely organized. He is able to work independently as well as in a team and is able to follow through to ensure that job gets done. He is flexible and willing to work on any project that is assigned to him.',
+    closingQuote:
+      'I found that hiring Raj was perfect decision taken by the company... Raj would be tremendous asset for your company and has my highest recommendation.',
+    documents: [
+      {
+        label: 'CEO Recommendation Letter',
+        language: 'English PDF',
+        pdfUrl: 'docs/LOR_XcellenceIT_CEO.pdf',
+        modalTitle: 'Letter of Recommendation: Xcellence-IT (CEO)',
+      },
+      {
+        label: 'Experience & Relieving Certificate',
+        language: 'English PDF',
+        pdfUrl: 'docs/Experience_Certificate_XcellenceIT.pdf',
+        modalTitle: 'Experience & Relieving Certificate: Xcellence-IT',
+      },
+    ],
+  },
+];
+
+export const OFFICIAL_REFERENCE = EMPLOYER_REFERENCES[0];
 
 export const RECOGNITION_PHOTOS: RecognitionPhoto[] = [
   {

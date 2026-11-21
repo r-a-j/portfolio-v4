@@ -54,8 +54,15 @@ export const ABOUT_CONTENT = {
             url: 'docs/Arbeitszeugnis_PartikelART_DE.pdf',
             modalTitle: 'Arbeitszeugnis: PartikelART Solution GmbH (DE)',
         },
+        {
+            label: 'Xcellence-IT CEO Reference',
+            url: 'docs/LOR_XcellenceIT_CEO.pdf',
+            modalTitle: 'Letter of Recommendation: Xcellence-IT (CEO)',
+        },
+        {
+            label: 'Xcellence-IT Experience Certificate',
+            url: 'docs/Experience_Certificate_XcellenceIT.pdf',
+            modalTitle: 'Experience & Relieving Certificate: Xcellence-IT',
+        },
     ] as AboutReferenceLink[],
-    buttonText: 'View CV',
-    modalTitle: 'Curriculum Vitae',
-    pdfPath: 'docs/Raj_Pawar_CV.pdf'
 };

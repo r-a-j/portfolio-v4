@@ -186,26 +186,6 @@
   }
 }
 
-.cv-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.44rem 0.9rem;
-  border-radius: 8px;
-  border: 1px solid var(--btn-primary-bg);
-  background: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.18s ease;
-
-  &:hover {
-    background: var(--btn-primary-hover);
-  }
-}
-
 .mobile-drawer {
   padding: 0.75rem 1.5rem 1.25rem;
   background: var(--bg-surface);
@@ -256,11 +236,6 @@
 
   .brand-name {
     font-size: 1.04rem;
-  }
-
-  .cv-btn {
-    padding: 0.4rem 0.72rem;
-    font-size: 0.78rem;
   }
 
   .mobile-drawer {

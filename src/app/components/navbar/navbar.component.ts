@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ABOUT_CONTENT } from '../../data/about-data';
 import { ThemeId, ThemeService } from '../../services/theme.service';
 import { BrandMarkComponent } from '../brand-mark/brand-mark.component';
-import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, CvModalComponent, BrandMarkComponent],
+  imports: [RouterLink, RouterLinkActive, BrandMarkComponent],
   templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './navbar.component.scss',
@@ -21,8 +19,6 @@ export class NavbarComponent {
   readonly themeService = inject(ThemeService);
   readonly isMenuOpen = signal(false);
   readonly isThemeMenuOpen = signal(false);
-  readonly showCVModal = signal(false);
-  readonly aboutContent = ABOUT_CONTENT;
 
   readonly navItems = [
     { label: 'Home', route: '/home' },
@@ -72,18 +68,5 @@ export class NavbarComponent {
 
   closeMenu(): void {
     this.isMenuOpen.set(false);
-  }
-
-  openCV(): void {
-    this.closeMenu();
-    if (window.innerWidth <= 768) {
-      window.open(this.aboutContent.pdfPath, '_blank', 'noopener,noreferrer');
-    } else {
-      this.showCVModal.set(true);
-    }
-  }
-
-  closeCV(): void {
-    this.showCVModal.set(false);
   }
 }

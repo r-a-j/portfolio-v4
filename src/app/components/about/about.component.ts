@@ -11,8 +11,8 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
 })
 export class AboutComponent {
   readonly showCVModal = signal(false);
-  readonly activePdfUrl = signal(ABOUT_CONTENT.pdfPath);
-  readonly activeModalTitle = signal(ABOUT_CONTENT.modalTitle);
+  readonly activePdfUrl = signal('');
+  readonly activeModalTitle = signal('Reference Letter');
   readonly aboutContent = ABOUT_CONTENT;
 
   openPdf(url: string, title: string): void {

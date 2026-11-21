@@ -6,11 +6,11 @@
         Awards, Press &amp; Reference Letters
       </h2>
       <p class="m-0 text-sm text-ink-secondary max-w-md leading-relaxed">
-        TU Dortmund press coverage, award ceremony &amp; hardware photos, and signed recommendation letters from PartikelART (EN &amp; DE).
+        TU Dortmund press coverage, award ceremony &amp; hardware photos, and signed employer references from PartikelART (EN &amp; DE) and Xcellence-IT.
       </p>
     </div>
 
-    <!-- Top 2-Column Anchor: Award Photo + Signed Reference Letter -->
+    <!-- Top 2-Column Anchor: Award Photo + Signed Reference Letters -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
       <!-- Left: TU Start-up Award Team Photo -->
       <article class="rec-card flex flex-col overflow-hidden">
@@ -60,48 +60,64 @@
         </div>
       </article>
 
-      <!-- Right: Verified Reference Letter Card -->
+      <!-- Right: Verified Reference Letters Card (PartikelART default + Xcellence-IT tab) -->
       <article class="rec-card flex flex-col justify-between p-6 sm:p-7 gap-5">
         <div class="flex flex-col gap-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <span class="text-xs font-mono-meta uppercase tracking-wider text-ink-muted font-medium">
-              Employer Reference
+              Employer References
             </span>
             <span class="grade-pill">
               <i class="fa-solid fa-file-signature text-brand text-xs" aria-hidden="true"></i>
-              Official Arbeitszeugnis
+              {{ activeReference().badgeLabel }}
             </span>
           </div>
 
+          <div class="ref-tabs" role="tablist" aria-label="Select employer reference">
+            @for (item of references; track item.id; let idx = $index) {
+              <button
+                type="button"
+                role="tab"
+                class="ref-tab"
+                [class.active]="activeRefIndex() === idx"
+                [attr.aria-selected]="activeRefIndex() === idx"
+                (click)="selectReference(idx)"
+              >
+                <span>{{ item.tabLabel }}</span>
+                <span class="ref-tab__year">{{ item.tabYear }}</span>
+              </button>
+            }
+          </div>
+
           <div>
-            <h3 class="font-display m-0 text-2xl font-medium text-ink">{{ reference.company }}</h3>
+            <h3 class="font-display m-0 text-2xl font-medium text-ink">{{ activeReference().company }}</h3>
             <p class="mt-1 mb-0 text-xs font-mono-meta text-ink-muted">
-              {{ reference.period }} &nbsp;•&nbsp; Issued {{ reference.date }}
+              {{ activeReference().period }} &nbsp;•&nbsp; Issued {{ activeReference().date }}
             </p>
           </div>
 
           <blockquote class="ref-quote m-0 pl-4 text-sm sm:text-[0.94rem] leading-relaxed text-ink">
-            “{{ reference.quote }}”
+            “{{ activeReference().quote }}”
           </blockquote>
 
           <p class="m-0 text-sm leading-relaxed text-ink-secondary italic">
-            “{{ reference.closingQuote }}”
+            “{{ activeReference().closingQuote }}”
           </p>
         </div>
 
         <div class="flex flex-col gap-4 pt-4 border-t border-hairline">
           <div class="flex items-center justify-between gap-3">
             <div>
-              <div class="text-sm font-bold text-ink">{{ reference.author }}</div>
-              <div class="text-xs text-ink-secondary">{{ reference.authorRole }}, {{ reference.company }}</div>
+              <div class="text-sm font-bold text-ink">{{ activeReference().author }}</div>
+              <div class="text-xs text-ink-secondary">{{ activeReference().authorRole }}, {{ activeReference().company }}</div>
             </div>
             <span class="text-[0.7rem] font-mono-meta text-ink-muted hidden sm:inline">
-              Signed PDF (EN &amp; DE)
+              {{ activeReference().signedMeta }}
             </span>
           </div>
 
           <div class="flex flex-wrap gap-2.5">
-            @for (doc of reference.documents; track doc.pdfUrl; let first = $first) {
+            @for (doc of activeReference().documents; track doc.pdfUrl; let first = $first) {
               <button
                 type="button"
                 class="ref-btn"

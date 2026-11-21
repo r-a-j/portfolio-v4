@@ -106,10 +106,6 @@
       >
         <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
       </a>
-      <button type="button" class="cv-btn" (click)="openCV()">
-        <i class="fa-regular fa-file-lines text-xs" aria-hidden="true"></i>
-        Resume
-      </button>
     </div>
 
     <!-- Mobile Menu Toggle -->
@@ -125,14 +121,6 @@
           aria-hidden="true"
         ></i>
       </button>
-      <a
-        [href]="aboutContent.pdfPath"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cv-btn"
-      >
-        Resume
-      </a>
       <button
         type="button"
         class="icon-btn"
@@ -215,10 +203,3 @@
     </div>
   }
 </header>
-
-<app-cv-modal
-  [show]="showCVModal()"
-  [pdfUrl]="aboutContent.pdfPath"
-  [modalTitle]="aboutContent.modalTitle"
-  (closeModal)="closeCV()"
-></app-cv-modal>

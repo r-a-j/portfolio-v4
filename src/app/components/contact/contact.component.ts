@@ -11,7 +11,6 @@ import { environment } from '../../../environments/environment.prod';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationService } from '../../services/notification.service';
 import { FormValidationService } from '../../services/validation.service';
-import { ABOUT_CONTENT } from '../../data/about-data';
 
 @Component({
   selector: 'app-contact',
@@ -27,7 +26,6 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   public contactForm!: FormGroup;
   public readonly email = 'er.rajpawar@gmail.com';
-  public readonly cvPath = ABOUT_CONTENT.pdfPath;
   public readonly emailCopied = signal(false);
   public readonly isSending = signal(false);
 

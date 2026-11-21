@@ -147,48 +147,50 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     id: 2,
-    role: 'Junior .NET Developer',
+    role: 'Junior .NET Developer (Promoted from Trainee)',
     company: 'Xcellence-IT',
     company_url: 'https://www.xcellence-it.com/',
     company_logo_url: 'experience/xcellenceit/Xcellence-IT-Logo.webp',
     logoStyle: 'wide-light',
     summary:
-      'Built and maintained ASP.NET Core e-commerce platforms, SVG manipulation services, Swagger REST APIs, and optimized SQL Server queries.',
+      'Joined in 7th semester as a Software Developer Trainee and converted full-time to Junior .NET Developer. Earned nopCommerce Certified Developer status while shipping ASP.NET Core / .NET Framework plugins, SVG-to-logo REST APIs, automated multi-source Power BI reports, and Dockerized web apps.',
     description: [
       {
-        category: '',
+        category: 'Full-Stack .NET, nopCommerce & APIs',
         items: [
-          { text: 'Developed and maintained ASP.NET Core e-commerce applications, SVG manipulation services, and modular plugin architectures.' },
-          { text: 'Automated REST API documentation using Swagger and optimized SQL Server database queries.' },
-          { text: 'Participated in client requirement analysis and code quality reviews.' }
+          { text: 'Developed and upgraded modular e-commerce plugins on nopCommerce using Microsoft .NET Framework, .NET Core, C#, LINQ, JavaScript, and jQuery, earning official nopCommerce Certified Developer certification.' },
+          { text: 'Built a REST API service generating logos from SVGs, documented endpoints with Swagger/OpenAPI, and optimized Microsoft SQL Server database queries for production workloads.' },
+          { text: 'Configured, customized, and maintained client web applications and production systems across releases.' }
         ]
       },
+      {
+        category: 'BI Reporting, Containerization & Progression',
+        items: [
+          { text: 'Built automated Microsoft Power BI reports integrating multiple data sources for operational and business reporting.' },
+          { text: 'Implemented Docker containerization for web applications to standardize build and deployment environments.' },
+          { text: 'Joined as a Software Developer Trainee (Jan – Jun 2019), earned promotion to Junior Software Developer (Jul 2019 – Dec 2020), and contributed across requirement analysis, effort estimation, and code reviews.' }
+        ]
+      }
     ],
-    duration: 'Jul 2019 – Dec 2020',
-    location: 'Surat, India',
+    duration: 'Jan 2019 – Dec 2020',
+    location: 'Surat, India · On-site',
+    documents: [
+      {
+        label: 'CEO Letter of Recommendation',
+        url: 'docs/LOR_XcellenceIT_CEO.pdf',
+        lang: 'EN',
+      },
+      {
+        label: 'Experience & Relieving Certificate',
+        url: 'docs/Experience_Certificate_XcellenceIT.pdf',
+        lang: 'EN',
+      },
+    ],
     media: [
-      { url: 'experience/xcellenceit/XIT1.jpeg', caption: 'Xcellence-IT team' },
-    ]
-  },
-  {
-    id: 1,
-    role: 'Software Developer Trainee',
-    company: 'Xcellence-IT',
-    company_url: 'https://www.xcellence-it.com/',
-    company_logo_url: 'experience/xcellenceit/Xcellence-IT-Logo.webp',
-    logoStyle: 'wide-light',
-    summary:
-      'Completed intensive training in ASP.NET Core, C# engineering standards, and nopCommerce plugin development.',
-    description: [
       {
-        category: '',
-        items: [
-          { text: 'Trained in ASP.NET Core, C# coding standards, and nopCommerce plugin development.' }
-        ]
+        url: 'experience/xcellenceit/nopCommerceDays.webp',
+        caption: 'Xcellence-IT team with the nopCommerce core team at #nopCommerceDays (Raj Pawar, far left)',
       },
-    ],
-    duration: 'Jan 2019 – Jun 2019',
-    location: 'Surat, India',
-    media: []
+    ]
   }
 ];

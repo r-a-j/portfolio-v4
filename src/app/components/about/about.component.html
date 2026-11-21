@@ -26,21 +26,18 @@
         </div>
 
         <div class="flex flex-wrap gap-2.5 pt-1">
-          <button
-            type="button"
-            class="doc-btn doc-btn--primary"
-            (click)="openPdf(aboutContent.pdfPath, aboutContent.modalTitle)"
-          >
-            <i class="fa-regular fa-file-lines text-xs" aria-hidden="true"></i>
-            Curriculum Vitae (PDF)
-          </button>
-          @for (ref of aboutContent.references; track ref.url) {
+          @for (ref of aboutContent.references; track ref.url; let first = $first) {
             <button
               type="button"
               class="doc-btn"
+              [class.doc-btn--primary]="first"
               (click)="openPdf(ref.url, ref.modalTitle)"
             >
-              <i class="fa-regular fa-file-pdf text-brand text-xs" aria-hidden="true"></i>
+              <i
+                class="fa-regular fa-file-pdf text-xs"
+                [class.text-brand]="!first"
+                aria-hidden="true"
+              ></i>
               {{ ref.label }}
             </button>
           }

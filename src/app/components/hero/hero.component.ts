@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ABOUT_CONTENT } from '../../data/about-data';
-import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
 interface ImpactMetric {
   value: string;
@@ -11,15 +9,13 @@ interface ImpactMetric {
 
 @Component({
   selector: 'app-hero',
-  imports: [RouterLink, CvModalComponent],
+  imports: [RouterLink],
   templateUrl: './hero.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent implements OnDestroy {
-  readonly showCVModal = signal(false);
   readonly emailCopied = signal(false);
-  readonly aboutContent = ABOUT_CONTENT;
   readonly email = 'er.rajpawar@gmail.com';
 
   readonly coreFocus = [
@@ -54,18 +50,6 @@ export class HeroComponent implements OnDestroy {
   ];
 
   private copyTimer?: ReturnType<typeof setTimeout>;
-
-  openCV(): void {
-    if (window.innerWidth <= 768) {
-      window.open(this.aboutContent.pdfPath, '_blank', 'noopener,noreferrer');
-    } else {
-      this.showCVModal.set(true);
-    }
-  }
-
-  closeCV(): void {
-    this.showCVModal.set(false);
-  }
 
   async copyEmail(): Promise<void> {
     try {

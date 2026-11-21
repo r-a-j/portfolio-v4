@@ -66,10 +66,12 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: 'Cloud, Data & DevOps',
     summary:
-      'Automated human-in-the-loop data sync, CI/CD checks, serverless API proxies, and signed Android releases.',
+      'Automated human-in-the-loop data sync, Docker containerization, Power BI reporting, CI/CD checks, and signed Android releases.',
     groupIcon: 'fa-solid fa-gears',
     skills: [
       { name: 'Microsoft Azure', icon: 'technologies/azure.svg' },
+      { name: 'Docker', faIcon: 'fa-brands fa-docker' },
+      { name: 'Power BI', faIcon: 'fa-solid fa-chart-column' },
       { name: 'Nx Monorepo', icon: 'technologies/nx.svg' },
       { name: 'GitHub Actions', icon: 'technologies/githubactions.svg' },
       { name: 'Git', icon: 'technologies/git.svg' },
@@ -80,7 +82,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
       { name: 'pnpm', icon: 'technologies/pnpm.svg' },
     ],
     usedIn:
-      'PartikelART Azure-to-Label-Studio retraining pipeline, CineScope Play App Signing & authenticated proxy, and automated CI/CD deploys.',
+      'PartikelART Azure-to-Label-Studio retraining pipeline, CineScope Play App Signing & proxy, and Xcellence-IT Docker containerization & multi-source Power BI reports.',
   },
 ];
 

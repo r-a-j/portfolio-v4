@@ -15,7 +15,7 @@
         <div class="modal-header__actions">
           <a
             [href]="pdfUrl"
-            download="Raj_Pawar_CV.pdf"
+            [attr.download]="downloadFileName"
             class="modal-action modal-action--primary"
           >
             <i class="fa-solid fa-download text-xs" aria-hidden="true"></i>

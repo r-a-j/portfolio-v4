@@ -23,11 +23,17 @@ export class CvModalComponent implements OnChanges {
   private sanitizer = inject(DomSanitizer);
 
   @Input() pdfUrl = '';
-  @Input() modalTitle = 'Curriculum Vitae';
+  @Input() modalTitle = 'Document Preview';
   @Input() show = false;
   @Output() closeModal = new EventEmitter<void>();
 
   safePdfUrl: SafeResourceUrl = '';
+
+  get downloadFileName(): string {
+    const cleaned = this.pdfUrl.split('?')[0].split('#')[0];
+    const segment = cleaned.split('/').pop();
+    return segment && segment.endsWith('.pdf') ? segment : 'Document.pdf';
+  }
 
   ngOnChanges(): void {
     this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrl);

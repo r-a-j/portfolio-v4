@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import {
-  OFFICIAL_REFERENCE,
+  EMPLOYER_REFERENCES,
   PRESS_COVERAGE,
   PressCategory,
   RECOGNITION_PHOTOS,
@@ -19,7 +19,9 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
   },
 })
 export class RecognitionComponent {
-  readonly reference = OFFICIAL_REFERENCE;
+  readonly references = EMPLOYER_REFERENCES;
+  readonly activeRefIndex = signal(0);
+  readonly activeReference = computed(() => this.references[this.activeRefIndex()]);
   readonly photos = RECOGNITION_PHOTOS;
   readonly heroPhoto = RECOGNITION_PHOTOS[0];
   readonly galleryPhotos = RECOGNITION_PHOTOS.slice(1);
@@ -50,6 +52,12 @@ export class RecognitionComponent {
     }
     return this.photos[idx];
   });
+
+  selectReference(index: number): void {
+    if (index >= 0 && index < this.references.length) {
+      this.activeRefIndex.set(index);
+    }
+  }
 
   selectCategory(cat: 'All' | PressCategory): void {
     this.activeCategory.set(cat);

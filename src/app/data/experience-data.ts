@@ -87,8 +87,8 @@ export const EXPERIENCES: Experience[] = [
     role: 'Software Engineer',
     company: 'ADVISORI FTC GmbH',
     company_url: 'https://www.advisori.de/',
-    company_logo_url: 'experience/advisori/advisori_icon.png',
-    logoStyle: 'icon',
+    company_logo_url: 'experience/advisori/Advisori-Logo.svg',
+    logoStyle: 'wide-light',
     summary:
       'Built an AWS Bedrock / Claude 3 test-validation tool, restructured internal Retool RBAC workflows, and delivered a full-stack Angular + Spring Boot booking platform.',
     description: [

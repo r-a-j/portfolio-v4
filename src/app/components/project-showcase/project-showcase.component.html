@@ -145,6 +145,64 @@
     </div>
   </section>
 
+  <!-- Featured HD Walkthrough Video -->
+  @if (showcase().demoVideo; as video) {
+    <section class="video-panel" aria-label="Product walkthrough video">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
+        <div class="max-w-2xl">
+          <h2 class="section-heading m-0 text-2xl sm:text-3xl">
+            {{ video.heading || 'Watch the Walkthrough' }}
+          </h2>
+          @if (video.description) {
+            <p class="mt-2 mb-0 text-sm sm:text-[0.95rem] leading-relaxed text-ink-secondary">
+              {{ video.description }}
+            </p>
+          }
+        </div>
+        @if (video.duration || video.resolution) {
+          <span class="shot-badge">
+            <i class="fa-solid fa-play mr-1.5 text-[0.6rem]" aria-hidden="true"></i>
+            {{ video.duration }}@if (video.duration && video.resolution) { · }{{ video.resolution }}
+          </span>
+        }
+      </div>
+
+      <div class="video-frame">
+        <div class="video-frame__bar" aria-hidden="true">
+          <div class="flex items-center gap-1.5">
+            <span class="video-frame__dot"></span>
+            <span class="video-frame__dot"></span>
+            <span class="video-frame__dot"></span>
+          </div>
+          <span class="text-[0.7rem] font-mono-meta text-slate-400">
+            {{ project().title }} · Live Capture
+          </span>
+          <span class="w-10"></span>
+        </div>
+        <video
+          class="video-frame__player"
+          controls
+          playsinline
+          preload="metadata"
+          [poster]="video.poster"
+        >
+          <source [src]="video.src" type="video/mp4" />
+        </video>
+      </div>
+
+      @if (video.chapters?.length) {
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+          @for (ch of video.chapters; track ch.step) {
+            <div class="video-chapter">
+              <span class="video-chapter__step font-mono-meta">{{ ch.step }}</span>
+              <span class="video-chapter__label">{{ ch.label }}</span>
+            </div>
+          }
+        </div>
+      }
+    </section>
+  }
+
   <!-- Interactive Live Mobile Preview -->
   @if (showcase().liveDemoUrl; as demoUrl) {
     <section class="demo-panel" aria-label="Interactive live web preview">
@@ -273,40 +331,76 @@
         </p>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-6">
-        @for (shot of showcase().screenshots; track shot.src; let idx = $index) {
-          <button
-            type="button"
-            class="screen-card"
-            (click)="openLightbox(idx)"
-            [attr.aria-label]="'Inspect screenshot: ' + shot.title"
-          >
-            <div class="phone-frame">
-              <span class="phone-frame__speaker" aria-hidden="true"></span>
-              <img
-                [src]="shot.src"
-                [alt]="shot.title + ': ' + shot.caption"
-                loading="lazy"
-                class="block w-full aspect-[9/19.5] object-cover rounded-[17px]"
-              />
-              <span class="phone-frame__zoom" aria-hidden="true">
-                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-              </span>
-            </div>
-            <div class="mt-3.5 flex flex-col gap-1">
-              @if (shot.badge) {
-                <span class="shot-badge self-start">{{ shot.badge }}</span>
-              }
-              <h3 class="mt-1 mb-0 text-[0.95rem] font-bold text-ink leading-snug">
-                {{ shot.title }}
-              </h3>
-              <p class="m-0 text-[0.82rem] leading-relaxed text-ink-secondary">
-                {{ shot.caption }}
-              </p>
-            </div>
-          </button>
-        }
-      </div>
+      @if (showcase().screenshotLayout === 'desktop') {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          @for (shot of showcase().screenshots; track shot.src; let idx = $index) {
+            <button
+              type="button"
+              class="desktop-screen-card"
+              (click)="openLightbox(idx)"
+              [attr.aria-label]="'Inspect screenshot: ' + shot.title"
+            >
+              <div class="desktop-frame">
+                <img
+                  [src]="shot.src"
+                  [alt]="shot.title + ': ' + shot.caption"
+                  loading="lazy"
+                  class="block w-full aspect-video object-cover rounded-[12px]"
+                />
+                <span class="phone-frame__zoom" aria-hidden="true">
+                  <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </span>
+              </div>
+              <div class="mt-3.5 flex flex-col gap-1">
+                @if (shot.badge) {
+                  <span class="shot-badge self-start">{{ shot.badge }}</span>
+                }
+                <h3 class="mt-1 mb-0 text-[0.95rem] font-bold text-ink leading-snug">
+                  {{ shot.title }}
+                </h3>
+                <p class="m-0 text-[0.82rem] leading-relaxed text-ink-secondary">
+                  {{ shot.caption }}
+                </p>
+              </div>
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="flex flex-wrap justify-center gap-6">
+          @for (shot of showcase().screenshots; track shot.src; let idx = $index) {
+            <button
+              type="button"
+              class="screen-card"
+              (click)="openLightbox(idx)"
+              [attr.aria-label]="'Inspect screenshot: ' + shot.title"
+            >
+              <div class="phone-frame">
+                <span class="phone-frame__speaker" aria-hidden="true"></span>
+                <img
+                  [src]="shot.src"
+                  [alt]="shot.title + ': ' + shot.caption"
+                  loading="lazy"
+                  class="block w-full aspect-[9/19.5] object-cover rounded-[17px]"
+                />
+                <span class="phone-frame__zoom" aria-hidden="true">
+                  <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                </span>
+              </div>
+              <div class="mt-3.5 flex flex-col gap-1">
+                @if (shot.badge) {
+                  <span class="shot-badge self-start">{{ shot.badge }}</span>
+                }
+                <h3 class="mt-1 mb-0 text-[0.95rem] font-bold text-ink leading-snug">
+                  {{ shot.title }}
+                </h3>
+                <p class="m-0 text-[0.82rem] leading-relaxed text-ink-secondary">
+                  {{ shot.caption }}
+                </p>
+              </div>
+            </button>
+          }
+        </div>
+      }
     </section>
   }
 
@@ -466,7 +560,12 @@
     [attr.aria-label]="current.title + ' full resolution screenshot'"
     (click)="closeLightbox()"
   >
-    <div class="relative w-full max-w-3xl" (click)="$event.stopPropagation()">
+    <div
+      class="relative w-full"
+      [class.max-w-5xl]="showcase().screenshotLayout === 'desktop'"
+      [class.max-w-3xl]="showcase().screenshotLayout !== 'desktop'"
+      (click)="$event.stopPropagation()"
+    >
       <button
         type="button"
         class="lightbox__close"
@@ -491,6 +590,7 @@
             [src]="current.src"
             [alt]="current.title + ': ' + current.caption"
             class="lightbox__img"
+            [class.lightbox__img--desktop]="showcase().screenshotLayout === 'desktop'"
           />
           <figcaption class="text-center max-w-md text-white">
             <div class="flex items-center justify-center gap-3">

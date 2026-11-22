@@ -336,6 +336,98 @@
   }
 }
 
+.video-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  border-radius: 22px;
+  padding: 1.75rem;
+}
+
+.video-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0a0908;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.45);
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.9rem;
+    background: #141210;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &__player {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+}
+
+.video-chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.72rem 0.9rem;
+  border-radius: 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+
+  &__step {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+}
+
+.desktop-screen-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 0.9rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    background: var(--bg-surface-hover);
+    border-color: var(--border-strong);
+
+    .phone-frame__zoom {
+      opacity: 1;
+    }
+  }
+}
+
+.desktop-frame {
+  position: relative;
+  padding: 5px;
+  border-radius: 14px;
+  background: #0a0908;
+  border: 1px solid var(--border-subtle);
+}
+
 .demo-panel {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -482,6 +574,12 @@
     border-radius: 22px;
     border: 2px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+
+    &--desktop {
+      max-width: min(86vw, 1080px);
+      max-height: 76vh;
+      border-radius: 14px;
+    }
   }
 }
 
@@ -502,8 +600,9 @@
 }
 
 @media (max-width: 560px) {
+  .video-panel,
   .demo-panel {
-    padding: 1.25rem;
+    padding: 1.15rem;
   }
 
   .screen-card {

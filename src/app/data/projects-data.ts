@@ -637,17 +637,17 @@ export const PROJECTS: ProjectDetails[] = [
     {
         id: 'social-scope',
         title: 'Social Scope',
-        description: 'Commercial AI commerce and visual ad studio in private development: converts official Instagram Business posts and reference ad screenshots into schema-validated Amazon, Shopify, eBay, and Etsy listings with human-in-the-loop review and on-device ONNX safety screening.',
+        description: 'Turns a smartphone product photo into a pure-white catalog hero, studio ad creatives, and ready-to-publish Amazon, Shopify, eBay, and Etsy listings with local-first storage and CSV export.',
         thumbnail: 'projects/socialscope/socialscope_thumb.webp',
-        statusBadge: 'Coming Soon • Private Build',
-        techStack: ['Angular', 'Ionic', 'Capacitor', 'Python', 'FastAPI', 'Google Gemini', 'ONNX Runtime', 'ComfyUI', 'Amazon SP-API', 'Shopify'],
+        statusBadge: 'Private Build • Demo Inside',
+        techStack: ['Angular', 'Ionic', 'Capacitor', 'RxDB', 'Python', 'FastAPI', 'Google Gemini', 'ComfyUI', 'ONNX Runtime'],
         rating: 5,
         category: 'Web App',
         year: 2026,
         language: 'TypeScript',
         showcase: {
-            tagline: 'Social-to-Marketplace AI Catalog Engine & Headless Ad Photography Studio (Web, Android & Future iOS)',
-            versionBadge: 'v2.0 · In Active Build',
+            tagline: 'Snap once. Sell everywhere. Turn a casual phone photo into studio photography and ready-to-publish listings.',
+            versionBadge: 'v2.0 · Working Build',
             accentColor: 'amber',
             distributionBadge: 'Private Commercial Product',
             distributionIcon: 'fa-solid fa-lock',
@@ -655,136 +655,192 @@ export const PROJECTS: ProjectDetails[] = [
             wordmark: 'projects/socialscope/wordmark.svg',
             heroBanner: 'projects/socialscope/visuals/studio-hero.webp',
             overview:
-                'Built for independent brands and e-commerce sellers who launch products on social media first and spend hours rebuilding catalogs manually. Social Scope replaces brittle third-party scrapers with official Meta Graph API ingestion, extracts one canonical product record validated against Amazon, Shopify, eBay, and Etsy schemas, resolves missing mandatory fields through a confidence-scored human-in-the-loop workbench, and pairs it with a headless ad-style studio gated by an on-device ONNX safety classifier.',
+                'Small brands and resellers take quick product photos on a table or floor, then lose hours removing backgrounds, designing social ads, and retyping titles, SKUs, and item specifics across marketplaces. Social Scope takes one photo and a short note, renders a pure-white main catalog shot and sunlit editorial campaign creatives, checks every required field for Amazon, Shopify, eBay, and Etsy, and exports ready-to-upload CSV files.',
             metrics: [
                 {
                     value: '4 Channels',
-                    label: 'Multi-Marketplace Engine',
-                    detail: 'Pluggable schema adapters targeting Amazon SP-API, Shopify Admin GraphQL, eBay Inventory API, and Etsy Open API v3.',
+                    label: 'One Product, Four Stores',
+                    detail: 'Validates required fields, character caps, and item specifics for Amazon, Shopify, eBay, and Etsy from one saved record.',
                     icon: 'fa-solid fa-store',
                 },
                 {
-                    value: 'On-Device',
-                    label: 'Local ONNX Safety Shield',
-                    detail: 'MobileNetV2 NSFW Web Worker (onnxruntime-web WASM-SIMD) screens every upload locally before any byte reaches cloud AI.',
-                    icon: 'fa-solid fa-shield-halved',
+                    value: '1200×1200',
+                    label: 'Pure White & Editorial',
+                    detail: '3D relighting via native 18-step FLUX.1-Kontext and cloud Gemini, checked automatically for framing, lighting, and stray artifacts.',
+                    icon: 'fa-solid fa-camera-retro',
                 },
                 {
-                    value: 'Dual Engine',
-                    label: 'Gemini + Headless ComfyUI',
-                    detail: 'Serverless Gemini Image rendering via Vercel Python FastAPI BFF plus pluggable headless ComfyUI GPU workflows.',
-                    icon: 'fa-solid fa-wand-magic-sparkles',
+                    value: 'Local-First',
+                    label: 'Saved Product Library',
+                    detail: 'Relational RxDB + IndexedDB storage keeps every product, generated photo, ad layout, and listing score organized across sessions.',
+                    icon: 'fa-solid fa-database',
                 },
                 {
-                    value: 'Web + Mobile',
-                    label: 'Cross-Platform Foundation',
-                    detail: 'Angular 21, Ionic 8, and Capacitor 8 codebase targeting live Web and Android first, structured cleanly for future iOS.',
-                    icon: 'fa-solid fa-mobile-screen-button',
+                    value: 'Hybrid GPU',
+                    label: 'Local RTX to Cloud Auto-Switch',
+                    detail: 'Renders locally on an 8 GB RTX GPU at zero per-image cost in dev and switches cleanly to serverless cloud rendering in production.',
+                    icon: 'fa-solid fa-microchip',
                 },
             ],
-            screenshots: [],
-            spotlightHeading: 'Under the Hood: Two Core Pipelines',
+            demoVideo: {
+                src: 'projects/socialscope/demo/ebay-walkthrough.mp4',
+                poster: 'projects/socialscope/demo/ebay-poster.webp',
+                heading: 'Real Walkthrough: Floor Photo to 100% Ready eBay Listing',
+                description:
+                    'Unedited capture of the working v2 app turning a dim floor photo of brown Bata sandals into a pure-white eBay main shot, a sunlit stone ad creative, and a complete eBay Seller CSV export.',
+                duration: '1:03',
+                resolution: '1280×720 HD',
+                chapters: [
+                    { step: '01 · Upload', label: 'Drop raw phone photo + 1-line note' },
+                    { step: '02 · White Hero', label: 'Generate 1200×1200 #FFFFFF main shot' },
+                    { step: '03 · Ad Creative', label: 'Relight on travertine + Split Card copy' },
+                    { step: '04 · Export eBay', label: 'Fill SKU & price -> 100% Ready CSV' },
+                ],
+            },
+            screenshotLayout: 'desktop',
+            screenshotsHeading: 'Step-by-Step Inside Social Scope',
+            screenshotsIntro:
+                'Six real screens from the Bata sandals eBay workflow. Click any frame to inspect full-resolution detail.',
+            screenshots: [
+                {
+                    src: 'projects/socialscope/screenshots/01-upload.webp',
+                    badge: 'Step 01 · Products',
+                    title: 'Upload a Casual Smartphone Photo',
+                    caption: 'Drop a phone photo (plus an optional style reference) and a short note. On-device safety screening runs silently in the background.',
+                },
+                {
+                    src: 'projects/socialscope/screenshots/02-white-hero.webp',
+                    badge: 'Step 02 · White Hero',
+                    title: 'Pure White eBay & Amazon Main Photo',
+                    caption: 'Removes the bedroom floor, preserves the Bata strap stitching and label, grounds a soft shadow, and passes 1200×1200 pure-white framing.',
+                },
+                {
+                    src: 'projects/socialscope/screenshots/03-lifestyle-ad.webp',
+                    badge: 'Step 03 · Studio Ad',
+                    title: 'Sunlit Editorial Scene + Ad Layout',
+                    caption: 'Relights the sandals on warm travertine stone (95/100 QA pass) with editable Split Card copy, brand swatches, and one-click PNG export.',
+                },
+                {
+                    src: 'projects/socialscope/screenshots/04-ebay-review.webp',
+                    badge: 'Step 04 · eBay Rules',
+                    title: 'Live eBay Listing & Item Specifics Check',
+                    caption: 'Enforces eBay’s 80-character title cap, extracts brand, color, and material, and flags missing SKU and Buy It Now price with suggestions.',
+                },
+                {
+                    src: 'projects/socialscope/screenshots/05-ebay-ready.webp',
+                    badge: 'Step 05 · 100% Ready',
+                    title: 'One-Click Fill & eBay Seller CSV Export',
+                    caption: 'Filling suggested defaults brings eBay to 100% (7/7 required) alongside Amazon, Shopify, and Etsy scores, ready for CSV or JSON download.',
+                },
+                {
+                    src: 'projects/socialscope/screenshots/06-library.webp',
+                    badge: 'Step 06 · Library',
+                    title: 'Persistent Products & Saved Photos Library',
+                    caption: 'Every product saves its main photo, generated studio shots, ad copy, and readiness score locally so switching items never loses work.',
+                },
+            ],
+            spotlightHeading: 'Before & After Proof',
             spotlightIntro:
-                'Social Scope is currently in private development as a commercial SaaS and mobile studio. Below is the exact architecture being engineered under the hood.',
+                'Real input and output from a single smartphone snapshot, paired with the rendering and listing architecture behind it.',
             spotlights: [
                 {
-                    src: 'projects/socialscope/visuals/ad-style-engine.webp',
-                    eyebrow: 'Pre-Flight Safety + Headless Rendering',
-                    title: 'Ad-Style Transfer & Marketplace Photography Studio',
+                    src: 'projects/socialscope/visuals/before-after-showcase.webp',
+                    eyebrow: 'Real Output · Bata Sandals eBay Run',
+                    title: 'From Bedroom Floor Snapshot to Catalog Hero & Editorial Ad',
                     description:
-                        'Upload a raw product photograph alongside an optional reference ad screenshot. A local ONNX Web Worker screens every image on-device before routing to either serverless Gemini Image rendering or pre-configured headless ComfyUI workflows (BiRefNet, quantized Flux, IC-Light) to output compliant #FFFFFF hero shots and campaign creatives.',
+                        'Using a 4-stage pipeline (EXIF/decal pre-processing, concise edit prompt compilation, native 18-step FLUX.1-Kontext relighting, and automated Vision QA with self-healing retry), casual phone photos convert cleanly into publishable marketplace and social assets.',
                 },
                 {
                     src: 'projects/socialscope/visuals/marketplace-pipeline.webp',
-                    eyebrow: 'Official APIs + Human-in-the-Loop',
-                    title: 'One Social Post to Four Schema-Validated Listings',
+                    eyebrow: 'Structured Multi-Channel Output',
+                    title: 'One Product Record, Four Marketplace Validators',
                     description:
-                        'Official Meta Instagram Graph API webhooks and media sync feed Gemini structured extraction into a single Canonical Product Model. Category adapters score every required attribute (Verified, Needs Review, or Missing Required) with one-click AI suggestions so sellers resolve gaps in seconds before exporting or publishing.',
+                        'Extracts one structured product record from an uploaded photo or authorized Instagram Business post, validates it against Amazon, Shopify, eBay, and Etsy rules in parallel, and lets sellers fill only the gaps before exporting.',
                 },
             ],
-            highlightsHeading: 'What Is Being Built Under the Hood',
+            highlightsHeading: 'What Ships in v2',
             highlightsIntro:
-                'Zero scraping dependencies, strict per-marketplace schema validation, local safety screening, and headless studio photography.',
+                'Built around a clean 3-step seller workflow with zero technical jargon exposed in the studio UI.',
             highlights: [
                 {
-                    title: 'Official Meta Graph API Intake (Zero Scraping)',
+                    title: 'Guided 3-Step Product Workspace',
                     description:
-                        'Completely replaces risky third-party scraping tools with authorized Instagram Business/Creator Graph API sync, constant-time HMAC-SHA256 webhook verification, and direct photo/screenshot capture.',
-                    icon: 'fa-brands fa-instagram',
-                    tags: ['Meta Graph API', 'HMAC-SHA256', 'Zero Scraping'],
+                        'A sticky active-product bar and linear Products -> Studio Photos -> Listings flow keep sellers oriented while switching between saved items.',
+                    icon: 'fa-solid fa-route',
+                    tags: ['Products Library', 'Quick Switcher', 'Clean UX'],
                 },
                 {
-                    title: 'Multi-Marketplace Schema & Gap Resolver',
+                    title: '4-Layer Pristine Photo Pipeline',
                     description:
-                        'Validates one canonical product draft across Amazon SP-API Product Type JSON Schemas, Shopify productSet, eBay Item Specifics, and Etsy taxonomy rules, highlighting missing required fields with clickable AI suggestions.',
+                        'Combines orientation and decal sharpening, surgical prompt compilation, native 18-step FLUX.1-Kontext relighting, and automated Vision QA that retries if artifacts appear.',
+                    icon: 'fa-solid fa-wand-magic-sparkles',
+                    tags: ['FLUX.1-Kontext', 'Vision QA', '1200×1200 #FFFFFF'],
+                },
+                {
+                    title: 'Editable Brand Ad Layouts & PNG Export',
+                    description:
+                        'Switch between Split Card, Top Band, Bottom Overlay, or Clean Photo with brand swatches and typography, then export high-resolution composite PNGs.',
+                    icon: 'fa-solid fa-palette',
+                    tags: ['Split Card', 'Brand Colors', 'Canvas PNG'],
+                },
+                {
+                    title: '4-Marketplace Validation & CSV Export',
+                    description:
+                        'Checks Amazon catalog rules, Shopify storefront fields, eBay 80-character titles and item specifics, and Etsy 13-tag limits with one-click suggested fills.',
                     icon: 'fa-solid fa-list-check',
-                    tags: ['Amazon SP-API', 'Shopify', 'eBay', 'Etsy'],
+                    tags: ['eBay CSV', 'Amazon', 'Shopify', 'Etsy'],
                 },
                 {
-                    title: 'On-Device ONNX Pre-Flight Safety Gate',
+                    title: 'Relational Local-First RxDB Storage',
                     description:
-                        'Runs a quantized MobileNetV2 safety classifier inside a dedicated Web Worker with reusable 224x224 buffers to block unsafe uploads locally before any network request hits cloud APIs or GPU workers.',
-                    icon: 'fa-solid fa-user-shield',
-                    tags: ['onnxruntime-web', 'WASM-SIMD', 'Web Worker'],
-                },
-                {
-                    title: 'Headless Ad-Style Transfer & Hero Studio',
-                    description:
-                        'Combines raw product shots with reference ad screenshots to produce pure-white #FFFFFF marketplace hero images (with automated compliance checks) and cohesive social ad creatives without exposing complex node UIs.',
-                    icon: 'fa-solid fa-camera-retro',
-                    tags: ['Gemini Image', 'ComfyUI API', 'White-BG Check'],
-                },
-                {
-                    title: 'Offline-First Cross-Platform Client',
-                    description:
-                        'Built on Angular 21, Ionic 8, Capacitor 8, and Dexie IndexedDB so drafts, review states, and client-side image compression run smoothly across Web, Android, and future iOS releases.',
+                        'Separates products, studio assets, and brand settings into indexed Dexie tables so every generated shot, hero pick, and edit persists across refreshes.',
                     icon: 'fa-solid fa-layer-group',
-                    tags: ['Angular 21', 'Ionic 8', 'Capacitor 8', 'Dexie'],
+                    tags: ['RxDB 17', 'Dexie', 'NgRx SignalStore'],
                 },
                 {
-                    title: 'Hardened Vercel Python FastAPI BFF',
+                    title: 'Silent On-Device Pre-Flight Safety',
                     description:
-                        'Stateless Python 3.13 FastAPI backend-for-frontend orchestrating Gemini structured outputs, SSRF-safe media checks, magic-byte upload validation, and swappable GPU worker endpoints.',
-                    icon: 'fa-solid fa-server',
-                    tags: ['Python 3.13', 'FastAPI', 'Pydantic v2', 'Vercel BFF'],
+                        'Screens uploads locally inside a dedicated MobileNetV2 ONNX Web Worker before any image leaves the browser, plus server-side magic-byte and SSRF checks.',
+                    icon: 'fa-solid fa-user-shield',
+                    tags: ['onnxruntime-web', 'Web Worker', 'FastAPI Guard'],
                 },
             ],
             architectureIntro:
-                'Architected as a clean monorepo separating the cross-platform client, stateless Python BFF, pluggable marketplace adapters, and optional headless GPU workers.',
+                'Clean separation between the cross-platform Angular client, Python FastAPI orchestrator, marketplace validators, and swappable local or cloud rendering workers.',
             architecture: [
                 {
                     layer: 'Cross-Platform Client',
-                    title: 'Angular 21 + Ionic 8 + Capacitor 8 Studio',
+                    title: 'Angular 22 + Ionic 9 + Capacitor 8',
                     description:
-                        'Responsive desktop workspace and native mobile companion sharing one signal-driven codebase, offline-first Dexie draft storage, client-side image normalization, and dedicated Web Worker safety screening.',
-                    technologies: ['Angular 21', 'Ionic 8', 'Capacitor 8', 'Dexie', 'ONNX Web Worker'],
+                        'Responsive web and mobile workspace with NgRx SignalStore state, relational RxDB 17 persistence (products, studio_assets, settings), client-side image normalization, and a silent ONNX safety worker.',
+                    technologies: ['Angular 22', 'Ionic 9', 'Capacitor 8', 'RxDB 17', 'NgRx SignalStore'],
                 },
                 {
-                    layer: 'Serverless BFF',
-                    title: 'Vercel Python 3.13 FastAPI Orchestrator',
+                    layer: 'API & Streaming Layer',
+                    title: 'Python 3.13 FastAPI BFF (SSE Progress)',
                     description:
-                        'Stateless API layer handling official Meta webhooks, Gemini multimodal extraction via google-genai, magic-byte and text safety validation, and unified routing across visual backends.',
-                    technologies: ['Python 3.13', 'FastAPI', 'Pydantic v2', 'google-genai', 'Vercel'],
+                        'Handles multimodal product extraction, prompt compilation, automated Vision QA, Meta Instagram webhook HMAC verification, and real-time Server-Sent Events progress streaming.',
+                    technologies: ['Python 3.13', 'FastAPI', 'Pydantic v2', 'google-genai', 'SSE'],
                 },
                 {
                     layer: 'Marketplace Engine',
-                    title: 'Canonical Catalog & 4 Schema Adapters',
+                    title: 'Canonical Model & 4 Channel Validators',
                     description:
-                        'Maps extracted attributes to platform-specific JSON schemas, character/tag limits, EU GPSR compliance checks, SP-API dry-run payloads, and ready-to-upload CSV/JSON bundles.',
-                    technologies: ['Amazon SP-API', 'Shopify GraphQL', 'eBay Inventory', 'Etsy v3'],
+                        'Scores required fields, enforces title and tag limits, generates SKU and price suggestions, and builds per-channel CSV rows plus full JSON export bundles.',
+                    technologies: ['Amazon', 'Shopify', 'eBay', 'Etsy', 'JSON Schema'],
                 },
                 {
-                    layer: 'Visual Backends',
-                    title: 'Gemini Cloud Image & Headless ComfyUI Worker',
+                    layer: 'Hybrid Visual Backends',
+                    title: 'Local RTX FLUX.1-Kontext & Cloud Gemini',
                     description:
-                        'Runs serverless cloud rendering by default and plugs cleanly into pre-configured headless ComfyUI API workflows (BiRefNet, quantized Flux, IC-Light) on local or scale-to-zero cloud GPUs.',
-                    technologies: ['Gemini Image', 'ComfyUI API', 'BiRefNet', 'Flux GGUF', 'IC-Light'],
+                        'Routes locally to headless ComfyUI running FLUX.1-Kontext-dev GGUF with CPU-offloaded T5-FP8 on 8 GB VRAM, or switches automatically to cloud Gemini image rendering on Vercel.',
+                    technologies: ['FLUX.1-Kontext GGUF', 'ComfyUI API', 'Gemini Image', 'Pillow'],
                 },
             ],
-            availabilityHeading: 'Private Development • Launching Soon',
-            availabilityIcon: 'fa-solid fa-rocket',
+            availabilityHeading: 'Private Commercial Build',
+            availabilityIcon: 'fa-solid fa-lock',
             availabilityNote:
-                'Social Scope has transitioned into private commercial development and its source repository is now closed. Brand identity, pricing tiers, and early access details will be announced ahead of public launch.',
+                'Social Scope is in active private development and the repository is closed. Watch the walkthrough video above for the current working build.',
         },
     },
     {

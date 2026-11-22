@@ -40,6 +40,21 @@ export interface ProjectShowcaseArchitectureLayer {
     technologies: string[];
 }
 
+export interface ProjectShowcaseDemoChapter {
+    step: string;
+    label: string;
+}
+
+export interface ProjectShowcaseDemoVideo {
+    src: string;
+    poster: string;
+    heading?: string;
+    description?: string;
+    duration?: string;
+    resolution?: string;
+    chapters?: ProjectShowcaseDemoChapter[];
+}
+
 export interface ProjectShowcase {
     tagline: string;
     versionBadge?: string;
@@ -51,6 +66,8 @@ export interface ProjectShowcase {
     wordmarkSuffix?: string;
     heroBanner: string;
     heroPreviewScreenshot?: string;
+    demoVideo?: ProjectShowcaseDemoVideo;
+    screenshotLayout?: 'mobile' | 'desktop';
     liveDemoUrl?: string;
     liveDemoTitle?: string;
     liveDemoDescription?: string;

@@ -1,13 +1,23 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, ChangeDetectorRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ProjectService } from '../../services/project.service';
-import { ProjectDetails } from '../../shared/types/project-details';
 import { Subscription } from 'rxjs';
-import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.component';
-import { ProjectCaseStudyComponent } from '../project-case-study/project-case-study.component';
+import { ProjectService } from '../../services/project.service';
+import { SITE_URL, SeoService } from '../../services/seo.service';
+import { ProjectDetails } from '../../shared/types/project-details';
 import { MarkdownViewerComponent } from '../markdown-viewer/markdown-viewer.component';
+import { ProjectCaseStudyComponent } from '../project-case-study/project-case-study.component';
+import { ProjectShowcaseComponent } from '../project-showcase/project-showcase.component';
 
 @Component({
   selector: 'app-project-details',
@@ -19,12 +29,12 @@ import { MarkdownViewerComponent } from '../markdown-viewer/markdown-viewer.comp
 })
 export class ProjectDetailsComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
-  private sanitizer = inject(DomSanitizer);
-  private titleService = inject(Title);
+  private seo = inject(SeoService);
   private projectService = inject(ProjectService);
   private http = inject(HttpClient);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
+  private platformId = inject(PLATFORM_ID);
 
   projectDetails: ProjectDetails | null = null;
   safeUrl: SafeResourceUrl | null = null;
@@ -46,12 +56,56 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.markdownContent = '';
     this.projectDetails = this.projectService.getProjectById(projectId);
     if (this.projectDetails) {
-      this.titleService.setTitle(`${this.projectDetails.title} | Raj Pawar`);
-      if (!this.projectDetails.showcase && !this.projectDetails.caseStudy && this.projectDetails.githubReadmeUrl) {
-        this.fetchReadme(this.projectDetails.githubReadmeUrl);
+      const p = this.projectDetails;
+      const pageUrl = `${SITE_URL}/project-details/${p.id}`;
+      const imageUrl = p.thumbnail ? `${SITE_URL}/${p.thumbnail.replace(/^\//, '')}` : undefined;
+      this.seo.update({
+        title: `${p.title} | Raj Pawar`,
+        description: `${p.description} Project by Raj Pawar (${p.techStack.slice(0, 5).join(', ')}).`,
+        path: `/project-details/${p.id}`,
+        image: imageUrl,
+        type: 'article',
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'SoftwareSourceCode',
+              name: p.title,
+              description: p.description,
+              url: pageUrl,
+              image: imageUrl,
+              programmingLanguage: p.language,
+              keywords: p.techStack.join(', '),
+              ...(p.githubLink ? { codeRepository: p.githubLink } : {}),
+              author: { '@id': `${SITE_URL}/#person` },
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Raj Pawar', item: `${SITE_URL}/` },
+                { '@type': 'ListItem', position: 2, name: 'Projects', item: `${SITE_URL}/projects` },
+                { '@type': 'ListItem', position: 3, name: p.title, item: pageUrl },
+              ],
+            },
+          ],
+        },
+      });
+
+      if (
+        isPlatformBrowser(this.platformId) &&
+        !p.showcase &&
+        !p.caseStudy &&
+        p.githubReadmeUrl
+      ) {
+        this.fetchReadme(p.githubReadmeUrl);
       }
     } else {
-      this.titleService.setTitle('Project Not Found | Raj Pawar');
+      this.seo.update({
+        title: 'Project Not Found | Raj Pawar',
+        description: 'The requested project could not be found on Raj Pawar’s portfolio.',
+        path: `/project-details/${projectId}`,
+        robots: 'noindex, follow',
+      });
       console.error(`Project with ID '${projectId}' not found.`);
     }
     this.cdr.markForCheck();
@@ -59,7 +113,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 
   public loadReadmeIfNeeded(): void {
     const url = this.projectDetails?.githubReadmeUrl;
-    if (!url || this.markdownContent) return;
+    if (!url || this.markdownContent || !isPlatformBrowser(this.platformId)) return;
     this.fetchReadme(url);
   }
 

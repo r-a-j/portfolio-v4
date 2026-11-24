@@ -21,7 +21,7 @@ export class NavbarComponent {
   readonly isThemeMenuOpen = signal(false);
 
   readonly navItems = [
-    { label: 'Home', route: '/home' },
+    { label: 'Home', route: '/' },
     { label: 'Projects', route: '/projects' },
     { label: 'Experience', route: '/experience' },
     { label: 'Skills', route: '/skills' },

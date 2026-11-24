@@ -3,30 +3,31 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    },
-    {
-        path: 'home',
-        title: 'Raj Pawar | ML, Computer Vision & Full-Stack Applied AI Engineer',
+        pathMatch: 'full',
+        title: 'Raj Pawar | Machine Learning, Computer Vision & Software Engineer',
         loadComponent: () =>
             import('./components/home/home.component').then((c) => c.HomeComponent)
     },
     {
+        path: 'home',
+        redirectTo: '',
+        pathMatch: 'full'
+    },
+    {
         path: 'about',
-        title: 'About | Raj Pawar',
+        title: 'About Raj Pawar | ML, Computer Vision & Data Science (TU Dortmund)',
         loadComponent: () =>
             import('./components/about/about.component').then((c) => c.AboutComponent)
     },
     {
         path: 'experience',
-        title: 'Experience | Raj Pawar',
+        title: 'Experience | Raj Pawar - PartikelART, ADVISORI FTC & Xcellence-IT',
         loadComponent: () =>
             import('./components/experience/experience.component').then((c) => c.ExperienceComponent)
     },
     {
         path: 'projects',
-        title: 'Projects | Raj Pawar',
+        title: 'Projects | Raj Pawar - Computer Vision, Edge AI & Data Science',
         loadComponent: () =>
             import('./components/projects/projects.component').then((c) => c.ProjectsComponent)
     },
@@ -38,18 +39,18 @@ export const routes: Routes = [
     },
     {
         path: 'skills',
-        title: 'Skills | Raj Pawar',
+        title: 'Technical Skills | Raj Pawar - Python, PyTorch, OpenCV, Angular & Docker',
         loadComponent: () =>
             import('./components/skills/skills.component').then((c) => c.SkillsComponent)
     },
     {
         path: 'contact',
-        title: 'Contact | Raj Pawar',
+        title: 'Contact Raj Pawar | Dortmund, Germany',
         loadComponent: () =>
             import('./components/contact/contact.component').then((c) => c.ContactComponent)
     },
     {
         path: '**',
-        redirectTo: '/home'
+        redirectTo: ''
     }
 ];

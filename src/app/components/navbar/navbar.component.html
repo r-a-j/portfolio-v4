@@ -1,7 +1,7 @@
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary navigation">
     <!-- Custom Personal Mark & Name -->
-    <a routerLink="/home" class="brand-link" (click)="closeMenu()" aria-label="Raj Pawar Home">
+    <a routerLink="/" class="brand-link" (click)="closeMenu()" aria-label="Raj Pawar Home">
       <app-brand-mark [size]="34"></app-brand-mark>
       <span class="brand-name">Raj Pawar</span>
     </a>
@@ -13,6 +13,7 @@
           <a
             [routerLink]="item.route"
             routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: item.route === '/' }"
             class="nav-link"
           >
             {{ item.label }}
@@ -145,6 +146,7 @@
             <a
               [routerLink]="item.route"
               routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: item.route === '/' }"
               (click)="closeMenu()"
               class="mobile-link"
             >

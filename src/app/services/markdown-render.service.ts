@@ -393,6 +393,10 @@ export class MarkdownRenderService {
       (_m, idx: string) => mathHtml[Number(idx)] ?? ''
     );
 
+    if (typeof window === 'undefined') {
+      return html;
+    }
+
     return DOMPurify.sanitize(html, {
       USE_PROFILES: { html: true, svg: true, svgFilters: true },
       ADD_TAGS: ['button'],

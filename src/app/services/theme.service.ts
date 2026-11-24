@@ -149,9 +149,10 @@ export class ThemeService {
   private applyToDom(id: ThemeId): void {
     const theme = this.themes.find((t) => t.id === id) ?? this.themes[0];
     const root = this.doc.documentElement;
-    root.dataset['theme'] = theme.id;
-    root.classList.toggle('dark', theme.mode === 'dark');
-    root.classList.toggle('light', theme.mode === 'light');
+    if (!root) return;
+    root.setAttribute('data-theme', theme.id);
+    root.classList?.toggle('dark', theme.mode === 'dark');
+    root.classList?.toggle('light', theme.mode === 'light');
 
     const metaTheme = this.doc.querySelector('meta[name="theme-color"]');
     if (metaTheme) {

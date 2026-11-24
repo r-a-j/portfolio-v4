@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { SeoService } from './services/seo.service';
 import { ThemeService } from './services/theme.service';
 
 @Component({
@@ -17,5 +18,6 @@ export class AppComponent {
 
   constructor() {
     inject(ThemeService);
+    inject(SeoService).init();
   }
 }

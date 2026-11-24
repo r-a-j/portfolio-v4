@@ -7,7 +7,7 @@
   >
     <img
       [src]="showcase().heroBanner"
-      alt=""
+      [alt]="project().title + ' backdrop'"
       aria-hidden="true"
       class="showcase-hero__backdrop"
     />
@@ -57,7 +57,7 @@
                 <span class="sr-only">{{ project().title }}</span>
                 <img
                   [src]="showcase().wordmark"
-                  alt=""
+                  [alt]="project().title + ' wordmark'"
                   aria-hidden="true"
                   class="block h-10 sm:h-12 w-auto"
                   [class.wordmark--indigo]="showcase().accentColor === 'indigo'"

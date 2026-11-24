@@ -39,7 +39,7 @@
                 @if (skill.icon) {
                   <img
                     [src]="skill.icon"
-                    alt=""
+                    [alt]="skill.name + ' logo'"
                     aria-hidden="true"
                     loading="lazy"
                     class="skill-chip__img"
@@ -83,7 +83,7 @@
               @if (lang.icon) {
                 <img
                   [src]="lang.icon"
-                  alt=""
+                  [alt]="lang.name + ' logo'"
                   aria-hidden="true"
                   loading="lazy"
                   class="w-4 h-4 object-contain shrink-0"

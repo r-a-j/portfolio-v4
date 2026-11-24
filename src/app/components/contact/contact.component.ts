@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   inject,
+  input,
   signal,
 } from '@angular/core';
 import emailjs from '@emailjs/browser';
@@ -20,6 +21,7 @@ import { FormValidationService } from '../../services/validation.service';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  readonly embedded = input(false);
   private fb = inject(FormBuilder);
   private notificationService = inject(NotificationService);
   private formValidationService = inject(FormValidationService);

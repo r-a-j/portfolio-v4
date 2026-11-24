@@ -2,9 +2,15 @@
   <div class="max-w-[1200px] mx-auto flex flex-col gap-8 sm:gap-10">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
-        Skills &amp; Tools
-      </h2>
+      @if (embedded()) {
+        <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+          Skills &amp; Tools
+        </h2>
+      } @else {
+        <h1 class="section-heading m-0 text-3xl sm:text-4xl">
+          Skills &amp; Tools
+        </h1>
+      }
       <p class="m-0 text-sm text-ink-secondary max-w-md leading-relaxed">
         Technologies I use regularly across computer vision, statistical modeling, full-stack apps, and deployment pipelines.
       </p>

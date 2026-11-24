@@ -2,9 +2,15 @@
   <div class="max-w-[1200px] mx-auto flex flex-col gap-8 sm:gap-10">
     <!-- Section Header -->
     <div>
-      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
-        {{ aboutContent.heading }}
-      </h2>
+      @if (embedded()) {
+        <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+          {{ aboutContent.heading }}
+        </h2>
+      } @else {
+        <h1 class="section-heading m-0 text-3xl sm:text-4xl">
+          About Raj Pawar
+        </h1>
+      }
     </div>
 
     <!-- 2-Column Bio & Credentials -->

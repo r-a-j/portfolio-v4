@@ -21,37 +21,37 @@ const ROUTE_SEO: Record<string, Omit<SeoConfig, 'path'>> = {
   '/': {
     title: 'Raj Pawar | Machine Learning, Computer Vision & Software Engineer',
     description:
-      'Raj Pawar: Machine Learning, Computer Vision & Software Engineer in Dortmund, Germany. M.Sc. Data Science at TU Dortmund, former PartikelART engineer (1st Place, TU Start-up Award 2025).',
+      'Raj Pawar: Machine Learning, Computer Vision & Software Engineer in Dortmund. M.Sc. Data Science at TU Dortmund, 1st Place TU Start-up Award 2025.',
     type: 'profile',
   },
   '/about': {
     title: 'About Raj Pawar | ML, Computer Vision & Data Science (TU Dortmund)',
     description:
-      'Background, education, TU Dortmund guest lecture, TU Start-up Award 2025 recognition, and signed employer references for Raj Pawar.',
+      'About Raj Pawar: M.Sc. Data Science at TU Dortmund, former PartikelART engineer, TU Start-up Award 2025 winner, guest lecturer, and references.',
     type: 'profile',
   },
   '/experience': {
     title: 'Experience | Raj Pawar - PartikelART, ADVISORI FTC & Xcellence-IT',
     description:
-      'Engineering experience of Raj Pawar across PartikelART Solution GmbH (VDA 19.1 automotive optical inspection, PyTorch, OpenCV), ADVISORI FTC, and Xcellence-IT.',
+      'Engineering experience of Raj Pawar: PartikelART (VDA 19.1 optical inspection, PyTorch, OpenCV), ADVISORI FTC, and Xcellence-IT.',
     type: 'website',
   },
   '/projects': {
     title: 'Projects | Raj Pawar - Computer Vision, Edge AI & Data Science',
     description:
-      'Portfolio of Raj Pawar: VDA 19.1 particle segmentation, Kosh on-device Android AI (LiteRT), Social Scope image pipeline, CineScope, Bayesian modeling, and simulation-based inference.',
+      'Projects by Raj Pawar: VDA 19.1 particle segmentation, Kosh Android edge AI (LiteRT), Social Scope, CineScope, and Bayesian modeling.',
     type: 'website',
   },
   '/skills': {
     title: 'Technical Skills | Raj Pawar - Python, PyTorch, OpenCV, Angular & Docker',
     description:
-      'Technical stack of Raj Pawar across computer vision (PyTorch, OpenCV, SAM 2.1, ONNX), data science, full-stack engineering (Angular, NestJS, Spring Boot), and DevOps.',
+      'Technical skills of Raj Pawar: Python, PyTorch, OpenCV, SAM 2.1, ONNX, TypeScript, Angular, NestJS, Spring Boot, Linux, and Docker.',
     type: 'website',
   },
   '/contact': {
     title: 'Contact Raj Pawar | Dortmund, Germany',
     description:
-      'Get in touch with Raj Pawar (er.rajpawar@gmail.com) in Dortmund, Germany for Machine Learning, Computer Vision, and Software Engineering roles or Master’s thesis collaborations.',
+      'Contact Raj Pawar (er.rajpawar@gmail.com) in Dortmund, Germany for Machine Learning, Computer Vision, and Software Engineering roles.',
     type: 'website',
   },
 };
@@ -98,9 +98,10 @@ export class SeoService {
     const canonicalUrl = cleanPath === '/' ? `${SITE_URL}/` : `${SITE_URL}${cleanPath}`;
     const imageUrl = this.toAbsoluteUrl(config.image ?? DEFAULT_OG_IMAGE);
     const ogType = config.type ?? 'website';
+    const description = this.clampDescription(config.description, 155);
 
     this.title.setTitle(config.title);
-    this.meta.updateTag({ name: 'description', content: config.description });
+    this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({
       name: 'robots',
       content: config.robots ?? 'index, follow, max-image-preview:large, max-snippet:-1',
@@ -109,15 +110,25 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:type', content: ogType });
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
     this.meta.updateTag({ property: 'og:title', content: config.title });
-    this.meta.updateTag({ property: 'og:description', content: config.description });
+    this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:image', content: imageUrl });
 
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
-    this.meta.updateTag({ name: 'twitter:description', content: config.description });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.updateTag({ name: 'twitter:image', content: imageUrl });
 
     this.setCanonicalLink(canonicalUrl);
     this.setRouteJsonLd(config.jsonLd ?? null);
+  }
+
+  private clampDescription(text: string, maxLength: number): string {
+    const normalized = text.replace(/\s+/g, ' ').trim();
+    if (normalized.length <= maxLength) {
+      return normalized;
+    }
+    const cut = normalized.slice(0, maxLength - 3);
+    const lastSpace = cut.lastIndexOf(' ');
+    return `${(lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[.,;:\s]+$/, '')}...`;
   }
 
   private normalizePath(url: string): string {

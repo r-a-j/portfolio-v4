@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   signal,
 } from '@angular/core';
 import { EXPERIENCES } from '../../data/experience-data';
@@ -22,6 +23,7 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
   },
 })
 export class ExperienceComponent {
+  readonly embedded = input(false);
   readonly experiences: Experience[] = EXPERIENCES;
 
   // Keep most recent role (PartikelART) open by default; earlier roles stay compact until clicked

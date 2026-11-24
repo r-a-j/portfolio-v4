@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { ABOUT_CONTENT } from '../../data/about-data';
 import { CvModalComponent } from '../cv-modal/cv-modal.component';
 
@@ -10,6 +10,7 @@ import { CvModalComponent } from '../cv-modal/cv-modal.component';
   styleUrl: './about.component.scss',
 })
 export class AboutComponent {
+  readonly embedded = input(false);
   readonly showCVModal = signal(false);
   readonly activePdfUrl = signal('');
   readonly activeModalTitle = signal('Reference Letter');

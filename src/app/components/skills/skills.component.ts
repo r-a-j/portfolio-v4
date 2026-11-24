@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CORE_LANGUAGES, SKILL_GROUPS } from '../../data/skills-data';
 import { CoreLanguage, SkillGroup } from '../../shared/types/skill-category';
 
@@ -10,6 +10,7 @@ import { CoreLanguage, SkillGroup } from '../../shared/types/skill-category';
   styleUrl: './skills.component.scss',
 })
 export class SkillsComponent {
+  readonly embedded = input(false);
   readonly groups: SkillGroup[] = SKILL_GROUPS;
   readonly languages: CoreLanguage[] = CORE_LANGUAGES;
 }

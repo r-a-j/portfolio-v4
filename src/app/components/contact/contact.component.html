@@ -1,9 +1,15 @@
 <section id="contact" class="py-12 sm:py-16 px-4 sm:px-6 bg-canvas text-ink">
   <div class="max-w-[1120px] mx-auto">
     <div class="mb-10">
-      <h2 class="section-heading m-0 text-3xl sm:text-4xl">
-        Get in Touch
-      </h2>
+      @if (embedded()) {
+        <h2 class="section-heading m-0 text-3xl sm:text-4xl">
+          Get in Touch
+        </h2>
+      } @else {
+        <h1 class="section-heading m-0 text-3xl sm:text-4xl">
+          Contact Raj Pawar
+        </h1>
+      }
       <p class="mt-2.5 mb-0 text-base text-ink-secondary max-w-2xl leading-relaxed">
         After wrapping up my role at PartikelART (Oct 2024 – Nov 2026), I am looking for my next challenge in Machine Learning, Computer Vision, or Full-Stack Applied AI. Feel free to email me directly or leave a note below.
       </p>
